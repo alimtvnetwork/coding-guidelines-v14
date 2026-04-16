@@ -31,7 +31,7 @@ export default function DocsViewer() {
     <SidebarProvider>
         <div className="min-h-screen flex flex-col w-full">
           <div className="flex-1 flex w-full">
-            <DocsContent activeFile={state.activeFile} allFiles={allFiles} tree={tree} onSelect={state.handleSelect} searchQuery={state.searchQuery} setSearchQuery={state.setSearchQuery} />
+            <DocsContent activeFile={state.activeFile} allFiles={allFiles} tree={tree} onSelect={state.handleSelect} searchQuery={state.searchQuery} setSearchQuery={state.setSearchQuery} onSearchOpen={() => state.setSearchOpen(true)} />
           </div>
           <footer className="border-t border-border py-4 text-center text-sm text-muted-foreground space-y-1">
             <p>

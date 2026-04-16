@@ -2,6 +2,7 @@
  * Sub-components extracted from DocsViewer for file-size compliance.
  */
 import React, { useEffect } from "react";
+import { Search } from "lucide-react";
 import { HtmlTag } from "@/constants/htmlTags";
 import { KeyboardKeyType } from "@/constants/enums";
 import { MonacoMarkdownEditor } from "@/components/MonacoMarkdownEditor";
@@ -31,6 +32,19 @@ export function BreadcrumbNav({ breadcrumb }: { breadcrumb: string[] }) {
         </span>
       ))}
     </nav>
+  );
+}
+
+function SearchButton({ onClick }: { onClick: () => void }) {
+  const isMac = navigator.platform.toUpperCase().includes("MAC");
+  const shortcut = isMac ? "⌘K" : "Ctrl+K";
+
+  return (
+    <button onClick={onClick} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors text-sm shrink-0">
+      <Search className="h-3.5 w-3.5" />
+      <span className="hidden sm:inline">Search</span>
+      <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground">{shortcut}</kbd>
+    </button>
   );
 }
 
@@ -152,6 +166,7 @@ interface DocsHeaderProps {
   toggleTheme: () => void;
   setShowShortcuts: React.Dispatch<React.SetStateAction<boolean>>;
   toggleAllSections: () => void;
+  onSearchOpen?: () => void;
 }
 
 export function DocsHeader(props: DocsHeaderProps) {
@@ -159,6 +174,7 @@ export function DocsHeader(props: DocsHeaderProps) {
     <header className="h-12 flex items-center gap-3 border-b border-border px-4 bg-background shrink-0">
       {!props.isFullscreen && <SidebarTrigger />}
       <BreadcrumbNav breadcrumb={props.breadcrumb} />
+      {props.onSearchOpen && <SearchButton onClick={props.onSearchOpen} />}
       <div className="flex items-center gap-0.5 shrink-0">
         {props.activeFile && <ViewModeToggle viewMode={props.viewMode} activeFile={props.activeFile} setViewMode={props.setViewMode} setEditContent={props.setEditContent} />}
         <ToolbarButtons activeFile={props.activeFile} copied={props.copied} isFullscreen={props.isFullscreen} theme={props.theme} tree={props.tree} allCollapsed={props.allCollapsed} handleCopyMarkdown={props.handleCopyMarkdown} setIsFullscreen={props.setIsFullscreen} toggleTheme={props.toggleTheme} setShowShortcuts={props.setShowShortcuts} toggleAllSections={props.toggleAllSections} />
@@ -177,12 +193,13 @@ interface ContentPanelMainProps {
   onSelect: (node: SpecNode) => void;
   allCollapsed: boolean | null;
   toggleAllSections: () => void;
+  onSearchOpen?: () => void;
 }
 
-function ContentPanelMain({ deps, state, split, activeFile, allFiles, tree, onSelect, allCollapsed, toggleAllSections }: ContentPanelMainProps) {
+function ContentPanelMain({ deps, state, split, activeFile, allFiles, tree, onSelect, allCollapsed, toggleAllSections, onSearchOpen }: ContentPanelMainProps) {
   return (
     <div className="flex-1 flex flex-col min-w-0">
-      <DocsHeader isFullscreen={state.isFullscreen} breadcrumb={deps.breadcrumb} activeFile={activeFile} viewMode={state.viewMode} setViewMode={state.setViewMode} setEditContent={state.setEditContent} copied={state.copied} theme={deps.theme} tree={tree} allCollapsed={allCollapsed} handleCopyMarkdown={deps.handleCopyMarkdown} setIsFullscreen={state.setIsFullscreen} toggleTheme={deps.toggleTheme} setShowShortcuts={state.setShowShortcuts} toggleAllSections={toggleAllSections} />
+      <DocsHeader isFullscreen={state.isFullscreen} breadcrumb={deps.breadcrumb} activeFile={activeFile} viewMode={state.viewMode} setViewMode={state.setViewMode} setEditContent={state.setEditContent} copied={state.copied} theme={deps.theme} tree={tree} allCollapsed={allCollapsed} handleCopyMarkdown={deps.handleCopyMarkdown} setIsFullscreen={state.setIsFullscreen} toggleTheme={deps.toggleTheme} setShowShortcuts={state.setShowShortcuts} toggleAllSections={toggleAllSections} onSearchOpen={onSearchOpen} />
       {activeFile && <ProgressBar progress={deps.readingProgress} />}
       <main ref={deps.mainRef} className="flex-1 overflow-auto">
         <DocsMainContent activeFile={activeFile} viewMode={state.viewMode} editContent={state.editContent} setEditContent={state.setEditContent} splitRatio={split.splitRatio} isFullscreen={state.isFullscreen} splitContainerRef={split.splitContainerRef} handleDividerMouseDown={deps.handleDividerMouseDown} handleScrollTo={deps.handleScrollTo} activeHeadingId={deps.activeHeadingId} allFiles={allFiles} onSelect={onSelect} allCollapsed={allCollapsed} />
@@ -229,7 +246,7 @@ export function DocsContentPanel(props: ContentPanelInput) {
   return (
     <>
       {!props.state.isFullscreen && <DocsSidebar tree={props.tree} activePath={props.activeFile?.path ?? null} onSelect={props.onSelect} searchQuery={props.searchQuery} setSearchQuery={props.setSearchQuery} allFiles={props.allFiles} />}
-      <ContentPanelMain deps={deps} state={props.state} split={props.split} activeFile={props.activeFile} allFiles={props.allFiles} tree={props.tree} onSelect={props.onSelect} allCollapsed={allCollapsed} toggleAllSections={toggleAll} />
+      <ContentPanelMain deps={deps} state={props.state} split={props.split} activeFile={props.activeFile} allFiles={props.allFiles} tree={props.tree} onSelect={props.onSelect} allCollapsed={allCollapsed} toggleAllSections={toggleAll} onSearchOpen={props.onSearchOpen} />
       {props.state.showShortcuts && <ShortcutsOverlay onClose={() => props.state.setShowShortcuts(false)} />}
     </>
   );
@@ -242,11 +259,12 @@ export interface DocsContentProps {
   onSelect: (node: SpecNode) => void;
   searchQuery: string;
   setSearchQuery: (q: string) => void;
+  onSearchOpen?: () => void;
 }
 
-export function DocsContent({ activeFile, allFiles, tree, onSelect, searchQuery, setSearchQuery }: DocsContentProps) {
+export function DocsContent({ activeFile, allFiles, tree, onSelect, searchQuery, setSearchQuery, onSearchOpen }: DocsContentProps) {
   const state = useViewState();
   const split = useSplitState();
 
-  return <DocsContentPanel state={state} split={split} activeFile={activeFile} allFiles={allFiles} tree={tree} onSelect={onSelect} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
+  return <DocsContentPanel state={state} split={split} activeFile={activeFile} allFiles={allFiles} tree={tree} onSelect={onSelect} searchQuery={searchQuery} setSearchQuery={setSearchQuery} onSearchOpen={onSearchOpen} />;
 }
