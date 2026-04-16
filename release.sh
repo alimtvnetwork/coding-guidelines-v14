@@ -3,7 +3,7 @@ set -euo pipefail
 
 REPO="alimtvnetwork/coding-guidelines-v14"
 VERSION="$(node -p "require('./package.json').version")"
-DIST_DIR="dist/release"
+DIST_DIR="release-artifacts"
 STAGING_DIR="$DIST_DIR/coding-guidelines-v$VERSION"
 ARCHIVE_BASENAME="coding-guidelines-v$VERSION"
 REQUIRED_PATHS=("spec" "linters" "linter-scripts" "install.sh" "install.ps1" "install-config.json" "README.md")

@@ -11,7 +11,7 @@ function Write-Err { param([string]$Msg) Write-Host "❌ $Msg" -ForegroundColor 
 
 $packageJson = Get-Content -Path (Join-Path $PSScriptRoot "package.json") -Raw | ConvertFrom-Json
 $version = $packageJson.version
-$distDir = Join-Path $PSScriptRoot "dist\release"
+$distDir = Join-Path $PSScriptRoot "release-artifacts"
 $releaseName = "coding-guidelines-v$version"
 $stagingDir = Join-Path $distDir $releaseName
 $requiredPaths = @("spec", "linters", "linter-scripts", "install.sh", "install.ps1", "install-config.json", "README.md")

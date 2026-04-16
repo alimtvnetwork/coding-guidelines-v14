@@ -88,7 +88,7 @@ npm run release
 npm run release:ps1
 ```
 
-Both scripts create a versioned release bundle in `dist/release/` containing:
+Both scripts create a versioned release bundle in `release-artifacts/` containing:
 
 - `spec/`
 - `linters/`
