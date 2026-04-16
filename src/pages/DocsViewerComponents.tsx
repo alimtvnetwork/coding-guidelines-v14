@@ -152,6 +152,7 @@ interface DocsHeaderProps {
   toggleTheme: () => void;
   setShowShortcuts: React.Dispatch<React.SetStateAction<boolean>>;
   toggleAllSections: () => void;
+  onSearchOpen?: () => void;
 }
 
 export function DocsHeader(props: DocsHeaderProps) {
@@ -159,6 +160,7 @@ export function DocsHeader(props: DocsHeaderProps) {
     <header className="h-12 flex items-center gap-3 border-b border-border px-4 bg-background shrink-0">
       {!props.isFullscreen && <SidebarTrigger />}
       <BreadcrumbNav breadcrumb={props.breadcrumb} />
+      {props.onSearchOpen && <SearchButton onClick={props.onSearchOpen} />}
       <div className="flex items-center gap-0.5 shrink-0">
         {props.activeFile && <ViewModeToggle viewMode={props.viewMode} activeFile={props.activeFile} setViewMode={props.setViewMode} setEditContent={props.setEditContent} />}
         <ToolbarButtons activeFile={props.activeFile} copied={props.copied} isFullscreen={props.isFullscreen} theme={props.theme} tree={props.tree} allCollapsed={props.allCollapsed} handleCopyMarkdown={props.handleCopyMarkdown} setIsFullscreen={props.setIsFullscreen} toggleTheme={props.toggleTheme} setShowShortcuts={props.setShowShortcuts} toggleAllSections={props.toggleAllSections} />
