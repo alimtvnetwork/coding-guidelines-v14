@@ -60,7 +60,7 @@ AI INSTRUCTION:
 | 11 | [11-environment-variable-setup.md](./11-environment-variable-setup.md) | `env` command: persistent variables, PATH registration, auto-home | ✅ Active |
 | 12 | [12-terminal-output-standards.md](./12-terminal-output-standards.md) | Output formatting: icons, tables, progress, errors, CI summaries | ✅ Active |
 | 13 | [13-binary-icon-branding.md](./13-binary-icon-branding.md) | Windows binary icon embedding via `go-winres`: icon, manifest, version info | ✅ Active |
-| 10 | [10-release-pipeline-issues-rca.md](./10-release-pipeline-issues-rca.md) | 🔴 Root-cause analysis ledger of all CI/CD failures (npm ci, pip cache, etc.) — read before editing any workflow | ✅ Active |
+| 10 | [10-release-pipeline-issues-rca.md](./10-release-pipeline-issues-rca.md) | 🔴 Root-cause analysis ledger of 12 CI/CD failures (3 from this repo + 9 imported from gitmap-v3: npm ci, pip cache, winres icon, working-dir drift, status-check gating, cancel-in-progress, `@latest` pinning, release-branch cancellation, install-script placeholders, silent token skip, asset-name mismatch). Includes 19 standing rules + pre-flight checklist — read before editing any workflow. | ✅ Active |
 
 ### Subfolder: Browser Extension Deploy
 
