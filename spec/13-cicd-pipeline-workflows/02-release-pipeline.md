@@ -2,6 +2,8 @@
 
 > 🔴 **READ BEFORE EDITING:** [`10-release-pipeline-issues-rca.md`](./10-release-pipeline-issues-rca.md) — Root-cause-analysis ledger of every CI/CD failure encountered in this repo (npm ci lockfile drift, pip cache missing manifest, Node-dependent release script). It defines standing rules and a pre-flight checklist that all workflow edits must satisfy.
 >
+> 📘 **Generic contract this pipeline implements:** [`../17-generic-release/00-overview.md`](../17-generic-release/00-overview.md) — tool-agnostic release blueprint (cross-compilation, install scripts, checksums, assets, metadata, known issues). This pipeline is the concrete realization for this repo; behaviour MUST stay consistent with that spec.
+>
 > 📎 **Generic-CLI contracts that bind this pipeline:** [`../16-generic-cli/20-terminal-output-design.md`](../16-generic-cli/20-terminal-output-design.md) (terminal report + color tokens used by install scripts and `doctor`) and [`../16-generic-cli/21-post-install-shell-activation.md`](../16-generic-cli/21-post-install-shell-activation.md) (post-install PATH/profile/wrapper activation, `doctor` LOADED state). Install-script and setup output produced by this pipeline MUST conform to both.
 
 ## Overview
