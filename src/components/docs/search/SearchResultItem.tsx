@@ -20,7 +20,7 @@ function buildPathDisplay(path: string): string {
     .join(" › ");
 }
 
-function SnippetList({ snippets, query }: { snippets: string[]; query: string }) {
+function SnippetList({ snippets, snippetHighlights, query }: { snippets: string[]; snippetHighlights?: number[][]; query: string }) {
   if (snippets.length === 0) {
     return null;
   }
@@ -29,7 +29,7 @@ function SnippetList({ snippets, query }: { snippets: string[]; query: string })
     <div className="mt-1.5 space-y-1">
       {snippets.map((snippet, i) => (
         <div key={i} className="text-xs text-muted-foreground/80 leading-relaxed line-clamp-2 border-l-2 border-border ml-0.5 pl-2">
-          <HighlightedText text={snippet} query={query} />
+          <HighlightedText text={snippet} query={query} highlightIndices={snippetHighlights?.[i]} />
         </div>
       ))}
     </div>
@@ -45,7 +45,7 @@ function ResultContent({ result, query }: { result: SearchResult; query: string 
         <HighlightedText text={result.file.name} query={query} />
       </div>
       <div className="text-xs text-muted-foreground truncate mt-0.5">{pathDisplay}</div>
-      <SnippetList snippets={result.snippets} query={query} />
+      <SnippetList snippets={result.snippets} snippetHighlights={result.snippetHighlights} query={query} />
     </div>
   );
 }
