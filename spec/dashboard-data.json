@@ -1,17 +1,15 @@
 {
   "Generated": "2026-04-16",
   "Health": {
-    "Score": 70,
-    "Grade": "C",
+    "Score": 80,
+    "Grade": "B",
     "Deductions": [
-      "32 broken links (-20)",
-      "4 missing consistency reports (-4)",
-      "2 missing overviews (-6)"
+      "32 broken links (-20)"
     ]
   },
   "Links": {
-    "TotalChecked": 1612,
-    "Ok": 1580,
+    "TotalChecked": 1642,
+    "Ok": 1610,
     "Broken": 32,
     "BrokenDetails": [
       {
@@ -241,38 +239,12 @@
     ]
   },
   "RequiredFiles": {
-    "MissingOverview": [
-      {
-        "Folder": "14-generic-update",
-        "FileCount": 9
-      },
-      {
-        "Folder": "18-wp-plugin-how-to",
-        "FileCount": 24
-      }
-    ],
-    "MissingConsistency": [
-      {
-        "Folder": "13-generic-cli",
-        "FileCount": 21
-      },
-      {
-        "Folder": "14-generic-update",
-        "FileCount": 9
-      },
-      {
-        "Folder": "16-generic-release",
-        "FileCount": 8
-      },
-      {
-        "Folder": "18-wp-plugin-how-to/02-enums-and-coding-style",
-        "FileCount": 5
-      }
-    ]
+    "MissingOverview": [],
+    "MissingConsistency": []
   },
   "Inventory": {
     "TotalFolders": 75,
-    "TotalMdFiles": 554,
+    "TotalMdFiles": 560,
     "Folders": [
       {
         "Folder": "",
@@ -1408,10 +1380,10 @@
       },
       {
         "Folder": "13-generic-cli",
-        "MdFiles": 21,
+        "MdFiles": 22,
         "Subfolders": 0,
         "HasOverview": true,
-        "HasConsistency": false,
+        "HasConsistency": true,
         "HasChangelog": false,
         "HasAcceptance": false,
         "Files": [
@@ -1435,18 +1407,20 @@
           "18-batch-execution.md",
           "19-shell-completion.md",
           "20-terminal-output-design.md",
-          "21-post-install-shell-activation.md"
+          "21-post-install-shell-activation.md",
+          "99-consistency-report.md"
         ]
       },
       {
         "Folder": "14-generic-update",
-        "MdFiles": 9,
+        "MdFiles": 11,
         "Subfolders": 0,
-        "HasOverview": false,
-        "HasConsistency": false,
+        "HasOverview": true,
+        "HasConsistency": true,
         "HasChangelog": false,
         "HasAcceptance": false,
         "Files": [
+          "00-overview.md",
           "01-self-update-overview.md",
           "02-deploy-path-resolution.md",
           "03-rename-first-deploy.md",
@@ -1455,6 +1429,7 @@
           "06-cleanup.md",
           "07-console-safe-handoff.md",
           "08-repo-path-sync.md",
+          "99-consistency-report.md",
           "README.md"
         ]
       },
@@ -1501,10 +1476,10 @@
       },
       {
         "Folder": "16-generic-release",
-        "MdFiles": 8,
+        "MdFiles": 9,
         "Subfolders": 1,
         "HasOverview": true,
-        "HasConsistency": false,
+        "HasConsistency": true,
         "HasChangelog": false,
         "HasAcceptance": false,
         "Files": [
@@ -1515,7 +1490,8 @@
           "04-checksums-verification.md",
           "05-release-assets.md",
           "06-release-metadata.md",
-          "07-known-issues-and-fixes.md"
+          "07-known-issues-and-fixes.md",
+          "99-consistency-report.md"
         ]
       },
       {
@@ -1556,13 +1532,14 @@
       },
       {
         "Folder": "18-wp-plugin-how-to",
-        "MdFiles": 24,
+        "MdFiles": 25,
         "Subfolders": 1,
-        "HasOverview": false,
+        "HasOverview": true,
         "HasConsistency": true,
         "HasChangelog": false,
         "HasAcceptance": false,
         "Files": [
+          "00-overview.md",
           "00-quick-start.md",
           "01-foundation-and-architecture.md",
           "03-traits-and-composition.md",
@@ -1591,10 +1568,10 @@
       },
       {
         "Folder": "18-wp-plugin-how-to/02-enums-and-coding-style",
-        "MdFiles": 5,
+        "MdFiles": 6,
         "Subfolders": 0,
         "HasOverview": true,
-        "HasConsistency": false,
+        "HasConsistency": true,
         "HasChangelog": false,
         "HasAcceptance": false,
         "Files": [
@@ -1602,7 +1579,8 @@
           "01-enum-architecture.md",
           "02-enum-metadata-pattern.md",
           "03-self-update-status-enum.md",
-          "04-action-type-enum.md"
+          "04-action-type-enum.md",
+          "99-consistency-report.md"
         ]
       },
       {

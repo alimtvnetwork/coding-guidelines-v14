@@ -1,11 +1,11 @@
 # Project-Wide Spec Health Dashboard
 
 **Generated:** 2026-04-16  
-**Total Files Scanned:** 554  
+**Total Files Scanned:** 560  
 **Total Folders:** 75  
-**Overall Health:** 70/100 (C)
+**Overall Health:** 80/100 (B)
 
-> All in-repo broken links fixed across the renumber + cross-ref audit. Remaining broken links are intentional gitmap-v3 sibling references covered by the folder-ref allowlist.
+> All in-repo broken links fixed. Missing 00-overview.md (×2) and 99-consistency-report.md (×4) created — structural deductions cleared. Remaining broken links are intentional gitmap-v3 sibling references covered by the folder-ref allowlist.
 
 ---
 
@@ -13,10 +13,10 @@
 
 | Metric | Value |
 |--------|-------|
-| Score | **70/100 (C)** |
+| Score | **80/100 (B)** |
 | Deduction | 32 broken links (-20) |
-| Deduction | 4 missing consistency reports (-4) |
-| Deduction | 2 missing overviews (-6) |
+| Deduction | 0 missing consistency reports (0) |
+| Deduction | 0 missing overviews (0) |
 
 ---
 
@@ -24,9 +24,9 @@
 
 | Metric | Count |
 |--------|-------|
-| Total links checked | 1612 |
-| ✅ Resolved | 1579 |
-| 🔴 Broken (gitmap-v3 siblings) | 33 |
+| Total links checked | 1642 |
+| ✅ Resolved | 1610 |
+| 🔴 Broken (gitmap-v3 siblings) | 32 |
 
 ### Broken Links by Folder
 
