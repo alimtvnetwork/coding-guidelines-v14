@@ -22,14 +22,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund --ignore-scripts
-
       - name: Resolve version
         id: version
         run: |
@@ -38,7 +30,8 @@ jobs:
           echo "Resolved version: $VERSION"
 
       - name: Run release script
-        working-directory: .
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
         run: bash release.sh
 
       - name: Verify release artifacts

@@ -1,2 +1,2 @@
-62c27f09b4a004cf94af4e3200c620d850a0f8dfeb8f7998821f3df7eca0a6ed  coding-guidelines-v1.4.0.zip
-a6192b12763a6f6920c07a7587238031fdcac0d16ad02dda2e6300cd82603124  coding-guidelines-v1.4.0.tar.gz
+e5ea6cfec6be5daf2d6adaa3cffa2e1634cace812c4812434ade62f39ccf5fd5  coding-guidelines-v1.4.0.zip
+84ab151cdc3cdcced9d2e31892e06b78a55525090e89eb1131b10fd342027bc8  coding-guidelines-v1.4.0.tar.gz
