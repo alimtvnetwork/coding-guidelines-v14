@@ -14,7 +14,7 @@
 | Metric | Value |
 |--------|-------|
 | Score | **70/100 (C)** |
-| Deduction | 33 broken links (-20) |
+| Deduction | 32 broken links (-20) |
 | Deduction | 4 missing consistency reports (-4) |
 | Deduction | 2 missing overviews (-6) |
 
@@ -102,7 +102,7 @@
 |----------|--------|
 | `spec/NN-name/` folder references | 0 stale ✅ |
 | Allowlisted external folders | 25 (gitmap-v3 sibling repos) |
-| File-level broken links | 33 (all in allowlisted external paths) |
+| File-level broken links | 32 (all in allowlisted external paths) |
 | Renumber-related fixes | `12-cicd-pipeline-workflows/00-overview.md` (6 links), `02-go-binary-deploy/*` (3 links), `17-consolidated-guidelines/00-overview.md` (2 links) — all resolved |
 
 ---
