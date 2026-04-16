@@ -43,7 +43,7 @@ Application-specific design system and UI specifications. Covers component patte
 
 - [Design System (Core)](../07-design-system/00-overview.md) — Foundational design system spec
 - [App](../21-app/00-overview.md) — App-specific features and workflows
-- [Consolidated Design System](../12-consolidated-guidelines/07-design-system.md) — Consolidated summary
+- [Consolidated Design System](../17-consolidated-guidelines/07-design-system.md) — Consolidated summary
 
 ---
 

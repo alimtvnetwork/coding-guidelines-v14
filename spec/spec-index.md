@@ -228,8 +228,8 @@
 | `spec/02-coding-guidelines/08-file-folder-naming/04-typescript-javascript.md` | File & Folder Naming — TypeScript / JavaScript | 1.0.0 |
 | `spec/02-coding-guidelines/08-file-folder-naming/05-rust-csharp.md` | File & Folder Naming — Rust / C# | 1.0.0 |
 | `spec/02-coding-guidelines/08-file-folder-naming/99-consistency-report.md` | Consistency Report — File & Folder Naming | 1.0.0 |
-| `spec/02-coding-guidelines/10-powershell-integration/00-overview.md` | PowerShell Integration | 1.0.0 |
-| `spec/02-coding-guidelines/11-research/00-overview.md` | Research | 1.0.0 |
+| `spec/02-coding-guidelines/11-powershell-integration/00-overview.md` | PowerShell Integration | 1.0.0 |
+| `spec/02-coding-guidelines/10-research/00-overview.md` | Research | 1.0.0 |
 | `spec/02-coding-guidelines/11-security/00-overview.md` | Security Guidelines | 1.0.0 |
 | `spec/02-coding-guidelines/11-security/99-consistency-report.md` | Consistency Report — Security Guidelines | 1.0.0 |
 | `spec/02-coding-guidelines/11-security/01-axios-version-control/00-overview.md` | Axios Version Control Policy | 1.1.0 |
@@ -488,89 +488,89 @@
 
 | File | Title | Version |
 |------|-------|---------|
-| `spec/12-consolidated-guidelines/00-overview.md` | Consolidated Guidelines | 1.0.0 |
-| `spec/12-consolidated-guidelines/01-spec-authoring.md` | Consolidated: Spec Authoring Guide | 1.0.0 |
-| `spec/12-consolidated-guidelines/02-coding-guidelines.md` | Consolidated: Coding Guidelines | 1.0.0 |
-| `spec/12-consolidated-guidelines/03-error-management.md` | Consolidated: Error Management | 1.0.0 |
-| `spec/12-consolidated-guidelines/05-split-db-architecture.md` | Consolidated: Split DB Architecture | 1.0.0 |
-| `spec/12-consolidated-guidelines/06-seedable-config.md` | Consolidated: Seedable Config | 1.0.0 |
-| `spec/12-consolidated-guidelines/07-design-system.md` | Consolidated: Design System | 1.0.0 |
-| `spec/12-consolidated-guidelines/08-docs-viewer-ui.md` | Consolidated: Docs Viewer UI | 1.0.0 |
-| `spec/12-consolidated-guidelines/09-code-block-system.md` | Consolidated: Code Block System | 1.0.0 |
-| `spec/12-consolidated-guidelines/10-powershell-integration.md` | Consolidated: PowerShell Integration | 1.0.0 |
-| `spec/12-consolidated-guidelines/11-research.md` | Consolidated: Research | 1.0.0 |
-| `spec/12-consolidated-guidelines/11-root-research.md` | Consolidated: Root-Level Research | 1.0.0 |
-| `spec/12-consolidated-guidelines/12-app.md` | Consolidated: App | 1.0.0 |
-| `spec/12-consolidated-guidelines/13-app-issues.md` | Consolidated: App Issues | 1.0.0 |
-| `spec/12-consolidated-guidelines/99-consistency-report.md` | Consistency Report | 1.0.0 |
+| `spec/17-consolidated-guidelines/00-overview.md` | Consolidated Guidelines | 1.0.0 |
+| `spec/17-consolidated-guidelines/01-spec-authoring.md` | Consolidated: Spec Authoring Guide | 1.0.0 |
+| `spec/17-consolidated-guidelines/02-coding-guidelines.md` | Consolidated: Coding Guidelines | 1.0.0 |
+| `spec/17-consolidated-guidelines/03-error-management.md` | Consolidated: Error Management | 1.0.0 |
+| `spec/17-consolidated-guidelines/05-split-db-architecture.md` | Consolidated: Split DB Architecture | 1.0.0 |
+| `spec/17-consolidated-guidelines/06-seedable-config.md` | Consolidated: Seedable Config | 1.0.0 |
+| `spec/17-consolidated-guidelines/07-design-system.md` | Consolidated: Design System | 1.0.0 |
+| `spec/17-consolidated-guidelines/08-docs-viewer-ui.md` | Consolidated: Docs Viewer UI | 1.0.0 |
+| `spec/17-consolidated-guidelines/09-code-block-system.md` | Consolidated: Code Block System | 1.0.0 |
+| `spec/17-consolidated-guidelines/11-powershell-integration.md` | Consolidated: PowerShell Integration | 1.0.0 |
+| `spec/17-consolidated-guidelines/10-research.md` | Consolidated: Research | 1.0.0 |
+| `spec/17-consolidated-guidelines/11-root-research.md` | Consolidated: Root-Level Research | 1.0.0 |
+| `spec/17-consolidated-guidelines/12-app.md` | Consolidated: App | 1.0.0 |
+| `spec/17-consolidated-guidelines/13-app-issues.md` | Consolidated: App Issues | 1.0.0 |
+| `spec/17-consolidated-guidelines/99-consistency-report.md` | Consistency Report | 1.0.0 |
 
 ## ⚡ PowerShell Integration
 
 | File | Title | Version |
 |------|-------|---------|
-| `spec/10-powershell-integration/00-overview.md` | PowerShell Integration | 2.25.0 |
-| `spec/10-powershell-integration/01-configuration-schema.md` | Configuration Schema | — |
-| `spec/10-powershell-integration/01-template-vs-project-differences.md` | Template vs Project Differences | — |
-| `spec/10-powershell-integration/02-script-reference.md` | Script Reference | — |
-| `spec/10-powershell-integration/03-integration-guide.md` | Integration Guide | — |
-| `spec/10-powershell-integration/04-error-codes.md` | Error Codes | — |
-| `spec/10-powershell-integration/05-firewall-rules.md` | Firewall Rules | — |
-| `spec/10-powershell-integration/06-php-known-issues.md` | PHP Known Issues | — |
-| `spec/10-powershell-integration/25-multi-site-deployment.md` | Multi-Site Deployment | — |
-| `spec/10-powershell-integration/readme.md` | README | — |
-| `spec/10-powershell-integration/changelog.md` | Changelog | — |
-| `spec/10-powershell-integration/parallel-work-sync-output.md` | Parallel Work Sync Output | — |
-| `spec/10-powershell-integration/99-consistency-report.md` | Consistency Report | 1.0.0 |
+| `spec/11-powershell-integration/00-overview.md` | PowerShell Integration | 2.25.0 |
+| `spec/11-powershell-integration/01-configuration-schema.md` | Configuration Schema | — |
+| `spec/11-powershell-integration/01-template-vs-project-differences.md` | Template vs Project Differences | — |
+| `spec/11-powershell-integration/02-script-reference.md` | Script Reference | — |
+| `spec/11-powershell-integration/03-integration-guide.md` | Integration Guide | — |
+| `spec/11-powershell-integration/04-error-codes.md` | Error Codes | — |
+| `spec/11-powershell-integration/05-firewall-rules.md` | Firewall Rules | — |
+| `spec/11-powershell-integration/06-php-known-issues.md` | PHP Known Issues | — |
+| `spec/11-powershell-integration/25-multi-site-deployment.md` | Multi-Site Deployment | — |
+| `spec/11-powershell-integration/readme.md` | README | — |
+| `spec/11-powershell-integration/changelog.md` | Changelog | — |
+| `spec/11-powershell-integration/parallel-work-sync-output.md` | Parallel Work Sync Output | — |
+| `spec/11-powershell-integration/99-consistency-report.md` | Consistency Report | 1.0.0 |
 
 ## 🔬 Research
 
 | File | Title | Version |
 |------|-------|---------|
-| `spec/11-research/00-overview.md` | Research | 1.0.0 |
+| `spec/10-research/00-overview.md` | Research | 1.0.0 |
 
 ## 🔄 CI/CD Pipeline Workflows
 
 | File | Title | Version |
 |------|-------|---------|
-| `spec/13-cicd-pipeline-workflows/00-overview.md` | CI/CD Pipeline Workflows | 2.0.0 |
-| `spec/13-cicd-pipeline-workflows/01-shared-conventions.md` | Shared Pipeline Conventions | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/02-github-release-standard.md` | GitHub Release Standard | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/03-vulnerability-scanning.md` | Vulnerability Scanning | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/04-install-script-generation.md` | Install Script Generation | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/05-code-signing.md` | Code Signing | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/06-self-update-mechanism.md` | Self-Update Mechanism | 2.0.0 |
-| `spec/13-cicd-pipeline-workflows/07-release-body-and-changelog.md` | Release Body and Changelog | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/08-installation-flow.md` | Installation Flow | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/09-changelog-integration.md` | Changelog Integration | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/10-version-and-help.md` | Version Display and Help System | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/11-environment-variable-setup.md` | Environment Variable Setup | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/12-terminal-output-standards.md` | Terminal Output Standards | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/13-binary-icon-branding.md` | Binary Icon & Windows Resource Embedding | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/01-browser-extension-deploy/00-overview.md` | Browser Extension Deploy — Overview | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/01-browser-extension-deploy/01-ci-pipeline.md` | Browser Extension — CI Pipeline | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/01-browser-extension-deploy/02-release-pipeline.md` | Browser Extension — Release Pipeline | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/01-browser-extension-deploy/99-consistency-report.md` | Consistency Report — Browser Extension Deploy | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/02-go-binary-deploy/00-overview.md` | Go Binary Deploy — Overview | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/02-go-binary-deploy/01-ci-pipeline.md` | Go Binary — CI Pipeline | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/02-go-binary-deploy/02-release-pipeline.md` | Go Binary — Release Pipeline | 2.0.0 |
-| `spec/13-cicd-pipeline-workflows/02-go-binary-deploy/99-consistency-report.md` | Consistency Report — Go Binary Deploy | 1.0.0 |
-| `spec/13-cicd-pipeline-workflows/99-consistency-report.md` | Consistency Report — CI/CD Pipeline Workflows | 4.0.0 |
+| `spec/12-cicd-pipeline-workflows/00-overview.md` | CI/CD Pipeline Workflows | 2.0.0 |
+| `spec/12-cicd-pipeline-workflows/01-shared-conventions.md` | Shared Pipeline Conventions | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/02-github-release-standard.md` | GitHub Release Standard | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/03-vulnerability-scanning.md` | Vulnerability Scanning | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/04-install-script-generation.md` | Install Script Generation | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/05-code-signing.md` | Code Signing | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/06-self-update-mechanism.md` | Self-Update Mechanism | 2.0.0 |
+| `spec/12-cicd-pipeline-workflows/07-release-body-and-changelog.md` | Release Body and Changelog | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/08-installation-flow.md` | Installation Flow | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/09-changelog-integration.md` | Changelog Integration | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/10-version-and-help.md` | Version Display and Help System | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/11-environment-variable-setup.md` | Environment Variable Setup | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/12-terminal-output-standards.md` | Terminal Output Standards | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/13-binary-icon-branding.md` | Binary Icon & Windows Resource Embedding | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/01-browser-extension-deploy/00-overview.md` | Browser Extension Deploy — Overview | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/01-browser-extension-deploy/01-ci-pipeline.md` | Browser Extension — CI Pipeline | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/01-browser-extension-deploy/02-release-pipeline.md` | Browser Extension — Release Pipeline | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/01-browser-extension-deploy/99-consistency-report.md` | Consistency Report — Browser Extension Deploy | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/02-go-binary-deploy/00-overview.md` | Go Binary Deploy — Overview | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/02-go-binary-deploy/01-ci-pipeline.md` | Go Binary — CI Pipeline | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/02-go-binary-deploy/02-release-pipeline.md` | Go Binary — Release Pipeline | 2.0.0 |
+| `spec/12-cicd-pipeline-workflows/02-go-binary-deploy/99-consistency-report.md` | Consistency Report — Go Binary Deploy | 1.0.0 |
+| `spec/12-cicd-pipeline-workflows/99-consistency-report.md` | Consistency Report — CI/CD Pipeline Workflows | 4.0.0 |
 
 ## 🔄 Self-Update & App Update
 
 | File | Title | Version |
 |------|-------|---------|
-| `spec/14-self-update-app-update/00-overview.md` | Self-Update & App Update | 1.0.0 |
-| `spec/14-self-update-app-update/01-self-update-overview.md` | Self-Update Overview | 1.0.0 |
-| `spec/14-self-update-app-update/02-deploy-path-resolution.md` | Deploy Path Resolution | 1.0.0 |
-| `spec/14-self-update-app-update/03-rename-first-deploy.md` | Rename-First Deploy Strategy | 1.0.0 |
-| `spec/14-self-update-app-update/04-build-scripts.md` | Build Scripts | 1.0.0 |
-| `spec/14-self-update-app-update/05-handoff-mechanism.md` | Handoff Mechanism (Windows) | 1.0.0 |
-| `spec/14-self-update-app-update/06-cleanup.md` | Cleanup | 1.0.0 |
-| `spec/14-self-update-app-update/07-release-assets.md` | Release Assets | 1.0.0 |
-| `spec/14-self-update-app-update/08-checksums-verification.md` | Checksums & Verification | 1.0.0 |
-| `spec/14-self-update-app-update/09-release-versioning.md` | Release Versioning | 1.0.0 |
-| `spec/14-self-update-app-update/99-consistency-report.md` | Consistency Report — Self-Update & App Update | 1.0.0 |
+| `spec/15-self-update-app-update/00-overview.md` | Self-Update & App Update | 1.0.0 |
+| `spec/15-self-update-app-update/01-self-update-overview.md` | Self-Update Overview | 1.0.0 |
+| `spec/15-self-update-app-update/02-deploy-path-resolution.md` | Deploy Path Resolution | 1.0.0 |
+| `spec/15-self-update-app-update/03-rename-first-deploy.md` | Rename-First Deploy Strategy | 1.0.0 |
+| `spec/15-self-update-app-update/04-build-scripts.md` | Build Scripts | 1.0.0 |
+| `spec/15-self-update-app-update/05-handoff-mechanism.md` | Handoff Mechanism (Windows) | 1.0.0 |
+| `spec/15-self-update-app-update/06-cleanup.md` | Cleanup | 1.0.0 |
+| `spec/15-self-update-app-update/07-release-assets.md` | Release Assets | 1.0.0 |
+| `spec/15-self-update-app-update/08-checksums-verification.md` | Checksums & Verification | 1.0.0 |
+| `spec/15-self-update-app-update/09-release-versioning.md` | Release Versioning | 1.0.0 |
+| `spec/15-self-update-app-update/99-consistency-report.md` | Consistency Report — Self-Update & App Update | 1.0.0 |
 
 ## 📱 App
 

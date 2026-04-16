@@ -47,11 +47,11 @@ No app-specific content may appear in the 01–20 range. No foundational princip
 | 07 | `07-design-system/` | Design system tokens, components, theming |
 | 08 | `08-docs-viewer-ui/` | Documentation viewer UI specifications |
 | 09 | `09-code-block-system/` | Code block rendering pipeline, interactions, styling |
-| 10 | `10-powershell-integration/` | PowerShell scripting conventions, cross-platform automation |
-| 11 | `11-research/` | Comparative studies, technology evaluations, exploratory notes |
-| 12 | `12-consolidated-guidelines/` | AI-readable summaries of every major spec module |
-| 13 | `13-cicd-pipeline-workflows/` | CI/CD pipeline specs, deployment workflows, automation |
-| 14 | `14-self-update-app-update/` | CLI self-update blueprints, release distribution, deploy strategies |
+| 10 | `11-powershell-integration/` | PowerShell scripting conventions, cross-platform automation |
+| 11 | `10-research/` | Comparative studies, technology evaluations, exploratory notes |
+| 12 | `17-consolidated-guidelines/` | AI-readable summaries of every major spec module |
+| 13 | `12-cicd-pipeline-workflows/` | CI/CD pipeline specs, deployment workflows, automation |
+| 14 | `15-self-update-app-update/` | CLI self-update blueprints, release distribution, deploy strategies |
 | 15–20 | _Reserved_ | Future core fundamental topics |
 | 21 | `21-app/` | App-specific specs: features, workflows, architecture |
 | 22 | `22-app-issues/` | App bug analysis, root cause analysis, fix documentation |
@@ -98,11 +98,11 @@ spec/
 ├── 07-design-system/                       # Design system tokens, components, theming
 ├── 08-docs-viewer-ui/                      # Documentation viewer UI specifications
 ├── 09-code-block-system/                   # Code block rendering pipeline
-├── 10-powershell-integration/              # PowerShell scripting & automation
-├── 11-research/                            # Research: studies, evaluations, explorations
-├── 12-consolidated-guidelines/             # AI-readable summaries of all modules
-├── 13-cicd-pipeline-workflows/             # CI/CD pipelines, deployment workflows
-├── 14-self-update-app-update/              # CLI self-update, release distribution
+├── 11-powershell-integration/              # PowerShell scripting & automation
+├── 10-research/                            # Research: studies, evaluations, explorations
+├── 17-consolidated-guidelines/             # AI-readable summaries of all modules
+├── 12-cicd-pipeline-workflows/             # CI/CD pipelines, deployment workflows
+├── 15-self-update-app-update/              # CLI self-update, release distribution
 ├── 15–20 (reserved)                        # Future core fundamentals
 │
 │ ── APP-SPECIFIC (21+) ──
