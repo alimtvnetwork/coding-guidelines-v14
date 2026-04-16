@@ -112,8 +112,9 @@ def collect_relative_refs(file_path: Path, text: str) -> set[str]:
 
 
 def find_stale_refs() -> list[tuple[Path, str]]:
-    """Return list of (file, missing-folder) tuples."""
+    """Return list of (file, missing-folder) tuples (allowlist applied)."""
     existing = list_existing_folders()
+    allowed = load_allowlist()
     stale: list[tuple[Path, str]] = []
     for md_file in iter_markdown_files():
         try:
@@ -122,17 +123,19 @@ def find_stale_refs() -> list[tuple[Path, str]]:
             continue
         refs = collect_absolute_refs(text) | collect_relative_refs(md_file, text)
         for folder in sorted(refs):
-            if folder not in existing:
-                stale.append((md_file, folder))
+            if folder in existing or folder in allowed:
+                continue
+            stale.append((md_file, folder))
     return stale
 
 
-def print_report(stale: list[tuple[Path, str]], existing_count: int) -> None:
+def print_report(stale: list[tuple[Path, str]], existing_count: int, allowed_count: int) -> None:
     """Render a CI-friendly report."""
     print("=" * 70)
     print("  SPEC FOLDER REFERENCE CHECK")
     print("=" * 70)
     print(f"  Existing numbered spec folders : {existing_count}")
+    print(f"  Allowlisted external folders   : {allowed_count}")
     print(f"  Stale references found         : {len(stale)}")
     print("=" * 70)
     if not stale:
@@ -151,8 +154,9 @@ def main() -> int:
         print(f"::error::spec/ directory not found at {SPEC_ROOT}")
         return 1
     existing = list_existing_folders()
+    allowed = load_allowlist()
     stale = find_stale_refs()
-    print_report(stale, len(existing))
+    print_report(stale, len(existing), len(allowed))
     return 1 if stale else 0
 
 
