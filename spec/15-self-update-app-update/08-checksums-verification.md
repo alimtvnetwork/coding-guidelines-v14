@@ -143,7 +143,7 @@ Include a formatted checksum table in the release description:
 
 - [Release Assets](./07-release-assets.md) — What files are checksummed
 - [Release Versioning](./09-release-versioning.md) — Version resolution for download URLs
-- [CI/CD Shared Conventions](../13-cicd-pipeline-workflows/01-shared-conventions.md) — Checksum conventions in CI
+- [CI/CD Shared Conventions](../12-cicd-pipeline-workflows/01-shared-conventions.md) — Checksum conventions in CI
 
 ---
 

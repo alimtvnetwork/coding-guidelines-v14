@@ -1041,7 +1041,7 @@
         ]
       },
       {
-        "Folder": "10-powershell-integration",
+        "Folder": "11-powershell-integration",
         "MdFiles": 13,
         "Subfolders": 3,
         "HasOverview": true,
@@ -1065,7 +1065,7 @@
         ]
       },
       {
-        "Folder": "11-research",
+        "Folder": "10-research",
         "MdFiles": 1,
         "Subfolders": 0,
         "HasOverview": true,
@@ -1077,7 +1077,7 @@
         ]
       },
       {
-        "Folder": "12-consolidated-guidelines",
+        "Folder": "17-consolidated-guidelines",
         "MdFiles": 20,
         "Subfolders": 0,
         "HasOverview": true,
@@ -1095,8 +1095,8 @@
           "07-design-system.md",
           "08-docs-viewer-ui.md",
           "09-code-block-system.md",
-          "10-powershell-integration.md",
-          "11-research.md",
+          "11-powershell-integration.md",
+          "10-research.md",
           "12-root-research.md",
           "13-app.md",
           "14-app-issues.md",
@@ -1108,7 +1108,7 @@
         ]
       },
       {
-        "Folder": "13-cicd-pipeline-workflows",
+        "Folder": "12-cicd-pipeline-workflows",
         "MdFiles": 15,
         "Subfolders": 2,
         "HasOverview": true,
@@ -1134,7 +1134,7 @@
         ]
       },
       {
-        "Folder": "13-cicd-pipeline-workflows/01-browser-extension-deploy",
+        "Folder": "12-cicd-pipeline-workflows/01-browser-extension-deploy",
         "MdFiles": 4,
         "Subfolders": 0,
         "HasOverview": true,
@@ -1149,7 +1149,7 @@
         ]
       },
       {
-        "Folder": "13-cicd-pipeline-workflows/02-go-binary-deploy",
+        "Folder": "12-cicd-pipeline-workflows/02-go-binary-deploy",
         "MdFiles": 5,
         "Subfolders": 0,
         "HasOverview": true,
@@ -1165,7 +1165,7 @@
         ]
       },
       {
-        "Folder": "14-self-update-app-update",
+        "Folder": "15-self-update-app-update",
         "MdFiles": 18,
         "Subfolders": 1,
         "HasOverview": true,
@@ -1194,7 +1194,7 @@
         ]
       },
       {
-        "Folder": "14-self-update-app-update/diagrams",
+        "Folder": "15-self-update-app-update/diagrams",
         "MdFiles": 1,
         "Subfolders": 0,
         "HasOverview": true,

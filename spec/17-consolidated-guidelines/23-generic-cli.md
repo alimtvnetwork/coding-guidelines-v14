@@ -2,7 +2,7 @@
 
 **Version:** 3.1.0  
 **Updated:** 2026-04-16  
-**Source Module:** `16-generic-cli/`  
+**Source Module:** `13-generic-cli/`  
 **AI Confidence:** Production-Ready  
 **Ambiguity:** None
 

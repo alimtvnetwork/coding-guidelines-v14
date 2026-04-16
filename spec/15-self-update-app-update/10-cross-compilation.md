@@ -156,7 +156,7 @@ For the host-architecture binary, run a quick smoke test:
 - [Release Assets](./07-release-assets.md) — Asset naming and compression conventions
 - [Checksums & Verification](./08-checksums-verification.md) — SHA-256 hash generation
 - [Release Pipeline](./11-release-pipeline.md) — End-to-end CI/CD workflow
-- [CI/CD Pipeline Workflows](../13-cicd-pipeline-workflows/00-overview.md) — Server-side pipeline patterns
+- [CI/CD Pipeline Workflows](../12-cicd-pipeline-workflows/00-overview.md) — Server-side pipeline patterns
 
 ---
 

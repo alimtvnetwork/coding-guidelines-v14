@@ -62,7 +62,7 @@
 
 ### Instructions
 
-1. Navigate to `spec/12-consolidated-guidelines/`.
+1. Navigate to `spec/17-consolidated-guidelines/`.
 2. Read files in **numeric order**: `01-*.md` through `22-*.md`.
 3. Each file is self-contained. Treat each as a standalone policy document.
 
@@ -114,10 +114,10 @@
 | UI theming, CSS variables, design tokens | `spec/07-design-system/` |
 | Documentation viewer features | `spec/08-docs-viewer-ui/` |
 | Code block rendering | `spec/09-code-block-system/` |
-| PowerShell scripts | `spec/10-powershell-integration/` |
-| CI/CD pipelines | `spec/13-cicd-pipeline-workflows/` |
-| CLI self-update system | `spec/14-self-update-app-update/` |
-| WordPress plugins | `spec/15-wp-plugin-how-to/` |
+| PowerShell scripts | `spec/11-powershell-integration/` |
+| CI/CD pipelines | `spec/12-cicd-pipeline-workflows/` |
+| CLI self-update system | `spec/15-self-update-app-update/` |
+| WordPress plugins | `spec/18-wp-plugin-how-to/` |
 | App-specific features | `spec/21-app/` |
 | Known app bugs/issues | `spec/22-app-issues/` |
 | App-specific database schema | `spec/23-app-database/` |

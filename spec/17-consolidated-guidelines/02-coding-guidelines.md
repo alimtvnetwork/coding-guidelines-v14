@@ -718,7 +718,7 @@ Run `linter-scripts/validate-guidelines.py` — zero **CODE-RED** or **STYLE** v
 | Types Folder Convention | `01-cross-language/27-types-folder-convention.md` |
 | Nesting Resolution | `01-cross-language/20-nesting-resolution-patterns.md` |
 | Master Coding Guidelines | `01-cross-language/15-master-coding-guidelines/` |
-| Enum Standards | `../12-consolidated-guidelines/04-enum-standards.md` |
+| Enum Standards | `../17-consolidated-guidelines/04-enum-standards.md` |
 | Boolean Flag Methods | `01-cross-language/24-boolean-flag-methods.md` |
 
 ---

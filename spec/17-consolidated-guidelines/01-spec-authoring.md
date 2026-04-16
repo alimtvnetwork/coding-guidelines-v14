@@ -29,12 +29,12 @@ This is the **standalone consolidated reference** for spec authoring conventions
 | 07 | `07-design-system` | CSS variable-driven design system |
 | 08 | `08-docs-viewer-ui` | Documentation viewer UI |
 | 09 | `09-code-block-system` | Code block rendering |
-| 10 | `10-powershell-integration` | PowerShell runner |
-| 11 | `11-research` | Root-level research |
-| 12 | `12-consolidated-guidelines` | AI-readable summaries (this folder) |
-| 13 | `13-cicd-pipeline-workflows` | CI/CD pipeline specs |
-| 14 | `14-self-update-app-update` | CLI self-update system |
-| 15 | `15-wp-plugin-how-to` | WordPress plugin conventions |
+| 10 | `11-powershell-integration` | PowerShell runner |
+| 11 | `10-research` | Root-level research |
+| 12 | `17-consolidated-guidelines` | AI-readable summaries (this folder) |
+| 13 | `12-cicd-pipeline-workflows` | CI/CD pipeline specs |
+| 14 | `15-self-update-app-update` | CLI self-update system |
+| 15 | `18-wp-plugin-how-to` | WordPress plugin conventions |
 | 21 | `21-app` | App-specific features |
 | 22 | `22-app-issues` | App-specific issues |
 | 23 | `23-app-database` | App-specific database schema |
@@ -366,15 +366,15 @@ When specs change, update **all three** targets:
 |---|--------|---------|
 | 1 | `spec/spec-index.md` | Master index of all spec modules |
 | 2 | `src/data/specTree.json` | UI tree (requires `content` field with full markdown) |
-| 3 | `spec/12-consolidated-guidelines/` | Consolidated AI-readable summary |
+| 3 | `spec/17-consolidated-guidelines/` | Consolidated AI-readable summary |
 
 ### Synchronization Checklist
 
 - [ ] New module added to `spec-index.md` with correct number and description
 - [ ] `specTree.json` updated with new entry (including full `content` field)
-- [ ] Consolidated guideline file created or updated in `12-consolidated-guidelines/`
-- [ ] `12-consolidated-guidelines/00-overview.md` file inventory updated
-- [ ] `12-consolidated-guidelines/99-consistency-report.md` updated
+- [ ] Consolidated guideline file created or updated in `17-consolidated-guidelines/`
+- [ ] `17-consolidated-guidelines/00-overview.md` file inventory updated
+- [ ] `17-consolidated-guidelines/99-consistency-report.md` updated
 - [ ] Gap analysis (`19-gap-analysis.md`) scores recalculated
 
 ---

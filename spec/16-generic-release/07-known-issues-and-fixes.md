@@ -70,7 +70,7 @@ Created `gitmap/assets/icon-256.png` (256x256). Kept original 512x512 `icon.png`
 - `gitmap/winres/winres.json`
 - `gitmap/assets/icon-256.png` / `icon.png`
 - `.github/workflows/release.yml`
-- `spec/08-generic-update/09-winres-icon-constraint.md`
+- `spec/14-generic-update/09-winres-icon-constraint.md`
 
 ---
 
@@ -339,5 +339,5 @@ Apply before merging any change to `release.yml`:
 - [04-checksums-verification.md](./04-checksums-verification.md) — SHA-256 manifest format
 - [spec/09-pipeline/10-known-issues-and-fixes.md](../09-pipeline/10-known-issues-and-fixes.md) — CI-pipeline issue catalog
 - [spec/02-app-issues/13-release-pipeline-dist-directory.md](../02-app-issues/13-release-pipeline-dist-directory.md) — `dist` post-mortem
-- [spec/08-generic-update/09-winres-icon-constraint.md](../08-generic-update/09-winres-icon-constraint.md) — winres icon post-mortem
-- [spec/12-consolidated-guidelines/16-cicd.md](../12-consolidated-guidelines/16-cicd.md) — Consolidated CI/CD guidelines
+- [spec/14-generic-update/09-winres-icon-constraint.md](../14-generic-update/09-winres-icon-constraint.md) — winres icon post-mortem
+- [spec/17-consolidated-guidelines/16-cicd.md](../17-consolidated-guidelines/16-cicd.md) — Consolidated CI/CD guidelines

@@ -181,7 +181,7 @@ Links to affected spec modules, code files, or other issues.
 **Do NOT place here:**
 - Cross-cutting coding violations → core fundamentals (`01–20`)
 - Feature definitions → `21-app`
-- Research → `11-research`
+- Research → `10-research`
 
 ---
 
@@ -209,8 +209,8 @@ This ensures institutional knowledge persists beyond the individual bug fix.
 | Reference | Location |
 |-----------|----------|
 | App Specs | `spec/21-app/00-overview.md` |
-| Error Management | `spec/12-consolidated-guidelines/03-error-management.md` |
-| Coding Guidelines | `spec/12-consolidated-guidelines/02-coding-guidelines.md` |
+| Error Management | `spec/17-consolidated-guidelines/03-error-management.md` |
+| Coding Guidelines | `spec/17-consolidated-guidelines/02-coding-guidelines.md` |
 | .lovable Issues Folder | `.lovable/pending-issues/` → `.lovable/solved-issues/` |
 
 ---

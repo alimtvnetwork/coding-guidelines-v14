@@ -148,7 +148,7 @@ When using `actions/setup-go`, each module resolves its Go version from its own 
 
 For the updater build step, the same Go version is reused (already installed).
 
-See [Updater Binary](../../14-self-update-app-update/13-updater-binary.md) for the full updater architecture.
+See [Updater Binary](../../15-self-update-app-update/13-updater-binary.md) for the full updater architecture.
 
 ---
 
@@ -372,8 +372,8 @@ fi
 - [Release Body and Changelog](../07-release-body-and-changelog.md) — Changelog extraction, body template
 - [Binary Icon Branding](../13-binary-icon-branding.md) — `go-winres make` and version injection
 - [Self-Update Mechanism](../06-self-update-mechanism.md) — How CLI tools consume release assets
-- [Self-Update Full Specs](../../14-self-update-app-update/00-overview.md) — Client-side update implementation
-- [Updater Binary](../../14-self-update-app-update/13-updater-binary.md) — Standalone updater architecture
+- [Self-Update Full Specs](../../15-self-update-app-update/00-overview.md) — Client-side update implementation
+- [Updater Binary](../../15-self-update-app-update/13-updater-binary.md) — Standalone updater architecture
 
 ---
 

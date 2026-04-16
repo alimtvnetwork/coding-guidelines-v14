@@ -19,8 +19,8 @@
 | 8 | `07-design-system.md` | ✅ Present | 580+ | 92% |
 | 9 | `08-docs-viewer-ui.md` | ✅ Present | 430+ | 91% |
 | 10 | `09-code-block-system.md` | ✅ Present | 530+ | 91% |
-| 11 | `10-powershell-integration.md` | ✅ Present | 560+ | 91% |
-| 12 | `11-research.md` | ✅ Present | 180+ | 88% |
+| 11 | `11-powershell-integration.md` | ✅ Present | 560+ | 91% |
+| 12 | `10-research.md` | ✅ Present | 180+ | 88% |
 | 13 | `12-root-research.md` | ✅ Present | 170+ | 88% |
 | 14 | `13-app.md` | ✅ Present | 210+ | 88% |
 | 15 | `14-app-issues.md` | ✅ Present | 210+ | 85% |
@@ -61,7 +61,7 @@
 - [x] `03-error-management.md` source path updated to `spec/03-error-manage/`
 - [x] `04-enum-standards.md` links updated — coding guidelines subfolders at `02-coding-guidelines/` root
 - [x] `02-coding-guidelines.md` source path updated — `03-coding-guidelines-spec/` folder flattened
-- [x] All `13-self-update-app-update` references corrected to `14-self-update-app-update`
+- [x] All `13-self-update-app-update` references corrected to `15-self-update-app-update`
 - [x] Full dashboard scan: **1,510 links checked, 0 broken — 100/100 (A+)**
 
 ---
@@ -90,7 +90,7 @@
 | Date | Version | Action |
 |------|---------|--------|
 | 2026-04-09 | 1.0.0 | Initial consistency report |
-| 2026-04-09 | 2.0.0 | Added 11-research, 11-root-research, 12-app, 13-app-issues |
+| 2026-04-09 | 2.0.0 | Added 10-research, 11-root-research, 12-app, 13-app-issues |
 | 2026-04-09 | 3.0.0 | Added 14-cicd-pipeline-workflows |
 | 2026-04-14 | 4.0.0 | All files rewritten as standalone self-contained references |
 | 2026-04-15 | 5.0.0 | Added 18-database-conventions.md; fixed plural PK naming |

@@ -217,8 +217,8 @@ permissions:
 - [Release Versioning](./09-release-versioning.md) — Version resolution and tagging
 - [Updater Binary](./13-updater-binary.md) — Multi-module build for the updater
 - [Network Requirements](./14-network-requirements.md) — Download infrastructure for update consumers
-- [CI/CD Pipeline Workflows](../13-cicd-pipeline-workflows/00-overview.md) — Server-side pipeline patterns
-- [Complete Workflow Reference](../13-cicd-pipeline-workflows/02-go-binary-deploy/03-complete-workflow-reference.md) — Full annotated YAML
+- [CI/CD Pipeline Workflows](../12-cicd-pipeline-workflows/00-overview.md) — Server-side pipeline patterns
+- [Complete Workflow Reference](../12-cicd-pipeline-workflows/02-go-binary-deploy/03-complete-workflow-reference.md) — Full annotated YAML
 
 ---
 

@@ -334,12 +334,12 @@ jobs:
 | Checkout & Setup | [Shared Conventions](../01-shared-conventions.md) |
 | Version Resolution | [Shared Conventions — Version Resolution](../01-shared-conventions.md#version-resolution) |
 | Windows Resources | [Binary Icon Branding](../13-binary-icon-branding.md) |
-| Cross-Compilation | [Cross-Compilation](../../14-self-update-app-update/10-cross-compilation.md) |
+| Cross-Compilation | [Cross-Compilation](../../15-self-update-app-update/10-cross-compilation.md) |
 | Multi-Module Build | [Release Pipeline — Multiple Binaries](./02-release-pipeline.md#multiple-binaries-multi-module-build) |
 | Docs-Site Bundling | [Docs-Site Bundling](./02-release-pipeline.md#docs-site-bundling) |
 | Code Signing | [Code Signing](../05-code-signing.md) |
-| Compression | [Release Assets](../../14-self-update-app-update/07-release-assets.md) |
-| Checksums | [Checksums & Verification](../../14-self-update-app-update/08-checksums-verification.md) |
+| Compression | [Release Assets](../../15-self-update-app-update/07-release-assets.md) |
+| Checksums | [Checksums & Verification](../../15-self-update-app-update/08-checksums-verification.md) |
 | Install Scripts | [Install Script Generation](../04-install-script-generation.md) |
 | Changelog | [Release Body and Changelog](../07-release-body-and-changelog.md) |
 | GitHub Release | [GitHub Release Standard](../02-github-release-standard.md) |

@@ -41,4 +41,4 @@ _No research documents added yet. Add research files as numbered entries (e.g., 
 |-----------|----------|
 | Coding Guidelines Research | [../02-coding-guidelines/10-research/00-overview.md](../02-coding-guidelines/10-research/00-overview.md) |
 | Spec Authoring Guide | [../01-spec-authoring-guide/00-overview.md](../01-spec-authoring-guide/00-overview.md) |
-| Consolidated Guidelines | [../12-consolidated-guidelines/12-root-research.md](../12-consolidated-guidelines/12-root-research.md) |
+| Consolidated Guidelines | [../17-consolidated-guidelines/12-root-research.md](../17-consolidated-guidelines/12-root-research.md) |

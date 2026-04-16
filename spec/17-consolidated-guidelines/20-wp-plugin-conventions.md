@@ -2,7 +2,7 @@
 
 **Version:** 3.3.0  
 **Updated:** 2026-04-16  
-**Source Module:** [`spec/15-wp-plugin-how-to/`](../15-wp-plugin-how-to/readme.md)
+**Source Module:** [`spec/18-wp-plugin-how-to/`](../18-wp-plugin-how-to/readme.md)
 
 ---
 
@@ -650,19 +650,19 @@ Cross-plugin shared SQLite database for:
 
 | Topic | Source Location |
 |-------|---------------|
-| Quick Start | `spec/15-wp-plugin-how-to/00-quick-start.md` |
-| Foundation & Architecture | `spec/15-wp-plugin-how-to/01-foundation-and-architecture.md` |
-| Enums & Coding Style | `spec/15-wp-plugin-how-to/02-enums-and-coding-style/` |
-| Traits & Composition | `spec/15-wp-plugin-how-to/03-traits-and-composition.md` |
-| Logging & Error Handling | `spec/15-wp-plugin-how-to/04-logging-and-error-handling.md` |
-| Input Validation | `spec/15-wp-plugin-how-to/06-input-validation-patterns.md` |
-| WordPress Integration | `spec/15-wp-plugin-how-to/08-wordpress-integration-patterns.md` |
-| Deployment Patterns | `spec/15-wp-plugin-how-to/10-deployment-patterns.md` |
-| REST API Conventions | `spec/15-wp-plugin-how-to/14-rest-api-conventions.md` |
-| Settings Architecture | `spec/15-wp-plugin-how-to/15-settings-architecture.md` |
-| Micro ORM & Root DB | `spec/15-wp-plugin-how-to/19-micro-orm-and-root-db.md` |
-| Ping Endpoint | `spec/15-wp-plugin-how-to/21-ping-endpoint.md` |
-| End-to-End Walkthrough | `spec/15-wp-plugin-how-to/20-end-to-end-walkthrough.md` |
+| Quick Start | `spec/18-wp-plugin-how-to/00-quick-start.md` |
+| Foundation & Architecture | `spec/18-wp-plugin-how-to/01-foundation-and-architecture.md` |
+| Enums & Coding Style | `spec/18-wp-plugin-how-to/02-enums-and-coding-style/` |
+| Traits & Composition | `spec/18-wp-plugin-how-to/03-traits-and-composition.md` |
+| Logging & Error Handling | `spec/18-wp-plugin-how-to/04-logging-and-error-handling.md` |
+| Input Validation | `spec/18-wp-plugin-how-to/06-input-validation-patterns.md` |
+| WordPress Integration | `spec/18-wp-plugin-how-to/08-wordpress-integration-patterns.md` |
+| Deployment Patterns | `spec/18-wp-plugin-how-to/10-deployment-patterns.md` |
+| REST API Conventions | `spec/18-wp-plugin-how-to/14-rest-api-conventions.md` |
+| Settings Architecture | `spec/18-wp-plugin-how-to/15-settings-architecture.md` |
+| Micro ORM & Root DB | `spec/18-wp-plugin-how-to/19-micro-orm-and-root-db.md` |
+| Ping Endpoint | `spec/18-wp-plugin-how-to/21-ping-endpoint.md` |
+| End-to-End Walkthrough | `spec/18-wp-plugin-how-to/20-end-to-end-walkthrough.md` |
 
 ---
 

@@ -177,7 +177,7 @@ Priority 3: Config file default (config.json → deployPath) → lowest
 
 ## PowerShell Integration
 
-For PowerShell build scripts, the config file is `powershell.json` in the project root (not the user config). See [PowerShell Integration](../10-powershell-integration/examples/server-client-project.json) for the project-level config format.
+For PowerShell build scripts, the config file is `powershell.json` in the project root (not the user config). See [PowerShell Integration](../11-powershell-integration/examples/server-client-project.json) for the project-level config format.
 
 The **user-level** `config.json` described here is different from the **project-level** config — it stores per-user preferences, not project build settings.
 

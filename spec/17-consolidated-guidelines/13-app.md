@@ -115,7 +115,7 @@ Routes needed (reference REST conventions from `14-rest-api-conventions.md`).
 |-------------|-----------------|
 | Cross-cutting coding principles | Core fundamentals (`01–20`) |
 | Bug analysis or fixes | `22-app-issues/` |
-| Research or evaluations | `11-research/` or `02-coding-guidelines/11-research/` |
+| Research or evaluations | `10-research/` or `02-coding-guidelines/10-research/` |
 | Database schema (core conventions) | `04-database-conventions/` |
 | Database schema (app-specific) | `23-app-database/` |
 | Design system tokens (core) | `07-design-system/` |
@@ -198,11 +198,11 @@ Features in `21-app/` drive work in the other three folders. Not the reverse.
 
 | Reference | Location |
 |-----------|----------|
-| App Issues | `spec/12-consolidated-guidelines/14-app-issues.md` |
-| App Database | `spec/12-consolidated-guidelines/22-app-database.md` |
-| App Design System | `spec/12-consolidated-guidelines/16-app-design-system-and-ui.md` |
-| Coding Guidelines | `spec/12-consolidated-guidelines/02-coding-guidelines.md` |
-| Spec Authoring Guide | `spec/12-consolidated-guidelines/01-spec-authoring.md` |
+| App Issues | `spec/17-consolidated-guidelines/14-app-issues.md` |
+| App Database | `spec/17-consolidated-guidelines/22-app-database.md` |
+| App Design System | `spec/17-consolidated-guidelines/16-app-design-system-and-ui.md` |
+| Coding Guidelines | `spec/17-consolidated-guidelines/02-coding-guidelines.md` |
+| Spec Authoring Guide | `spec/17-consolidated-guidelines/01-spec-authoring.md` |
 
 ---
 

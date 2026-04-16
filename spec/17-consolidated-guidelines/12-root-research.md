@@ -31,8 +31,8 @@ An AI reading only this file must be able to create, organize, and review root-l
 
 | Scope | Location |
 |-------|----------|
-| Root-level research (not tied to coding guidelines) | `spec/11-research/` |
-| Coding-guidelines-specific research | `spec/02-coding-guidelines/11-research/` |
+| Root-level research (not tied to coding guidelines) | `spec/10-research/` |
+| Coding-guidelines-specific research | `spec/02-coding-guidelines/10-research/` |
 
 ### Decision Guide
 
@@ -46,7 +46,7 @@ An AI reading only this file must be able to create, organize, and review root-l
 
 ## Research File Template
 
-Uses the same template as `11-research.md` (coding guidelines research). See that file for the complete template structure with Question, Context, Methodology, Findings, Recommendation, and Decision sections.
+Uses the same template as `10-research.md` (coding guidelines research). See that file for the complete template structure with Question, Context, Methodology, Findings, Recommendation, and Decision sections.
 
 ### ADR Template (Architecture Decisions)
 
@@ -116,7 +116,7 @@ What is the change that we're proposing and/or doing?
 ## Naming Convention
 
 ```
-spec/11-research/
+spec/10-research/
 ├── 00-overview.md
 ├── 01-deployment-strategy-evaluation.md
 ├── 02-monitoring-tool-comparison.md
@@ -132,7 +132,7 @@ spec/11-research/
 
 ## Scoring Criteria
 
-Use the same standardized 1–5 rubric defined in `11-research.md`. For infrastructure/tooling research, add these criteria:
+Use the same standardized 1–5 rubric defined in `10-research.md`. For infrastructure/tooling research, add these criteria:
 
 | Criterion | What to Evaluate |
 |-----------|-----------------|
@@ -148,7 +148,7 @@ Use the same standardized 1–5 rubric defined in `11-research.md`. For infrastr
 
 | ❌ Don't | ✅ Do |
 |----------|-------|
-| Put language/framework comparisons here | Route to `02-coding-guidelines/11-research/` |
+| Put language/framework comparisons here | Route to `02-coding-guidelines/10-research/` |
 | Make architecture decisions without an ADR | Use the ADR template above |
 | Skip cost analysis for infrastructure research | Always include cost estimates |
 | Ignore vendor lock-in assessment | Evaluate migration difficulty |
@@ -159,11 +159,11 @@ Use the same standardized 1–5 rubric defined in `11-research.md`. For infrastr
 
 | Reference | Location |
 |-----------|----------|
-| Coding guidelines research | `spec/12-consolidated-guidelines/11-research.md` |
-| Source folder | `spec/11-research/00-overview.md` |
-| CI/CD pipeline specs | `spec/12-consolidated-guidelines/15-cicd-pipeline-workflows.md` |
-| Split DB architecture | `spec/12-consolidated-guidelines/05-split-db-architecture.md` |
-| Spec authoring | `spec/12-consolidated-guidelines/01-spec-authoring.md` |
+| Coding guidelines research | `spec/17-consolidated-guidelines/10-research.md` |
+| Source folder | `spec/10-research/00-overview.md` |
+| CI/CD pipeline specs | `spec/17-consolidated-guidelines/15-cicd-pipeline-workflows.md` |
+| Split DB architecture | `spec/17-consolidated-guidelines/05-split-db-architecture.md` |
+| Spec authoring | `spec/17-consolidated-guidelines/01-spec-authoring.md` |
 
 ---
 

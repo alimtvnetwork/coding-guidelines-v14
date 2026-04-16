@@ -690,8 +690,8 @@ git tag -d v1.2.0
 
 - [Release Assets](./07-release-assets.md) — Asset naming uses the resolved version
 - [Checksums & Verification](./08-checksums-verification.md) — Checksum file versioning
-- [CI/CD Release Body & Changelog](../13-cicd-pipeline-workflows/07-release-body-and-changelog.md) — How the release body uses changelog data
-- [CI/CD GitHub Release Standard](../13-cicd-pipeline-workflows/02-github-release-standard.md) — Pre-release detection
+- [CI/CD Release Body & Changelog](../12-cicd-pipeline-workflows/07-release-body-and-changelog.md) — How the release body uses changelog data
+- [CI/CD GitHub Release Standard](../12-cicd-pipeline-workflows/02-github-release-standard.md) — Pre-release detection
 - [Self-Update Overview](./01-self-update-overview.md) — How the CLI consumes versioned releases
 - [Deploy Path Resolution](./02-deploy-path-resolution.md) — Where the versioned binary is deployed
 

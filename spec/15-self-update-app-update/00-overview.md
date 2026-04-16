@@ -38,7 +38,7 @@ This module covers three complementary areas:
 ```
 AI INSTRUCTION:
 
-1. ALL self-update and app update content belongs in this folder (spec/14-self-update-app-update/).
+1. ALL self-update and app update content belongs in this folder (spec/15-self-update-app-update/).
 2. This is a Core Fundamentals folder (range 01–20) — no app-specific content here.
 3. App-specific update behavior goes in 21-app/ instead.
 4. CI/CD pipeline specs (GitHub Actions workflows) belong in 12-cicd-pipeline-workflows/.
@@ -107,12 +107,12 @@ This module contains **generic, reusable blueprints** for release pipelines. The
 
 | Concern | Location |
 |---------|----------|
-| Generic cross-compilation blueprint | `14-self-update-app-update/10-cross-compilation.md` |
-| Generic release pipeline blueprint | `14-self-update-app-update/11-release-pipeline.md` |
-| Generic install script blueprint | `14-self-update-app-update/12-install-scripts.md` |
+| Generic cross-compilation blueprint | `15-self-update-app-update/10-cross-compilation.md` |
+| Generic release pipeline blueprint | `15-self-update-app-update/11-release-pipeline.md` |
+| Generic install script blueprint | `15-self-update-app-update/12-install-scripts.md` |
 | App-specific CI workflows and archetypes | `12-cicd-pipeline-workflows/` |
-| How the CLI detects, downloads, and installs updates | `14-self-update-app-update/` (files 01–06) |
-| How release artifacts are packaged | `14-self-update-app-update/` (files 07–09) |
+| How the CLI detects, downloads, and installs updates | `15-self-update-app-update/` (files 01–06) |
+| How release artifacts are packaged | `15-self-update-app-update/` (files 07–09) |
 
 ---
 
@@ -120,10 +120,10 @@ This module contains **generic, reusable blueprints** for release pipelines. The
 
 | Reference | Location |
 |-----------|----------|
-| CI/CD Pipeline Workflows | `../13-cicd-pipeline-workflows/00-overview.md` |
-| Install Script Generation | `../13-cicd-pipeline-workflows/04-install-script-generation.md` |
-| Code Signing | `../13-cicd-pipeline-workflows/05-code-signing.md` |
-| Self-Update Mechanism (CI/CD) | `../13-cicd-pipeline-workflows/06-self-update-mechanism.md` |
+| CI/CD Pipeline Workflows | `../12-cicd-pipeline-workflows/00-overview.md` |
+| Install Script Generation | `../12-cicd-pipeline-workflows/04-install-script-generation.md` |
+| Code Signing | `../12-cicd-pipeline-workflows/05-code-signing.md` |
+| Self-Update Mechanism (CI/CD) | `../12-cicd-pipeline-workflows/06-self-update-mechanism.md` |
 | Consolidated Summary | `../11-consolidated-guidelines/17-self-update-app-update.md` |
 | Folder Structure Rules | `../01-spec-authoring-guide/01-folder-structure.md` |
 

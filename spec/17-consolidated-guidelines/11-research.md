@@ -30,15 +30,15 @@ An AI reading only this file must be able to create, organize, and review coding
 
 ## Placement Rule
 
-All research content scoped to coding guidelines MUST be placed in `spec/02-coding-guidelines/11-research/`. Research not scoped to coding guidelines belongs in `spec/11-research/`.
+All research content scoped to coding guidelines MUST be placed in `spec/02-coding-guidelines/10-research/`. Research not scoped to coding guidelines belongs in `spec/10-research/`.
 
 ### Decision Guide
 
 | Question | If YES → | If NO → |
 |----------|----------|---------|
-| Would the findings change how you write code? | `02-coding-guidelines/11-research/` | `11-research/` |
-| Is it about a language, framework, or library? | `02-coding-guidelines/11-research/` | Check scope |
-| Is it about infrastructure, CI/CD, or deployment? | `11-research/` | Check scope |
+| Would the findings change how you write code? | `02-coding-guidelines/10-research/` | `10-research/` |
+| Is it about a language, framework, or library? | `02-coding-guidelines/10-research/` | Check scope |
+| Is it about infrastructure, CI/CD, or deployment? | `10-research/` | Check scope |
 | Is it about tooling that affects developer workflow? | Could be either — use judgment | Ask human |
 
 ---
@@ -148,7 +148,7 @@ When evaluating options, use this standardized rubric:
 Research files use the standard numbered prefix pattern:
 
 ```
-spec/02-coding-guidelines/11-research/
+spec/02-coding-guidelines/10-research/
 ├── 00-overview.md
 ├── 01-framework-comparison-react-vue.md
 ├── 02-orm-evaluation-prisma-drizzle.md
@@ -166,7 +166,7 @@ spec/02-coding-guidelines/11-research/
 | Write opinion-only research with no data | Include benchmarks, metrics, or structured scoring |
 | Skip the methodology section | Document exactly how you evaluated |
 | Leave Decision empty after review | Fill it immediately, even if "no change" |
-| Put infrastructure research here | Route to `spec/11-research/` instead |
+| Put infrastructure research here | Route to `spec/10-research/` instead |
 | Use inconsistent scoring scales | Always use the 1–5 rubric above |
 
 ---
@@ -175,10 +175,10 @@ spec/02-coding-guidelines/11-research/
 
 | Reference | Location |
 |-----------|----------|
-| Root-level research | `spec/12-consolidated-guidelines/12-root-research.md` |
-| Source folder | `spec/02-coding-guidelines/11-research/00-overview.md` |
-| Coding guidelines | `spec/12-consolidated-guidelines/02-coding-guidelines.md` |
-| Spec authoring | `spec/12-consolidated-guidelines/01-spec-authoring.md` |
+| Root-level research | `spec/17-consolidated-guidelines/12-root-research.md` |
+| Source folder | `spec/02-coding-guidelines/10-research/00-overview.md` |
+| Coding guidelines | `spec/17-consolidated-guidelines/02-coding-guidelines.md` |
+| Spec authoring | `spec/17-consolidated-guidelines/01-spec-authoring.md` |
 
 ---
 

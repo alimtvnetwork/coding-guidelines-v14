@@ -2,7 +2,7 @@
 
 **Version:** 3.2.0  
 **Updated:** 2026-04-16  
-**Source Module:** [`spec/14-self-update-app-update/`](../14-self-update-app-update/00-overview.md)
+**Source Module:** [`spec/15-self-update-app-update/`](../15-self-update-app-update/00-overview.md)
 
 ---
 
@@ -392,8 +392,8 @@ Update configuration stored in a config file:
 
 ## Key Rules
 
-1. ALL self-update content belongs in `spec/14-self-update-app-update/`
-2. CI/CD pipeline specs (GitHub Actions) belong in `spec/13-cicd-pipeline-workflows/`
+1. ALL self-update content belongs in `spec/15-self-update-app-update/`
+2. CI/CD pipeline specs (GitHub Actions) belong in `spec/12-cicd-pipeline-workflows/`
 3. Rename-first is mandatory on Windows — never attempt to overwrite a running binary
 4. Updates are always synchronous — user sees all output in the terminal
 5. Never leave the system without a working binary — always rollback on failure
@@ -430,11 +430,11 @@ Update configuration stored in a config file:
 
 | Reference | Location |
 |-----------|----------|
-| Full Source | `../14-self-update-app-update/00-overview.md` |
-| CI/CD Pipeline Workflows | `../13-cicd-pipeline-workflows/00-overview.md` |
-| Install Script Generation | `../13-cicd-pipeline-workflows/04-install-script-generation.md` |
-| Code Signing | `../13-cicd-pipeline-workflows/05-code-signing.md` |
-| Installation Flow | `../13-cicd-pipeline-workflows/08-installation-flow.md` |
+| Full Source | `../15-self-update-app-update/00-overview.md` |
+| CI/CD Pipeline Workflows | `../12-cicd-pipeline-workflows/00-overview.md` |
+| Install Script Generation | `../12-cicd-pipeline-workflows/04-install-script-generation.md` |
+| Code Signing | `../12-cicd-pipeline-workflows/05-code-signing.md` |
+| Installation Flow | `../12-cicd-pipeline-workflows/08-installation-flow.md` |
 
 ---
 

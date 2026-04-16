@@ -217,7 +217,7 @@ The updater embeds fewer constants than the main binary:
 - [Handoff Mechanism](./05-handoff-mechanism.md) — How the main binary invokes the updater on Windows
 - [Network Requirements](./14-network-requirements.md) — HTTP client configuration and retry policies
 - [Release Assets](./07-release-assets.md) — Asset naming convention for updater archives
-- [Complete Workflow Reference](../13-cicd-pipeline-workflows/02-go-binary-deploy/03-complete-workflow-reference.md) — How the updater is built in CI
+- [Complete Workflow Reference](../12-cicd-pipeline-workflows/02-go-binary-deploy/03-complete-workflow-reference.md) — How the updater is built in CI
 
 ---
 

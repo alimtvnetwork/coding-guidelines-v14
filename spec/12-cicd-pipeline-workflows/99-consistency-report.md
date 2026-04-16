@@ -54,7 +54,7 @@
 - [x] All overview files list their child documents
 - [x] All subfolder overviews link to shared convention files
 - [x] Consolidated summary exists at `../11-consolidated-guidelines/15-cicd-pipeline-workflows.md`
-- [x] Bidirectional cross-refs with `../14-self-update-app-update/`
+- [x] Bidirectional cross-refs with `../15-self-update-app-update/`
 - [x] Root files (01–13) all have cross-reference sections
 - [x] Subfolder consistency reports present in both archetypes
 - [x] All cross-references verified via automated scan (2026-04-13)
@@ -66,7 +66,7 @@
 - Added `02-go-binary-deploy/03-complete-workflow-reference.md` to inventory (was missing from v7.0.0 report)
 - Fixed broken anchor in `03-complete-workflow-reference.md` (`#multiple-binaries` → `#multiple-binaries-multi-module-build`)
 - Updated total file count from 23 to 24
-- Verified all cross-references with `14-self-update-app-update/` including new files 13–15
+- Verified all cross-references with `15-self-update-app-update/` including new files 13–15
 
 ---
 

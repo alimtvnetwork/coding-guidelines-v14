@@ -343,7 +343,7 @@ This ensures each release's install scripts always download that specific versio
 - [Checksums & Verification](./08-checksums-verification.md) — SHA-256 verification patterns
 - [Release Assets](./07-release-assets.md) — Asset naming conventions
 - [Release Pipeline](./11-release-pipeline.md) — Where install scripts are generated
-- [CI/CD Install Script Generation](../13-cicd-pipeline-workflows/04-install-script-generation.md) — Server-side generation patterns
+- [CI/CD Install Script Generation](../12-cicd-pipeline-workflows/04-install-script-generation.md) — Server-side generation patterns
 
 ---
 

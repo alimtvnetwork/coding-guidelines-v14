@@ -2,7 +2,7 @@
 
 **Version:** 3.2.0  
 **Updated:** 2026-04-16  
-**Source Module:** [`spec/13-cicd-pipeline-workflows/`](../13-cicd-pipeline-workflows/00-overview.md)
+**Source Module:** [`spec/12-cicd-pipeline-workflows/`](../12-cicd-pipeline-workflows/00-overview.md)
 
 ---
 
@@ -375,12 +375,12 @@ The `env` command manages persistent PATH and environment:
 
 ## Key Rules
 
-1. ALL CI/CD content belongs in `spec/13-cicd-pipeline-workflows/`
+1. ALL CI/CD content belongs in `spec/12-cicd-pipeline-workflows/`
 2. App-specific deployment notes go in `21-app/` instead
 3. Shared patterns (version resolution, checksums, releases) are in root-level files
 4. Archetype-specific patterns are in their respective subfolders
 5. New pipeline types get their own subfolder with `00-overview.md`
-6. Client-side update logic lives in `spec/14-self-update-app-update/`
+6. Client-side update logic lives in `spec/15-self-update-app-update/`
 7. Never use `@latest` — pin all versions
 8. Never cancel release pipeline jobs
 9. Build once — never rebuild after the build stage
@@ -413,8 +413,8 @@ The `env` command manages persistent PATH and environment:
 
 | Reference | Location |
 |-----------|----------|
-| Full Source | `../13-cicd-pipeline-workflows/00-overview.md` |
-| Self-Update & App Update | `../14-self-update-app-update/00-overview.md` |
+| Full Source | `../12-cicd-pipeline-workflows/00-overview.md` |
+| Self-Update & App Update | `../15-self-update-app-update/00-overview.md` |
 | Folder Structure Rules | `../01-spec-authoring-guide/01-folder-structure.md` |
 
 ---

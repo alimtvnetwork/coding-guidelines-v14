@@ -1,4 +1,4 @@
-# Consistency Report — spec/15-wp-plugin-how-to/
+# Consistency Report — spec/18-wp-plugin-how-to/
 
 **Version:** 1.1.0  
 **Generated:** 2026-04-16  
@@ -112,4 +112,4 @@ All 22 phases + 4 subfiles + 2 meta files verified against `readme.md` index.
 
 ---
 
-*Consistency report for spec/15-wp-plugin-how-to/ — v1.0.0 — 2026-04-16*
+*Consistency report for spec/18-wp-plugin-how-to/ — v1.0.0 — 2026-04-16*

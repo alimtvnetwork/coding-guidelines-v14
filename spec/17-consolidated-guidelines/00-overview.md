@@ -43,20 +43,20 @@ This folder provides **standalone, self-contained AI-readable references** for e
 | 07 | [07-design-system.md](./07-design-system.md) | `07-design-system/` — CSS variable-driven design system, tokens, typography, motion, re-theming |
 | 08 | [08-docs-viewer-ui.md](./08-docs-viewer-ui.md) | `08-docs-viewer-ui/` — Documentation viewer: typography, keyboard nav, fullscreen, search, rendering |
 | 09 | [09-code-block-system.md](./09-code-block-system.md) | `09-code-block-system/` — Code block pipeline, interactions, styling, line selection, checklist blocks |
-| 10 | [10-powershell-integration.md](./10-powershell-integration.md) | `10-powershell-integration/` — PowerShell runner, pnpm PnP, pipeline steps, config, cross-project automation |
-| 11 | [11-research.md](./11-research.md) | `02-coding-guidelines/` — Coding guidelines research placement rules |
-| 12 | [12-root-research.md](./12-root-research.md) | `11-research/` — Root-level research placement rules |
+| 10 | [11-powershell-integration.md](./11-powershell-integration.md) | `11-powershell-integration/` — PowerShell runner, pnpm PnP, pipeline steps, config, cross-project automation |
+| 11 | [10-research.md](./10-research.md) | `02-coding-guidelines/` — Coding guidelines research placement rules |
+| 12 | [12-root-research.md](./12-root-research.md) | `10-research/` — Root-level research placement rules |
 | 13 | [13-app.md](./13-app.md) | `21-app/` — App-specific spec placement and decision guide |
 | 14 | [14-app-issues.md](./14-app-issues.md) | `22-app-issues/` — App bug analysis, issue file template, placement rules |
-| 15 | [15-cicd-pipeline-workflows.md](./15-cicd-pipeline-workflows.md) | `13-cicd-pipeline-workflows/` — CI/CD pipeline specs, deployment workflows, install scripts, code signing |
+| 15 | [15-cicd-pipeline-workflows.md](./15-cicd-pipeline-workflows.md) | `12-cicd-pipeline-workflows/` — CI/CD pipeline specs, deployment workflows, install scripts, code signing |
 | 16 | [16-app-design-system-and-ui.md](./16-app-design-system-and-ui.md) | `24-app-design-system-and-ui/` — App-specific design system extending core tokens |
-| 17 | [17-self-update-app-update.md](./17-self-update-app-update.md) | `14-self-update-app-update/` — CLI self-update, rename-first deploy, handoff, release pipeline, install scripts |
+| 17 | [17-self-update-app-update.md](./17-self-update-app-update.md) | `15-self-update-app-update/` — CLI self-update, rename-first deploy, handoff, release pipeline, install scripts |
 | 18 | [18-database-conventions.md](./18-database-conventions.md) | `04-database-conventions/` — Database naming, PK/FK patterns, singular tables, booleans, views, ORM, schema design |
 | 19 | [19-gap-analysis.md](./19-gap-analysis.md) | Gap analysis — coverage matrix, implementability scores, priority recommendations |
-| 20 | [20-wp-plugin-conventions.md](./20-wp-plugin-conventions.md) | `15-wp-plugin-how-to/` — WordPress plugin Gold Standard architecture, traits, enums, REST API |
+| 20 | [20-wp-plugin-conventions.md](./20-wp-plugin-conventions.md) | `18-wp-plugin-how-to/` — WordPress plugin Gold Standard architecture, traits, enums, REST API |
 | 21 | [21-lovable-folder-structure.md](./21-lovable-folder-structure.md) | `.lovable/` folder structure — memory, tasks, suggestions, strictly-avoid, AI reading order |
 | 22 | [22-app-database.md](./22-app-database.md) | `23-app-database/` — App-specific schema design, migration strategy, query patterns, ORM integration |
-| 23 | [23-generic-cli.md](./23-generic-cli.md) | `16-generic-cli/` — CLI creation blueprint: project structure, subcommands, flags, config, output, errors, help, database, build, testing, shell completion |
+| 23 | [23-generic-cli.md](./23-generic-cli.md) | `13-generic-cli/` — CLI creation blueprint: project structure, subcommands, flags, config, output, errors, help, database, build, testing, shell completion |
 
 ---
 
