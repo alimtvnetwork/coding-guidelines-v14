@@ -23,6 +23,7 @@ a complete self-update system from scratch without ambiguity.
 | [05-handoff-mechanism.md](05-handoff-mechanism.md) | Copy-and-handoff for Windows self-replacement |
 | [06-cleanup.md](06-cleanup.md) | Post-update artifact removal |
 | [07-console-safe-handoff.md](07-console-safe-handoff.md) | Prevent async handoff from breaking the console session |
+| [08-repo-path-sync.md](08-repo-path-sync.md) | Post-deploy repo path sync to keep DB current |
 
 ---
 
