@@ -125,8 +125,8 @@ All code must follow:
 
 | Reference | Location |
 |-----------|----------|
-| Coding Guidelines | `../03-coding-guidelines/00-overview.md` |
-| Error Code Registry | `../07-error-code-registry/00-overview.md` |
+| Coding Guidelines | `../02-coding-guidelines/00-overview.md` |
+| Error Code Registry | `../03-error-manage/03-error-code-registry/00-overview.md` |
 ````
 
 ### Step 4: Write Backend Specs
@@ -218,4 +218,4 @@ Add the new module to `spec/00-overview.md` in the appropriate layer table.
 - [ ] `99-consistency-report.md` at root and each subfolder
 - [ ] `spec/00-overview.md` master index updated
 - [ ] Cross-references added to related modules
-- [ ] Error codes registered in `07-error-code-registry`
+- [ ] Error codes registered in `spec/03-error-manage/03-error-code-registry/`

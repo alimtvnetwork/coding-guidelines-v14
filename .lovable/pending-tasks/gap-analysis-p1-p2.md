@@ -8,7 +8,7 @@
 8: 
 9: ## Description
 10: 
-11: Address remaining gap analysis items from `spec/12-consolidated-guidelines/19-gap-analysis.md`.
+11: Address remaining gap analysis items from `spec/17-consolidated-guidelines/19-gap-analysis.md`.
 12: 
 13: ## Items
 14: 

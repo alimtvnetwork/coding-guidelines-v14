@@ -151,7 +151,7 @@ internal/enums/
 
 ## Cross-References
 
-- Error Code Registry <!-- external: spec/07-error-code-registry/01-registry.md -->
+- Error Code Registry <!-- external: spec/03-error-manage/03-error-code-registry/01-registry.md -->
 - Split DB Architecture <!-- external: spec/05-split-db-architecture/00-overview.md -->
 - Coding Guidelines Memory <!-- external: .lovable/memories/constraints/coding-guidelines.md -->
 

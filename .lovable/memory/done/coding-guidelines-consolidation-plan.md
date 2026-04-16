@@ -53,7 +53,7 @@ The `spec/02-coding-guidelines/` folder contains **5 overlapping source folders*
 | Issue | Location |
 |-------|----------|
 | References to `../01-general-spec/`, `../18-error-resolution/`, `../31-generic-enforce/` — these don't exist in current `spec/` tree | `03-coding-guidelines-spec/00-overview.md` |
-| References use `spec/03-coding-guidelines/` paths but folder is now `spec/02-coding-guidelines/03-coding-guidelines-spec/` | Various |
+| References use `spec/02-coding-guidelines/` paths but folder is now `spec/02-coding-guidelines/` | Various |
 
 ---
 
@@ -78,7 +78,7 @@ The `spec/02-coding-guidelines/` folder contains **5 overlapping source folders*
 | T-008 | Map all unique rules from `01-pre-code-review-guides/` not in `03-coding-guidelines-spec/` (lazy evaluation, regex usage, newline styling, nesting avoidance, code mutation) | High |
 | T-009 | Map all unique rules from `04-coding-guidelines-wpon/` not in `03-coding-guidelines-spec/` (PHP spacing/imports, response-key-type-inventory) | Medium |
 | T-010 | Map all unique rules from `05-coding-guidelines-workflowy/` not in `03-coding-guidelines-spec/` (master guideline enforcement checklist, type-safety remediation plan) | High |
-| T-011 | Map unique enum patterns from `06-enum-spec/` not in `03-coding-guidelines-spec/03-golang/01-enum-specification/` | Medium |
+| T-011 | Map unique enum patterns from `06-enum-spec/` not in `02-coding-guidelines/03-golang/01-enum-specification/` | Medium |
 | T-012 | Identify contradictions between sources (e.g., different line limits, naming rules) | High |
 
 ### Phase 3: Design the Consolidated AI Guideline Structure
@@ -140,5 +140,5 @@ The `spec/02-coding-guidelines/` folder contains **5 overlapping source folders*
 | Reference | Location |
 |-----------|----------|
 | Spec Authoring Guide | `../../spec/01-spec-authoring-guide/00-overview.md` |
-| Current Coding Guidelines | `../../spec/02-coding-guidelines/03-coding-guidelines-spec/00-overview.md` |
+| Current Coding Guidelines | `../../spec/02-coding-guidelines/00-overview.md` |
 | Naming Compliance Issues | `../project/naming-compliance-issues.md` |

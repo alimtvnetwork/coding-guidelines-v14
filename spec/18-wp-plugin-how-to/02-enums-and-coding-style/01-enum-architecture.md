@@ -1,7 +1,7 @@
 # Phase 2 — Enums and Coding Style
 
 > **Purpose:** Define how enums eliminate magic strings and how code must be written for consistency.
-> **Cross-reference:** [`../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md`](../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md) for all formatting rules (R1–R13).
+> **Cross-reference:** [`../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md`](../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md) for all formatting rules (R1–R13).
 
 ---
 
@@ -205,7 +205,7 @@ $value = $shouldUseData ? $data : $default;
 
 ## 2.5 Coding Style — Formatting
 
-These rules apply to all PHP code. Full details in [`../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md`](../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md).
+These rules apply to all PHP code. Full details in [`../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md`](../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md).
 
 | Rule | Summary |
 |------|---------|

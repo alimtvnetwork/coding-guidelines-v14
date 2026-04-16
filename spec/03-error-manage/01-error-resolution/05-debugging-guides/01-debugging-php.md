@@ -231,7 +231,7 @@ class Logger
      * CRITICAL: First parameter is always Throwable.
      * The message is extracted from $e->getMessage() automatically.
      * The stack trace is always appended via $e->getTraceAsString().
-     * See: spec/03-coding-guidelines/04-php/forbidden-patterns.md rule 1.8
+     * See: spec/02-coding-guidelines/04-php/forbidden-patterns.md rule 1.8
      */
     public static function error(Throwable $exception, array $context = []): void
     {

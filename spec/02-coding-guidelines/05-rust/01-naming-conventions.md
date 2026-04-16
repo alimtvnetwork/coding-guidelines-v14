@@ -404,7 +404,7 @@ Use this table to instantly decide which casing to apply:
 | Cross-Language Guidelines | `../01-cross-language/00-overview.md` |
 | PascalCase Key Naming (Other Languages) | `../01-cross-language/11-key-naming-pascalcase.md` |
 | Boolean Flag Method Splitting | `../01-cross-language/24-boolean-flag-methods.md` |
-| Enum Standards (Cross-Language) | `../../../../11-consolidated-guidelines/04-enum-standards.md` |
+| Enum Standards (Cross-Language) | `../../../../17-consolidated-guidelines/04-enum-standards.md` |
 
 ---
 

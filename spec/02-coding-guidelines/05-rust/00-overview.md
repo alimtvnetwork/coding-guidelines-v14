@@ -75,7 +75,7 @@ This override exists because Rust's compiler actively enforces `snake_case` for 
 | Cross-Language Guidelines | `../01-cross-language/00-overview.md` |
 | Coding Guidelines Root | `../00-overview.md` |
 | Database Conventions (PascalCase) | `../../../04-database-conventions/00-overview.md` |
-| Enum Standards (Cross-Language) | `../../../../11-consolidated-guidelines/04-enum-standards.md` |
+| Enum Standards (Cross-Language) | `../../../../17-consolidated-guidelines/04-enum-standards.md` |
 | 01-naming-conventions.md | — |
 | 02-error-handling.md | — |
 | 03-async-patterns.md | — |

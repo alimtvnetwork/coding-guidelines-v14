@@ -58,7 +58,7 @@
 - [x] All overview inventory entries point to existing files
 - [x] All internal cross-references resolve (verified 2026-04-15)
 - [x] Bidirectional cross-refs with `12-cicd-pipeline-workflows/`
-- [x] Consolidated summary exists at `../11-consolidated-guidelines/17-self-update-app-update.md`
+- [x] Consolidated summary exists at `../17-consolidated-guidelines/17-self-update-app-update.md`
 - [x] Files 13–16 cross-reference each other correctly
 - [x] Diagrams subfolder has its own `00-overview.md` index
 

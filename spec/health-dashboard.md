@@ -5,7 +5,7 @@
 **Total Folders:** 75  
 **Overall Health:** 70/100 (C)
 
-> Regenerated automatically from `spec/dashboard-data.json` after the 09–18 folder renumber.
+> Regenerated after the spec/NN-name folder-reference audit. All in-repo stale links fixed; remaining broken links are intentional gitmap-v3 sibling references covered by the allowlist.
 
 ---
 
@@ -14,7 +14,7 @@
 | Metric | Value |
 |--------|-------|
 | Score | **70/100 (C)** |
-| Deduction | 49 broken links (-20) |
+| Deduction | 42 broken links (-20) |
 | Deduction | 4 missing consistency reports (-4) |
 | Deduction | 2 missing overviews (-6) |
 
@@ -25,8 +25,8 @@
 | Metric | Count |
 |--------|-------|
 | Total links checked | 1612 |
-| ✅ Resolved | 1563 |
-| 🔴 Broken | 49 |
+| ✅ Resolved | 1570 |
+| 🔴 Broken (gitmap-v3 siblings) | 42 |
 
 ### Broken Links by Folder
 
@@ -35,9 +35,7 @@
 | `12-cicd-pipeline-workflows/` | 9 |
 | `13-generic-cli/` | 7 |
 | `14-generic-update/` | 17 |
-| `16-generic-release/` | 11 |
-| `17-consolidated-guidelines/` | 2 |
-| `18-wp-plugin-how-to/` | 3 |
+| `16-generic-release/` | 9 |
 
 ### Broken Links by Source File
 
@@ -82,16 +80,9 @@
 | `16-generic-release/03-install-scripts.md` | 348 | `../03-general/02-powershell-build-deploy.md` |
 | `16-generic-release/06-release-metadata.md` | 174 | `../03-general/02-powershell-build-deploy.md` |
 | `16-generic-release/06-release-metadata.md` | 175 | `../01-app/13-release-data-model.md` |
-| `16-generic-release/07-known-issues-and-fixes.md` | 7 | `../09-pipeline/10-known-issues-and-fixes.md` |
-| `16-generic-release/07-known-issues-and-fixes.md` | 340 | `../09-pipeline/10-known-issues-and-fixes.md` |
 | `16-generic-release/07-known-issues-and-fixes.md` | 341 | `../02-app-issues/13-release-pipeline-dist-directory.md` |
 | `16-generic-release/07-known-issues-and-fixes.md` | 342 | `../14-generic-update/09-winres-icon-constraint.md` |
 | `16-generic-release/07-known-issues-and-fixes.md` | 343 | `../17-consolidated-guidelines/16-cicd.md` |
-| `17-consolidated-guidelines/00-overview.md` | 46 | `./11-powershell-integration.md` |
-| `17-consolidated-guidelines/00-overview.md` | 47 | `./10-research.md` |
-| `18-wp-plugin-how-to/01-foundation-and-architecture.md` | 5 | `../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md` |
-| `18-wp-plugin-how-to/02-enums-and-coding-style/01-enum-architecture.md` | 4 | `../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md` |
-| `18-wp-plugin-how-to/02-enums-and-coding-style/01-enum-architecture.md` | 208 | `../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md` |
 
 ---
 
@@ -115,26 +106,19 @@
 
 ---
 
-## Renumber Context (09–18)
+## Audit Status (post folder-ref fix)
 
-On 2026-04-16 the spec tree was renumbered (folders 09 onward).
-The broken links above fall into two categories:
-
-1. **Renumber-related (fixable in this repo):**
-   - `12-cicd-pipeline-workflows/00-overview.md` references stale internal filenames (08-installation-flow, 09-changelog-integration, 10-version-and-help, 11-environment-variable-setup, 12-terminal-output-standards, 13-binary-icon-branding).
-   - `12-cicd-pipeline-workflows/02-go-binary-deploy/*` references `../13-binary-icon-branding.md` (now 09).
-   - `17-consolidated-guidelines/00-overview.md` references `./11-powershell-integration.md` and `./10-research.md` as if they were local files (they are sibling spec folders).
-
-2. **Pre-existing (gitmap-v3 imports referencing folders never imported here):**
-   - `13-generic-cli/`, `14-generic-update/`, `16-generic-release/` link to `../01-app/`, `../02-app-issues/`, `../03-general/`, `../09-pipeline/`, `../14-generic-update/winres-icon` which do not exist locally per the avoid-app-sync rule.
-   - `18-wp-plugin-how-to/` uses incorrect `../../` depth to coding-guidelines.
+| Category | Count | Status |
+|----------|-------|--------|
+| `spec/NN-name/` folder references | 0 stale | ✅ Clean (allowlist: 25) |
+| Renumber-fallout link rewrites | 136 substitutions across 51 files | ✅ Applied |
+| File-level broken links | 42 | ⚠️ All in gitmap-v3 sibling repo refs (`01-app/`, `02-app-issues/`, `03-general/`) |
 
 ---
 
 ## How to Regenerate
 
 ```bash
-node linter-scripts/generate-dashboard-data.cjs
+node linter-scripts/generate-dashboard-data.cjs   # writes spec/dashboard-data.json
+python3 linter-scripts/check-spec-folder-refs.py  # CI guard for stale folder refs
 ```
-
-This rewrites `spec/dashboard-data.json`. The markdown above is a human-readable rendering of that JSON.

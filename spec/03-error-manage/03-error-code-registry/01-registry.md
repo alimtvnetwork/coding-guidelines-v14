@@ -26,7 +26,7 @@
 | `GS` | GSearch Provider Integration | 7920-7949 | `spec/09-gsearch-cli/01-backend/` | ✅ Active |
 | `NF` | Nexus Flow | 8000-8399 | `spec/12-nexus-flow-cli/` | ✅ Active |
 | `AB` | AI Bridge Core | 9000-9499 | `spec/11-ai-bridge-cli/` | ✅ Active |
-| `PS` | PowerShell Integration | 9500-9599 | `spec/06-powershell-integration/` | ✅ Active |
+| `PS` | PowerShell Integration | 9500-9599 | `spec/11-powershell-integration/` | ✅ Active |
 | `AB` | AI Bridge SEO | 9500-9540 | `spec/11-ai-bridge-cli/` | ✅ Active |
 | `AB` | AI Bridge Extended | 9600-9699 | `spec/11-ai-bridge-cli/` | ✅ Active |
 | `AB` | AI Bridge Revisions/Suggestions | 9700-9749 | `spec/11-ai-bridge-cli/` | ✅ Active |
@@ -56,8 +56,8 @@
 | `SM-PE` | SM Project Editor | 17000-17999 | `spec/02-spec-management-software/05-features/28-project-editor/` | ✅ Active |
 | `SM-GS` | SM GSearch CLI | 18000-18249 | `spec/02-spec-management-software/05-features/22-golang-search-cli/` | ✅ Active |
 | `SM-RT` | SM Realtime | 2800-2849 | `spec/02-spec-management-software/05-features/18-realtime/` | ✅ Active |
-| `SM-RV` | SM Registry Validator | 2850-2859 | `spec/07-error-code-registry/08-overlap-validator.md` | ✅ Active |
-| `CAST` | Type Casting (Cross-Cutting) | GEN-600-01 to GEN-600-10 | `spec/03-coding-guidelines/01-cross-language/03-casting-elimination-patterns.md` | ✅ Active |
+| `SM-RV` | SM Registry Validator | 2850-2859 | `spec/03-error-manage/03-error-code-registry/08-overlap-validator.md` | ✅ Active |
+| `CAST` | Type Casting (Cross-Cutting) | GEN-600-01 to GEN-600-10 | `spec/02-coding-guidelines/01-cross-language/03-casting-elimination-patterns.md` | ✅ Active |
 
 ---
 
@@ -123,7 +123,7 @@
 - **AB SEO codes** use flat integer format: `9501`, `9502`, etc. (Go constants, integer-based)
 
 The two formats are distinguishable at parse time by their encoding. No reassignment is required. Both modules document their codes independently:
-- PS: `spec/06-powershell-integration/04-error-codes.md`
+- PS: `spec/11-powershell-integration/04-error-codes.md`
 - AB SEO: `spec/11-ai-bridge-cli/01-backend/16-ai-seo-error-codes.md`
 
 **Contingency:** If future ambiguity arises (e.g., a unified logging system that strips prefixes), AB SEO should migrate to **9541-9599** (currently reserved for SEO expansion).
@@ -559,7 +559,7 @@ All CLI frontends use a consistent error code pattern at offset +50 from their b
 
 ## PS: PowerShell Integration (9500-9599)
 
-> See `spec/06-powershell-integration/04-error-codes.md` for full list.
+> See `spec/11-powershell-integration/04-error-codes.md` for full list.
 
 | Code | Name | Message |
 |------|------|---------|

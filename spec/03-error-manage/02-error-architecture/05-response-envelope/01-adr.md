@@ -119,7 +119,7 @@ A unified response contract was needed to eliminate these problems without break
 - *TypeScript as source, generate others* — would privilege one stack and require build-time codegen for Go/PHP.
 - *No formal schema, rely on spec README* — prose specifications cannot be machine-validated and are prone to interpretation drift.
 
-**Schema location:** `spec/07-error-manage/05-response-envelope/envelope.schema.json`  
+**Schema location:** `spec/03-error-manage/02-error-architecture/05-response-envelope/envelope.schema.json`  
 **Version:** v2.0.0  
 **Referenced by:**
 - Go: `backend/internal/wordpress/envelope.go`
@@ -139,7 +139,7 @@ A unified response contract was needed to eliminate these problems without break
 
 ## References
 
-- [spec/09-response-envelope/04-response-envelope-reference.md](./04-response-envelope-reference.md) — Canonical specification
+- [spec/03-error-manage/02-error-architecture/05-response-envelope/04-response-envelope-reference.md](./04-response-envelope-reference.md) — Canonical specification
 - [spec/response-envelope/changelog.md](./02-changelog.md) — Migration timeline
 - [spec/response-envelope/envelope.schema.json](./envelope.schema.json) — JSON Schema (Draft 2020-12) source of truth
 - [spec/response-envelope/configurability.md](./01-adr.md) — Debug toggle rules

@@ -64,4 +64,4 @@ Root index for the entire specification tree. Each top-level folder contains a d
 | Spec Authoring Guide | `./01-spec-authoring-guide/00-overview.md` |
 | Coding Guidelines | `./02-coding-guidelines/00-overview.md` |
 | Error Management | `./03-error-manage/00-overview.md` |
-| Design System | `./06-design-system/00-overview.md` |
+| Design System | `./07-design-system/00-overview.md` |

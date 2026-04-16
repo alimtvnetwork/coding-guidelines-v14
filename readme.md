@@ -282,15 +282,15 @@ spec/
 
 ### For Developers
 
-1. Start with [Coding Guidelines Overview](spec/02-coding-guidelines/03-coding-guidelines-spec/00-overview.md)
-2. Read the [Master Coding Guidelines](spec/02-coding-guidelines/03-coding-guidelines-spec/01-cross-language/15-master-coding-guidelines/00-overview.md) for cross-language rules
-3. Then your language-specific guide: [Go](spec/02-coding-guidelines/03-coding-guidelines-spec/03-golang/00-overview.md) · [TypeScript](spec/02-coding-guidelines/03-coding-guidelines-spec/02-typescript/00-overview.md) · [PHP](spec/02-coding-guidelines/03-coding-guidelines-spec/04-php/00-overview.md) · [Rust](spec/02-coding-guidelines/03-coding-guidelines-spec/05-rust/00-overview.md)
+1. Start with [Coding Guidelines Overview](spec/02-coding-guidelines/00-overview.md)
+2. Read the [Master Coding Guidelines](spec/02-coding-guidelines/01-cross-language/15-master-coding-guidelines/00-overview.md) for cross-language rules
+3. Then your language-specific guide: [Go](spec/02-coding-guidelines/03-golang/00-overview.md) · [TypeScript](spec/02-coding-guidelines/02-typescript/00-overview.md) · [PHP](spec/02-coding-guidelines/04-php/00-overview.md) · [Rust](spec/02-coding-guidelines/05-rust/00-overview.md)
 
 ### For AI Tools
 
-1. Load the [Condensed Master Guidelines](spec/02-coding-guidelines/03-coding-guidelines-spec/06-ai-optimization/04-condensed-master-guidelines.md) (<200 lines)
-2. Reference the [AI Quick-Reference Checklist](spec/02-coding-guidelines/03-coding-guidelines-spec/06-ai-optimization/02-ai-quick-reference-checklist.md) before generating code
-3. Check [Anti-Hallucination Rules](spec/02-coding-guidelines/03-coding-guidelines-spec/06-ai-optimization/01-anti-hallucination-rules.md) for common AI mistakes
+1. Load the [Condensed Master Guidelines](spec/02-coding-guidelines/06-ai-optimization/04-condensed-master-guidelines.md) (<200 lines)
+2. Reference the [AI Quick-Reference Checklist](spec/02-coding-guidelines/06-ai-optimization/02-ai-quick-reference-checklist.md) before generating code
+3. Check [Anti-Hallucination Rules](spec/02-coding-guidelines/06-ai-optimization/01-anti-hallucination-rules.md) for common AI mistakes
 
 ### For New Spec Authors
 
@@ -343,7 +343,7 @@ Every spec folder follows strict conventions defined in [`spec/01-spec-authoring
 ### Cross-References
 
 - **Always** use file-relative paths (`../03-golang/00-overview.md`)
-- **Never** use root-relative paths (`/spec/03-golang/00-overview.md`)
+- **Never** use root-relative paths (`/spec/02-coding-guidelines/03-golang/00-overview.md`)
 - **Always** include `.md` extension
 - **Always** use lowercase kebab-case in paths
 
@@ -594,7 +594,7 @@ func NewType(errType apperrtype.ErrorType) *AppError {
 > - All types live in `types/apperrtype/`
 > - Never pass raw string codes (`"E2012"`) when an `apperrtype` variant exists
 
-> 📖 Full error type enum specification: [`05-apperrtype-enums.md`](spec/03-error-manage-spec/04-error-manage-spec/02-error-architecture/06-apperror-package/01-apperror-reference/05-apperrtype-enums.md)
+> 📖 Full error type enum specification: [`05-apperrtype-enums.md`](spec/03-error-manage/02-error-architecture/06-apperror-package/01-apperror-reference/05-apperrtype-enums.md)
 
 
 **CODE-RED-005 & 006 — `fmt.Errorf()` and `(T, error)` returns (before/after):**
@@ -707,7 +707,7 @@ if resp.StatusCode != 200 {
 | `SiteError` / `WrapSiteError` | `WithSiteId` | `SiteNotFound`, `SiteBlocked` |
 | `EndpointError` / `WrapEndpointError` | `WithEndpoint` + `WithMethod` + `WithStatusCode` | `WPResponseInvalid`, `WPRateLimited` |
 
-> 📖 Full constructor reference: [`02-apperror-struct.md`](spec/03-error-manage-spec/04-error-manage-spec/02-error-architecture/06-apperror-package/01-apperror-reference/02-apperror-struct.md)
+> 📖 Full constructor reference: [`02-apperror-struct.md`](spec/03-error-manage/02-error-architecture/06-apperror-package/01-apperror-reference/02-apperror-struct.md)
 
 **CODE-RED-007 — String-based enum (before/after):**
 
@@ -830,9 +830,9 @@ return &Response{
 
 **TypeScript/JS class-first:** Prefer classes over loose exported functions when state or dependencies are shared. Pure utilities (`formatDate`, `slugify`) can remain as standalone exports.
 
-> 📖 Full specification with all language examples: [`26-magic-values-and-immutability.md`](spec/02-coding-guidelines/03-coding-guidelines-spec/01-cross-language/26-magic-values-and-immutability.md)
-> 📖 Mutation avoidance details: [`18-code-mutation-avoidance.md`](spec/02-coding-guidelines/03-coding-guidelines-spec/01-cross-language/18-code-mutation-avoidance.md)
-> 📖 Types folder convention: [`27-types-folder-convention.md`](spec/02-coding-guidelines/03-coding-guidelines-spec/01-cross-language/27-types-folder-convention.md)
+> 📖 Full specification with all language examples: [`26-magic-values-and-immutability.md`](spec/02-coding-guidelines/01-cross-language/26-magic-values-and-immutability.md)
+> 📖 Mutation avoidance details: [`18-code-mutation-avoidance.md`](spec/02-coding-guidelines/01-cross-language/18-code-mutation-avoidance.md)
+> 📖 Types folder convention: [`27-types-folder-convention.md`](spec/02-coding-guidelines/01-cross-language/27-types-folder-convention.md)
 
 [↑ Back to Table of Contents](#table-of-contents)
 
@@ -910,7 +910,7 @@ The PHP implementation lives at `wp-plugins/riseup-asia-uploader/includes/Helper
 
 ## AI Optimization Suite
 
-The [`06-ai-optimization/`](spec/02-coding-guidelines/03-coding-guidelines-spec/06-ai-optimization/00-overview.md) folder contains resources specifically designed for AI code generation:
+The [`06-ai-optimization/`](spec/02-coding-guidelines/06-ai-optimization/00-overview.md) folder contains resources specifically designed for AI code generation:
 
 | File | Purpose | Size |
 |------|---------|------|
@@ -1005,11 +1005,11 @@ His published writings on [clean function design](https://www.linkedin.com/pulse
 
 | # | Strength | Evidence |
 |---|----------|----------|
-| 1 | **Pain-driven rules, not academic theory** | The "zero nested `if`" obsession, the `HasError()` before `.Value()` guard, the `fmt.Errorf()` ban — these are rules born from debugging real production incidents where nested conditions caused logic bugs, silent error swallowing corrupted data, and lost stack traces made incident response take hours. See: [Error Resolution](spec/03-error-manage-spec/04-error-manage-spec/01-error-resolution/00-overview.md), [Nesting Resolution Patterns](spec/02-coding-guidelines/03-coding-guidelines-spec/01-cross-language/20-nesting-resolution-patterns.md) |
-| 2 | **Preventive infrastructure over reactive fixes** | Rather than fixing bugs after the fact, the system invests in structured error types (`apperror`) that make it impossible to lose context, Result wrappers (`Result[T]`) that force error checking before value access, and enum patterns that eliminate entire categories of string comparison bugs. See: [apperror Package](spec/03-error-manage-spec/04-error-manage-spec/02-error-architecture/06-apperror-package/00-overview.md) |
+| 1 | **Pain-driven rules, not academic theory** | The "zero nested `if`" obsession, the `HasError()` before `.Value()` guard, the `fmt.Errorf()` ban — these are rules born from debugging real production incidents where nested conditions caused logic bugs, silent error swallowing corrupted data, and lost stack traces made incident response take hours. See: [Error Resolution](spec/03-error-manage/01-error-resolution/00-overview.md), [Nesting Resolution Patterns](spec/02-coding-guidelines/01-cross-language/20-nesting-resolution-patterns.md) |
+| 2 | **Preventive infrastructure over reactive fixes** | Rather than fixing bugs after the fact, the system invests in structured error types (`apperror`) that make it impossible to lose context, Result wrappers (`Result[T]`) that force error checking before value access, and enum patterns that eliminate entire categories of string comparison bugs. See: [apperror Package](spec/03-error-manage/02-error-architecture/06-apperror-package/00-overview.md) |
 | 3 | **Documentation treated as engineering** | Most teams treat docs as a chore. This system treats them as first-class engineering artifacts — version-controlled with semver, self-validating with consistency reports, AI-optimized with condensed references, and cross-referenced with a global health dashboard. See: [Health Dashboard](spec/health-dashboard.md) |
-| 4 | **Cross-language discipline** | Maintaining parallel rules across 5 languages (Go, TypeScript, PHP, Rust, C#) with a single source of truth requires architectural thinking applied to documentation itself. 70%+ of rules are defined once in [cross-language guidelines](spec/02-coding-guidelines/03-coding-guidelines-spec/01-cross-language/00-overview.md); language-specific files only add what's unique. |
-| 5 | **AI-first design** | The [AI Optimization Suite](spec/02-coding-guidelines/03-coding-guidelines-spec/06-ai-optimization/00-overview.md) with 34 anti-hallucination rules, 72-check pre-output checklists, and a sub-200-line condensed reference is forward-thinking — it acknowledges that AI tools are now primary consumers of coding standards. |
+| 4 | **Cross-language discipline** | Maintaining parallel rules across 5 languages (Go, TypeScript, PHP, Rust, C#) with a single source of truth requires architectural thinking applied to documentation itself. 70%+ of rules are defined once in [cross-language guidelines](spec/02-coding-guidelines/01-cross-language/00-overview.md); language-specific files only add what's unique. |
+| 5 | **AI-first design** | The [AI Optimization Suite](spec/02-coding-guidelines/06-ai-optimization/00-overview.md) with 34 anti-hallucination rules, 72-check pre-output checklists, and a sub-200-line condensed reference is forward-thinking — it acknowledges that AI tools are now primary consumers of coding standards. |
 | 6 | **Self-validating architecture** | Every folder scores its own health. The `99-consistency-report.md` pattern means spec quality is checked locally, not just at the top level. Broken cross-references, missing metadata, and structural violations are caught systematically. |
 
 #### ⚠️ Weaknesses & Areas for Improvement
@@ -1019,7 +1019,7 @@ His published writings on [clean function design](https://www.linkedin.com/pulse
 | 1 | **15-line function limit is aggressive** | While encouraging decomposition, a hard 15-line max can lead to over-fragmentation — functions split into so many helpers that control flow becomes harder to trace. Some languages (Go error handling, React JSX) naturally produce longer but readable functions. | Consider 20–25 lines as the limit, or allow exemptions for declarative JSX and Go error-handling blocks. |
 | 2 | ~~**No automated CI enforcement yet**~~ | ✅ **Resolved** — ESLint plugin, golangci-lint, SonarQube, StyleCop, and PHP_CodeSniffer configs are now shipped in `linters/` and `eslint-plugins/`. Python and Go cross-language validators are in `linter-scripts/`. | Completed 2026-04-02 |
 | 3 | **Spec system complexity** | 285+ files across 42 directories with strict conventions creates a high onboarding cost. A new developer must understand numeric prefixes, required files, consistency reports, cross-reference rules, and the archive pattern before contributing. | Add a "5-minute quick start" for spec contributors. Consider generating a searchable index. |
-| 4 | **Error modal specs are UI-heavy without runtime validation** | The [error modal](spec/03-error-manage-spec/04-error-manage-spec/02-error-architecture/04-error-modal/00-overview.md) spec defines React components, color themes, and copy formats in detail, but there's no Storybook, snapshot tests, or visual regression testing referenced. | Add Storybook stories or Playwright visual tests to validate the error modal against its spec. |
+| 4 | **Error modal specs are UI-heavy without runtime validation** | The [error modal](spec/03-error-manage/02-error-architecture/04-error-modal/00-overview.md) spec defines React components, color themes, and copy formats in detail, but there's no Storybook, snapshot tests, or visual regression testing referenced. | Add Storybook stories or Playwright visual tests to validate the error modal against its spec. |
 | 5 | **Rust coverage is thinnest** | The Rust guidelines (10 files) are less battle-tested compared to Go and TypeScript sections, which have deeper enum patterns, debugging guides, and error-handling wrappers. | Expand Rust specs as production usage grows; add Rust-specific error-handling patterns comparable to `apperror`. |
 
 #### 🎯 Design Philosophy Summary

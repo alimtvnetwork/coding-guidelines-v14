@@ -149,7 +149,7 @@ resolve_version() {
 
 ## Issues Imported from `gitmap-v3` (Reference Implementation)
 
-The following lessons were captured during the development of the sibling `gitmap-v3` project (`spec/09-pipeline/10-known-issues-and-fixes.md` and `spec/07-generic-release/07-known-issues-and-fixes.md`). They describe failure modes that **will eventually occur in this repo too** if/when we add: a Go binary release, Windows resource embedding, SHA-deduplication, install-script generation, or multi-asset uploads. They are documented preemptively so the same diagnosis cycle does not repeat.
+The following lessons were captured during the development of the sibling `gitmap-v3` project (`spec/12-cicd-pipeline-workflows/10-known-issues-and-fixes.md` and `spec/16-generic-release/07-known-issues-and-fixes.md`). They describe failure modes that **will eventually occur in this repo too** if/when we add: a Go binary release, Windows resource embedding, SHA-deduplication, install-script generation, or multi-asset uploads. They are documented preemptively so the same diagnosis cycle does not repeat.
 
 > ⚠️ Issues #4–#12 below describe pipeline patterns this repo does not yet ship but is **likely to adopt**. Treat them as canonical guardrails for any future workflow extension.
 

@@ -27,7 +27,7 @@ Read [`llm.md`](../llm.md) in the project root before generating or reviewing an
 
 ## Detailed Specs
 
-Load from `spec/02-coding-guidelines/03-coding-guidelines-spec/06-ai-optimization/`:
+Load from `spec/02-coding-guidelines/06-ai-optimization/`:
 
 1. `04-condensed-master-guidelines.md` — sub-200-line distillation of all rules
 2. `01-anti-hallucination-rules.md` — 34 rules preventing common AI mistakes

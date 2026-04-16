@@ -90,4 +90,4 @@ All credentials are Base64-encoded for basic obfuscation (not encryption):
 
 ## Schema
 
-Defined in `spec/09-powershell-integration/schemas/powershell.schema.json` under `wpPlugins.sites`.
+Defined in `spec/11-powershell-integration/schemas/powershell.schema.json` under `wpPlugins.sites`.

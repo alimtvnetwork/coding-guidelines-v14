@@ -310,7 +310,7 @@ func (a *Adapter) GetById(ctx context.Context, id int64) (*models.Plugin, error)
 - [Go Standards](../03-golang/04-golang-standards-reference/00-overview.md)
 - [Function Naming](./10-function-naming.md)
 - Generic Enforce <!-- external: spec/31-generic-enforce/00-overview.md -->
-- apperror Package — Result Guard Rule <!-- external: spec/18-error-resolution/10-apperror-package/01-apperror-reference.md -->
+- apperror Package — Result Guard Rule <!-- external: spec/03-error-manage/01-error-resolution/10-apperror-package/01-apperror-reference.md -->
 - [Master Guidelines — Section 6.1](./15-master-coding-guidelines/03-code-style-and-errors.md#61-result-guard-rule-zero-silent-failures)
 
 ---

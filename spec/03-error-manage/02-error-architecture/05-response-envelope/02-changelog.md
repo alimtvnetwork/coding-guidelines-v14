@@ -19,8 +19,8 @@ Project-wide major version increment (+1.0.0) applied to all specification files
 
 ## v2.0.1 — 2026-02-11 · Cross-Check & Consistency Pass
 
-- Fixed `CapturedError` in `spec/06-error-handling/02-error-handling-reference.md` — removed incorrect top-level `delegatedRequestServer` field; data is accessed via `envelopeErrors.DelegatedRequestServer`.
-- Fixed `CapturedError` in `spec/07-error-modal/03-error-modal-reference.md` — same correction, added clarifying comment.
+- Fixed `CapturedError` in `spec/03-error-manage/02-error-architecture/06-apperror-package/01-apperror-reference/02-error-handling-reference.md` — removed incorrect top-level `delegatedRequestServer` field; data is accessed via `envelopeErrors.DelegatedRequestServer`.
+- Fixed `CapturedError` in `spec/03-error-manage/02-error-architecture/04-error-modal/03-error-modal-reference.md` — same correction, added clarifying comment.
 - Fixed `spec/error-modal/copy-formats.md` session endpoint reference — corrected to `GET /api/v1/sessions/{id}/diagnostics`.
 - Updated `copy-formats.md` version to 2.0.0.
 - Added `DelegatedRequestServer` interface to `src/lib/api/types.ts` and exported from barrel index.
@@ -34,8 +34,8 @@ Project-wide major version increment (+1.0.0) applied to all specification files
 - Updated `configurability.md` with `DelegatedRequestServer` presence rules and `includeDelegatedServerInfo` config toggle.
 - **Created `spec/error-modal/copy-formats.md`** — Complete samples for all copy/export formats: Full Report (MD), Report with Backend Logs, error.log.txt, backend error.log.txt with delegated server info.
 - Added `SessionId` to error sample `Attributes` block for session ↔ error linkage.
-- **Updated `spec/06-error-handling/02-error-handling-reference.md`** (v2.0.0) — 3-hop architecture, DelegatedRequestServer injection flow, E8000 error code range.
-- **Updated `spec/07-error-modal/03-error-modal-reference.md`** (v2.0.0) — DelegatedRequestServer UI rendering in Stack/Request/Traversal tabs.
+- **Updated `spec/03-error-manage/02-error-architecture/06-apperror-package/01-apperror-reference/02-error-handling-reference.md`** (v2.0.0) — 3-hop architecture, DelegatedRequestServer injection flow, E8000 error code range.
+- **Updated `spec/03-error-manage/02-error-architecture/04-error-modal/03-error-modal-reference.md`** (v2.0.0) — DelegatedRequestServer UI rendering in Stack/Request/Traversal tabs.
 - **Updated `spec/logging-and-diagnostics/session-based-logging.md`** (v2.0.0) — DelegatedRequestInfo in session data model, session-error linkage, diagnostics API.
 - **Created `spec/error-modal/react-components.md`** — Portable React code reference for rebuilding the error modal.
 
