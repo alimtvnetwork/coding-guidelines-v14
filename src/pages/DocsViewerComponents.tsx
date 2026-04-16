@@ -40,10 +40,10 @@ function SearchButton({ onClick }: { onClick: () => void }) {
   const shortcut = isMac ? "⌘K" : "Ctrl+K";
 
   return (
-    <button onClick={onClick} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors text-sm shrink-0">
-      <Search className="h-3.5 w-3.5" />
-      <span className="hidden sm:inline">Search</span>
-      <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground">{shortcut}</kbd>
+    <button onClick={onClick} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border bg-muted/30 hover:bg-muted/60 text-muted-foreground hover:text-foreground transition-colors text-sm flex-1 max-w-md min-w-[180px]">
+      <Search className="h-4 w-4 shrink-0" />
+      <span className="truncate">Search docs…</span>
+      <kbd className="ml-auto hidden sm:inline-flex items-center gap-0.5 rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground shrink-0">{shortcut}</kbd>
     </button>
   );
 }
