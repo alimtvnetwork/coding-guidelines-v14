@@ -7,7 +7,7 @@
 #   ./install.sh --repo owner/repo         # override source repo
 #   ./install.sh --branch dev              # override branch
 #   ./install.sh --config my-config.json   # use custom config file
-#   curl -fsSL <raw-url>/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash
 # ──────────────────────────────────────────────────────────────────────
 
 set -euo pipefail
@@ -123,7 +123,7 @@ else
 fi
 
 # Apply fallback defaults
-REPO="${REPO:-alimtvnetwork/gitmap-v3}"
+REPO="${REPO:-alimtvnetwork/coding-guidelines-v14}"
 BRANCH="${BRANCH:-main}"
 
 if [[ ${#FOLDERS[@]} -eq 0 ]]; then

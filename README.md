@@ -3,7 +3,7 @@
 > **Author:** Md. Alim Ul Karim
 > **Website:** [alimkarim.com](https://alimkarim.com/) · [my.alimkarim.com](https://my.alimkarim.com/)
 > **LinkedIn:** [linkedin.com/in/alimkarim](https://www.linkedin.com/in/alimkarim)
-> **Version:** 1.2.0
+> **Version:** 1.3.0
 > **Last Updated:** 2026-04-16
 > **Total Spec Files:** 285 | **Directories:** 42 | **Cross-References:** 902 | **Health Score:** 100/100
 
@@ -17,9 +17,15 @@ A production-grade, AI-optimized specification system for enforcing coding stand
 
 ## Install Scripts
 
-Download the `spec/`, `linters/`, and `linter-scripts/` folders from [alimtvnetwork/gitmap-v3](https://github.com/alimtvnetwork/gitmap-v3) into your local project. Copy `install.sh` (or `install.ps1`) and `install-config.json` into your project root, then run locally.
+Use the raw install scripts from this repository:
 
 ### Bash (Linux / macOS)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash
+```
+
+Run locally after copying into your project root:
 
 ```bash
 chmod +x install.sh
@@ -29,10 +35,16 @@ chmod +x install.sh
 Override source repo or branch:
 
 ```bash
-./install.sh --repo alimtvnetwork/gitmap-v3 --branch develop
+./install.sh --repo alimtvnetwork/coding-guidelines-v14 --branch develop
 ```
 
 ### PowerShell (Windows)
+
+```powershell
+irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex
+```
+
+Run locally after copying into your project root:
 
 ```powershell
 .\install.ps1
@@ -41,7 +53,7 @@ Override source repo or branch:
 Override source repo or branch:
 
 ```powershell
-.\install.ps1 -Repo "alimtvnetwork/gitmap-v3" -Branch "develop"
+.\install.ps1 -Repo "alimtvnetwork/coding-guidelines-v14" -Branch "develop"
 ```
 
 ### Configuration (`install-config.json`)
@@ -50,7 +62,7 @@ The scripts read `install-config.json` to determine which repo, branch, and fold
 
 ```json
 {
-  "repo": "alimtvnetwork/gitmap-v3",
+  "repo": "alimtvnetwork/coding-guidelines-v14",
   "branch": "main",
   "folders": [
     "spec",
