@@ -1,0 +1,9 @@
+{
+  "repo": "alimtvnetwork/gitmap-v3",
+  "branch": "main",
+  "folders": [
+    "spec",
+    "linters",
+    "linter-scripts"
+  ]
+}
