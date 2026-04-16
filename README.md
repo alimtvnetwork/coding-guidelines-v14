@@ -3,7 +3,7 @@
 > **Author:** Md. Alim Ul Karim
 > **Website:** [alimkarim.com](https://alimkarim.com/) · [my.alimkarim.com](https://my.alimkarim.com/)
 > **LinkedIn:** [linkedin.com/in/alimkarim](https://www.linkedin.com/in/alimkarim)
-> **Version:** 1.3.0
+> **Version:** 1.4.0
 > **Last Updated:** 2026-04-16
 > **Total Spec Files:** 285 | **Directories:** 42 | **Cross-References:** 902 | **Health Score:** 100/100
 
@@ -17,25 +17,12 @@ A production-grade, AI-optimized specification system for enforcing coding stand
 
 ## Install Scripts
 
-Use the raw install scripts from this repository:
+Use the raw install scripts from this repository **after the repo is synced to GitHub and `install.sh` / `install.ps1` exist on the `main` branch**:
 
 ### Bash (Linux / macOS)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash
-```
-
-Run locally after copying into your project root:
-
-```bash
-chmod +x install.sh
-./install.sh
-```
-
-Override source repo or branch:
-
-```bash
-./install.sh --repo alimtvnetwork/coding-guidelines-v14 --branch develop
 ```
 
 ### PowerShell (Windows)
@@ -44,13 +31,22 @@ Override source repo or branch:
 irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex
 ```
 
-Run locally after copying into your project root:
+### Local usage
+
+```bash
+chmod +x install.sh
+./install.sh
+```
 
 ```powershell
 .\install.ps1
 ```
 
-Override source repo or branch:
+### Override source repo or branch
+
+```bash
+./install.sh --repo alimtvnetwork/coding-guidelines-v14 --branch develop
+```
 
 ```powershell
 .\install.ps1 -Repo "alimtvnetwork/coding-guidelines-v14" -Branch "develop"
@@ -76,11 +72,42 @@ Edit `folders` to control which directories are downloaded. Files are merged int
 
 ---
 
+## Release Scripts
+
+This repo now includes local release packager scripts modeled on the gitmap flow:
+
+### Bash
+
+```bash
+npm run release
+```
+
+### PowerShell
+
+```powershell
+npm run release:ps1
+```
+
+Both scripts create a versioned release bundle in `dist/release/` containing:
+
+- `spec/`
+- `linters/`
+- `linter-scripts/`
+- `install.sh`
+- `install.ps1`
+- `install-config.json`
+- `README.md`
+- `checksums.txt`
+- `.zip` and `.tar.gz` archives
+
+---
+
 <details>
 <summary><h2>📑 Table of Contents</h2> <em>(click to expand/collapse)</em></summary>
 
 - [Project Overview](#project-overview)
 - [Install Scripts](#install-scripts)
+- [Release Scripts](#release-scripts)
 - [Folder Structure](#folder-structure)
 - [Quick Start — How to Read These Specs](#quick-start--how-to-read-these-specs)
 - [Spec Authoring Conventions](#spec-authoring-conventions)
