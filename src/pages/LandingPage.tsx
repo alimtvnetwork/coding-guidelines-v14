@@ -239,7 +239,7 @@ const LandingPage = () => {
           {" "}— Chief Software Engineer,{" "}
           <a href="https://riseup-asia.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Riseup Asia LLC</a>
         </p>
-        <p className="text-xs">Coding Guidelines v3.1.0 — Last updated 2026-04-16</p>
+        <p className="text-xs">Coding Guidelines v3.2.0 — Last updated 2026-04-16</p>
       </footer>
     </div>
   );
