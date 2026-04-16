@@ -95,8 +95,8 @@ AI INSTRUCTION:
 |-----------|----------|
 | Folder Structure Rules | `../01-spec-authoring-guide/01-folder-structure.md` |
 | Coding Guidelines | `../02-coding-guidelines/00-overview.md` |
-| PowerShell Automation | `../09-powershell-integration/00-overview.md` |
-| Consolidated Summary | `../11-consolidated-guidelines/15-cicd-pipeline-workflows.md` |
+| PowerShell Automation | `../11-powershell-integration/00-overview.md` |
+| Consolidated Summary | `../17-consolidated-guidelines/15-cicd-pipeline-workflows.md` |
 
 ---
 

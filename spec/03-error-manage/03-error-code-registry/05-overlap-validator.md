@@ -4,7 +4,7 @@
 **Version:** 3.1.0  
 > **Status:** Spec Ready  
 > **Owner:** SM CLI tooling  
-> **Cross-Reference:** `spec/07-error-code-registry/01-registry.md`
+> **Cross-Reference:** `spec/03-error-manage/03-error-code-registry/01-registry.md`
 
 ---
 
@@ -16,7 +16,7 @@ Automated tool that parses the master error code registry (`01-registry.md`) and
 
 ## Input
 
-The validator reads `spec/07-error-code-registry/01-registry.md` and extracts all rows from the **Registered Project Prefixes** table (Section 1) and all **Standalone Specification Error Ranges** detail tables.
+The validator reads `spec/03-error-manage/03-error-code-registry/01-registry.md` and extracts all rows from the **Registered Project Prefixes** table (Section 1) and all **Standalone Specification Error Ranges** detail tables.
 
 ### Parsing Rules
 
@@ -87,7 +87,7 @@ Matches against the allowlist are reported as `Severity: INTENTIONAL` rather tha
 
 ```
 === Error Code Registry Overlap Validator ===
-Registry: spec/07-error-code-registry/01-registry.md
+Registry: spec/03-error-manage/03-error-code-registry/01-registry.md
 Entries parsed: {N}
 Active entries: {N} (excluded {N} deprecated)
 
@@ -135,7 +135,7 @@ spec-tools registry validate [--registry path/to/01-registry.md] [--format json|
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--registry` | `spec/07-error-code-registry/01-registry.md` | Path to registry file |
+| `--registry` | `spec/03-error-manage/03-error-code-registry/01-registry.md` | Path to registry file |
 | `--format` | `text` | Output format (`text` for console, `json` for CI) |
 | `--strict` | `false` | When true, intentional overlaps also cause exit code 1 |
 

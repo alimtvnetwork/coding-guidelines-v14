@@ -112,7 +112,7 @@ Content that exists in multiple sources (03 is the canonical version):
 | B1 | `03-coding-guidelines-spec/00-overview.md` L59 | `../01-general-spec/00-overview.md` | Path doesn't exist under `02-coding-guidelines/` |
 | B2 | `03-coding-guidelines-spec/00-overview.md` L60 | `../18-error-resolution/00-overview.md` | Path doesn't exist under `02-coding-guidelines/` |
 | B3 | `03-coding-guidelines-spec/00-overview.md` L61 | `../31-generic-enforce/00-overview.md` | Path doesn't exist under `02-coding-guidelines/` |
-| B4 | `04-coding-guidelines-wpon/07-php-standards/php-spacing-and-imports.md` L192 | `../03-coding-guidelines/code-style.md` | Should be `../04-coding-guidelines/code-style.md` |
+| B4 | `04-coding-guidelines-wpon/07-php-standards/php-spacing-and-imports.md` L192 | `../02-coding-guidelines/code-style.md` | Should be `../04-coding-guidelines/code-style.md` |
 
 ---
 

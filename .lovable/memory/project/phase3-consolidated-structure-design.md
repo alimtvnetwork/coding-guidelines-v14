@@ -243,7 +243,7 @@ Each rule includes: ❌ Forbidden pattern | ✅ Required pattern | 📖 Why
 | B1 | `03-coding-guidelines-spec/00-overview.md` L59 | `../01-general-spec/00-overview.md` | Remove or update to correct path (these are in spec root, not under 02-coding-guidelines) |
 | B2 | `03-coding-guidelines-spec/00-overview.md` L60 | `../18-error-resolution/00-overview.md` | Same — fix to `../../03-error-manage-spec/` or remove |
 | B3 | `03-coding-guidelines-spec/00-overview.md` L61 | `../31-generic-enforce/00-overview.md` | Remove — doesn't exist |
-| B4 | `04-coding-guidelines-wpon/07-php-standards/php-spacing-and-imports.md` L192 | `../03-coding-guidelines/code-style.md` | Fix to `../04-coding-guidelines/code-style.md` |
+| B4 | `04-coding-guidelines-wpon/07-php-standards/php-spacing-and-imports.md` L192 | `../02-coding-guidelines/code-style.md` | Fix to `../04-coding-guidelines/code-style.md` |
 
 ---
 

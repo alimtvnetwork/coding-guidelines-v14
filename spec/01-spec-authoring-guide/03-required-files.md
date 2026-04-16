@@ -99,7 +99,7 @@ The health dashboard scores each module on four equally weighted criteria:
 | Reference | Location |
 |-----------|----------|
 | Related Module | `../XX-module-name/00-overview.md` |
-| Coding Guidelines | `../03-coding-guidelines/00-overview.md` |
+| Coding Guidelines | `../02-coding-guidelines/00-overview.md` |
 ```
 
 ### 97-acceptance-criteria.md Template

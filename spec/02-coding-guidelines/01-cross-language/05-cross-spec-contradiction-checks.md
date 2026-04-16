@@ -69,7 +69,7 @@ These are the **canonical rule sources** (if a conflict is found, these win):
 | Key naming (PascalCase) | `spec/02-coding-guidelines/01-cross-language/11-key-naming-pascalcase.md` |
 | Boolean logic | `spec/02-coding-guidelines/03-golang/02-boolean-standards.md` + `spec/02-coding-guidelines/01-cross-language/02-boolean-principles/00-overview.md` |
 | Strict typing | `spec/02-coding-guidelines/01-cross-language/13-strict-typing.md` |
-| Error handling | `spec/18-error-resolution/10-apperror-package/01-apperror-reference.md` |
+| Error handling | `spec/03-error-manage/01-error-resolution/10-apperror-package/01-apperror-reference.md` |
 | Code style | `spec/02-coding-guidelines/01-cross-language/04-code-style/` |
 | No negatives | `spec/02-coding-guidelines/01-cross-language/12-no-negatives.md` |
 | Function naming | `spec/02-coding-guidelines/01-cross-language/10-function-naming.md` |

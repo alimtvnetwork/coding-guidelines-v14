@@ -53,7 +53,7 @@
 
 - [x] All overview files list their child documents
 - [x] All subfolder overviews link to shared convention files
-- [x] Consolidated summary exists at `../11-consolidated-guidelines/15-cicd-pipeline-workflows.md`
+- [x] Consolidated summary exists at `../17-consolidated-guidelines/15-cicd-pipeline-workflows.md`
 - [x] Bidirectional cross-refs with `../15-self-update-app-update/`
 - [x] Root files (01–13) all have cross-reference sections
 - [x] Subfolder consistency reports present in both archetypes

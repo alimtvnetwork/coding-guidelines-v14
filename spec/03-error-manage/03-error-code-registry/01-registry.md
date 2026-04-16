@@ -56,7 +56,7 @@
 | `SM-PE` | SM Project Editor | 17000-17999 | `spec/02-spec-management-software/05-features/28-project-editor/` | ✅ Active |
 | `SM-GS` | SM GSearch CLI | 18000-18249 | `spec/02-spec-management-software/05-features/22-golang-search-cli/` | ✅ Active |
 | `SM-RT` | SM Realtime | 2800-2849 | `spec/02-spec-management-software/05-features/18-realtime/` | ✅ Active |
-| `SM-RV` | SM Registry Validator | 2850-2859 | `spec/07-error-code-registry/08-overlap-validator.md` | ✅ Active |
+| `SM-RV` | SM Registry Validator | 2850-2859 | `spec/03-error-manage/03-error-code-registry/08-overlap-validator.md` | ✅ Active |
 | `CAST` | Type Casting (Cross-Cutting) | GEN-600-01 to GEN-600-10 | `spec/02-coding-guidelines/01-cross-language/03-casting-elimination-patterns.md` | ✅ Active |
 
 ---

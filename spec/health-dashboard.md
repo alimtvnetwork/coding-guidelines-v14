@@ -82,8 +82,8 @@
 | `16-generic-release/03-install-scripts.md` | 348 | `../03-general/02-powershell-build-deploy.md` |
 | `16-generic-release/06-release-metadata.md` | 174 | `../03-general/02-powershell-build-deploy.md` |
 | `16-generic-release/06-release-metadata.md` | 175 | `../01-app/13-release-data-model.md` |
-| `16-generic-release/07-known-issues-and-fixes.md` | 7 | `../09-pipeline/10-known-issues-and-fixes.md` |
-| `16-generic-release/07-known-issues-and-fixes.md` | 340 | `../09-pipeline/10-known-issues-and-fixes.md` |
+| `16-generic-release/07-known-issues-and-fixes.md` | 7 | `../12-cicd-pipeline-workflows/10-known-issues-and-fixes.md` |
+| `16-generic-release/07-known-issues-and-fixes.md` | 340 | `../12-cicd-pipeline-workflows/10-known-issues-and-fixes.md` |
 | `16-generic-release/07-known-issues-and-fixes.md` | 341 | `../02-app-issues/13-release-pipeline-dist-directory.md` |
 | `16-generic-release/07-known-issues-and-fixes.md` | 342 | `../14-generic-update/09-winres-icon-constraint.md` |
 | `16-generic-release/07-known-issues-and-fixes.md` | 343 | `../17-consolidated-guidelines/16-cicd.md` |
@@ -126,7 +126,7 @@ The broken links above fall into two categories:
    - `17-consolidated-guidelines/00-overview.md` references `./11-powershell-integration.md` and `./10-research.md` as if they were local files (they are sibling spec folders).
 
 2. **Pre-existing (gitmap-v3 imports referencing folders never imported here):**
-   - `13-generic-cli/`, `14-generic-update/`, `16-generic-release/` link to `../01-app/`, `../02-app-issues/`, `../03-general/`, `../09-pipeline/`, `../14-generic-update/winres-icon` which do not exist locally per the avoid-app-sync rule.
+   - `13-generic-cli/`, `14-generic-update/`, `16-generic-release/` link to `../01-app/`, `../02-app-issues/`, `../03-general/`, `../12-cicd-pipeline-workflows/`, `../14-generic-update/winres-icon` which do not exist locally per the avoid-app-sync rule.
    - `18-wp-plugin-how-to/` uses incorrect `../../` depth to coding-guidelines.
 
 ---

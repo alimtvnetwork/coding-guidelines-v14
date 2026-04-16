@@ -274,7 +274,7 @@ if sameAs, ok := schema["sameAs"]; ok {
 
 All casting/conversion operations **must** go through a centralized utility function that returns `*apperror.AppError` on failure. This ensures every failed cast is traceable, loggable, and propagatable — never silently swallowed.
 
-**Error Code Mapping** (see Error Code Registry — GEN-600 <!-- external: spec/07-error-code-registry/01-registry.md -->):
+**Error Code Mapping** (see Error Code Registry — GEN-600 <!-- external: spec/03-error-manage/03-error-code-registry/01-registry.md -->):
 
 | Go Constant | Registry Code | Name | Emitted By |
 |-------------|---------------|------|------------|
@@ -493,9 +493,9 @@ grep -rn 'ctx\.Value\|context\.Value' spec/ --include="*.md" \
 | Reference | Location |
 |-----------|----------|
 | §7.2 Type Assertion Rule | `spec/02-coding-guidelines/01-cross-language/13-strict-typing.md` |
-| Error Code Registry (GEN-600) | `spec/07-error-code-registry/01-registry.md` |
+| Error Code Registry (GEN-600) | `spec/03-error-manage/03-error-code-registry/01-registry.md` |
 | Strong Typing Mandate | `.lovable/memories/standards/strong-typing-mandate.md` |
-| Error Handling Standards | `spec/18-error-resolution/10-apperror-package/01-apperror-reference.md` |
+| Error Handling Standards | `spec/03-error-manage/01-error-resolution/10-apperror-package/01-apperror-reference.md` |
 | Control Flow Rules | `.lovable/memories/architecture/coding-standards/control-flow.md` |
 | Contradiction Checks | `spec/02-coding-guidelines/01-cross-language/05-cross-spec-contradiction-checks.md` |
 | Context Accessors | `spec/02-spec-management-software/13-shared-packages/04-pkg-logging.md` |

@@ -112,4 +112,4 @@ throw new AppError(ErrorCodes.XX_000_01, "Description");
 ## Registration
 
 This error code range is registered in:
-`spec/07-error-code-registry/01-registry.md`
+`spec/03-error-manage/03-error-code-registry/01-registry.md`

@@ -343,7 +343,7 @@ Every spec folder follows strict conventions defined in [`spec/01-spec-authoring
 ### Cross-References
 
 - **Always** use file-relative paths (`../03-golang/00-overview.md`)
-- **Never** use root-relative paths (`/spec/03-golang/00-overview.md`)
+- **Never** use root-relative paths (`/spec/02-coding-guidelines/03-golang/00-overview.md`)
 - **Always** include `.md` extension
 - **Always** use lowercase kebab-case in paths
 

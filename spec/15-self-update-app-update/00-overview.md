@@ -124,7 +124,7 @@ This module contains **generic, reusable blueprints** for release pipelines. The
 | Install Script Generation | `../12-cicd-pipeline-workflows/04-install-script-generation.md` |
 | Code Signing | `../12-cicd-pipeline-workflows/05-code-signing.md` |
 | Self-Update Mechanism (CI/CD) | `../12-cicd-pipeline-workflows/06-self-update-mechanism.md` |
-| Consolidated Summary | `../11-consolidated-guidelines/17-self-update-app-update.md` |
+| Consolidated Summary | `../17-consolidated-guidelines/17-self-update-app-update.md` |
 | Folder Structure Rules | `../01-spec-authoring-guide/01-folder-structure.md` |
 
 ---

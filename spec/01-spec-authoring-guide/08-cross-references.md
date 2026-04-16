@@ -42,7 +42,7 @@ See: [Module Overview](../00-overview.md)
 ### Another module (one level up, then into sibling)
 
 ```markdown
-See: [Coding Guidelines](../03-coding-guidelines/00-overview.md)
+See: [Coding Guidelines](../02-coding-guidelines/00-overview.md)
 ```
 
 ### Deep cross-reference (from a subfolder to another module's subfolder)
@@ -104,7 +104,7 @@ See: [Guidelines](../03-Coding-Guidelines/00-overview.md)
 ### ❌ Missing file extension
 
 ```markdown
-See: [Guidelines](../03-coding-guidelines/00-overview)
+See: [Guidelines](../02-coding-guidelines/00-overview)
 ```
 
 **Why wrong:** Always include `.md` extension for explicit targeting.
@@ -117,8 +117,8 @@ To write the correct relative path, count directory levels:
 
 | From | To | Path |
 |------|----|------|
-| `spec/09-gsearch-cli/01-backend/01-arch.md` | `spec/02-coding-guidelines/00-overview.md` | `../../03-coding-guidelines/00-overview.md` |
-| `spec/09-gsearch-cli/00-overview.md` | `spec/02-coding-guidelines/00-overview.md` | `../03-coding-guidelines/00-overview.md` |
+| `spec/09-gsearch-cli/01-backend/01-arch.md` | `spec/02-coding-guidelines/00-overview.md` | `../../02-coding-guidelines/00-overview.md` |
+| `spec/09-gsearch-cli/00-overview.md` | `spec/02-coding-guidelines/00-overview.md` | `../02-coding-guidelines/00-overview.md` |
 | `spec/09-gsearch-cli/01-backend/01-arch.md` | `spec/09-gsearch-cli/00-overview.md` | `../00-overview.md` |
 
 **Formula:** Count how many directories UP you need to go, then navigate DOWN to the target.

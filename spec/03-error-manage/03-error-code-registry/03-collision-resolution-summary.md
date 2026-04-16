@@ -1,6 +1,6 @@
 # Collision Resolution Summary Report
 
-> Generated: 2026-02-28 | Source: `spec/07-error-code-registry/01-registry.md`
+> Generated: 2026-02-28 | Source: `spec/03-error-manage/03-error-code-registry/01-registry.md`
 **Version:** 3.1.0  
 
 ## Overview
@@ -77,5 +77,5 @@ Range           Owner   Description
 
 - Resolution 1 was **superseded** by Resolution 13: AB Lovable Reasoning moved from 10500-10519 to 19000-19019.
 - Resolution 9 is the only **no-action** resolution (intentional format-separated overlap).
-- All resolutions are logged in the canonical registry at `spec/07-error-code-registry/01-registry.md`.
+- All resolutions are logged in the canonical registry at `spec/03-error-manage/03-error-code-registry/01-registry.md`.
 - Remediation tracking: `spec/23-how-app-issues-track/16-error-code-collision-remediation.md`.
