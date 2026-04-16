@@ -1,0 +1,39 @@
+# Allowlist for check-spec-folder-refs.py
+#
+# Folders listed here MAY be referenced by markdown even though they
+# do NOT exist on disk in this repository. They live in sibling
+# repositories (notably `gitmap-v3`) that are intentionally NOT
+# imported here per the avoid-app-sync rule
+# (see .lovable/memory/constraints/avoid-app-sync).
+#
+# Format: one folder name per line. Lines starting with `#` and blank
+# lines are ignored.
+
+# --- gitmap-v3 sibling repo (app, app-issues, general layout) ---
+01-app
+02-app-issues
+03-general
+01-general-spec
+02-spec-management-software
+03-issues
+
+# --- gitmap-v3 CLI suite (cross-repo references) ---
+09-api-integration
+09-gsearch-cli
+10-brun-cli
+11-ai-bridge-cli
+12-nexus-flow-cli
+13-wp-plugin
+14-wp-plugin-builder
+15-spec-reverse-cli
+16-ai-transcribe-cli
+17-research-queries
+20-gsearch-cli
+21-brun-cli
+21-wp-seo-publish-cli
+22-ai-bridge-cli
+23-how-app-issues-track
+24-nexus-flow-cli
+28-wp-plugin-development
+31-generic-enforce
+33-ai-bridge-non-vector-rag
