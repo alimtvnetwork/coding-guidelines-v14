@@ -1,0 +1,18 @@
+export const HtmlTag = {
+  H1: "H1",
+  H2: "H2",
+  H3: "H3",
+  H4: "H4",
+  H5: "H5",
+  H6: "H6",
+  Pre: "PRE",
+  Table: "TABLE",
+  Ul: "UL",
+  Ol: "OL",
+  Blockquote: "BLOCKQUOTE",
+  Hr: "HR",
+  P: "P",
+  Div: "DIV",
+  Input: "INPUT",
+  Textarea: "TEXTAREA",
+} as const;

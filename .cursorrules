@@ -1,0 +1,39 @@
+# Cursor AI Rules — Coding Guidelines Integration
+# This file instructs Cursor AI to follow the project's coding standards.
+
+## Primary Reference
+
+Read `llm.md` in the project root FIRST. It is the single entry point for understanding and enforcing all coding guidelines in this repository.
+
+## Quick Rules (CODE RED — Zero Tolerance)
+
+1. Zero nested `if` — flatten with early returns
+2. All booleans start with `is`, `has`, `can`, `should`, `was`, `will`
+3. No magic strings — use enum/typed constants
+4. Max 15 lines per function
+5. No boolean flag parameters — split into named methods
+6. Blank line before `return`/`throw`
+7. No `else` after `return`/`throw`/`continue`/`break`
+
+### Go-Specific
+- Use `apperror.Result[T]`, never `(T, error)`
+- Use `apperror.New()`/`Wrap()`, never `fmt.Errorf()`
+- Use `type Variant byte` + `iota`, never string enums
+
+### TypeScript-Specific
+- Use `Promise.all()` for independent async calls
+
+### PHP-Specific
+- Use `->isEqual()` for enum comparison, never `===`
+
+## Context Loading
+
+For full details, load files in this order from `spec/02-coding-guidelines/03-coding-guidelines-spec/06-ai-optimization/`:
+1. `04-condensed-master-guidelines.md` (start here)
+2. `01-anti-hallucination-rules.md`
+3. `02-ai-quick-reference-checklist.md`
+4. `03-common-ai-mistakes.md`
+
+## Enforcement
+
+Linter configs are in `linters/`. Validators are in `scripts/`.
