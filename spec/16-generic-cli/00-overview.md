@@ -54,6 +54,7 @@ concrete examples. Adapt syntax to your target language.
 | 18 | [18-batch-execution.md](18-batch-execution.md) | Exec command for running commands across repos |
 | 19 | [19-shell-completion.md](19-shell-completion.md) | Tab-completion for PowerShell, Bash, Zsh |
 | 20 | [20-terminal-output-design.md](20-terminal-output-design.md) | Rich terminal report formatting and color system |
+| 21 | [21-post-install-shell-activation.md](21-post-install-shell-activation.md) | Post-install shell wrapper activation, `doctor` check, profile injection |
 
 ---
 

@@ -1,6 +1,8 @@
 # Release Pipeline
 
 > 🔴 **READ BEFORE EDITING:** [`10-release-pipeline-issues-rca.md`](./10-release-pipeline-issues-rca.md) — Root-cause-analysis ledger of every CI/CD failure encountered in this repo (npm ci lockfile drift, pip cache missing manifest, Node-dependent release script). It defines standing rules and a pre-flight checklist that all workflow edits must satisfy.
+>
+> 📎 **Generic-CLI contracts that bind this pipeline:** [`../16-generic-cli/20-terminal-output-design.md`](../16-generic-cli/20-terminal-output-design.md) (terminal report + color tokens used by install scripts and `doctor`) and [`../16-generic-cli/21-post-install-shell-activation.md`](../16-generic-cli/21-post-install-shell-activation.md) (post-install PATH/profile/wrapper activation, `doctor` LOADED state). Install-script and setup output produced by this pipeline MUST conform to both.
 
 ## Overview
 
@@ -287,6 +289,13 @@ The GitHub Release description is assembled from multiple sources:
 | GitHub Release standard | [`./02-github-release-standard.md`](./02-github-release-standard.md) |
 | Install script generation | [`./04-install-script-generation.md`](./04-install-script-generation.md) |
 | Release body and changelog | [`./07-release-body-and-changelog.md`](./07-release-body-and-changelog.md) |
+| Generic CLI — Terminal Output Design | [`../16-generic-cli/20-terminal-output-design.md`](../16-generic-cli/20-terminal-output-design.md) |
+| Generic CLI — Post-Install Shell Activation | [`../16-generic-cli/21-post-install-shell-activation.md`](../16-generic-cli/21-post-install-shell-activation.md) |
 | Current release workflow | `.github/workflows/release.yml` |
 | Current release script | `release.sh` |
+
+### Why these Generic-CLI specs matter at release time
+
+- **`20-terminal-output-design.md`** — defines the ASCII-only, color-tagged report format every binary must emit. Release packaging MUST NOT strip color codes or rewrap report tables, and install-script success/failure banners MUST follow the same color/severity tokens so users see one consistent visual language from `install.sh` through `<tool> doctor`.
+- **`21-post-install-shell-activation.md`** — the release pipeline's install scripts and the binary's `setup` subcommand jointly own the post-install activation contract (PATH export, profile snippet injection, in-session activation, `doctor` LOADED/INSTALLED_BUT_NOT_LOADED/NOT_INSTALLED states). Any change to install scripts, setup output, or doctor checks in this pipeline MUST conform to that spec to prevent the "binary on PATH but wrapper not loaded" class of post-release bugs.
 
