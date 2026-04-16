@@ -290,16 +290,16 @@
       {
         "Source": "16-generic-release/07-known-issues-and-fixes.md",
         "Line": 7,
-        "Text": "`spec/09-pipeline/10-known-issues-and-fixes.md`",
-        "Target": "../09-pipeline/10-known-issues-and-fixes.md",
-        "Resolved": "09-pipeline/10-known-issues-and-fixes.md"
+        "Text": "`spec/12-cicd-pipeline-workflows/10-known-issues-and-fixes.md`",
+        "Target": "../12-cicd-pipeline-workflows/10-known-issues-and-fixes.md",
+        "Resolved": "12-cicd-pipeline-workflows/10-known-issues-and-fixes.md"
       },
       {
         "Source": "16-generic-release/07-known-issues-and-fixes.md",
         "Line": 340,
-        "Text": "spec/09-pipeline/10-known-issues-and-fixes.md",
-        "Target": "../09-pipeline/10-known-issues-and-fixes.md",
-        "Resolved": "09-pipeline/10-known-issues-and-fixes.md"
+        "Text": "spec/12-cicd-pipeline-workflows/10-known-issues-and-fixes.md",
+        "Target": "../12-cicd-pipeline-workflows/10-known-issues-and-fixes.md",
+        "Resolved": "12-cicd-pipeline-workflows/10-known-issues-and-fixes.md"
       },
       {
         "Source": "16-generic-release/07-known-issues-and-fixes.md",
