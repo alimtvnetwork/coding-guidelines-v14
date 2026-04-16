@@ -259,11 +259,12 @@ export interface DocsContentProps {
   onSelect: (node: SpecNode) => void;
   searchQuery: string;
   setSearchQuery: (q: string) => void;
+  onSearchOpen?: () => void;
 }
 
-export function DocsContent({ activeFile, allFiles, tree, onSelect, searchQuery, setSearchQuery }: DocsContentProps) {
+export function DocsContent({ activeFile, allFiles, tree, onSelect, searchQuery, setSearchQuery, onSearchOpen }: DocsContentProps) {
   const state = useViewState();
   const split = useSplitState();
 
-  return <DocsContentPanel state={state} split={split} activeFile={activeFile} allFiles={allFiles} tree={tree} onSelect={onSelect} searchQuery={searchQuery} setSearchQuery={setSearchQuery} />;
+  return <DocsContentPanel state={state} split={split} activeFile={activeFile} allFiles={allFiles} tree={tree} onSelect={onSelect} searchQuery={searchQuery} setSearchQuery={setSearchQuery} onSearchOpen={onSearchOpen} />;
 }
