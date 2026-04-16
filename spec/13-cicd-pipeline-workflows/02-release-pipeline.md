@@ -1,5 +1,7 @@
 # Release Pipeline
 
+> 🔴 **READ BEFORE EDITING:** [`10-release-pipeline-issues-rca.md`](./10-release-pipeline-issues-rca.md) — Root-cause-analysis ledger of every CI/CD failure encountered in this repo (npm ci lockfile drift, pip cache missing manifest, Node-dependent release script). It defines standing rules and a pre-flight checklist that all workflow edits must satisfy.
+
 ## Overview
 
 The release pipeline automates binary production, packaging, and GitHub Release creation whenever code is pushed to a `release/**` branch or a `v*` tag. It produces cross-compiled binaries for two tools, platform-specific install scripts, checksums, and a fully formatted release page.
@@ -89,6 +91,8 @@ If the project produces multiple binaries (e.g., a main tool and an updater), bu
 
 If the project includes a documentation site (e.g., React/Vite), the release pipeline builds and bundles it as a release asset so the CLI can serve it locally.
 
+> ⚠️ **Repo-specific override:** This generic spec shows `npm ci` as the install step. **In this repo, `npm ci` is forbidden in CI** — see [RCA Issue #1](./10-release-pipeline-issues-rca.md#issue-1--npm-ci-fails-lockfile-out-of-sync). The lockfile is not maintained in sync with `package.json`, so docs-site bundling (if ever enabled here) must use `npm install --no-audit --no-fund` or be performed outside CI and committed as a pre-built artifact.
+
 ### Build Step
 
 ```yaml
@@ -99,7 +103,7 @@ If the project includes a documentation site (e.g., React/Vite), the release pip
 
 - name: Build docs-site
   run: |
-    npm ci
+    npm ci   # ❌ DO NOT USE in this repo — see RCA Issue #1
     npm run build
     cd dist
     zip -r ../dist-output/docs-site.zip .
@@ -264,9 +268,25 @@ The GitHub Release description is assembled from multiple sources:
 
 - **Build once, package once** — binaries are compiled exactly once; compression, checksums, and publishing operate on the already-built artifacts and must never trigger a rebuild
 - Every release commit must run to completion — never cancel release pipelines
-- Version is resolved from the Git ref, never hardcoded
+- Version is resolved from the Git ref, never hardcoded (see RCA Issue #3 — no `node` runtime allowed for version reads)
 - All binaries are statically linked (`CGO_ENABLED=0`)
 - Checksums are generated for all release assets
 - Install scripts use placeholder substitution, not string interpolation
 - Install scripts implement rename-first upgrades (never delete-then-write)
 - Pre-release vs. stable is determined automatically from the version string
+- 🔴 **No `npm ci`, no `actions/setup-node`, no built-in language caches** — see RCA Issues #1, #2, #3
+
+---
+
+## Cross-References
+
+| Reference | Location |
+|-----------|----------|
+| 🔴 RCA Ledger (read before editing) | [`./10-release-pipeline-issues-rca.md`](./10-release-pipeline-issues-rca.md) |
+| Shared conventions | [`./01-shared-conventions.md`](./01-shared-conventions.md) |
+| GitHub Release standard | [`./02-github-release-standard.md`](./02-github-release-standard.md) |
+| Install script generation | [`./04-install-script-generation.md`](./04-install-script-generation.md) |
+| Release body and changelog | [`./07-release-body-and-changelog.md`](./07-release-body-and-changelog.md) |
+| Current release workflow | `.github/workflows/release.yml` |
+| Current release script | `release.sh` |
+
