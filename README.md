@@ -15,10 +15,70 @@ A production-grade, AI-optimized specification system for enforcing coding stand
 
 ---
 
+## Install Scripts
+
+Download the `spec/`, `linters/`, and `linter-scripts/` folders from this repository into your local project using the provided install scripts. The scripts read `install-config.json` for which repo, branch, and folders to fetch.
+
+### Bash (Linux / macOS)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/gitmap-v3/main/install.sh | bash
+```
+
+Or clone locally and run:
+
+```bash
+chmod +x install.sh
+./install.sh
+```
+
+Override repo or branch:
+
+```bash
+./install.sh --repo yourorg/your-repo --branch develop
+```
+
+### PowerShell (Windows)
+
+```powershell
+irm https://raw.githubusercontent.com/alimtvnetwork/gitmap-v3/main/install.ps1 | iex
+```
+
+Or clone locally and run:
+
+```powershell
+.\install.ps1
+```
+
+Override repo or branch:
+
+```powershell
+.\install.ps1 -Repo "yourorg/your-repo" -Branch "develop"
+```
+
+### Configuration (`install-config.json`)
+
+```json
+{
+  "repo": "alimtvnetwork/gitmap-v3",
+  "branch": "main",
+  "folders": [
+    "spec",
+    "linters",
+    "linter-scripts"
+  ]
+}
+```
+
+Edit `folders` to control which directories are downloaded. Files are merged into your current directory — existing files with the same name are overwritten, but no files are deleted.
+
+---
+
 <details>
 <summary><h2>📑 Table of Contents</h2> <em>(click to expand/collapse)</em></summary>
 
 - [Project Overview](#project-overview)
+- [Install Scripts](#install-scripts)
 - [Folder Structure](#folder-structure)
 - [Quick Start — How to Read These Specs](#quick-start--how-to-read-these-specs)
 - [Spec Authoring Conventions](#spec-authoring-conventions)
