@@ -2,6 +2,7 @@
  * Sub-components extracted from DocsViewer for file-size compliance.
  */
 import React, { useEffect } from "react";
+import { Search } from "lucide-react";
 import { HtmlTag } from "@/constants/htmlTags";
 import { KeyboardKeyType } from "@/constants/enums";
 import { MonacoMarkdownEditor } from "@/components/MonacoMarkdownEditor";
