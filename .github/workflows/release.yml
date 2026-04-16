@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Resolve version
+        id: version
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Resolved version: $VERSION"
+
+      - name: Run release script
+        working-directory: .
+        run: bash release.sh
+
+      - name: Verify release artifacts
+        run: |
+          test -d release-artifacts || { echo "::error::release-artifacts directory missing"; exit 1; }
+          test -f release-artifacts/checksums.txt || { echo "::error::checksums.txt missing"; exit 1; }
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release-artifacts/*.zip
+            release-artifacts/*.tar.gz
+            release-artifacts/checksums.txt
+            install.sh
+            install.ps1
+            install-config.json
+          body: |
+            ## Installation
+
+            **Linux / macOS**
+            ```bash
+            curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash
+            ```
+
+            **Windows (PowerShell)**
+            ```powershell
+            irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex
+            ```
+
+            ## Checksums
+            See `checksums.txt` for SHA-256 verification hashes.
+          prerelease: ${{ contains(steps.version.outputs.version, '-') }}
+          make_latest: ${{ !contains(steps.version.outputs.version, '-') }}
