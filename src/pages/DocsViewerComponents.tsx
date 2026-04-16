@@ -246,7 +246,7 @@ export function DocsContentPanel(props: ContentPanelInput) {
   return (
     <>
       {!props.state.isFullscreen && <DocsSidebar tree={props.tree} activePath={props.activeFile?.path ?? null} onSelect={props.onSelect} searchQuery={props.searchQuery} setSearchQuery={props.setSearchQuery} allFiles={props.allFiles} />}
-      <ContentPanelMain deps={deps} state={props.state} split={props.split} activeFile={props.activeFile} allFiles={props.allFiles} tree={props.tree} onSelect={props.onSelect} allCollapsed={allCollapsed} toggleAllSections={toggleAll} />
+      <ContentPanelMain deps={deps} state={props.state} split={props.split} activeFile={props.activeFile} allFiles={props.allFiles} tree={props.tree} onSelect={props.onSelect} allCollapsed={allCollapsed} toggleAllSections={toggleAll} onSearchOpen={props.onSearchOpen} />
       {props.state.showShortcuts && <ShortcutsOverlay onClose={() => props.state.setShowShortcuts(false)} />}
     </>
   );
