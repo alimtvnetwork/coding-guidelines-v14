@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Linter Scripts Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify linter scripts present
+        run: |
+          test -f linter-scripts/validate-guidelines.go || { echo "::error::validate-guidelines.go missing"; exit 1; }
+          test -f linter-scripts/validate-guidelines.py || { echo "::error::validate-guidelines.py missing"; exit 1; }
+          test -f linter-scripts/check-axios-version.sh || { echo "::error::check-axios-version.sh missing"; exit 1; }
+
+      - name: Run Go validator (spec)
+        run: go run linter-scripts/validate-guidelines.go --path spec --max-lines 15
+
+      - name: Run Python validator (spec)
+        run: python3 linter-scripts/validate-guidelines.py spec || true
+
+      - name: Run Axios version check
+        run: bash linter-scripts/check-axios-version.sh
