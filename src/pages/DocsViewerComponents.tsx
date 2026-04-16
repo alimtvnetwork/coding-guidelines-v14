@@ -193,12 +193,13 @@ interface ContentPanelMainProps {
   onSelect: (node: SpecNode) => void;
   allCollapsed: boolean | null;
   toggleAllSections: () => void;
+  onSearchOpen?: () => void;
 }
 
-function ContentPanelMain({ deps, state, split, activeFile, allFiles, tree, onSelect, allCollapsed, toggleAllSections }: ContentPanelMainProps) {
+function ContentPanelMain({ deps, state, split, activeFile, allFiles, tree, onSelect, allCollapsed, toggleAllSections, onSearchOpen }: ContentPanelMainProps) {
   return (
     <div className="flex-1 flex flex-col min-w-0">
-      <DocsHeader isFullscreen={state.isFullscreen} breadcrumb={deps.breadcrumb} activeFile={activeFile} viewMode={state.viewMode} setViewMode={state.setViewMode} setEditContent={state.setEditContent} copied={state.copied} theme={deps.theme} tree={tree} allCollapsed={allCollapsed} handleCopyMarkdown={deps.handleCopyMarkdown} setIsFullscreen={state.setIsFullscreen} toggleTheme={deps.toggleTheme} setShowShortcuts={state.setShowShortcuts} toggleAllSections={toggleAllSections} />
+      <DocsHeader isFullscreen={state.isFullscreen} breadcrumb={deps.breadcrumb} activeFile={activeFile} viewMode={state.viewMode} setViewMode={state.setViewMode} setEditContent={state.setEditContent} copied={state.copied} theme={deps.theme} tree={tree} allCollapsed={allCollapsed} handleCopyMarkdown={deps.handleCopyMarkdown} setIsFullscreen={state.setIsFullscreen} toggleTheme={deps.toggleTheme} setShowShortcuts={state.setShowShortcuts} toggleAllSections={toggleAllSections} onSearchOpen={onSearchOpen} />
       {activeFile && <ProgressBar progress={deps.readingProgress} />}
       <main ref={deps.mainRef} className="flex-1 overflow-auto">
         <DocsMainContent activeFile={activeFile} viewMode={state.viewMode} editContent={state.editContent} setEditContent={state.setEditContent} splitRatio={split.splitRatio} isFullscreen={state.isFullscreen} splitContainerRef={split.splitContainerRef} handleDividerMouseDown={deps.handleDividerMouseDown} handleScrollTo={deps.handleScrollTo} activeHeadingId={deps.activeHeadingId} allFiles={allFiles} onSelect={onSelect} allCollapsed={allCollapsed} />
