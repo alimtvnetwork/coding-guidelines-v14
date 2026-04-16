@@ -4,15 +4,15 @@
     "Score": 70,
     "Grade": "C",
     "Deductions": [
-      "49 broken links (-20)",
+      "42 broken links (-20)",
       "4 missing consistency reports (-4)",
       "2 missing overviews (-6)"
     ]
   },
   "Links": {
     "TotalChecked": 1612,
-    "Ok": 1563,
-    "Broken": 49,
+    "Ok": 1570,
+    "Broken": 42,
     "BrokenDetails": [
       {
         "Source": "12-cicd-pipeline-workflows/00-overview.md",
@@ -289,20 +289,6 @@
       },
       {
         "Source": "16-generic-release/07-known-issues-and-fixes.md",
-        "Line": 7,
-        "Text": "`spec/12-cicd-pipeline-workflows/10-known-issues-and-fixes.md`",
-        "Target": "../12-cicd-pipeline-workflows/10-known-issues-and-fixes.md",
-        "Resolved": "12-cicd-pipeline-workflows/10-known-issues-and-fixes.md"
-      },
-      {
-        "Source": "16-generic-release/07-known-issues-and-fixes.md",
-        "Line": 340,
-        "Text": "spec/12-cicd-pipeline-workflows/10-known-issues-and-fixes.md",
-        "Target": "../12-cicd-pipeline-workflows/10-known-issues-and-fixes.md",
-        "Resolved": "12-cicd-pipeline-workflows/10-known-issues-and-fixes.md"
-      },
-      {
-        "Source": "16-generic-release/07-known-issues-and-fixes.md",
         "Line": 341,
         "Text": "spec/02-app-issues/13-release-pipeline-dist-directory.md",
         "Target": "../02-app-issues/13-release-pipeline-dist-directory.md",
@@ -321,41 +307,6 @@
         "Text": "spec/17-consolidated-guidelines/16-cicd.md",
         "Target": "../17-consolidated-guidelines/16-cicd.md",
         "Resolved": "17-consolidated-guidelines/16-cicd.md"
-      },
-      {
-        "Source": "17-consolidated-guidelines/00-overview.md",
-        "Line": 46,
-        "Text": "11-powershell-integration.md",
-        "Target": "./11-powershell-integration.md",
-        "Resolved": "17-consolidated-guidelines/11-powershell-integration.md"
-      },
-      {
-        "Source": "17-consolidated-guidelines/00-overview.md",
-        "Line": 47,
-        "Text": "10-research.md",
-        "Target": "./10-research.md",
-        "Resolved": "17-consolidated-guidelines/10-research.md"
-      },
-      {
-        "Source": "18-wp-plugin-how-to/01-foundation-and-architecture.md",
-        "Line": 5,
-        "Text": "`../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md`",
-        "Target": "../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md",
-        "Resolved": "../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md"
-      },
-      {
-        "Source": "18-wp-plugin-how-to/02-enums-and-coding-style/01-enum-architecture.md",
-        "Line": 4,
-        "Text": "`../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md`",
-        "Target": "../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md",
-        "Resolved": "../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md"
-      },
-      {
-        "Source": "18-wp-plugin-how-to/02-enums-and-coding-style/01-enum-architecture.md",
-        "Line": 208,
-        "Text": "`../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md`",
-        "Target": "../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md",
-        "Resolved": "../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md"
       }
     ]
   },
