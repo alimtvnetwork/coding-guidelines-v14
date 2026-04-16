@@ -59,4 +59,4 @@ When updating `specTree.json` content, always read from the source `.md` file ra
 | Checklist builder | `src/components/markdown/checklistBuilder.ts` |
 | Spec data source | `src/data/specTree.json` |
 | CLI module template | `spec/01-spec-authoring-guide/04-cli-module-template.md` |
-| Visual rendering guide | `spec/07-docs-viewer-ui/02-features/07-visual-rendering-guide.md` |
+| Visual rendering guide | `spec/08-docs-viewer-ui/02-features/07-visual-rendering-guide.md` |

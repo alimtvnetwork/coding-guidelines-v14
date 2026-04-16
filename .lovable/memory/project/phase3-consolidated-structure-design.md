@@ -15,7 +15,7 @@ Design for the consolidated AI-optimized coding guideline. Uses `03-coding-guide
 ## New Folder Structure
 
 ```
-spec/02-coding-guidelines/03-coding-guidelines-spec/
+spec/02-coding-guidelines/
 ├── 00-overview.md                          # Updated with AI scoring, full module map
 ├── 01-cross-language/
 │   ├── 00-overview.md

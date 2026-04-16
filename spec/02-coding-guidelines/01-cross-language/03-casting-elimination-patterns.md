@@ -492,12 +492,12 @@ grep -rn 'ctx\.Value\|context\.Value' spec/ --include="*.md" \
 
 | Reference | Location |
 |-----------|----------|
-| §7.2 Type Assertion Rule | `spec/03-coding-guidelines/01-cross-language/13-strict-typing.md` |
+| §7.2 Type Assertion Rule | `spec/02-coding-guidelines/01-cross-language/13-strict-typing.md` |
 | Error Code Registry (GEN-600) | `spec/07-error-code-registry/01-registry.md` |
 | Strong Typing Mandate | `.lovable/memories/standards/strong-typing-mandate.md` |
 | Error Handling Standards | `spec/18-error-resolution/10-apperror-package/01-apperror-reference.md` |
 | Control Flow Rules | `.lovable/memories/architecture/coding-standards/control-flow.md` |
-| Contradiction Checks | `spec/03-coding-guidelines/01-cross-language/05-cross-spec-contradiction-checks.md` |
+| Contradiction Checks | `spec/02-coding-guidelines/01-cross-language/05-cross-spec-contradiction-checks.md` |
 | Context Accessors | `spec/02-spec-management-software/13-shared-packages/04-pkg-logging.md` |
 
 ---

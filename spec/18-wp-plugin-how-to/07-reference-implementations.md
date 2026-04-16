@@ -753,7 +753,7 @@ Place this file at the plugin root. AI code generators read it before generating
 # AI Instructions for {Plugin Name}
 
 ## Architecture
-- This plugin follows the spec at `spec/18-how-to-write-wordpress-plugin/`
+- This plugin follows the spec at `spec/18-wp-plugin-how-to/`
 - Read ALL 11 phases before writing any code
 
 ## Critical Rules

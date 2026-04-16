@@ -20,7 +20,7 @@ Read and internalize the full onboarding protocol at:
 Follow all 4 phases sequentially:
 
 1. **Phase 1** — Read `.lovable/` context layer (overview, strictly-avoid, user-preferences, memory index, plan, suggestions) + all memory files
-2. **Phase 2** — Read all `spec/12-consolidated-guidelines/` files in numeric order
+2. **Phase 2** — Read all `spec/17-consolidated-guidelines/` files in numeric order
 3. **Phase 3** — Read all `spec/01-spec-authoring-guide/` files in numeric order
 4. **Phase 4** — Deep-dive into relevant source specs as needed per task
 

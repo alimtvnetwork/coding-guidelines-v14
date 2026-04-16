@@ -80,7 +80,7 @@ Every `00-overview.md` file should end with a cross-reference table:
 ### ❌ Root-relative paths
 
 ```markdown
-See: [Guidelines](/spec/03-coding-guidelines/00-overview.md)
+See: [Guidelines](/spec/02-coding-guidelines/00-overview.md)
 ```
 
 **Why wrong:** Root-relative paths break depending on the viewer's base URL.
@@ -88,7 +88,7 @@ See: [Guidelines](/spec/03-coding-guidelines/00-overview.md)
 ### ❌ Absolute filesystem paths
 
 ```markdown
-See: [Guidelines](/dev-server/spec/03-coding-guidelines/00-overview.md)
+See: [Guidelines](/dev-server/spec/02-coding-guidelines/00-overview.md)
 ```
 
 **Why wrong:** Filesystem paths are environment-specific.
@@ -117,8 +117,8 @@ To write the correct relative path, count directory levels:
 
 | From | To | Path |
 |------|----|------|
-| `spec/09-gsearch-cli/01-backend/01-arch.md` | `spec/03-coding-guidelines/00-overview.md` | `../../03-coding-guidelines/00-overview.md` |
-| `spec/09-gsearch-cli/00-overview.md` | `spec/03-coding-guidelines/00-overview.md` | `../03-coding-guidelines/00-overview.md` |
+| `spec/09-gsearch-cli/01-backend/01-arch.md` | `spec/02-coding-guidelines/00-overview.md` | `../../03-coding-guidelines/00-overview.md` |
+| `spec/09-gsearch-cli/00-overview.md` | `spec/02-coding-guidelines/00-overview.md` | `../03-coding-guidelines/00-overview.md` |
 | `spec/09-gsearch-cli/01-backend/01-arch.md` | `spec/09-gsearch-cli/00-overview.md` | `../00-overview.md` |
 
 **Formula:** Count how many directories UP you need to go, then navigate DOWN to the target.

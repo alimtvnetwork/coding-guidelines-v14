@@ -65,15 +65,15 @@ These are the **canonical rule sources** (if a conflict is found, these win):
 
 | Rule Domain | Canonical Source |
 |-------------|-----------------|
-| Naming (all languages) | `spec/03-coding-guidelines/01-cross-language/15-master-coding-guidelines/00-overview.md` |
-| Key naming (PascalCase) | `spec/03-coding-guidelines/01-cross-language/11-key-naming-pascalcase.md` |
-| Boolean logic | `spec/03-coding-guidelines/03-golang/02-boolean-standards.md` + `spec/03-coding-guidelines/01-cross-language/02-boolean-principles/00-overview.md` |
-| Strict typing | `spec/03-coding-guidelines/01-cross-language/13-strict-typing.md` |
+| Naming (all languages) | `spec/02-coding-guidelines/01-cross-language/15-master-coding-guidelines/00-overview.md` |
+| Key naming (PascalCase) | `spec/02-coding-guidelines/01-cross-language/11-key-naming-pascalcase.md` |
+| Boolean logic | `spec/02-coding-guidelines/03-golang/02-boolean-standards.md` + `spec/02-coding-guidelines/01-cross-language/02-boolean-principles/00-overview.md` |
+| Strict typing | `spec/02-coding-guidelines/01-cross-language/13-strict-typing.md` |
 | Error handling | `spec/18-error-resolution/10-apperror-package/01-apperror-reference.md` |
 | Code style | `spec/02-coding-guidelines/01-cross-language/04-code-style/` |
-| No negatives | `spec/03-coding-guidelines/01-cross-language/12-no-negatives.md` |
-| Function naming | `spec/03-coding-guidelines/01-cross-language/10-function-naming.md` |
-| Database naming | `spec/03-coding-guidelines/01-cross-language/07-database-naming.md` |
+| No negatives | `spec/02-coding-guidelines/01-cross-language/12-no-negatives.md` |
+| Function naming | `spec/02-coding-guidelines/01-cross-language/10-function-naming.md` |
+| Database naming | `spec/02-coding-guidelines/01-cross-language/07-database-naming.md` |
 
 ### Step 2: Search for Contradictions
 

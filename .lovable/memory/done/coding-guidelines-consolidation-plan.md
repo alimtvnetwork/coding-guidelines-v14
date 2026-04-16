@@ -53,7 +53,7 @@ The `spec/02-coding-guidelines/` folder contains **5 overlapping source folders*
 | Issue | Location |
 |-------|----------|
 | References to `../01-general-spec/`, `../18-error-resolution/`, `../31-generic-enforce/` — these don't exist in current `spec/` tree | `03-coding-guidelines-spec/00-overview.md` |
-| References use `spec/03-coding-guidelines/` paths but folder is now `spec/02-coding-guidelines/03-coding-guidelines-spec/` | Various |
+| References use `spec/02-coding-guidelines/` paths but folder is now `spec/02-coding-guidelines/` | Various |
 
 ---
 
@@ -140,5 +140,5 @@ The `spec/02-coding-guidelines/` folder contains **5 overlapping source folders*
 | Reference | Location |
 |-----------|----------|
 | Spec Authoring Guide | `../../spec/01-spec-authoring-guide/00-overview.md` |
-| Current Coding Guidelines | `../../spec/02-coding-guidelines/03-coding-guidelines-spec/00-overview.md` |
+| Current Coding Guidelines | `../../spec/02-coding-guidelines/00-overview.md` |
 | Naming Compliance Issues | `../project/naming-compliance-issues.md` |

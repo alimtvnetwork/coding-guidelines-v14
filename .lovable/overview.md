@@ -20,7 +20,7 @@ A **specification-driven documentation system** for a multi-language CLI toolcha
 | Location | Purpose |
 |----------|---------|
 | `spec/` | All formal specifications (numbered folders `01–23`) |
-| `spec/12-consolidated-guidelines/` | AI-readable summaries of every spec module |
+| `spec/17-consolidated-guidelines/` | AI-readable summaries of every spec module |
 | `.lovable/memory/` | Institutional knowledge (patterns, decisions, rules) |
 | `.lovable/strictly-avoid.md` | ⛔ Things you must NEVER do |
 | `.lovable/plan.md` | Current active roadmap |
