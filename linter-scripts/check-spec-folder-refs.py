@@ -37,6 +37,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SPEC_ROOT = REPO_ROOT / "spec"
+ALLOWLIST_PATH = Path(__file__).resolve().parent / "spec-folder-refs.allowlist"
 
 NUMBERED_FOLDER_RE = re.compile(r"^\d{2}-[a-z0-9-]+$")
 # Match `spec/NN-name` and capture the folder name (NN-name).
@@ -62,6 +63,19 @@ def list_existing_folders() -> set[str]:
         for entry in SPEC_ROOT.iterdir()
         if entry.is_dir() and is_numbered_folder(entry.name)
     }
+
+
+def load_allowlist() -> set[str]:
+    """Read intentional external folder names from the allowlist file."""
+    if not ALLOWLIST_PATH.is_file():
+        return set()
+    names: set[str] = set()
+    for raw in ALLOWLIST_PATH.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        names.add(line)
+    return names
 
 
 def iter_markdown_files() -> list[Path]:
