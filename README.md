@@ -3,8 +3,8 @@
 > **Author:** Md. Alim Ul Karim
 > **Website:** [alimkarim.com](https://alimkarim.com/) · [my.alimkarim.com](https://my.alimkarim.com/)
 > **LinkedIn:** [linkedin.com/in/alimkarim](https://www.linkedin.com/in/alimkarim)
-> **Version:** 1.1.0
-> **Last Updated:** 2026-04-02
+> **Version:** 1.2.0
+> **Last Updated:** 2026-04-16
 > **Total Spec Files:** 285 | **Directories:** 42 | **Cross-References:** 902 | **Health Score:** 100/100
 
 A production-grade, AI-optimized specification system for enforcing coding standards across **Go, TypeScript, PHP, Rust, and C#**. This repository contains the canonical coding guidelines, error management architecture, and spec authoring conventions used to maintain code quality at scale.
@@ -17,46 +17,36 @@ A production-grade, AI-optimized specification system for enforcing coding stand
 
 ## Install Scripts
 
-Download the `spec/`, `linters/`, and `linter-scripts/` folders from this repository into your local project using the provided install scripts. The scripts read `install-config.json` for which repo, branch, and folders to fetch.
+Download the `spec/`, `linters/`, and `linter-scripts/` folders from [alimtvnetwork/gitmap-v3](https://github.com/alimtvnetwork/gitmap-v3) into your local project. Copy `install.sh` (or `install.ps1`) and `install-config.json` into your project root, then run locally.
 
 ### Bash (Linux / macOS)
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/gitmap-v3/main/install.sh | bash
-```
-
-Or clone locally and run:
 
 ```bash
 chmod +x install.sh
 ./install.sh
 ```
 
-Override repo or branch:
+Override source repo or branch:
 
 ```bash
-./install.sh --repo yourorg/your-repo --branch develop
+./install.sh --repo alimtvnetwork/gitmap-v3 --branch develop
 ```
 
 ### PowerShell (Windows)
 
 ```powershell
-irm https://raw.githubusercontent.com/alimtvnetwork/gitmap-v3/main/install.ps1 | iex
-```
-
-Or clone locally and run:
-
-```powershell
 .\install.ps1
 ```
 
-Override repo or branch:
+Override source repo or branch:
 
 ```powershell
-.\install.ps1 -Repo "yourorg/your-repo" -Branch "develop"
+.\install.ps1 -Repo "alimtvnetwork/gitmap-v3" -Branch "develop"
 ```
 
 ### Configuration (`install-config.json`)
+
+The scripts read `install-config.json` to determine which repo, branch, and folders to fetch:
 
 ```json
 {
