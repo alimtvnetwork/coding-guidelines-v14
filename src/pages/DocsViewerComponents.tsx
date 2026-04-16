@@ -35,6 +35,19 @@ export function BreadcrumbNav({ breadcrumb }: { breadcrumb: string[] }) {
   );
 }
 
+function SearchButton({ onClick }: { onClick: () => void }) {
+  const isMac = navigator.platform.toUpperCase().includes("MAC");
+  const shortcut = isMac ? "⌘K" : "Ctrl+K";
+
+  return (
+    <button onClick={onClick} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground transition-colors text-sm shrink-0">
+      <Search className="h-3.5 w-3.5" />
+      <span className="hidden sm:inline">Search</span>
+      <kbd className="hidden sm:inline-flex items-center gap-0.5 rounded border border-border bg-background px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground">{shortcut}</kbd>
+    </button>
+  );
+}
+
 export function ProgressBar({ progress }: { progress: number }) {
   return (
     <div className="h-1 w-full bg-muted/30 shrink-0 overflow-hidden">
