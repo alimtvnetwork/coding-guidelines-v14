@@ -2,15 +2,35 @@
 set -euo pipefail
 
 REPO="alimtvnetwork/coding-guidelines-v14"
-VERSION="$(node -p "require('./package.json').version")"
-DIST_DIR="release-artifacts"
-STAGING_DIR="$DIST_DIR/coding-guidelines-v$VERSION"
-ARCHIVE_BASENAME="coding-guidelines-v$VERSION"
+RELEASE_VERSION_INPUT="${RELEASE_VERSION:-}"
 REQUIRED_PATHS=("spec" "linters" "linter-scripts" "install.sh" "install.ps1" "install-config.json" "README.md")
 
 step() { printf '\033[0;36m▸ %s\033[0m\n' "$1"; }
 ok() { printf '\033[0;32m✅ %s\033[0m\n' "$1"; }
 err() { printf '\033[0;31m❌ %s\033[0m\n' "$1" >&2; }
+
+resolve_version() {
+  local version="${RELEASE_VERSION_INPUT#v}"
+
+  if [[ -n "$version" ]]; then
+    printf '%s\n' "$version"
+    return 0
+  fi
+
+  version="$(sed -nE 's/^[[:space:]]*"version":[[:space:]]*"([^"]+)".*$/\1/p' package.json | head -n 1)"
+  if [[ -n "$version" ]]; then
+    printf '%s\n' "$version"
+    return 0
+  fi
+
+  err "Unable to resolve version from RELEASE_VERSION or package.json"
+  exit 1
+}
+
+VERSION="$(resolve_version)"
+DIST_DIR="release-artifacts"
+STAGING_DIR="$DIST_DIR/coding-guidelines-v$VERSION"
+ARCHIVE_BASENAME="coding-guidelines-v$VERSION"
 
 ensure_required_paths() {
   local is_missing=false
