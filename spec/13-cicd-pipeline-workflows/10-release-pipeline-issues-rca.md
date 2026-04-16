@@ -1,10 +1,30 @@
 # 10 — Release Pipeline Issues: Root Cause Analysis & Prevention
 
-**Version:** 1.0.0  
+**Version:** 2.0.0  
 **Created:** 2026-04-16  
+**Updated:** 2026-04-16  
 **Status:** Active reference  
 **Audience:** Any AI model or engineer maintaining the CI/CD pipeline  
-**Goal:** Document every release/CI failure encountered, with root cause and durable fix, so the same mistakes never recur.
+**Goal:** Document every release/CI failure encountered (this repo + sibling `gitmap-v3` lessons), with root cause and durable fix, so the same mistakes never recur.
+
+---
+
+## Issue Index
+
+| # | Issue | Stage | Severity | Source |
+|---|-------|-------|----------|--------|
+| 1 | `npm ci` lockfile drift | release | 🔴 Blocker | This repo |
+| 2 | `setup-python` pip cache requires manifest | CI | 🟠 High | This repo |
+| 3 | `release.sh` depended on Node at runtime | release | 🟠 High | This repo |
+| 4 | `go-winres` icon > 256×256 px | release: resource embed | 🔴 Blocker | gitmap-v3 |
+| 5 | `cd: dist: No such file or directory` | release: compress | 🔴 Blocker | gitmap-v3 |
+| 6 | Job-level `if` blocks required status checks | CI: SHA dedup | 🟠 High | gitmap-v3 |
+| 7 | `cancel-in-progress` cancels marker job | CI: cache write | 🟠 High | gitmap-v3 |
+| 8 | `@latest` tool/action installs non-reproducible | CI: setup | 🟡 Medium | gitmap-v3 |
+| 9 | Release branch run cancelled by follow-up commit | release: concurrency | 🔴 Blocker | gitmap-v3 |
+| 10 | Install-script placeholder unreplaced | release: script gen | 🟠 High | gitmap-v3 |
+| 11 | Missing `GITHUB_TOKEN` silently skips upload | release: asset upload | 🟡 Medium | gitmap-v3 |
+| 12 | Asset name mismatch between checksum and upload | release: packaging | 🟠 High | gitmap-v3 |
 
 ---
 
@@ -127,32 +147,239 @@ resolve_version() {
 
 ---
 
+## Issues Imported from `gitmap-v3` (Reference Implementation)
+
+The following lessons were captured during the development of the sibling `gitmap-v3` project (`spec/09-pipeline/10-known-issues-and-fixes.md` and `spec/07-generic-release/07-known-issues-and-fixes.md`). They describe failure modes that **will eventually occur in this repo too** if/when we add: a Go binary release, Windows resource embedding, SHA-deduplication, install-script generation, or multi-asset uploads. They are documented preemptively so the same diagnosis cycle does not repeat.
+
+> ⚠️ Issues #4–#12 below describe pipeline patterns this repo does not yet ship but is **likely to adopt**. Treat them as canonical guardrails for any future workflow extension.
+
+---
+
+### Issue #4 — `go-winres` Icon Size > 256×256 px
+
+**Symptom:**
+```
+2026/04/16 16:26:46 image size too big, must fit in 256x256
+Error: Process completed with exit code 1.
+```
+
+**Trigger:** A release workflow step running `go-winres make` references a PNG larger than 256×256 from `winres.json`.
+
+**Root cause:** The Windows `.ico` resource format hard-limits each frame to 256×256 px. `go-winres` refuses any larger source image. Local `go build` succeeds without resource embedding, so the constraint is invisible until CI runs.
+
+**Fix applied (in gitmap-v3):**
+- Created a 256×256 copy `assets/icon-256.png`.
+- Updated `winres/winres.json` to reference the smaller file.
+- Kept the original 512×512 `icon.png` for web/docs.
+
+**Prevention rule:**  
+🔴 **Any PNG referenced from `winres.json` MUST be ≤ 256×256.** Maintain two separate files (`icon.png` for docs, `icon-256.png` for `.exe` embedding). Add a CI pre-check:
+```bash
+python3 -c "from PIL import Image; img=Image.open('assets/icon-256.png'); assert max(img.size)<=256, img.size"
+```
+
+---
+
+### Issue #5 — `cd: dist: No such file or directory`
+
+**Symptom:**
+```
+cd: dist: No such file or directory
+Error: Process completed with exit code 1.
+```
+
+**Trigger:** A `run:` step in `release.yml` uses `cd dist && ...` assuming the previous step's working directory persists.
+
+**Root cause:** Every `run:` step in GitHub Actions starts at the repository root unless `working-directory:` is set explicitly. CWD does **not** carry over between steps. In a monorepo with multiple modules, this causes silent path drift.
+
+**Fix applied (in gitmap-v3):**
+```yaml
+- name: Compress and checksum
+  working-directory: gitmap/dist
+  run: |
+    test -d . || { echo "::error::dist missing"; exit 1; }
+    for f in gitmap-*; do ...; done
+```
+
+**Prevention rule:**  
+🔴 **NEVER use `cd` inside CI `run:` blocks.** Always use the YAML `working-directory:` field. Guard every output directory with `test -d` before operating on it.
+
+---
+
+### Issue #6 — Job-Level `if` Blocks Required Status Checks
+
+**Symptom:** SHA-deduplication added with job-level `if: needs.sha-check.outputs.already-built != 'true'`. GitHub UI shows grey "skipped" icons; branch protection treats skipped jobs as neither success nor failure → PRs permanently blocked.
+
+**Root cause:** GitHub Actions distinguishes `success`, `failure`, and `skipped` conclusions. Required status checks only accept `success`. A job-level `if` that evaluates false produces `skipped`, which never resolves the gate.
+
+**Fix applied (in gitmap-v3):** **Passthrough gate pattern** — jobs always run; step-level `if:` skips the actual work; an unconditional first step echoes "✅ Already validated (SHA cached)" so the job always concludes `success`.
+
+**Prevention rule:**  
+🟠 **Never use job-level `if` for cache/dedup gating** when the job is a required status check. Use **step-level** conditionals and always include at least one unconditional step.
+
+---
+
+### Issue #7 — `cancel-in-progress` Cancels the Marker Job
+
+**Symptom:** A trailing `mark-success` job that writes the `ci-passed-<SHA>` cache entry was intermittently cancelled by `cancel-in-progress: true`, leaving the SHA uncached and forcing full re-runs on the next push.
+
+**Root cause:** When all validation jobs finish and `mark-success` is queued, a new push to the same ref cancels the entire workflow run — including the still-pending marker job.
+
+**Fix applied (in gitmap-v3):** Inline the cache write as the **final step of the last validation job** (`test-summary`). Guard with `if: success()`.
+
+**Prevention rule:**  
+🟠 **Side-effects that must persist after success (cache writes, telemetry, deployment markers) belong in the LAST validation job, not in a separate trailing job** when `cancel-in-progress: true` is set.
+
+---
+
+### Issue #8 — `@latest` Tool/Action Installs Are Non-Reproducible
+
+**Symptom:** Builds that passed yesterday fail today with no code changes — a tool installed via `go install foo@latest` or an action pinned to `@v1` (floating major) introduced a breaking change overnight.
+
+**Root cause:** `@latest`, `@main`, and floating major tags resolve to whatever is current at install time. A new upstream release between two CI runs introduces a new lint rule, removed flag, or behavior change.
+
+**Fix applied (in gitmap-v3):** Pin every tool and action to an exact tag.
+
+| Tool / Action | Pinned Version |
+|---|---|
+| `golangci-lint` | `v1.64.8` |
+| `govulncheck` | `v1.1.4` |
+| `actions/checkout` | `@v6` |
+| `actions/setup-go` | `@v6` |
+| `actions/cache` | `@v4` |
+| `softprops/action-gh-release` | `@v2` |
+
+**Prevention rule:**  
+🟡 **`@latest` and `@main` are PROHIBITED in any workflow or `setup.sh`.** Pin every action and CLI tool to an exact tag. Use Dependabot/Renovate to propose pinned bumps.
+
+---
+
+### Issue #9 — Release Branch Run Cancelled by Follow-Up Commit
+
+**Symptom:** A push to `release/v2.5x.0` started the release workflow. A follow-up commit (changelog typo fix) on the same branch cancelled the in-progress run, leaving artifacts half-built and the GitHub Release inconsistent.
+
+**Root cause:** `concurrency.cancel-in-progress: true` is appropriate for PRs but catastrophic for release branches where every commit must produce complete artifacts.
+
+**Fix applied (in gitmap-v3):**
+```yaml
+# release.yml
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false   # NEVER cancel release runs
+```
+For shared CI workflows that also run on release branches:
+```yaml
+cancel-in-progress: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
+```
+
+**Prevention rule:**  
+🔴 **Release workflow `cancel-in-progress` MUST be `false`.** Shared workflows must use a conditional that exempts release branches.
+
+---
+
+### Issue #10 — Install-Script Placeholder Unreplaced
+
+**Symptom:** Released `install.ps1` / `install.sh` shipped with literal `VERSION_PLACEHOLDER` or `REPO_PLACEHOLDER` strings, causing user installs to download a non-existent release.
+
+**Root cause:** The release workflow generated install scripts with `sed` substitution. When `VERSION` was unset (e.g., the version-resolution step failed silently) or `sed` ran on the wrong file, placeholders survived into the published asset.
+
+**Fix applied (in gitmap-v3):**
+```bash
+: "${VERSION:?VERSION must be set before generating install scripts}"
+sed -i "s|VERSION_PLACEHOLDER|${VERSION}|g; s|REPO_PLACEHOLDER|${GITHUB_REPOSITORY}|g" install.sh install.ps1
+! grep -q "PLACEHOLDER" install.sh install.ps1 \
+  || { echo "::error::Unreplaced placeholder"; exit 1; }
+```
+
+**Prevention rule:**  
+🟠 **Always validate generated scripts for residual placeholders before upload.** Use `:?` parameter expansion for required env vars. Test install scripts end-to-end on a `release/test-*` branch.
+
+---
+
+### Issue #11 — Missing `GITHUB_TOKEN` Silently Skips Upload
+
+**Symptom:** Local invocations of a release helper produced binaries but no GitHub Release. No error printed — silent skip.
+
+**Root cause:** Upload code checked for `GITHUB_TOKEN` and **returned early without erroring** when absent. Intentional for local dev, but the silence misled both users and CI debuggers.
+
+**Fix applied (in gitmap-v3):** Print an explicit warning to stderr when assets exist but the token is missing. In CI, treat a missing `GITHUB_TOKEN` as a **hard failure**, not a skip.
+
+**Prevention rule:**  
+🟡 **Silent skips are a bug.** Always log to stderr when skipping an expected operation. In CI, missing required secrets MUST fail the job, not warn.
+
+---
+
+### Issue #12 — Asset Name Mismatch Between Checksum and Upload
+
+**Symptom:** Users running install scripts saw checksum-verification failures even when the binary was intact.
+
+**Root cause:** The compress step produced `app-v1.2.0-windows-amd64.zip`, but the checksum step (running in a different working directory) generated `checksums.txt` listing `app-windows-amd64.zip` (no version). Install scripts looked up the versioned name in a non-versioned manifest → mismatch.
+
+**Fix applied (in gitmap-v3):**
+1. Centralize asset naming as a shell function:
+   ```bash
+   asset_name() { echo "app-${VERSION}-${OS}-${ARCH}.${EXT}"; }
+   ```
+2. Generate checksums in the **same `working-directory`** as the artifacts.
+3. Round-trip test: extract `checksums.txt`, verify each listed file exists in `dist/`.
+
+**Prevention rule:**  
+🟠 **Asset naming must be defined once and reused.** Checksum generation MUST run in the artifact directory. Add a pre-publish round-trip test that validates checksums against actual files.
+
+---
+
 ## Standing Rules (apply to every CI/CD change)
 
-| # | Rule | Rationale |
-|---|------|-----------|
-| 1 | No `npm ci` / `npm install` in any workflow | Lockfile is not kept in sync; will always fail |
-| 2 | No `actions/setup-node` in any workflow | No Node-based build step exists in this repo |
-| 3 | No built-in `cache:` on language setup actions | No canonical manifests exist for those languages |
-| 4 | All `actions/*` versions pinned to exact major (e.g. `@v6`) | Reproducibility |
-| 5 | Tool versions pinned exactly (e.g. `golangci-lint@v1.64.8`) | Reproducibility |
-| 6 | Version reads from `package.json` use `sed`, not `node` | Avoid Issue #1 |
-| 7 | Every code change bumps at least the minor version | Per `.lovable/user-preferences` |
-| 8 | Touching `release-artifacts/` outside of `release.sh` is forbidden | Generated content; do not hand-edit |
+| # | Rule | Rationale | Source |
+|---|------|-----------|--------|
+| 1 | No `npm ci` / `npm install` in any workflow | Lockfile is not kept in sync; will always fail | Issue #1 |
+| 2 | No `actions/setup-node` in any workflow | No Node-based build step exists in this repo | Issue #1 |
+| 3 | No built-in `cache:` on language setup actions | No canonical manifests exist for those languages | Issue #2 |
+| 4 | Version reads from `package.json` use `sed`, not `node` | Avoid Node toolchain dependency | Issue #3 |
+| 5 | All `actions/*` versions pinned to exact tag (no `@latest`/`@main`) | Reproducibility | Issue #8 |
+| 6 | Tool versions pinned exactly (e.g. `golangci-lint@v1.64.8`) | Reproducibility | Issue #8 |
+| 7 | Every code change bumps at least the minor version | Per `.lovable/user-preferences` | — |
+| 8 | Touching `release-artifacts/` outside of `release.sh` is forbidden | Generated content; do not hand-edit | — |
+| 9 | NEVER `cd` inside `run:` blocks — use `working-directory:` | Steps reset CWD to repo root | Issue #5 |
+| 10 | Every output directory used in CI must be guarded with `test -d` | Fail fast with actionable error | Issue #5 |
+| 11 | Job-level `if` MUST NOT gate required status checks (use step-level) | `skipped` ≠ `success` in branch protection | Issue #6 |
+| 12 | Cache-write side effects belong in the LAST validation job, not a trailing marker job | `cancel-in-progress` kills trailing jobs | Issue #7 |
+| 13 | Release workflow `cancel-in-progress` MUST be `false` | Half-built releases corrupt the artifact set | Issue #9 |
+| 14 | Shared CI workflows must exempt `refs/heads/release/*` from cancellation | Same reason as #13 | Issue #9 |
+| 15 | Required env vars in shell use `:?` parameter expansion | Fails fast instead of producing garbage output | Issue #10 |
+| 16 | Generated scripts grep-validated for residual `*PLACEHOLDER` strings before upload | Prevents shipping broken installers | Issue #10 |
+| 17 | Silent skips are forbidden; always log to stderr; in CI fail hard on missing required secrets | Surface invisible problems | Issue #11 |
+| 18 | Asset names centralized in one function/variable; checksums generated in artifact dir | Prevents name drift between produce/verify | Issue #12 |
+| 19 | Any PNG referenced from `winres.json` MUST be ≤ 256×256 px (when Go/Windows release added) | Hard limit of `.ico` format | Issue #4 |
 
 ---
 
 ## Pre-flight Checklist for Workflow Edits
 
-Before committing changes to `.github/workflows/*.yml`:
+Before committing changes to `.github/workflows/*.yml`, `release.sh`, `install.sh`, `install.ps1`:
 
-- [ ] Does this change introduce `npm`, `node`, `setup-node`, or any JS dep? → **STOP**, refer to Issue #1.
-- [ ] Does this change enable built-in `cache:` on `setup-python` / `setup-go`? → **STOP**, refer to Issue #2.
-- [ ] Are all action versions pinned (`@v6`, not `@latest`)?
-- [ ] Are all tool versions pinned (e.g. `@v1.64.8`)?
-- [ ] Does `release.sh` still resolve version without Node? → grep for `node ` and `require(` to confirm absence.
-- [ ] Has the version in `package.json` been bumped (minor or major)?
-- [ ] Has this ledger been updated if a new failure mode was discovered?
+**Repo-specific (always required):**
+- [ ] No `npm`, `node`, `setup-node`, or JS dep introduced? → else **STOP**, see Issue #1.
+- [ ] No built-in `cache:` on `setup-python` / `setup-go`? → else **STOP**, see Issue #2.
+- [ ] All action versions pinned to exact tag (`@v6`, not `@latest`)? — Issue #8
+- [ ] All tool versions pinned (e.g. `@v1.64.8`)? — Issue #8
+- [ ] `release.sh` resolves version without Node? (`grep -E 'node |require\(' release.sh` returns empty) — Issue #3
+- [ ] `package.json` version bumped (minor or major)?
+- [ ] No `cd` in `run:` blocks? Use `working-directory:` instead. — Issue #5
+- [ ] Every directory used has a `test -d` guard? — Issue #5
+
+**If pipeline grows (apply when relevant):**
+- [ ] Required-status-check jobs have NO job-level `if`? — Issue #6
+- [ ] Cache writes are inlined into the last validation job, not a trailing job? — Issue #7
+- [ ] `release.yml` has `cancel-in-progress: false`? — Issue #9
+- [ ] Shared CI workflows exempt `refs/heads/release/*`? — Issue #9
+- [ ] Required env vars use `${VAR:?msg}` syntax? — Issue #10
+- [ ] Generated install scripts grep-checked for residual `PLACEHOLDER`? — Issue #10
+- [ ] Missing required secrets fail loudly (no silent skip)? — Issue #11
+- [ ] Asset naming centralized; checksum generated in artifact `working-directory`? — Issue #12
+- [ ] Any `winres.json`-referenced PNG is ≤ 256×256? — Issue #4
+
+- [ ] This ledger updated if a new failure mode was discovered.
 
 ---
 
