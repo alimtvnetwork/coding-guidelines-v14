@@ -148,6 +148,7 @@ export interface ContentPanelInput {
   allFiles: SpecNode[];
   searchQuery: string;
   setSearchQuery: (q: string) => void;
+  onSearchOpen?: () => void;
 }
 
 export interface ContentPanelDeps {
