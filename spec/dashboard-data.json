@@ -4,15 +4,15 @@
     "Score": 70,
     "Grade": "C",
     "Deductions": [
-      "33 broken links (-20)",
+      "32 broken links (-20)",
       "4 missing consistency reports (-4)",
       "2 missing overviews (-6)"
     ]
   },
   "Links": {
     "TotalChecked": 1612,
-    "Ok": 1579,
-    "Broken": 33,
+    "Ok": 1580,
+    "Broken": 32,
     "BrokenDetails": [
       {
         "Source": "13-generic-cli/21-post-install-shell-activation.md",
@@ -237,13 +237,6 @@
         "Text": "spec/14-generic-update/09-winres-icon-constraint.md",
         "Target": "../14-generic-update/09-winres-icon-constraint.md",
         "Resolved": "14-generic-update/09-winres-icon-constraint.md"
-      },
-      {
-        "Source": "16-generic-release/07-known-issues-and-fixes.md",
-        "Line": 343,
-        "Text": "spec/17-consolidated-guidelines/16-cicd.md",
-        "Target": "../17-consolidated-guidelines/16-cicd.md",
-        "Resolved": "17-consolidated-guidelines/16-cicd.md"
       }
     ]
   },
