@@ -1,65 +1,140 @@
 # Project-Wide Spec Health Dashboard
 
 **Generated:** 2026-04-16  
-**Total Active Files:** 163
-**Overall Health:** 100/100 (A+) — 0 broken links, archives removed
+**Total Files Scanned:** 554  
+**Total Folders:** 75  
+**Overall Health:** 70/100 (C)
+
+> Regenerated automatically from `spec/dashboard-data.json` after the 09–18 folder renumber.
 
 ---
 
-## Audit Summary
+## Health Score Breakdown
 
-| Finding | Count | Severity |
-|---------|-------|----------|
-| Missing `99-consistency-report.md` | 0 subfolders | ✅ Clean |
-| Broken cross-references | 0 links | ✅ Clean |
-| File count mismatches vs reports | 0 discrepancies | ✅ Clean |
-| Missing `00-overview.md` | 1 (root `spec/`) | ℹ️ Info — uses `spec-index.md` instead |
-| Naming convention violations | 0 | ✅ Clean |
-
----
-
-## Remediation History
-
-| Date | Action | Impact |
-|------|--------|--------|
-| 2026-04-16 | Added 23-app-database, renumbered app-design-system 23→24 | 2 new modules, cross-references updated |
-| 2026-04-05 | Removed all archive folders, reordered 06/07 modules | 185 archived files removed, design-system=06, docs-viewer-ui=07 |
-| 2026-04-03 | Removed 8 broken cross-references to non-existent external folders | split-db-architecture, seedable-config-architecture |
-| 2026-04-03 | Fixed stale memory-folder-guide reference (06→07) | `.lovable/memories/00-memory-index.md` |
-| 2026-04-03 | Renamed spec-authoring files 05→06, 06→07, 07→08, 08→09 | spec-authoring-guide cascade |
-| 2026-04-02 | Created 6 missing `99-consistency-report.md` files | boolean-principles, master-coding-guidelines, golang-standards-reference, php-standards-reference, apperror-reference, axios-version-control |
-| 2026-04-02 | Fixed 28 broken cross-references (round 4) | static-analysis, error-modal, apperror-reference, color-themes |
-| 2026-04-01 | Fixed 67 broken cross-references (round 3) | boolean-principles, master-coding-guidelines, golang-standards-reference, php-standards-reference |
-| 2026-04-01 | Initial audit — identified 10 missing reports, 6 broken links | Baseline established |
-
-**Total cross-references fixed:** 103  
-**Total consistency reports added:** 6
+| Metric | Value |
+|--------|-------|
+| Score | **70/100 (C)** |
+| Deduction | 49 broken links (-20) |
+| Deduction | 4 missing consistency reports (-4) |
+| Deduction | 2 missing overviews (-6) |
 
 ---
 
-## Module Health
+## Cross-Reference Integrity
 
-| Category | Folders | Files | Health | Notes |
-|----------|---------|-------|--------|-------|
-| Spec Authoring | 1 | 14 | 100/100 (A+) | ✅ Complete — renumbered 05-09 |
-| Coding Guidelines | 14 | 107 | 100/100 (A+) | ✅ Archives removed, canonical spec only |
-| Error Management | 21 | 122 | 100/100 (A+) | ✅ Archives removed, canonical spec only |
-| Split DB Architecture | 1 | 3 | 100/100 (A+) | ✅ Dead links removed |
-| Seedable Config | 1 | 10 | 100/100 (A+) | ✅ Dead links removed |
-| Design System (06) | 1 | 16 | 100/100 (A+) | ✅ All 16 files present |
-| Docs Viewer UI (07) | 1 | 12 | 100/100 (A+) | ✅ All files present |
-| App Database (23) | 1 | 1 | 100/100 (A+) | ✅ Created 2026-04-16 |
-| App Design System & UI (24) | 1 | 1 | 100/100 (A+) | ✅ Renumbered 23→24 on 2026-04-16 |
-| **Total** | **42+** | **163** | **100/100 (A+)** | All archives removed |
+| Metric | Count |
+|--------|-------|
+| Total links checked | 1612 |
+| ✅ Resolved | 1563 |
+| 🔴 Broken | 49 |
+
+### Broken Links by Folder
+
+| Folder | Broken Links |
+|--------|--------------|
+| `12-cicd-pipeline-workflows/` | 9 |
+| `13-generic-cli/` | 7 |
+| `14-generic-update/` | 17 |
+| `16-generic-release/` | 11 |
+| `17-consolidated-guidelines/` | 2 |
+| `18-wp-plugin-how-to/` | 3 |
+
+### Broken Links by Source File
+
+| Source File | Line | Broken Target |
+|-------------|------|---------------|
+| `12-cicd-pipeline-workflows/00-overview.md` | 57 | `./08-installation-flow.md` |
+| `12-cicd-pipeline-workflows/00-overview.md` | 58 | `./09-changelog-integration.md` |
+| `12-cicd-pipeline-workflows/00-overview.md` | 59 | `./10-version-and-help.md` |
+| `12-cicd-pipeline-workflows/00-overview.md` | 60 | `./11-environment-variable-setup.md` |
+| `12-cicd-pipeline-workflows/00-overview.md` | 61 | `./12-terminal-output-standards.md` |
+| `12-cicd-pipeline-workflows/00-overview.md` | 62 | `./13-binary-icon-branding.md` |
+| `12-cicd-pipeline-workflows/02-go-binary-deploy/02-release-pipeline.md` | 92 | `../13-binary-icon-branding.md` |
+| `12-cicd-pipeline-workflows/02-go-binary-deploy/02-release-pipeline.md` | 373 | `../13-binary-icon-branding.md` |
+| `12-cicd-pipeline-workflows/02-go-binary-deploy/03-complete-workflow-reference.md` | 336 | `../13-binary-icon-branding.md` |
+| `13-generic-cli/21-post-install-shell-activation.md` | 7 | `../01-app/31-cd.md` |
+| `13-generic-cli/21-post-install-shell-activation.md` | 8 | `../02-app-issues/22-installer-path-not-active-after-install.md` |
+| `13-generic-cli/21-post-install-shell-activation.md` | 8 | `../02-app-issues/24-cd-command-does-not-change-shell-directory.md` |
+| `13-generic-cli/21-post-install-shell-activation.md` | 8 | `../02-app-issues/25-powershell-cd-wrapper-not-loaded.md` |
+| `13-generic-cli/21-post-install-shell-activation.md` | 287 | `../02-app-issues/22-installer-path-not-active-after-install.md` |
+| `13-generic-cli/21-post-install-shell-activation.md` | 288 | `../02-app-issues/24-cd-command-does-not-change-shell-directory.md` |
+| `13-generic-cli/21-post-install-shell-activation.md` | 289 | `../02-app-issues/25-powershell-cd-wrapper-not-loaded.md` |
+| `14-generic-update/01-self-update-overview.md` | 180 | `../03-general/02-powershell-build-deploy.md` |
+| `14-generic-update/01-self-update-overview.md` | 181 | `../03-general/03-self-update-mechanism.md` |
+| `14-generic-update/01-self-update-overview.md` | 182 | `../01-app/09-build-deploy.md` |
+| `14-generic-update/02-deploy-path-resolution.md` | 379 | `../03-general/02-powershell-build-deploy.md` |
+| `14-generic-update/02-deploy-path-resolution.md` | 380 | `../01-app/09-build-deploy.md` |
+| `14-generic-update/03-rename-first-deploy.md` | 236 | `../03-general/02-powershell-build-deploy.md` |
+| `14-generic-update/03-rename-first-deploy.md` | 237 | `../03-general/03-self-update-mechanism.md` |
+| `14-generic-update/03-rename-first-deploy.md` | 238 | `../01-app/09-build-deploy.md` |
+| `14-generic-update/04-build-scripts.md` | 295 | `../03-general/02-powershell-build-deploy.md` |
+| `14-generic-update/04-build-scripts.md` | 296 | `../01-app/09-build-deploy.md` |
+| `14-generic-update/05-handoff-mechanism.md` | 253 | `../03-general/02-powershell-build-deploy.md` |
+| `14-generic-update/05-handoff-mechanism.md` | 254 | `../03-general/03-self-update-mechanism.md` |
+| `14-generic-update/06-cleanup.md` | 181 | `../03-general/02-powershell-build-deploy.md` |
+| `14-generic-update/06-cleanup.md` | 182 | `../03-general/03-self-update-mechanism.md` |
+| `14-generic-update/07-console-safe-handoff.md` | 261 | `../03-general/02f-self-update-orchestration.md` |
+| `14-generic-update/07-console-safe-handoff.md` | 262 | `../03-general/03-self-update-mechanism.md` |
+| `14-generic-update/07-console-safe-handoff.md` | 263 | `../02-app-issues/03-update-sync-lock-loop.md` |
+| `16-generic-release/02-release-pipeline.md` | 218 | `../03-general/02-powershell-build-deploy.md` |
+| `16-generic-release/02-release-pipeline.md` | 219 | `../03-general/05-code-signing.md` |
+| `16-generic-release/02-release-pipeline.md` | 220 | `../01-app/12-release-command.md` |
+| `16-generic-release/03-install-scripts.md` | 348 | `../03-general/02-powershell-build-deploy.md` |
+| `16-generic-release/06-release-metadata.md` | 174 | `../03-general/02-powershell-build-deploy.md` |
+| `16-generic-release/06-release-metadata.md` | 175 | `../01-app/13-release-data-model.md` |
+| `16-generic-release/07-known-issues-and-fixes.md` | 7 | `../09-pipeline/10-known-issues-and-fixes.md` |
+| `16-generic-release/07-known-issues-and-fixes.md` | 340 | `../09-pipeline/10-known-issues-and-fixes.md` |
+| `16-generic-release/07-known-issues-and-fixes.md` | 341 | `../02-app-issues/13-release-pipeline-dist-directory.md` |
+| `16-generic-release/07-known-issues-and-fixes.md` | 342 | `../14-generic-update/09-winres-icon-constraint.md` |
+| `16-generic-release/07-known-issues-and-fixes.md` | 343 | `../17-consolidated-guidelines/16-cicd.md` |
+| `17-consolidated-guidelines/00-overview.md` | 46 | `./11-powershell-integration.md` |
+| `17-consolidated-guidelines/00-overview.md` | 47 | `./10-research.md` |
+| `18-wp-plugin-how-to/01-foundation-and-architecture.md` | 5 | `../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md` |
+| `18-wp-plugin-how-to/02-enums-and-coding-style/01-enum-architecture.md` | 4 | `../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md` |
+| `18-wp-plugin-how-to/02-enums-and-coding-style/01-enum-architecture.md` | 208 | `../../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md` |
 
 ---
 
-## Action Items
+## Missing Required Files
 
-| # | Priority | Action |
-|---|----------|--------|
-| — | — | No outstanding action items ✅ |
+### Missing `00-overview.md`
+
+| Folder | File Count |
+|--------|------------|
+| `14-generic-update/` | 9 |
+| `18-wp-plugin-how-to/` | 24 |
+
+### Missing `99-consistency-report.md`
+
+| Folder | File Count |
+|--------|------------|
+| `13-generic-cli/` | 21 |
+| `14-generic-update/` | 9 |
+| `16-generic-release/` | 8 |
+| `18-wp-plugin-how-to/02-enums-and-coding-style/` | 5 |
 
 ---
 
-*Dashboard regenerated 2026-04-16. Added 23-app-database, renumbered 24-app-design-system-and-ui.*
+## Renumber Context (09–18)
+
+On 2026-04-16 the spec tree was renumbered (folders 09 onward).
+The broken links above fall into two categories:
+
+1. **Renumber-related (fixable in this repo):**
+   - `12-cicd-pipeline-workflows/00-overview.md` references stale internal filenames (08-installation-flow, 09-changelog-integration, 10-version-and-help, 11-environment-variable-setup, 12-terminal-output-standards, 13-binary-icon-branding).
+   - `12-cicd-pipeline-workflows/02-go-binary-deploy/*` references `../13-binary-icon-branding.md` (now 09).
+   - `17-consolidated-guidelines/00-overview.md` references `./11-powershell-integration.md` and `./10-research.md` as if they were local files (they are sibling spec folders).
+
+2. **Pre-existing (gitmap-v3 imports referencing folders never imported here):**
+   - `13-generic-cli/`, `14-generic-update/`, `16-generic-release/` link to `../01-app/`, `../02-app-issues/`, `../03-general/`, `../09-pipeline/`, `../14-generic-update/winres-icon` which do not exist locally per the avoid-app-sync rule.
+   - `18-wp-plugin-how-to/` uses incorrect `../../` depth to coding-guidelines.
+
+---
+
+## How to Regenerate
+
+```bash
+node linter-scripts/generate-dashboard-data.cjs
+```
+
+This rewrites `spec/dashboard-data.json`. The markdown above is a human-readable rendering of that JSON.
