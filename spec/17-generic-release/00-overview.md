@@ -1,4 +1,12 @@
-# 07 — Generic Release Pipeline Specification
+# Generic Release Pipeline Specification
+
+> **Imported from:** [`gitmap-v3/spec/07-generic-release`](https://github.com/alimtvnetwork/gitmap-v3/tree/main/spec/07-generic-release)
+>
+> **Related local specs:**
+> - [`../13-cicd-pipeline-workflows/02-release-pipeline.md`](../13-cicd-pipeline-workflows/02-release-pipeline.md) — this repo's concrete release workflow (consumes the generic contract below)
+> - [`../13-cicd-pipeline-workflows/10-release-pipeline-issues-rca.md`](../13-cicd-pipeline-workflows/10-release-pipeline-issues-rca.md) — local RCA ledger of release-pipeline failures
+> - [`../16-generic-cli/20-terminal-output-design.md`](../16-generic-cli/20-terminal-output-design.md) — terminal output contract used by install scripts
+> - [`../16-generic-cli/21-post-install-shell-activation.md`](../16-generic-cli/21-post-install-shell-activation.md) — post-install PATH/profile/wrapper activation contract
 
 ## Purpose
 
