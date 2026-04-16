@@ -1,10 +1,30 @@
 # 10 — Release Pipeline Issues: Root Cause Analysis & Prevention
 
-**Version:** 1.0.0  
+**Version:** 2.0.0  
 **Created:** 2026-04-16  
+**Updated:** 2026-04-16  
 **Status:** Active reference  
 **Audience:** Any AI model or engineer maintaining the CI/CD pipeline  
-**Goal:** Document every release/CI failure encountered, with root cause and durable fix, so the same mistakes never recur.
+**Goal:** Document every release/CI failure encountered (this repo + sibling `gitmap-v3` lessons), with root cause and durable fix, so the same mistakes never recur.
+
+---
+
+## Issue Index
+
+| # | Issue | Stage | Severity | Source |
+|---|-------|-------|----------|--------|
+| 1 | `npm ci` lockfile drift | release | 🔴 Blocker | This repo |
+| 2 | `setup-python` pip cache requires manifest | CI | 🟠 High | This repo |
+| 3 | `release.sh` depended on Node at runtime | release | 🟠 High | This repo |
+| 4 | `go-winres` icon > 256×256 px | release: resource embed | 🔴 Blocker | gitmap-v3 |
+| 5 | `cd: dist: No such file or directory` | release: compress | 🔴 Blocker | gitmap-v3 |
+| 6 | Job-level `if` blocks required status checks | CI: SHA dedup | 🟠 High | gitmap-v3 |
+| 7 | `cancel-in-progress` cancels marker job | CI: cache write | 🟠 High | gitmap-v3 |
+| 8 | `@latest` tool/action installs non-reproducible | CI: setup | 🟡 Medium | gitmap-v3 |
+| 9 | Release branch run cancelled by follow-up commit | release: concurrency | 🔴 Blocker | gitmap-v3 |
+| 10 | Install-script placeholder unreplaced | release: script gen | 🟠 High | gitmap-v3 |
+| 11 | Missing `GITHUB_TOKEN` silently skips upload | release: asset upload | 🟡 Medium | gitmap-v3 |
+| 12 | Asset name mismatch between checksum and upload | release: packaging | 🟠 High | gitmap-v3 |
 
 ---
 
