@@ -4,7 +4,7 @@
 >
 > **Scope**: Issues specific to the **release** workflow (`.github/workflows/release.yml`) — version resolution, cross-compilation, packaging, install-script generation, GitHub Release creation, asset upload.
 >
-> For CI-pipeline issues (lint, test, build matrix), see [`spec/12-cicd-pipeline-workflows/10-known-issues-and-fixes.md`](../12-cicd-pipeline-workflows/10-known-issues-and-fixes.md).
+> For CI-pipeline issues (lint, test, build matrix), see [`spec/12-cicd-pipeline-workflows/10-release-pipeline-issues-rca.md`](../12-cicd-pipeline-workflows/10-release-pipeline-issues-rca.md).
 
 ---
 
@@ -337,7 +337,7 @@ Apply before merging any change to `release.yml`:
 - [02-release-pipeline.md](./02-release-pipeline.md) — Release pipeline overview
 - [03-install-scripts.md](./03-install-scripts.md) — Install script generation
 - [04-checksums-verification.md](./04-checksums-verification.md) — SHA-256 manifest format
-- [spec/12-cicd-pipeline-workflows/10-known-issues-and-fixes.md](../12-cicd-pipeline-workflows/10-known-issues-and-fixes.md) — CI-pipeline issue catalog
+- [spec/12-cicd-pipeline-workflows/10-release-pipeline-issues-rca.md](../12-cicd-pipeline-workflows/10-release-pipeline-issues-rca.md) — CI-pipeline issue catalog
 - [spec/02-app-issues/13-release-pipeline-dist-directory.md](../02-app-issues/13-release-pipeline-dist-directory.md) — `dist` post-mortem
 - [spec/14-generic-update/09-winres-icon-constraint.md](../14-generic-update/09-winres-icon-constraint.md) — winres icon post-mortem
 - [spec/17-consolidated-guidelines/16-cicd.md](../17-consolidated-guidelines/16-cicd.md) — Consolidated CI/CD guidelines

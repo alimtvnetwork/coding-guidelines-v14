@@ -43,8 +43,8 @@ This folder provides **standalone, self-contained AI-readable references** for e
 | 07 | [07-design-system.md](./07-design-system.md) | `07-design-system/` — CSS variable-driven design system, tokens, typography, motion, re-theming |
 | 08 | [08-docs-viewer-ui.md](./08-docs-viewer-ui.md) | `08-docs-viewer-ui/` — Documentation viewer: typography, keyboard nav, fullscreen, search, rendering |
 | 09 | [09-code-block-system.md](./09-code-block-system.md) | `09-code-block-system/` — Code block pipeline, interactions, styling, line selection, checklist blocks |
-| 10 | [11-powershell-integration.md](./11-powershell-integration.md) | `11-powershell-integration/` — PowerShell runner, pnpm PnP, pipeline steps, config, cross-project automation |
-| 11 | [10-research.md](./10-research.md) | `02-coding-guidelines/` — Coding guidelines research placement rules |
+| 10 | [10-powershell-integration.md](./10-powershell-integration.md) | `11-powershell-integration/` — PowerShell runner, pnpm PnP, pipeline steps, config, cross-project automation |
+| 11 | [11-research.md](./11-research.md) | `02-coding-guidelines/` — Coding guidelines research placement rules |
 | 12 | [12-root-research.md](./12-root-research.md) | `10-research/` — Root-level research placement rules |
 | 13 | [13-app.md](./13-app.md) | `21-app/` — App-specific spec placement and decision guide |
 | 14 | [14-app-issues.md](./14-app-issues.md) | `22-app-issues/` — App bug analysis, issue file template, placement rules |

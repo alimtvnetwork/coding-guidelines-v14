@@ -2,7 +2,7 @@
 
 > **Purpose:** Establish the non-negotiable structural rules every WordPress plugin must follow.
 > **Audience:** AI code generators and human developers.
-> **Cross-reference:** [`../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md`](../../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md) for formatting details.
+> **Cross-reference:** [`../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md`](../02-coding-guidelines/01-cross-language/04-code-style/00-overview.md) for formatting details.
 
 ---
 
