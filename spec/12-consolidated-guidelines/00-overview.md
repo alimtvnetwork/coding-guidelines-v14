@@ -56,6 +56,7 @@ This folder provides **standalone, self-contained AI-readable references** for e
 | 20 | [20-wp-plugin-conventions.md](./20-wp-plugin-conventions.md) | `15-wp-plugin-how-to/` — WordPress plugin Gold Standard architecture, traits, enums, REST API |
 | 21 | [21-lovable-folder-structure.md](./21-lovable-folder-structure.md) | `.lovable/` folder structure — memory, tasks, suggestions, strictly-avoid, AI reading order |
 | 22 | [22-app-database.md](./22-app-database.md) | `23-app-database/` — App-specific schema design, migration strategy, query patterns, ORM integration |
+| 23 | [23-generic-cli.md](./23-generic-cli.md) | `16-generic-cli/` — CLI creation blueprint: project structure, subcommands, flags, config, output, errors, help, database, build, testing, shell completion |
 
 ---
 
