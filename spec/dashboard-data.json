@@ -4,79 +4,16 @@
     "Score": 70,
     "Grade": "C",
     "Deductions": [
-      "42 broken links (-20)",
+      "33 broken links (-20)",
       "4 missing consistency reports (-4)",
       "2 missing overviews (-6)"
     ]
   },
   "Links": {
     "TotalChecked": 1612,
-    "Ok": 1570,
-    "Broken": 42,
+    "Ok": 1579,
+    "Broken": 33,
     "BrokenDetails": [
-      {
-        "Source": "12-cicd-pipeline-workflows/00-overview.md",
-        "Line": 57,
-        "Text": "08-installation-flow.md",
-        "Target": "./08-installation-flow.md",
-        "Resolved": "12-cicd-pipeline-workflows/08-installation-flow.md"
-      },
-      {
-        "Source": "12-cicd-pipeline-workflows/00-overview.md",
-        "Line": 58,
-        "Text": "09-changelog-integration.md",
-        "Target": "./09-changelog-integration.md",
-        "Resolved": "12-cicd-pipeline-workflows/09-changelog-integration.md"
-      },
-      {
-        "Source": "12-cicd-pipeline-workflows/00-overview.md",
-        "Line": 59,
-        "Text": "10-version-and-help.md",
-        "Target": "./10-version-and-help.md",
-        "Resolved": "12-cicd-pipeline-workflows/10-version-and-help.md"
-      },
-      {
-        "Source": "12-cicd-pipeline-workflows/00-overview.md",
-        "Line": 60,
-        "Text": "11-environment-variable-setup.md",
-        "Target": "./11-environment-variable-setup.md",
-        "Resolved": "12-cicd-pipeline-workflows/11-environment-variable-setup.md"
-      },
-      {
-        "Source": "12-cicd-pipeline-workflows/00-overview.md",
-        "Line": 61,
-        "Text": "12-terminal-output-standards.md",
-        "Target": "./12-terminal-output-standards.md",
-        "Resolved": "12-cicd-pipeline-workflows/12-terminal-output-standards.md"
-      },
-      {
-        "Source": "12-cicd-pipeline-workflows/00-overview.md",
-        "Line": 62,
-        "Text": "13-binary-icon-branding.md",
-        "Target": "./13-binary-icon-branding.md",
-        "Resolved": "12-cicd-pipeline-workflows/13-binary-icon-branding.md"
-      },
-      {
-        "Source": "12-cicd-pipeline-workflows/02-go-binary-deploy/02-release-pipeline.md",
-        "Line": 92,
-        "Text": "Binary Icon Branding",
-        "Target": "../13-binary-icon-branding.md",
-        "Resolved": "12-cicd-pipeline-workflows/13-binary-icon-branding.md"
-      },
-      {
-        "Source": "12-cicd-pipeline-workflows/02-go-binary-deploy/02-release-pipeline.md",
-        "Line": 373,
-        "Text": "Binary Icon Branding",
-        "Target": "../13-binary-icon-branding.md",
-        "Resolved": "12-cicd-pipeline-workflows/13-binary-icon-branding.md"
-      },
-      {
-        "Source": "12-cicd-pipeline-workflows/02-go-binary-deploy/03-complete-workflow-reference.md",
-        "Line": 336,
-        "Text": "Binary Icon Branding",
-        "Target": "../13-binary-icon-branding.md",
-        "Resolved": "12-cicd-pipeline-workflows/13-binary-icon-branding.md"
-      },
       {
         "Source": "13-generic-cli/21-post-install-shell-activation.md",
         "Line": 7,

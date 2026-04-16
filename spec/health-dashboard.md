@@ -5,7 +5,7 @@
 **Total Folders:** 75  
 **Overall Health:** 70/100 (C)
 
-> Regenerated after the spec/NN-name folder-reference audit. All in-repo stale links fixed; remaining broken links are intentional gitmap-v3 sibling references covered by the allowlist.
+> All in-repo broken links fixed across the renumber + cross-ref audit. Remaining broken links are intentional gitmap-v3 sibling references covered by the folder-ref allowlist.
 
 ---
 
@@ -14,7 +14,7 @@
 | Metric | Value |
 |--------|-------|
 | Score | **70/100 (C)** |
-| Deduction | 42 broken links (-20) |
+| Deduction | 33 broken links (-20) |
 | Deduction | 4 missing consistency reports (-4) |
 | Deduction | 2 missing overviews (-6) |
 
@@ -25,14 +25,13 @@
 | Metric | Count |
 |--------|-------|
 | Total links checked | 1612 |
-| ✅ Resolved | 1570 |
-| 🔴 Broken (gitmap-v3 siblings) | 42 |
+| ✅ Resolved | 1579 |
+| 🔴 Broken (gitmap-v3 siblings) | 33 |
 
 ### Broken Links by Folder
 
 | Folder | Broken Links |
 |--------|--------------|
-| `12-cicd-pipeline-workflows/` | 9 |
 | `13-generic-cli/` | 7 |
 | `14-generic-update/` | 17 |
 | `16-generic-release/` | 9 |
@@ -41,15 +40,6 @@
 
 | Source File | Line | Broken Target |
 |-------------|------|---------------|
-| `12-cicd-pipeline-workflows/00-overview.md` | 57 | `./08-installation-flow.md` |
-| `12-cicd-pipeline-workflows/00-overview.md` | 58 | `./09-changelog-integration.md` |
-| `12-cicd-pipeline-workflows/00-overview.md` | 59 | `./10-version-and-help.md` |
-| `12-cicd-pipeline-workflows/00-overview.md` | 60 | `./11-environment-variable-setup.md` |
-| `12-cicd-pipeline-workflows/00-overview.md` | 61 | `./12-terminal-output-standards.md` |
-| `12-cicd-pipeline-workflows/00-overview.md` | 62 | `./13-binary-icon-branding.md` |
-| `12-cicd-pipeline-workflows/02-go-binary-deploy/02-release-pipeline.md` | 92 | `../13-binary-icon-branding.md` |
-| `12-cicd-pipeline-workflows/02-go-binary-deploy/02-release-pipeline.md` | 373 | `../13-binary-icon-branding.md` |
-| `12-cicd-pipeline-workflows/02-go-binary-deploy/03-complete-workflow-reference.md` | 336 | `../13-binary-icon-branding.md` |
 | `13-generic-cli/21-post-install-shell-activation.md` | 7 | `../01-app/31-cd.md` |
 | `13-generic-cli/21-post-install-shell-activation.md` | 8 | `../02-app-issues/22-installer-path-not-active-after-install.md` |
 | `13-generic-cli/21-post-install-shell-activation.md` | 8 | `../02-app-issues/24-cd-command-does-not-change-shell-directory.md` |
@@ -106,13 +96,14 @@
 
 ---
 
-## Audit Status (post folder-ref fix)
+## Audit Status
 
-| Category | Count | Status |
-|----------|-------|--------|
-| `spec/NN-name/` folder references | 0 stale | ✅ Clean (allowlist: 25) |
-| Renumber-fallout link rewrites | 136 substitutions across 51 files | ✅ Applied |
-| File-level broken links | 42 | ⚠️ All in gitmap-v3 sibling repo refs (`01-app/`, `02-app-issues/`, `03-general/`) |
+| Category | Result |
+|----------|--------|
+| `spec/NN-name/` folder references | 0 stale ✅ |
+| Allowlisted external folders | 25 (gitmap-v3 sibling repos) |
+| File-level broken links | 33 (all in allowlisted external paths) |
+| Renumber-related fixes | `12-cicd-pipeline-workflows/00-overview.md` (6 links), `02-go-binary-deploy/*` (3 links), `17-consolidated-guidelines/00-overview.md` (2 links) — all resolved |
 
 ---
 
