@@ -59,7 +59,7 @@ else {
 
 # Apply config values (CLI params take priority)
 if ([string]::IsNullOrEmpty($Repo)) {
-    $Repo = if ($config -and $config.repo) { $config.repo } else { "alimtvnetwork/gitmap-v3" }
+    $Repo = if ($config -and $config.repo) { $config.repo } else { "alimtvnetwork/coding-guidelines-v14" }
 }
 
 if ([string]::IsNullOrEmpty($Branch)) {

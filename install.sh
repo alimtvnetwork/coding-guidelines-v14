@@ -123,7 +123,7 @@ else
 fi
 
 # Apply fallback defaults
-REPO="${REPO:-alimtvnetwork/gitmap-v3}"
+REPO="${REPO:-alimtvnetwork/coding-guidelines-v14}"
 BRANCH="${BRANCH:-main}"
 
 if [[ ${#FOLDERS[@]} -eq 0 ]]; then
