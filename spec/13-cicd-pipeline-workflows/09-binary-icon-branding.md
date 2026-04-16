@@ -1,13 +1,8 @@
 # Binary Icon & Windows Resource Embedding
 
-**Version:** 3.1.0  
-**Updated:** 2026-04-16
+## Overview
 
----
-
-## Purpose
-
-Define how to brand CLI binaries with a custom icon using `go-winres`, ensuring the binary shows the correct icon in File Explorer, Task Manager, and the taskbar. Windows executables can embed icons, version info, and manifests into the binary using resource files (`.syso`).
+Windows executables can embed icons, version info, and manifests into the binary using resource files (`.syso`). This document describes how to brand CLI binaries with a custom icon using `go-winres`, ensuring the binary shows the correct icon in File Explorer, Task Manager, and the taskbar.
 
 ---
 
@@ -16,6 +11,10 @@ Define how to brand CLI binaries with a custom icon using `go-winres`, ensuring 
 [go-winres](https://github.com/tc-hib/go-winres) generates `.syso` resource files that the Go compiler automatically links into Windows binaries.
 
 ### Installation (CI)
+
+```bash
+go install github.com/tc-hib/go-winres@latest
+```
 
 Pin to an exact version in CI for reproducibility:
 
@@ -44,10 +43,10 @@ Place `winres.json` in the Go module root (next to `go.mod`):
     "#1": {
       "0409": {
         "identity": {
-          "name": "<binary>",
+          "name": "<tool>",
           "version": "0.0.0.0"
         },
-        "description": "<description>",
+        "description": "<one-line description>",
         "minimum-os": "win7",
         "execution-level": "asInvoker",
         "dpi-awareness": "system"
@@ -63,12 +62,12 @@ Place `winres.json` in the Go module root (next to `go.mod`):
         },
         "info": {
           "0409": {
-            "CompanyName": "<company>",
-            "FileDescription": "<binary> -- <description>",
-            "InternalName": "<binary>",
-            "OriginalFilename": "<binary>.exe",
-            "ProductName": "<binary>",
-            "ProductVersion": "<version>"
+            "CompanyName": "",
+            "FileDescription": "<tool> -- <description>",
+            "InternalName": "<tool>",
+            "OriginalFilename": "<tool>.exe",
+            "ProductName": "<tool>",
+            "ProductVersion": ""
           }
         }
       }
@@ -103,7 +102,7 @@ go-winres make --product-version "$VERSION" --file-version "$VERSION"
 go-winres make --product-version "1.3.0" --file-version "1.3.0"
 
 # 2. Build as normal — Go automatically links the .syso file
-go build -o <binary>.exe .
+go build -o gitmap.exe .
 ```
 
 ### CI Pipeline Step
@@ -112,7 +111,7 @@ Add before the binary build step, only for Windows targets:
 
 ```yaml
 - name: Generate Windows resources
-  working-directory: <module-dir>
+  working-directory: <module-root>
   run: |
     go install github.com/tc-hib/go-winres@v0.3.3
     VERSION="${{ steps.version.outputs.version }}"
@@ -127,12 +126,12 @@ The generated `rsrc_windows_*.syso` files are picked up automatically by `go bui
 If the project has multiple binaries (e.g., main tool + updater), each needs its own `winres.json` and icon in its module directory:
 
 ```
-<binary>/
-    winres.json
-    assets/icon.png
-<binary>-updater/
-    winres.json
-    assets/icon-updater.png
+<tool>/
+  winres.json
+  assets/icon.png
+<tool>-updater/
+  winres.json
+  assets/icon-updater.png
 ```
 
 Run `go-winres make` in each module directory before building.
@@ -155,8 +154,8 @@ When the release pipeline generates resources:
 
 ```
   Generating Windows resources...
-    Version: 1.3.0
-    Icon:    assets/icon.png (256x256, transparent)
+  Version: 1.3.0
+  Icon: assets/icon.png (256x256, transparent)
   Generated: rsrc_windows_amd64.syso
   Generated: rsrc_windows_arm64.syso
 ```
@@ -187,15 +186,5 @@ ls -la rsrc_windows_*.syso
 - `.syso` files must NOT be committed to Git — they are generated at build time
 - Add `*.syso` to `.gitignore`
 - Version in `winres.json` is a placeholder — always override at build time
-
----
-
-## Cross-References
-
-- [Shared Conventions](./01-shared-conventions.md) — Tool version pinning rules
-- [Go Binary Release Pipeline](./02-go-binary-deploy/02-release-pipeline.md) — Where icon embedding fits in the release flow
-- [Code Signing](./05-code-signing.md) — Signing happens after icon embedding, before compression
-
----
-
-*Binary icon branding — v3.1.0 — 2026-04-11*
+- `go-winres make` must run before `go build`, not after
+- Only affects Windows binaries — Linux/macOS ignore `.syso` files

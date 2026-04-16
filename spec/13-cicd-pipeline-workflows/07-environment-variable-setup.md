@@ -1,13 +1,8 @@
 # Environment Variable Setup
 
-**Version:** 3.1.0  
-**Updated:** 2026-04-16
+## Overview
 
----
-
-## Purpose
-
-Define an `env` command that manages persistent, cross-platform environment variables and PATH entries. The command allows users to define a custom drive or directory (e.g., `E:\tools` or `/opt/tools`) where the tool is installed, and ensures the environment variable is always set — automatically registering it if missing.
+This document specifies an `env` command that manages persistent, cross-platform environment variables and PATH entries. The command allows users to define a custom drive or directory (e.g., `E:\tools` or `/opt/tools`) where the tool is installed, and ensures the environment variable is always set — automatically registering it if missing.
 
 This is particularly useful for portable installations where the binary lives on a non-standard drive or path, and the user needs the system to "just work" without manual `PATH` or environment variable configuration.
 
@@ -16,9 +11,9 @@ This is particularly useful for portable installations where the binary lives on
 ## Core Concept
 
 ```
-User specifies: E:\<binary> (or /opt/<binary>)
-Tool ensures:   <BINARY>_HOME=E:\<binary> is set persistently
-                E:\<binary> is in PATH if not already present
+User specifies:    E:\gitmap           (or /opt/gitmap)
+Tool ensures:      GITMAP_HOME=E:\gitmap   is set persistently
+                   E:\gitmap is in PATH    if not already present
 ```
 
 If the environment variable is already set and valid → no action taken.
@@ -29,13 +24,13 @@ If the environment variable is missing or points to a stale path → auto-regist
 ## Command Interface
 
 ```
-<binary> env                        # Show all managed variables
-<binary> env set <key> <value>      # Set a persistent environment variable
-<binary> env remove <key>           # Remove a managed environment variable
-<binary> env path add <dir>         # Add a directory to PATH persistently
-<binary> env path remove <dir>      # Remove a directory from PATH
-<binary> env home <dir>             # Set <BINARY>_HOME and add to PATH
-<binary> env doctor                 # Verify all managed variables are active
+<tool> env                         # Show all managed variables
+<tool> env set <KEY> <VALUE>       # Set a persistent environment variable
+<tool> env remove <KEY>            # Remove a managed environment variable
+<tool> env path add <DIR>          # Add a directory to PATH persistently
+<tool> env path remove <DIR>       # Remove a directory from PATH
+<tool> env home <DIR>              # Set <TOOL>_HOME and add to PATH
+<tool> env doctor                  # Verify all managed variables are active
 ```
 
 ### Alias: `ev`
@@ -47,39 +42,39 @@ If the environment variable is missing or points to a stale path → auto-regist
 This is the primary power feature. The user specifies where the tool lives:
 
 ```
-$ <binary> env home E:\<binary>
+$ <tool> env home E:\gitmap
 ```
 
 This does:
 
 1. Validates the directory exists (or creates it with confirmation)
-2. Sets `<BINARY>_HOME=E:\<binary>` persistently
-3. Adds `E:\<binary>` to PATH if not already present
+2. Sets `<TOOL>_HOME=E:\gitmap` persistently
+3. Adds `E:\gitmap` to PATH if not already present
 4. Records the registration in `env-registry.json`
 5. Prints activation command
 
 ### Terminal Output
 
 ```
-$ <binary> env home E:\<binary>
+$ <tool> env home E:\gitmap
 
-  Setting <BINARY>_HOME...
+  Setting <TOOL>_HOME...
 
-    [+] <BINARY>_HOME = E:\<binary>
+  [+] <TOOL>_HOME = E:\gitmap
 
   Registering PATH...
 
-    [+] Windows Registry (User PATH)
-    [+] PowerShell profile
-    [=] Git Bash profile (already registered)
+  [+] Windows Registry (User PATH)
+  [+] PowerShell profile
+  [=] Git Bash profile (already registered)
 
   ============================================
   Environment configured!
 
   To activate in this session:
 
-    $env:<BINARY>_HOME = "E:\<binary>"
-    $env:Path = "E:\<binary>;" + $env:Path
+    $env:GITMAP_HOME = "E:\gitmap"
+    $env:Path = "E:\gitmap;" + $env:Path
 
   Or restart your terminal.
   ============================================
@@ -87,11 +82,11 @@ $ <binary> env home E:\<binary>
 
 ### Auto-Registration on Startup
 
-When the tool starts, it checks if `<BINARY>_HOME` is set. If not, and if the tool can determine its own location, it auto-registers:
+When the tool starts, it checks if `<TOOL>_HOME` is set. If not, and if the tool can determine its own location, it auto-registers:
 
 ```go
 func ensureHomeEnv() {
-    home := os.Getenv("<BINARY>_HOME")
+    home := os.Getenv("GITMAP_HOME")
     if home != "" && dirExists(home) {
         return // Already configured and valid
     }
@@ -103,9 +98,9 @@ func ensureHomeEnv() {
     }
 
     // Auto-register
-    setEnvPersistent("<BINARY>_HOME", binaryDir)
+    setEnvPersistent("GITMAP_HOME", binaryDir)
     addToPath(binaryDir)
-    fmt.Printf("  Auto-configured <BINARY>_HOME=%s\n", binaryDir)
+    fmt.Printf("  Auto-configured GITMAP_HOME=%s\n", binaryDir)
 }
 ```
 
@@ -120,7 +115,7 @@ Environment variables are set via the Windows Registry:
 ```go
 // User-level variable
 key, _ := registry.OpenKey(registry.CURRENT_USER, `Environment`, registry.SET_VALUE)
-key.SetStringValue("<BINARY>_HOME", value)
+key.SetStringValue("GITMAP_HOME", value)
 
 // Notify the system of the change
 syscall.SendMessage(syscall.HWND_BROADCAST, syscall.WM_SETTINGCHANGE, 0, "Environment")
@@ -137,16 +132,16 @@ Environment variables are persisted by writing to shell profiles:
 
 ```bash
 # Appended to ~/.bashrc, ~/.zshrc, etc.
-export <BINARY>_HOME="/opt/<binary>"  # <binary>-env
+export GITMAP_HOME="/opt/gitmap"   # <tool>-env
 ```
 
-The marker comment (`# <binary>-env`) enables idempotent updates and clean removal.
+The marker comment (`# <tool>-env`) enables idempotent updates and clean removal.
 
 ### Shell Override Flag
 
 ```
-<binary> env set KEY VALUE --shell bash   # Only write to .bashrc
-<binary> env set KEY VALUE --shell zsh    # Only write to .zshrc
+<tool> env set KEY VALUE --shell bash    # Only write to .bashrc
+<tool> env set KEY VALUE --shell zsh     # Only write to .zshrc
 ```
 
 ---
@@ -159,15 +154,21 @@ The tool maintains an `env-registry.json` file to track all managed variables:
 {
   "variables": [
     {
-      "key": "<BINARY>_HOME",
-      "value": "E:\\<binary>",
+      "key": "GITMAP_HOME",
+      "value": "E:\\gitmap",
       "createdAt": "2026-04-09T14:30:00Z",
       "platforms": ["registry", "powershell-profile", "git-bash"]
+    },
+    {
+      "key": "GITMAP_DATA",
+      "value": "E:\\gitmap\\data",
+      "createdAt": "2026-04-09T14:30:00Z",
+      "platforms": ["registry", "powershell-profile"]
     }
   ],
   "pathEntries": [
     {
-      "directory": "E:\\<binary>",
+      "directory": "E:\\gitmap",
       "createdAt": "2026-04-09T14:30:00Z"
     }
   ]
@@ -184,18 +185,18 @@ This registry enables:
 ## `env doctor` — Verification
 
 ```
-$ <binary> env doctor
+$ <tool> env doctor
 
   Checking managed environment variables...
 
-    [OK]   <BINARY>_HOME = E:\<binary> (directory exists)
-    [OK]   E:\<binary> is in PATH
+  [OK]   GITMAP_HOME = E:\gitmap (directory exists)
+  [OK]   E:\gitmap is in PATH
 
   Checking shell profiles...
 
-    [OK]   PowerShell profile: <BINARY>_HOME registered
-    [OK]   Git Bash profile: <BINARY>_HOME registered
-    [WARN] Zsh profile: not found (not applicable on Windows)
+  [OK]   PowerShell profile: GITMAP_HOME registered
+  [OK]   Git Bash profile: GITMAP_HOME registered
+  [WARN] Zsh profile: not found (not applicable on Windows)
 
   All checks passed.
 ```
@@ -203,16 +204,16 @@ $ <binary> env doctor
 ### Failure Output
 
 ```
-$ <binary> env doctor
+$ <tool> env doctor
 
   Checking managed environment variables...
 
-    [FAIL] <BINARY>_HOME = E:\<binary> (directory does NOT exist)
-    [WARN] E:\<binary> is NOT in PATH
+  [FAIL] GITMAP_HOME = E:\gitmap (directory does NOT exist)
+  [WARN] E:\gitmap is NOT in PATH
 
   Suggested fix:
 
-    <binary> env home E:\<binary>    # Re-register with valid path
+    <tool> env home E:\gitmap    # Re-register with valid path
 
   1 failure, 1 warning.
 ```
@@ -224,9 +225,9 @@ $ <binary> env doctor
 ### Set
 
 ```
-$ <binary> env set EDITOR "code --wait"
+$ <tool> env set EDITOR "code --wait"
 
-    [+] EDITOR = code --wait
+  [+] EDITOR = code --wait
 
   Registered in:
     [+] Windows Registry (User)
@@ -240,9 +241,9 @@ $ <binary> env set EDITOR "code --wait"
 ### Remove
 
 ```
-$ <binary> env remove EDITOR
+$ <tool> env remove EDITOR
 
-    [-] EDITOR removed from:
+  [-] EDITOR removed from:
     [-] Windows Registry (User)
     [-] PowerShell profile
     [-] Git Bash profile
@@ -259,12 +260,12 @@ The install scripts (`install.ps1`, `install.sh`) should call `env home` logic a
 
 ```powershell
 # install.ps1 — after binary extraction
-& "$InstallDir\<binary>.exe" env home "$InstallDir" --quiet
+& "$InstallDir\<tool>.exe" env home "$InstallDir" --quiet
 ```
 
 ```bash
 # install.sh — after binary extraction
-"$INSTALL_DIR/<binary>" env home "$INSTALL_DIR" --quiet 2>/dev/null || true
+"$INSTALL_DIR/<tool>" env home "$INSTALL_DIR" --quiet 2>/dev/null || true
 ```
 
 The `--quiet` flag suppresses the detailed output since the installer already prints its own summary.
@@ -281,8 +282,16 @@ The release pipeline should verify that the installed binary can set its own hom
 - name: Verify env home
   run: |
     ./dist/<binary>-*-linux-amd64 env home /tmp/test-install --quiet
-    test -n "$(<BINARY>_HOME)" || echo "::warning::env home did not persist (expected in CI)"
+    test -n "$(<binary upper>_HOME)" || echo "::warning::env home did not persist (expected in CI)"
 ```
+
+### Pipeline Spec File
+
+This feature should be documented in the pipeline README alongside other specs so any AI implementing CI/CD knows to:
+
+1. Include `env home` in the install script flow
+2. Test that `env doctor` passes after installation
+3. Use `<TOOL>_HOME` as the canonical way to find the tool
 
 ---
 
@@ -290,16 +299,16 @@ The release pipeline should verify that the installed binary can set its own hom
 
 ```
 cmd/
-    env.go                      # Subcommand routing (env, env set, env remove, env home, env doctor)
-    envops.go                   # CRUD operations for variables and PATH
-    envplatform_windows.go      # Registry + profile writes (Windows)
-    envplatform_unix.go         # Shell profile writes (Linux/macOS)
+  env.go              # Subcommand routing (env, env set, env remove, env home, env doctor)
+  envops.go           # CRUD operations for variables and PATH
+  envplatform_windows.go  # Registry + profile writes (Windows)
+  envplatform_unix.go     # Shell profile writes (Linux/macOS)
 
 constants/
-    constants_env.go            # All env-related messages, defaults, and SQL
+  constants_env.go    # All env-related messages, defaults, and SQL
 
 model/
-    envregistry.go              # EnvRegistry struct and JSON serialization
+  envregistry.go      # EnvRegistry struct and JSON serialization
 ```
 
 ---
@@ -308,20 +317,10 @@ model/
 
 - All environment variable writes must be idempotent (marker-based)
 - Registry writes on Windows must broadcast `WM_SETTINGCHANGE`
-- Shell profile writes use `# <binary>-env` markers for clean removal
+- Shell profile writes use `# <tool>-env` markers for clean removal
 - `env home` validates the directory exists before registering
 - Auto-registration at startup is silent (no error on failure)
 - `env doctor` never modifies the system — read-only verification
 - PowerShell 5.1 compatibility (no `??`, no multi-arg `Join-Path`)
-
----
-
-## Cross-References
-
-- [Installation Flow](./08-installation-flow.md) — How install scripts register PATH
-- [Terminal Output Standards](./12-terminal-output-standards.md) — Output formatting conventions
-- [Deploy Path Resolution](../14-self-update-app-update/02-deploy-path-resolution.md) — How the binary location is resolved
-
----
-
-*Environment variable setup — v3.1.0 — 2026-04-11*
+- Bash 3.2+ compatibility (macOS ships old bash)
+- The `env-registry.json` file lives in the tool's data directory

@@ -1,13 +1,8 @@
 # Installation Flow
 
-**Version:** 3.1.0  
-**Updated:** 2026-04-16
+## Overview
 
----
-
-## Purpose
-
-Define the complete installation experience for a CLI tool — from one-liner install commands to terminal output, version display, upgrade handling, and post-install verification. Any AI or engineer implementing a new CLI tool should follow these patterns to provide a polished, production-ready installation experience.
+This document describes the complete installation experience for a CLI tool — from one-liner install commands to terminal output, version display, and post-install verification. Any AI or engineer implementing a new CLI tool should follow these patterns to provide a polished, production-ready installation experience.
 
 ---
 
@@ -57,9 +52,9 @@ The script must follow this exact flow:
 7. Extract binary from archive to install directory
 8. Clean up .old file on success
 9. Register PATH:
-    a. Windows Registry (User PATH)
-    b. PowerShell profile ($PROFILE)
-    c. Git Bash profiles (~/.bash_profile, ~/.bashrc)
+   a. Windows Registry (User PATH)
+   b. PowerShell profile ($PROFILE)
+   c. Git Bash profiles (~/.bash_profile, ~/.bashrc)
 10. Print post-install summary with activation commands
 11. Print installed version
 ```
@@ -80,7 +75,7 @@ The script must follow this exact flow:
     a. Bash → ~/.bashrc (and ~/.bash_profile if exists)
     b. Zsh → ~/.zshrc
     c. Fish → ~/.config/fish/config.fish
-11. Use marker comments (e.g., "# <binary>-path") for idempotent PATH entries
+11. Use marker comments (e.g., "# <tool>-path") for idempotent PATH entries
 12. Print post-install summary with activation commands
 13. Print installed version
 ```
@@ -104,12 +99,12 @@ The script must follow this exact flow:
 PS> irm https://raw.githubusercontent.com/owner/repo/main/install.ps1 | iex
 
   ╔══════════════════════════════════════╗
-  ║  <binary> Installer v1.2.3          ║
+  ║     <tool> Installer v1.2.3         ║
   ╚══════════════════════════════════════╝
 
-  Platform:     windows/amd64
-  Install path: C:\Users\Admin\AppData\Local\<binary>
-  Downloading:  <binary>-v1.2.3-windows-amd64.zip
+  Platform:       windows/amd64
+  Install path:   C:\Users\Admin\AppData\Local\<tool>\
+  Downloading:    <tool>-v1.2.3-windows-amd64.zip
 
   Verifying checksum... OK
   Extracting binary...  OK
@@ -122,14 +117,14 @@ PS> irm https://raw.githubusercontent.com/owner/repo/main/install.ps1 | iex
   ============================================
   Installation complete!
 
-  To start using <binary> right now, run:
+  To start using <tool> right now, run:
 
     $env:Path = [System.Environment]::GetEnvironmentVariable('Path','User') + ';' + $env:Path
 
   Or restart your terminal.
   ============================================
 
-  <binary> v1.2.3
+  <tool> v1.2.3
 ```
 
 ### Fresh Install (Bash)
@@ -137,11 +132,11 @@ PS> irm https://raw.githubusercontent.com/owner/repo/main/install.ps1 | iex
 ```
 $ curl -fsSL https://raw.githubusercontent.com/owner/repo/main/install.sh | bash
 
-  <binary> Installer v1.2.3
+  <tool> Installer v1.2.3
 
-  Platform:     linux/amd64
-  Install path: /home/user/.local/bin
-  Downloading:  <binary>-v1.2.3-linux-amd64.tar.gz
+  Platform:       linux/amd64
+  Install path:   /home/user/.local/bin
+  Downloading:    <tool>-v1.2.3-linux-amd64.tar.gz
 
   Verifying checksum... OK
   Extracting binary...  OK
@@ -153,14 +148,14 @@ $ curl -fsSL https://raw.githubusercontent.com/owner/repo/main/install.sh | bash
   ============================================
   Installation complete!
 
-  To start using <binary> right now, run:
+  To start using <tool> right now, run:
 
     source ~/.bashrc
 
   Or restart your terminal.
   ============================================
 
-  <binary> v1.2.3
+  <tool> v1.2.3
 ```
 
 ### Upgrade (PowerShell)
@@ -168,16 +163,16 @@ $ curl -fsSL https://raw.githubusercontent.com/owner/repo/main/install.sh | bash
 ```
 PS> irm https://raw.githubusercontent.com/owner/repo/main/install.ps1 | iex
 
-  <binary> Installer v1.3.0
+  <tool> Installer v1.3.0
 
-  Platform:     windows/amd64
-  Install path: C:\Users\Admin\AppData\Local\<binary>
-  Existing:     v1.2.3 -> renaming to <binary>.exe.old
-  Downloading:  <binary>-v1.3.0-windows-amd64.zip
+  Platform:       windows/amd64
+  Install path:   C:\Users\Admin\AppData\Local\<tool>\
+  Existing:       v1.2.3 -> renaming to <tool>.exe.old
+  Downloading:    <tool>-v1.3.0-windows-amd64.zip
 
-  Verifying checksum...      OK
-  Extracting binary...       OK
-  Cleaning up old binary...  OK
+  Verifying checksum... OK
+  Extracting binary...  OK
+  Cleaning up old binary... OK
   PATH already registered.
 
   ============================================
@@ -190,7 +185,7 @@ PS> irm https://raw.githubusercontent.com/owner/repo/main/install.ps1 | iex
   Or restart your terminal.
   ============================================
 
-  <binary> v1.3.0
+  <tool> v1.3.0
 ```
 
 ---
@@ -200,13 +195,13 @@ PS> irm https://raw.githubusercontent.com/owner/repo/main/install.ps1 | iex
 Both install scripts MUST print the tool version at two points:
 
 1. **Banner** — at the very top, so the user immediately knows which version is being installed
-2. **Final line** — after installation completes, by running `<binary> version` to confirm the installed binary works
+2. **Final line** — after installation completes, by running `<tool> version` (or `<tool> --version`) to confirm the installed binary works
 
 If the binary cannot execute (e.g., wrong architecture), the final version check should print a clear error:
 
 ```
   WARNING: Could not verify installed version.
-  Try running: <binary> version
+  Try running: <tool> version
 ```
 
 ---
@@ -218,9 +213,9 @@ The install script should suggest verification commands:
 ```
   Verify your installation:
 
-    <binary> version    # Print version
-    <binary> doctor     # Run health checks (if available)
-    <binary> help       # Show available commands
+    <tool> version        # Print version
+    <tool> doctor         # Run health checks (if available)
+    <tool> help           # Show available commands
 ```
 
 ---
@@ -236,7 +231,7 @@ irm https://raw.githubusercontent.com/owner/repo/main/install.ps1 | iex -Uninsta
 Or the CLI itself:
 
 ```
-<binary> uninstall
+<tool> uninstall
 ```
 
 ### Uninstall Flow
@@ -245,9 +240,9 @@ Or the CLI itself:
 1. Locate install directory
 2. Remove binary
 3. Remove PATH entries:
-    a. Windows Registry
-    b. PowerShell profile (remove marker lines)
-    c. Git Bash profiles (remove marker lines)
+   a. Windows Registry
+   b. PowerShell profile (remove marker lines)
+   c. Git Bash profiles (remove marker lines)
 4. Remove data directory (with --purge flag only)
 5. Print summary
 ```
@@ -255,18 +250,18 @@ Or the CLI itself:
 ### Terminal Output — Uninstall
 
 ```
-  Uninstalling <binary>...
+  Uninstalling <tool>...
 
-  Removing binary: C:\Users\Admin\AppData\Local\<binary>.exe
+  Removing binary:   C:\Users\Admin\AppData\Local\<tool>\<tool>.exe
   Cleaning PATH:
 
     [-] Windows Registry (User PATH)
     [-] PowerShell profile
     [-] Git Bash profile
 
-  <binary> has been uninstalled.
-  Data directory preserved at: C:\Users\Admin\AppData\Local\<binary>\data\
-  To remove all data, run: <binary> uninstall --purge
+  <tool> has been uninstalled.
+  Data directory preserved at: C:\Users\Admin\AppData\Local\<tool>\data\
+  To remove all data, run: <tool> uninstall --purge
 ```
 
 ---
@@ -278,16 +273,5 @@ Or the CLI itself:
 - Checksum verification is mandatory — never skip
 - Rename-first upgrade strategy — never delete-then-write (avoids Windows file locks)
 - PATH registration must be idempotent (use marker comments, check before adding)
-
----
-
-## Cross-References
-
-- [Install Script Generation](./04-install-script-generation.md) — How install scripts are generated in CI
-- [Release Assets](../14-self-update-app-update/07-release-assets.md) — Asset naming and compression
-- [Checksums & Verification](../14-self-update-app-update/08-checksums-verification.md) — SHA-256 verification
-- [Terminal Output Standards](./12-terminal-output-standards.md) — Output formatting conventions
-
----
-
-*Installation flow — v3.1.0 — 2026-04-11*
+- Install scripts must work on PowerShell 5.1+ (no modern syntax like `??` or `Join-Path` with 3+ args)
+- Bash scripts must work on bash 3.2+ (macOS ships old bash)

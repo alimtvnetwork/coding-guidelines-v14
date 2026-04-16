@@ -1,13 +1,8 @@
 # Changelog Integration
 
-**Version:** 3.1.0  
-**Updated:** 2026-04-16
+## Overview
 
----
-
-## Purpose
-
-Define how changelogs are formatted, extracted by CI, assembled into GitHub Release descriptions, and optionally surfaced in documentation sites and terminal output. The changelog is a critical piece of the release pipeline that must be synchronized across multiple surfaces.
+The changelog is a critical piece of the release pipeline. It must be synchronized across three surfaces: the `CHANGELOG.md` file, the GitHub Release description, and (optionally) a documentation site. This document describes the format, automation, and integration points.
 
 ---
 
@@ -38,7 +33,7 @@ Use [Keep a Changelog](https://keepachangelog.com/) conventions with SemVer head
 
 ### Rules
 
-- Version headers use `## v<major>.<minor>.<patch> — <YYYY-MM-DD>` format
+- Version headers use `## v<version> — <YYYY-MM-DD>` format
 - Subsections: `### Added`, `### Fixed`, `### Changed`, `### Removed`
 - Each bullet is a single, descriptive line (no multi-line bullets)
 - No duplicate content between versions — each entry reflects only that release's changes
@@ -125,41 +120,41 @@ The release description assembles multiple sections:
 ```markdown
 ## What's New
 
-<changelog entry>
+<extracted changelog entry>
 
 ---
 
 ## Release Info
 
-| Field   | Value |
-|---------|-------|
+| Field | Value |
+|-------|-------|
 | Version | v1.3.0 |
-| Commit  | abc1234 |
-| Branch  | release/v1.3.0 |
-| Built   | 2026-04-09 14:30 UTC |
-| Go      | 1.24.2 |
+| Commit | abc1234 |
+| Branch | release/v1.3.0 |
+| Built | 2026-04-09 14:30 UTC |
+| Go | 1.24.2 |
 
 ---
 
 ## Install
 
 **PowerShell (Windows)**
-```powershell
+\`\`\`powershell
 irm https://github.com/<owner>/<repo>/releases/download/v1.3.0/install.ps1 | iex
-```
+\`\`\`
 
 **Bash (Linux / macOS)**
-```bash
+\`\`\`bash
 curl -fsSL https://github.com/<owner>/<repo>/releases/download/v1.3.0/install.sh | bash
-```
+\`\`\`
 
 ---
 
 ## Checksums
 
-```
-<checksums.txt content>
-```
+\`\`\`
+<sha256 checksums>
+\`\`\`
 
 ---
 
@@ -167,12 +162,12 @@ curl -fsSL https://github.com/<owner>/<repo>/releases/download/v1.3.0/install.sh
 
 | Platform | Architecture | File |
 |----------|-------------|------|
-| Windows  | amd64       | <binary>-v1.3.0-windows-amd64.zip |
-| Windows  | arm64       | <binary>-v1.3.0-windows-arm64.zip |
-| Linux    | amd64       | <binary>-v1.3.0-linux-amd64.tar.gz |
-| Linux    | arm64       | <binary>-v1.3.0-linux-arm64.tar.gz |
-| macOS    | amd64       | <binary>-v1.3.0-darwin-amd64.tar.gz |
-| macOS    | arm64       | <binary>-v1.3.0-darwin-arm64.tar.gz |
+| Windows | amd64 | <tool>-v1.3.0-windows-amd64.zip |
+| Windows | arm64 | <tool>-v1.3.0-windows-arm64.zip |
+| Linux | amd64 | <tool>-v1.3.0-linux-amd64.tar.gz |
+| Linux | arm64 | <tool>-v1.3.0-linux-arm64.tar.gz |
+| macOS | amd64 | <tool>-v1.3.0-darwin-amd64.tar.gz |
+| macOS | arm64 | <tool>-v1.3.0-darwin-arm64.tar.gz |
 ```
 
 ### Assembly Script
@@ -190,13 +185,13 @@ $(cat /tmp/changelog-entry.md)
 
 ## Release Info
 
-| Field   | Value |
-|---------|-------|
+| Field | Value |
+|-------|-------|
 | Version | $VERSION |
-| Commit  | ${GITHUB_SHA::10} |
-| Branch  | ${GITHUB_REF_NAME} |
-| Built   | $(date -u +"%Y-%m-%d %H:%M UTC") |
-| Go      | $(go version | awk '{print $3}' | sed 's/go//') |
+| Commit | ${GITHUB_SHA::10} |
+| Branch | ${GITHUB_REF_NAME} |
+| Built | $(date -u +"%Y-%m-%d %H:%M UTC") |
+| Go | $(go version | awk '{print $3}' | sed 's/go//') |
 
 ---
 
@@ -219,6 +214,18 @@ curl -fsSL https://github.com/$REPO/releases/download/$VERSION/install.sh | bash
 \`\`\`
 $(cat dist/checksums.txt)
 \`\`\`
+
+---
+
+## Assets
+
+| Platform | Architecture | File |
+|----------|-------------|------|
+$(for f in dist/*.{zip,tar.gz}; do
+  name=$(basename "$f")
+  # Parse platform and arch from filename
+  echo "| ... | ... | $name |"
+done)
 EOF
 ```
 
@@ -252,20 +259,20 @@ Both `CHANGELOG.md` and the data file must be updated together during release pr
 When the CLI has a `list-releases` or `release info` command, format the output consistently:
 
 ```
-$ <binary> list-releases
+$ <tool> list-releases
 
-  VERSION   DATE         BRANCH             TAG
-  v1.3.0    2026-04-09   release/v1.3.0     v1.3.0
-  v1.2.3    2026-04-01   release/v1.2.3     v1.2.3
-  v1.2.2    2026-03-28   release/v1.2.2     v1.2.2
+  VERSION    DATE          BRANCH              TAG
+  v1.3.0     2026-04-09    release/v1.3.0      v1.3.0
+  v1.2.3     2026-04-01    release/v1.2.3      v1.2.3
+  v1.2.2     2026-03-28    release/v1.2.2      v1.2.2
 
-$ <binary> release info v1.3.0
+$ <tool> release info v1.3.0
 
-  Version:  v1.3.0
-  Branch:   release/v1.3.0
-  Tag:      v1.3.0
-  Commit:   abc1234def5
-  Date:     2026-04-09
+  Version:    v1.3.0
+  Branch:     release/v1.3.0
+  Tag:        v1.3.0
+  Commit:     abc1234def5
+  Date:       2026-04-09
 
   Changelog:
     - New `env` command for cross-platform environment variable management.
@@ -281,16 +288,5 @@ $ <binary> release info v1.3.0
 - The CI pipeline MUST extract and print the changelog in the release body
 - No hardcoded version strings in the changelog extraction script
 - Changelog format must be parseable by `awk` (line-based, `## v` headers)
-
----
-
-## Cross-References
-
-- [Release Body and Changelog](./07-release-body-and-changelog.md) — Release body template patterns
-- [Release Versioning](../14-self-update-app-update/09-release-versioning.md) — Version resolution and tagging
-- [GitHub Release Standard](./02-github-release-standard.md) — Release body assembly
-- [Terminal Output Standards](./12-terminal-output-standards.md) — Output formatting conventions
-
----
-
-*Changelog integration — v3.1.0 — 2026-04-11*
+- Date format is `YYYY-MM-DD` (ISO 8601)
+- Each version entry is self-contained — no references to "same as above"

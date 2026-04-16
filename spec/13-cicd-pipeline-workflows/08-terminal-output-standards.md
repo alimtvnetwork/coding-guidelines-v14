@@ -1,13 +1,8 @@
 # Terminal Output Standards
 
-**Version:** 3.1.0  
-**Updated:** 2026-04-16
+## Overview
 
----
-
-## Purpose
-
-Define the terminal output conventions for all CLI commands, installers, and CI pipeline output. Consistent terminal output ensures a professional user experience and makes output machine-parseable when needed.
+This document defines the terminal output conventions for all CLI commands, installers, and CI pipeline output. Consistent terminal output ensures a professional user experience and makes output machine-parseable when needed.
 
 ---
 
@@ -59,16 +54,16 @@ For operations with multiple steps:
 Errors go to stderr with a consistent format:
 
 ```
-  Error: <message> (<operation>)
+  Error: <what failed> (<reason>)
 ```
 
 With structured context for debugging:
 
 ```
   Error: Failed to open database at /path/to/db.sqlite
-    Reason:     file is locked by another process
-    Operation:  store.Open
-    Suggestion: Close other instances of <binary> and retry
+    Reason: file is locked by another process
+    Operation: store.Open
+    Suggestion: Close other instances of <tool> and retry
 ```
 
 ### Tables
@@ -76,9 +71,9 @@ With structured context for debugging:
 Use fixed-width columns with header separators:
 
 ```
-  NAME           PATH                          BRANCHES  LAST COMMIT
-  my-project     ~/projects/my-project         5         2h ago
-  other-repo     ~/projects/other-repo         3         1d ago
+  NAME           PATH                    BRANCHES    LAST COMMIT
+  my-project     ~/projects/my-project   5           2h ago
+  other-repo     ~/projects/other-repo   3           1d ago
 ```
 
 Right-align numeric columns. Left-align text columns.
@@ -90,9 +85,9 @@ Right-align numeric columns. Left-align text columns.
 ### Scan
 
 ```
-$ <binary> scan
+$ <tool> scan
 
-  <binary> v1.3.0
+  <tool> v1.3.0
 
   Scanning ~/projects (depth: 5)...
 
@@ -109,19 +104,19 @@ $ <binary> scan
 ### Clone
 
 ```
-$ <binary> clone
+$ <tool> clone
 
-  <binary> v1.3.0
+  <tool> v1.3.0
 
   Fetching repository list from GitHub...
 
   Found 15 repositories to clone:
 
-  [1/15]  owner/repo-alpha        cloning... OK
-  [2/15]  owner/repo-beta         cloning... OK
-  [3/15]  owner/repo-gamma        exists     [SKIP]
+  [1/15]  owner/repo-alpha        cloning...  OK
+  [2/15]  owner/repo-beta         cloning...  OK
+  [3/15]  owner/repo-gamma        exists      [SKIP]
   ...
-  [15/15] owner/repo-omega        cloning... OK
+  [15/15] owner/repo-omega        cloning...  OK
 
   Cloned 12 repositories, skipped 3 (already exist).
   Done in 45.1s.
@@ -130,9 +125,9 @@ $ <binary> clone
 ### Release
 
 ```
-$ <binary> release --bump minor
+$ <tool> release --bump minor
 
-  <binary> v1.3.0
+  <tool> v1.3.0
 
   Creating release v1.4.0...
 
@@ -144,9 +139,9 @@ $ <binary> release --bump minor
 
   Release v1.4.0 created successfully.
 
-    Branch: release/v1.4.0
-    Commit: abc1234
-    Tag:    v1.4.0 (will be created by CI)
+  Branch:   release/v1.4.0
+  Commit:   abc1234
+  Tag:      v1.4.0 (will be created by CI)
 
   CI pipeline will build and publish the release.
   Track progress: https://github.com/owner/repo/actions
@@ -155,18 +150,18 @@ $ <binary> release --bump minor
 ### Doctor
 
 ```
-$ <binary> doctor
+$ <tool> doctor
 
-  <binary> v1.3.0 — System Health Check
+  <tool> v1.3.0 — System Health Check
 
-  [OK]   Git: v2.43.0
-  [OK]   Go: v1.24.2
-  [OK]   Database: Connected (42 repos, 156 projects)
-  [OK]   Config: Valid (config.json parsed)
-  [OK]   PATH: <binary> found in PATH
-  [OK]   <BINARY>_HOME: E:\<binary> (exists)
-  [WARN] Legacy dirs: None found (clean)
-  [OK]   Shell: PowerShell 7.4.1
+  [OK]   Git:            v2.43.0
+  [OK]   Go:             v1.24.2
+  [OK]   Database:       Connected (42 repos, 156 projects)
+  [OK]   Config:         Valid (config.json parsed)
+  [OK]   PATH:           <tool> found in PATH
+  [OK]   GITMAP_HOME:    E:\gitmap (exists)
+  [WARN] Legacy dirs:    None found (clean)
+  [OK]   Shell:          PowerShell 7.4.1
 
   7 passed, 0 failed, 1 warning.
 ```
@@ -174,7 +169,7 @@ $ <binary> doctor
 ### Update (Self-Update)
 
 ```
-$ <binary> update
+$ <tool> update
 
   Checking for updates...
 
@@ -185,9 +180,9 @@ $ <binary> update
   Verifying checksum... OK
   Deploying...
 
-    [+] Renamed <binary>.exe -> <binary>.exe.old
-    [+] Installed <binary>.exe v1.4.0
-    [+] Cleaned up <binary>.exe.old
+    [+] Renamed <tool>.exe -> <tool>.exe.old
+    [+] Installed <tool>.exe v1.4.0
+    [+] Cleaned up <tool>.exe.old
 
   Updated successfully: v1.3.0 -> v1.4.0
 ```
@@ -203,13 +198,13 @@ $ <binary> update
   Build Summary
   ==========================================
 
-  Binary                                    Size
-  <binary>-v1.3.0-windows-amd64.exe        8.2MiB
-  <binary>-v1.3.0-windows-arm64.exe        7.9MiB
-  <binary>-v1.3.0-linux-amd64              7.8MiB
-  <binary>-v1.3.0-linux-arm64              7.5MiB
-  <binary>-v1.3.0-darwin-amd64             8.0MiB
-  <binary>-v1.3.0-darwin-arm64             7.7MiB
+  Binary                                         Size
+  <tool>-v1.3.0-windows-amd64.exe               8.2MiB
+  <tool>-v1.3.0-windows-arm64.exe               7.9MiB
+  <tool>-v1.3.0-linux-amd64                     7.8MiB
+  <tool>-v1.3.0-linux-arm64                     7.5MiB
+  <tool>-v1.3.0-darwin-amd64                    8.0MiB
+  <tool>-v1.3.0-darwin-arm64                    7.7MiB
 ```
 
 ### Test Summary
@@ -219,11 +214,11 @@ $ <binary> update
   Test Results
   ==========================================
 
-  Suite           Passed  Failed  Duration
-  unit            45      0       2.3s
-  store           12      0       1.1s
-  integration     8       0       4.5s
-  tui             6       0       0.8s
+  Suite           Passed    Failed    Duration
+  unit            45        0         2.3s
+  store           12        0         1.1s
+  integration     8         0         4.5s
+  tui             6         0         0.8s
 
   Total: 71 passed, 0 failed (8.7s)
 ```
@@ -236,12 +231,12 @@ $ <binary> update
   =========================================
 
   Suite: store
-  --- FAIL: TestInsertRepo (0.02s)
-      store_test.go:45: expected 1 row, got 0
+    --- FAIL: TestInsertRepo (0.02s)
+        store_test.go:45: expected 1 row, got 0
 
   Suite: integration
-  --- FAIL: TestScanDepth (0.15s)
-      scan_test.go:112: depth=3 found 0 repos, expected 5
+    --- FAIL: TestScanDepth (0.15s)
+        scan_test.go:112: depth=3 found 0 repos, expected 5
 
   =========================================
   2 failures across 2 suites
@@ -260,16 +255,5 @@ $ <binary> update
 - Progress: `[N/M]` format for multi-step operations
 - Time durations: use `Xs`, `Xm`, or human-relative (`2h ago`, `1d ago`)
 - Empty lines before and after major sections for readability
-
----
-
-## Cross-References
-
-- [Version and Help](./10-version-and-help.md) — Version display and help system patterns
-- [Installation Flow](./08-installation-flow.md) — Installer terminal output
-- [Environment Variable Setup](./11-environment-variable-setup.md) — Env command output
-- [Shared Conventions](./01-shared-conventions.md) — Platform and tooling conventions
-
----
-
-*Terminal output standards — v3.1.0 — 2026-04-11*
+- No color codes unless Virtual Terminal Processing is confirmed
+- All status messages end with a period or specific value (never ellipsis-only)

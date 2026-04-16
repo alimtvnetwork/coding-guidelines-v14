@@ -1,13 +1,8 @@
 # Version Display and Help System
 
-**Version:** 3.1.0  
-**Updated:** 2026-04-16
+## Overview
 
----
-
-## Purpose
-
-Define consistent patterns for version output and help systems in CLI tools. Every CLI must provide machine-parseable version output and comprehensive, structured help text. This document specifies the exact patterns and their CI/CD integration points.
+Every CLI tool must provide consistent version output and a comprehensive help system. This document specifies the exact patterns for version display, help formatting, and how these integrate with the CI/CD pipeline.
 
 ---
 
@@ -34,7 +29,7 @@ go build -ldflags "$LDFLAGS" -o <binary> .
 The version command prints the current version and exits. It must produce **clean, machine-parseable output** on stdout (no decorations, no color):
 
 ```
-$ <binary> version
+$ <tool> version
 1.3.0
 ```
 
@@ -45,9 +40,9 @@ Alias: `v` or `-v`
 For commands that perform significant work (e.g., `scan`, `release`), print the version at the beginning:
 
 ```
-$ <binary> scan
+$ <tool> scan
 
-  <binary> v1.3.0
+  <tool> v1.3.0
 
   Scanning repositories...
 ```
@@ -58,7 +53,7 @@ After long-running operations complete, print a summary that includes the versio
 
 ```
   Done. Scanned 42 repositories in 3.2s.
-  <binary> v1.3.0
+  <tool> v1.3.0
 ```
 
 ### Version Synchronization Checklist
@@ -67,7 +62,7 @@ Before every release, verify these are in sync:
 
 1. `constants.Version` in source code
 2. `CHANGELOG.md` has a matching entry
-3. Release metadata file (if applicable)
+3. `.gitmap/release/<version>.json` metadata file
 4. Documentation site changelog (if applicable)
 5. Git tag matches the version
 
@@ -80,26 +75,27 @@ Before every release, verify these are in sync:
 When the tool is run with no arguments or with `help`, print a usage summary:
 
 ```
-$ <binary>
-<binary> v1.3.0 — <description>
+$ <tool>
 
-  Usage: <binary> <command> [flags]
+  <tool> v1.3.0 — <one-line description>
+
+  Usage: <tool> <command> [flags]
 
   Core Commands:
-    scan        Scan and index Git repositories
-    clone       Clone repositories from your account
-    ls          List indexed repositories
+    scan              Scan and index Git repositories
+    clone             Clone repositories from your GitHub account
+    ls                List indexed repositories
 
   Release Commands:
-    release     Create a versioned release
-    deploy      Deploy the latest build
+    release           Create a versioned release
+    deploy            Deploy the latest build
 
   Utility Commands:
-    config      View or edit configuration
-    doctor      Run system health checks
-    version (v) Print version
+    config            View or edit configuration
+    doctor            Run system health checks
+    version (v)       Print version
 
-  Run '<binary> <command> --help' for details on any command.
+  Run '<tool> <command> --help' for details on any command.
 ```
 
 ### Command-Level Help
@@ -107,27 +103,27 @@ $ <binary>
 Each command responds to `--help` or `-h` with structured documentation:
 
 ```
-$ <binary> scan --help
+$ <tool> scan --help
 
-  <binary> scan — Scan and index Git repositories
+  <tool> scan — Scan and index Git repositories
 
   Alias: s
 
   Usage:
-    <binary> scan [flags]
+    <tool> scan [flags]
 
   Flags:
-    --path <dir>     Root directory to scan (default: current directory)
-    --depth <n>      Maximum directory depth (default: 5)
-    --verbose        Show detailed output
+    --path <dir>       Root directory to scan (default: current directory)
+    --depth <n>        Maximum directory depth (default: 5)
+    --verbose          Show detailed output
 
   Examples:
-    $ <binary> scan
-    $ <binary> scan --path ~/projects --depth 3
-    $ <binary> scan --verbose
+    $ <tool> scan
+    $ <tool> scan --path ~/projects --depth 3
+    $ <tool> scan --verbose
 
   See Also:
-    ls    — List indexed repositories
+    ls — List indexed repositories
     clone — Clone repositories
 ```
 
@@ -143,13 +139,17 @@ var helpScan string
 Each help file follows this structure:
 
 ```markdown
-# <binary> scan
+# <tool> scan
+
+<One-line description>
 
 **Alias:** `s`
 
 ## Usage
 
-    <binary> scan [flags]
+\`\`\`
+<tool> scan [flags]
+\`\`\`
 
 ## Flags
 
@@ -160,8 +160,8 @@ Each help file follows this structure:
 
 ## Examples
 
-    $ <binary> scan
-    $ <binary> scan --path ~/projects --depth 3
+    $ <tool> scan
+    $ <tool> scan --path ~/projects --depth 3
 
 ## See Also
 
@@ -234,50 +234,55 @@ func TestAllCommandsHaveHelp(t *testing.T) {
 ### Version
 
 ```
-$ <binary> version
+$ <tool> version
 1.3.0
 
-$ <binary> v
+$ <tool> v
 1.3.0
 ```
 
 ### Help (no args)
 
 ```
-$ <binary>
-<binary> v1.3.0 — <description>
+$ <tool>
 
-  Usage: <binary> <command> [flags]
+  <tool> v1.3.0 — Git repository manager and release automation toolkit
+
+  Usage: <tool> <command> [flags]
 
   Core Commands:
-    scan   (s)   Scan and index Git repositories
-    clone  (cl)  Clone repositories from your account
-    ls     (l)   List indexed repositories
+    scan (s)          Scan and index Git repositories
+    clone (cl)        Clone repositories from your account
+    ls (l)            List indexed repositories
+    cd                Jump to a repository directory
 
   Release Commands:
-    release (r)   Create a versioned release
-    deploy  (dp)  Deploy the latest build
+    release (r)       Create a versioned release
+    deploy (dp)       Deploy the latest build
+    list-releases     List all releases
 
-  Utility Commands:
-    config  (cfg) View or edit configuration
-    doctor  (dr)  Run system health checks
-    update  (up)  Self-update to the latest version
+  Tooling Commands:
+    config (cfg)      View or edit configuration
+    doctor (dr)       Run system health checks
+    setup             Configure shell completions and ignore rules
+    update (up)       Self-update to the latest version
 
   Info Commands:
-    version (v)   Print version
-    help          Show this help message
+    version (v)       Print version
+    help              Show this help message
+    docs              Open documentation website
 
-  Run '<binary> <command> --help' for details on any command.
+  Run '<tool> <command> --help' for details on any command.
 ```
 
 ### Unknown Command
 
 ```
-$ <binary> foobar
+$ <tool> foobar
 
   Error: unknown command "foobar"
 
-  Run '<binary> help' for a list of available commands.
+  Run '<tool> help' for a list of available commands.
 ```
 
 ---
@@ -289,15 +294,5 @@ $ <binary> foobar
 - All command aliases are shown in parentheses: `scan (s)`
 - Group commands logically: Core, Release, Tooling, Info
 - Help text uses 2-space indentation for visual hierarchy
-
----
-
-## Cross-References
-
-- [Changelog Integration](./09-changelog-integration.md) — How changelogs are tracked and extracted
-- [Terminal Output Standards](./12-terminal-output-standards.md) — Output formatting rules
-- [Shared Conventions](./01-shared-conventions.md) — Version resolution patterns
-
----
-
-*Version and help — v3.1.0 — 2026-04-11*
+- `--help` and `-h` are intercepted before any command logic runs
+- Unknown commands print to stderr and exit with code 1
