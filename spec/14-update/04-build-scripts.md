@@ -15,14 +15,21 @@ See [`images/build-scripts-flow.mmd`](images/build-scripts-flow.mmd)
 
 ## Script Responsibilities
 
-Both scripts implement the same 4-step pipeline:
+Both scripts implement the same 4-step pipeline (with a Windows-only
+sub-step before build):
 
 ```
-[1/4] Pull latest changes     (git pull, branch check)
-[2/4] Resolve dependencies    (go mod tidy)
-[3/4] Build binary             (go build with ldflags)
-[4/4] Deploy                   (rename-first to resolved target)
+[1/4]   Pull latest changes      (git pull, branch check)
+[2/4]   Resolve dependencies     (go mod tidy)
+[2.5/4] Generate Windows         (go-winres make — Windows only;
+        resources                 see 11-windows-icon-embedding.md)
+[3/4]   Build binary             (go build with ldflags)
+[4/4]   Deploy                   (rename-first to resolved target)
 ```
+
+Step 2.5 is mandatory on Windows because `.syso` files are not
+committed (per [11-windows-icon-embedding.md](11-windows-icon-embedding.md)).
+On Linux/macOS this step is skipped entirely.
 
 ---
 
