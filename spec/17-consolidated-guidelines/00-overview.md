@@ -50,7 +50,7 @@ This folder provides **standalone, self-contained AI-readable references** for e
 | 14 | [14-app-issues.md](./14-app-issues.md) | `22-app-issues/` — App bug analysis, issue file template, placement rules |
 | 15 | [15-cicd-pipeline-workflows.md](./15-cicd-pipeline-workflows.md) | `12-cicd-pipeline-workflows/` — CI/CD pipeline specs, deployment workflows, install scripts, code signing |
 | 16 | [16-app-design-system-and-ui.md](./16-app-design-system-and-ui.md) | `24-app-design-system-and-ui/` — App-specific design system extending core tokens |
-| 17 | [17-self-update-app-update.md](./17-self-update-app-update.md) | `15-self-update-app-update/` — CLI self-update, rename-first deploy, handoff, release pipeline, install scripts |
+| 17 | [17-self-update-app-update.md](./17-self-update-app-update.md) | `14-update/` — CLI self-update, rename-first deploy, handoff, release pipeline, install scripts |
 | 18 | [18-database-conventions.md](./18-database-conventions.md) | `04-database-conventions/` — Database naming, PK/FK patterns, singular tables, booleans, views, ORM, schema design |
 | 19 | [19-gap-analysis.md](./19-gap-analysis.md) | Gap analysis — coverage matrix, implementability scores, priority recommendations |
 | 20 | [20-wp-plugin-conventions.md](./20-wp-plugin-conventions.md) | `18-wp-plugin-how-to/` — WordPress plugin Gold Standard architecture, traits, enums, REST API |

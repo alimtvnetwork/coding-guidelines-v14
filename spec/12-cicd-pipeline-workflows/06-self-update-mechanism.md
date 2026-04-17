@@ -7,7 +7,7 @@
 
 ## Purpose
 
-Defines the CI/CD-relevant aspects of CLI self-update: what the release pipeline must produce and support for self-updating tools. The full client-side update implementation is in [`spec/15-self-update-app-update/`](../15-self-update-app-update/00-overview.md) — this document covers the **pipeline's responsibilities** toward enabling that flow.
+Defines the CI/CD-relevant aspects of CLI self-update: what the release pipeline must produce and support for self-updating tools. The full client-side update implementation is in [`spec/14-update/`](../14-update/00-overview.md) — this document covers the **pipeline's responsibilities** toward enabling that flow.
 
 ---
 
@@ -92,7 +92,7 @@ return filepath.Dir(resolvedPath), nil
 
 Many CLI deploy structures use `<binary>/<binary>.exe`. When detecting the PATH location, check if the parent directory name matches the binary name — if so, the deploy target is the **grandparent** directory.
 
-> Full specification: [15-self-update-app-update/02-deploy-path-resolution.md](../15-self-update-app-update/02-deploy-path-resolution.md)
+> Full specification: [14-update/02-deploy-path-resolution.md](../14-update/02-deploy-path-resolution.md)
 
 ---
 
@@ -158,7 +158,7 @@ With rename-first, the destination is free after rename. Max **5 retries** with 
 | Copy-only (old) | 20 | 500ms | 10 seconds |
 | Rename-first (current) | 5 | 500ms | 2.5 seconds |
 
-> Full specification: [15-self-update-app-update/03-rename-first-deploy.md](../15-self-update-app-update/03-rename-first-deploy.md)
+> Full specification: [14-update/03-rename-first-deploy.md](../14-update/03-rename-first-deploy.md)
 
 ---
 
@@ -207,7 +207,7 @@ On Unix, `bash run.sh --update` directly — no copy, no worker.
 
 When no source repo is available, the CLI delegates to a standalone `<binary>-updater` binary that downloads and executes `install.ps1` from the latest release.
 
-> Full specification: [15-self-update-app-update/05-handoff-mechanism.md](../15-self-update-app-update/05-handoff-mechanism.md)
+> Full specification: [14-update/05-handoff-mechanism.md](../14-update/05-handoff-mechanism.md)
 
 ---
 
@@ -255,7 +255,7 @@ CGO_ENABLED=0 go build -ldflags "$LDFLAGS" -o "$OUTPUT_DIR/$BINARY_NAME" .
 echo "Built $BINARY_NAME ($VERSION)"
 ```
 
-> Full specification: [15-self-update-app-update/04-build-scripts.md](../15-self-update-app-update/04-build-scripts.md)
+> Full specification: [14-update/04-build-scripts.md](../14-update/04-build-scripts.md)
 
 ---
 
@@ -300,7 +300,7 @@ func cleanupStaleFiles(deployDir, binaryName string) {
 }
 ```
 
-> Full specification: [15-self-update-app-update/06-cleanup.md](../15-self-update-app-update/06-cleanup.md)
+> Full specification: [14-update/06-cleanup.md](../14-update/06-cleanup.md)
 
 ---
 
@@ -352,12 +352,12 @@ fi
 - [Go Binary Release Pipeline](./02-go-binary-deploy/02-release-pipeline.md) — Release pipeline that produces the binaries
 - [Shared Conventions](./01-shared-conventions.md) — Version resolution patterns
 - **Full Client-Side Specs:**
-  - [Self-Update Overview](../15-self-update-app-update/01-self-update-overview.md) — Problem statement, strategies, command flow
-  - [Deploy Path Resolution](../15-self-update-app-update/02-deploy-path-resolution.md) — 3-tier deploy target resolution
-  - [Rename-First Deploy](../15-self-update-app-update/03-rename-first-deploy.md) — Rename-first with retry and rollback
-  - [Build Scripts](../15-self-update-app-update/04-build-scripts.md) — Cross-platform build scripts
-  - [Handoff Mechanism](../15-self-update-app-update/05-handoff-mechanism.md) — Windows self-replacement flow
-  - [Cleanup](../15-self-update-app-update/06-cleanup.md) — Post-update artifact removal
+  - [Self-Update Overview](../14-update/01-self-update-overview.md) — Problem statement, strategies, command flow
+  - [Deploy Path Resolution](../14-update/02-deploy-path-resolution.md) — 3-tier deploy target resolution
+  - [Rename-First Deploy](../14-update/03-rename-first-deploy.md) — Rename-first with retry and rollback
+  - [Build Scripts](../14-update/04-build-scripts.md) — Cross-platform build scripts
+  - [Handoff Mechanism](../14-update/05-handoff-mechanism.md) — Windows self-replacement flow
+  - [Cleanup](../14-update/06-cleanup.md) — Post-update artifact removal
 
 ---
 

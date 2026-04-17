@@ -33,7 +33,7 @@ This is the **standalone consolidated reference** for spec authoring conventions
 | 11 | `10-research` | Root-level research |
 | 12 | `17-consolidated-guidelines` | AI-readable summaries (this folder) |
 | 13 | `12-cicd-pipeline-workflows` | CI/CD pipeline specs |
-| 14 | `15-self-update-app-update` | CLI self-update system |
+| 14 | `14-update` | CLI self-update system |
 | 15 | `18-wp-plugin-how-to` | WordPress plugin conventions |
 | 21 | `21-app` | App-specific features |
 | 22 | `22-app-issues` | App-specific issues |

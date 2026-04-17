@@ -62,119 +62,119 @@
         "Resolved": "02-app-issues/25-powershell-cd-wrapper-not-loaded.md"
       },
       {
-        "Source": "14-generic-update/01-self-update-overview.md",
+        "Source": "14-update/01-self-update-overview.md",
         "Line": 180,
         "Text": "02-powershell-build-deploy.md",
         "Target": "../03-general/02-powershell-build-deploy.md",
         "Resolved": "03-general/02-powershell-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/01-self-update-overview.md",
+        "Source": "14-update/01-self-update-overview.md",
         "Line": 181,
         "Text": "03-self-update-mechanism.md",
         "Target": "../03-general/03-self-update-mechanism.md",
         "Resolved": "03-general/03-self-update-mechanism.md"
       },
       {
-        "Source": "14-generic-update/01-self-update-overview.md",
+        "Source": "14-update/01-self-update-overview.md",
         "Line": 182,
         "Text": "09-build-deploy.md",
         "Target": "../01-app/09-build-deploy.md",
         "Resolved": "01-app/09-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/02-deploy-path-resolution.md",
+        "Source": "14-update/02-deploy-path-resolution.md",
         "Line": 379,
         "Text": "02-powershell-build-deploy.md",
         "Target": "../03-general/02-powershell-build-deploy.md",
         "Resolved": "03-general/02-powershell-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/02-deploy-path-resolution.md",
+        "Source": "14-update/02-deploy-path-resolution.md",
         "Line": 380,
         "Text": "09-build-deploy.md",
         "Target": "../01-app/09-build-deploy.md",
         "Resolved": "01-app/09-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/03-rename-first-deploy.md",
+        "Source": "14-update/03-rename-first-deploy.md",
         "Line": 236,
         "Text": "02-powershell-build-deploy.md",
         "Target": "../03-general/02-powershell-build-deploy.md",
         "Resolved": "03-general/02-powershell-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/03-rename-first-deploy.md",
+        "Source": "14-update/03-rename-first-deploy.md",
         "Line": 237,
         "Text": "03-self-update-mechanism.md",
         "Target": "../03-general/03-self-update-mechanism.md",
         "Resolved": "03-general/03-self-update-mechanism.md"
       },
       {
-        "Source": "14-generic-update/03-rename-first-deploy.md",
+        "Source": "14-update/03-rename-first-deploy.md",
         "Line": 238,
         "Text": "09-build-deploy.md",
         "Target": "../01-app/09-build-deploy.md",
         "Resolved": "01-app/09-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/04-build-scripts.md",
+        "Source": "14-update/04-build-scripts.md",
         "Line": 295,
         "Text": "02-powershell-build-deploy.md",
         "Target": "../03-general/02-powershell-build-deploy.md",
         "Resolved": "03-general/02-powershell-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/04-build-scripts.md",
+        "Source": "14-update/04-build-scripts.md",
         "Line": 296,
         "Text": "09-build-deploy.md",
         "Target": "../01-app/09-build-deploy.md",
         "Resolved": "01-app/09-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/05-handoff-mechanism.md",
+        "Source": "14-update/05-handoff-mechanism.md",
         "Line": 253,
         "Text": "02-powershell-build-deploy.md",
         "Target": "../03-general/02-powershell-build-deploy.md",
         "Resolved": "03-general/02-powershell-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/05-handoff-mechanism.md",
+        "Source": "14-update/05-handoff-mechanism.md",
         "Line": 254,
         "Text": "03-self-update-mechanism.md",
         "Target": "../03-general/03-self-update-mechanism.md",
         "Resolved": "03-general/03-self-update-mechanism.md"
       },
       {
-        "Source": "14-generic-update/06-cleanup.md",
+        "Source": "14-update/06-cleanup.md",
         "Line": 181,
         "Text": "02-powershell-build-deploy.md",
         "Target": "../03-general/02-powershell-build-deploy.md",
         "Resolved": "03-general/02-powershell-build-deploy.md"
       },
       {
-        "Source": "14-generic-update/06-cleanup.md",
+        "Source": "14-update/06-cleanup.md",
         "Line": 182,
         "Text": "03-self-update-mechanism.md",
         "Target": "../03-general/03-self-update-mechanism.md",
         "Resolved": "03-general/03-self-update-mechanism.md"
       },
       {
-        "Source": "14-generic-update/07-console-safe-handoff.md",
+        "Source": "14-update/07-console-safe-handoff.md",
         "Line": 261,
         "Text": "../03-general/02f-self-update-orchestration.md",
         "Target": "../03-general/02f-self-update-orchestration.md",
         "Resolved": "03-general/02f-self-update-orchestration.md"
       },
       {
-        "Source": "14-generic-update/07-console-safe-handoff.md",
+        "Source": "14-update/07-console-safe-handoff.md",
         "Line": 262,
         "Text": "../03-general/03-self-update-mechanism.md",
         "Target": "../03-general/03-self-update-mechanism.md",
         "Resolved": "03-general/03-self-update-mechanism.md"
       },
       {
-        "Source": "14-generic-update/07-console-safe-handoff.md",
+        "Source": "14-update/07-console-safe-handoff.md",
         "Line": 263,
         "Text": "../02-app-issues/03-update-sync-lock-loop.md",
         "Target": "../02-app-issues/03-update-sync-lock-loop.md",
@@ -232,9 +232,9 @@
       {
         "Source": "16-generic-release/07-known-issues-and-fixes.md",
         "Line": 342,
-        "Text": "spec/14-generic-update/09-winres-icon-constraint.md",
-        "Target": "../14-generic-update/09-winres-icon-constraint.md",
-        "Resolved": "14-generic-update/09-winres-icon-constraint.md"
+        "Text": "spec/14-update/09-winres-icon-constraint.md",
+        "Target": "../14-update/09-winres-icon-constraint.md",
+        "Resolved": "14-update/09-winres-icon-constraint.md"
       }
     ]
   },
@@ -1412,7 +1412,7 @@
         ]
       },
       {
-        "Folder": "14-generic-update",
+        "Folder": "14-update",
         "MdFiles": 11,
         "Subfolders": 0,
         "HasOverview": true,
@@ -1434,7 +1434,7 @@
         ]
       },
       {
-        "Folder": "15-self-update-app-update",
+        "Folder": "14-update",
         "MdFiles": 18,
         "Subfolders": 1,
         "HasOverview": true,
@@ -1463,7 +1463,7 @@
         ]
       },
       {
-        "Folder": "15-self-update-app-update/diagrams",
+        "Folder": "14-update/diagrams",
         "MdFiles": 1,
         "Subfolders": 0,
         "HasOverview": true,

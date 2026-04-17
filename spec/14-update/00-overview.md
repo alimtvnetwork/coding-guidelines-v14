@@ -58,7 +58,7 @@ The defining property: **the running binary is renamed, never deleted, before th
 | 10 | [10-last-release-detection.md](./10-last-release-detection.md) | **NEW** — Standalone `Get-LastRelease.ps1` / `get-last-release.sh` with tiered fallback | ✅ Active |
 | 11 | [11-windows-icon-embedding.md](./11-windows-icon-embedding.md) | **NEW** — `go-winres` + `winres.json` + committed `.syso` strategy | ✅ Active |
 | 12 | [12-code-signing.md](./12-code-signing.md) | **NEW** — Authenticode (Windows), `codesign` + notarization (macOS), detached GPG signatures | ✅ Active |
-| 🔗 | [`../15-self-update-app-update/17-install-script-version-probe.md`](../15-self-update-app-update/17-install-script-version-probe.md) | Install-script latest-version probe + hand-off (lives in 15/, referenced here) | 🔗 Linked |
+| 🔗 | [`../14-update/23-install-script-version-probe.md`](../14-update/23-install-script-version-probe.md) | Install-script latest-version probe + hand-off (lives in 15/, referenced here) | 🔗 Linked |
 
 ---
 
@@ -67,7 +67,7 @@ The defining property: **the running binary is renamed, never deleted, before th
 | Reference | Location |
 |-----------|----------|
 | CI/CD self-update mechanism (shared) | `../12-cicd-pipeline-workflows/06-self-update-mechanism.md` |
-| Self-update full app specs | `../15-self-update-app-update/00-overview.md` |
+| Self-update full app specs | `../14-update/00-overview.md` |
 | Generic CLI blueprint | `../13-generic-cli/00-overview.md` |
 | Release pipeline (asset production) | `../16-generic-release/02-release-pipeline.md` |
 | Consolidated summary | `../17-consolidated-guidelines/17-self-update-app-update.md` |

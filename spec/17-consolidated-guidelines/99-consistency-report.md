@@ -61,7 +61,7 @@
 - [x] `03-error-management.md` source path updated to `spec/03-error-manage/`
 - [x] `04-enum-standards.md` links updated — coding guidelines subfolders at `02-coding-guidelines/` root
 - [x] `02-coding-guidelines.md` source path updated — `03-coding-guidelines-spec/` folder flattened
-- [x] All `13-self-update-app-update` references corrected to `15-self-update-app-update`
+- [x] All `13-self-update-app-update` references corrected to `14-update`
 - [x] Full dashboard scan: **1,510 links checked, 0 broken — 100/100 (A+)**
 
 ---

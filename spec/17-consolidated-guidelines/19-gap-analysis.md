@@ -33,7 +33,7 @@ All placeholder files (11, 12, 13) have been expanded with real content. `10-res
 | 14 | `14-app-issues.md` | `22-app-issues/` | **210+** | — | — | **85%** | None | ⬆ +25 |
 | 15 | `15-cicd-pipeline-workflows.md` | `12-cicd-pipeline-workflows/` | 422 | 5,140 | 8% | 92% | None | — |
 | 16 | `16-app-design-system-and-ui.md` | `24-app-design-system-and-ui/` + error modal colors | **530+** | — | — | **93%** | None | ⬆ +5 |
-| 17 | `17-self-update-app-update.md` | `15-self-update-app-update/` | 441 | 4,486 | 10% | 93% | None | — |
+| 17 | `17-self-update-app-update.md` | `14-update/` | 441 | 4,486 | 10% | 93% | None | — |
 | 18 | `18-database-conventions.md` | `04-database-conventions/` | 945 | 2,321 | 41% | 95% | None | — |
 | 19 | `19-gap-analysis.md` | — (meta) | — | — | — | — | — | — |
 | 20 | `20-wp-plugin-conventions.md` | `18-wp-plugin-how-to/` | **570+** | 17,088 | 3% | **92%** | None | ⬆ +4 |

@@ -170,7 +170,7 @@ If signing is disabled, steps 2–3 are skipped and unsigned binaries proceed di
 - [Shared Conventions](./01-shared-conventions.md) — Platform, runner, action version rules
 - [Install Script Generation](./04-install-script-generation.md) — Scripts that download signed binaries
 - [Self-Update Mechanism](./06-self-update-mechanism.md) — Update flow that distributes signed binaries
-- [Self-Update & App Update (Full Specs)](../15-self-update-app-update/00-overview.md) — Client-side update implementation
+- [Self-Update & App Update (Full Specs)](../14-update/00-overview.md) — Client-side update implementation
 
 ---
 

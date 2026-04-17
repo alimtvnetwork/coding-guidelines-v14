@@ -116,7 +116,7 @@
 | Code block rendering | `spec/09-code-block-system/` |
 | PowerShell scripts | `spec/11-powershell-integration/` |
 | CI/CD pipelines | `spec/12-cicd-pipeline-workflows/` |
-| CLI self-update system | `spec/15-self-update-app-update/` |
+| CLI self-update system | `spec/14-update/` |
 | WordPress plugins | `spec/18-wp-plugin-how-to/` |
 | App-specific features | `spec/21-app/` |
 | Known app bugs/issues | `spec/22-app-issues/` |

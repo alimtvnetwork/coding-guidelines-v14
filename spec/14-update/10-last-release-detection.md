@@ -165,7 +165,7 @@ piped into other commands.
 
 - [04-build-scripts.md](04-build-scripts.md) §Version Verification — uses this script
 - [01-self-update-overview.md](01-self-update-overview.md) §Skip-if-Current — calls this for the comparison
-- [`../15-self-update-app-update/17-install-script-version-probe.md`](../15-self-update-app-update/17-install-script-version-probe.md) — install probe uses similar tiered fallback
+- [`../14-update/23-install-script-version-probe.md`](../14-update/23-install-script-version-probe.md) — install probe uses similar tiered fallback
 
 ---
 
