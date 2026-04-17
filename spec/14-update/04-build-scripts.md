@@ -84,6 +84,20 @@ function Build-Binary {
 
     Push-Location $ToolDir
     try {
+        # [2.5/4] Windows-only: regenerate .syso resources
+        # See 11-windows-icon-embedding.md — .syso files are NOT
+        # committed and MUST be regenerated before every Windows build
+        if ($IsWindows) {
+            Write-Step "2.5/4" "Generating Windows resources (.syso)"
+            if (-not (Get-Command go-winres -ErrorAction SilentlyContinue)) {
+                throw "go-winres not installed. Run: go install github.com/tc-hib/go-winres@latest"
+            }
+            go-winres make
+            if ($LASTEXITCODE -ne 0) {
+                throw "go-winres make failed (exit $LASTEXITCODE)"
+            }
+        }
+
         $absRepoRoot = (Resolve-Path $RepoRoot).Path
         $ldflags = "-X '<module>/constants.RepoPath=$absRepoRoot'"
         go build -ldflags $ldflags -o $outPath .
