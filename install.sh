@@ -30,6 +30,103 @@ ok()    { echo -e "${GREEN}✅ $1${NC}"; }
 warn()  { echo -e "${YELLOW}⚠️  $1${NC}"; }
 err()   { echo -e "${RED}❌ $1${NC}" >&2; }
 
+# ── Latest-version probe ──────────────────────────────────────────
+# Spec: spec/15-self-update-app-update/17-install-script-version-probe.md
+# Probes <owner>/<base>-v(current+1..current+20) in parallel; hands off
+# to the highest responding installer. Falls through silently on errors.
+
+PROBE_OWNER_FALLBACK="alimtvnetwork"
+PROBE_BASE_FALLBACK="coding-guidelines"
+PROBE_VERSION_FALLBACK=14
+
+invoke_latest_version_probe() {
+    step "Detecting installer identity..."
+
+    local src_url="${INSTALL_PROBE_SOURCE_URL:-${BASH_SOURCE[0]:-$0}}"
+    local owner="${INSTALL_PROBE_OWNER:-}"
+    local base="${INSTALL_PROBE_BASE:-}"
+    local cur="${INSTALL_PROBE_VERSION:-}"
+
+    local re='^https?://[^/]+/([^/]+)/([A-Za-z0-9._-]+)-v([0-9]+)/[^/]+/install\.sh'
+    if [[ "$src_url" =~ $re ]]; then
+        : "${owner:=${BASH_REMATCH[1]}}"
+        : "${base:=${BASH_REMATCH[2]}}"
+        : "${cur:=${BASH_REMATCH[3]}}"
+    fi
+
+    : "${owner:=$PROBE_OWNER_FALLBACK}"
+    : "${base:=$PROBE_BASE_FALLBACK}"
+    : "${cur:=$PROBE_VERSION_FALLBACK}"
+
+    if [[ -z "$owner" || -z "$base" || -z "$cur" ]]; then
+        warn "Could not derive (owner/base/version) — skipping version probe."
+        return 0
+    fi
+
+    local current=$cur
+    ok "Identity: $owner/$base-v$current  (probing v$((current+1))..v$((current+20)))"
+
+    local depth=${INSTALL_PROBE_HANDOFF_DEPTH:-0}
+    if [[ $depth -ge 3 ]]; then
+        err "Probe loop guard triggered (depth=$depth) — aborting."
+        exit 1
+    fi
+
+    if ! command -v curl &>/dev/null; then
+        warn "curl not found — skipping version probe."
+        return 0
+    fi
+
+    step "Probing 20 candidate versions in parallel (timeout 2s)..."
+    local tmp; tmp=$(mktemp -d)
+    local n
+    for n in $(seq $((current+1)) $((current+20))); do
+        (
+            local url="https://raw.githubusercontent.com/$owner/$base-v$n/main/install.sh"
+            local code
+            code=$(curl -s -o /dev/null -w '%{http_code}' \
+                        --max-time 2 -I "$url" 2>/dev/null || echo 000)
+            if [[ "$code" == "200" || "$code" == "301" || "$code" == "302" ]]; then
+                echo "$n" > "$tmp/$n"
+            fi
+        ) &
+    done
+
+    local waited=0
+    while [[ $waited -lt 4 ]]; do
+        sleep 1
+        waited=$((waited + 1))
+        if [[ -z "$(jobs -rp)" ]]; then break; fi
+    done
+    wait 2>/dev/null || true
+
+    local latest=$current
+    if compgen -G "$tmp/*" >/dev/null 2>&1; then
+        latest=$(basename "$(ls "$tmp" | sort -n | tail -1)")
+    fi
+    rm -rf "$tmp"
+
+    if [[ $latest -le $current ]]; then
+        ok "Already on latest (v$current). Continuing local install..."
+        return 0
+    fi
+
+    local newer_url="https://raw.githubusercontent.com/$owner/$base-v$latest/main/install.sh"
+    ok "Newer version found: v$latest (was v$current). Handing off to v$latest installer..."
+    echo "──────────────────────────────────────────"
+    export INSTALL_PROBE_HANDOFF_DEPTH=$((depth + 1))
+    export INSTALL_PROBE_SOURCE_URL="$newer_url"
+    if curl -fsSL "$newer_url" | bash; then
+        exit 0
+    else
+        local rc=$?
+        warn "Hand-off exited $rc — propagating."
+        exit $rc
+    fi
+}
+
+invoke_latest_version_probe || warn "Version probe error — continuing local install."
+
 # ── Parse CLI args ────────────────────────────────────────────────
 while [[ $# -gt 0 ]]; do
   case "$1" in

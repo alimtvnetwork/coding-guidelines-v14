@@ -82,6 +82,7 @@ AI INSTRUCTION:
 | 14 | [14-network-requirements.md](./14-network-requirements.md) | HTTP client config, retry policies, proxy support, TLS, progress display | ✅ Active |
 | 15 | [15-config-file.md](./15-config-file.md) | Config file location, JSON schema, first-time creation, platform defaults | ✅ Active |
 | 16 | [16-update-command-workflow.md](./16-update-command-workflow.md) | Step-by-step `update` and `update-cleanup` command workflow with decision tree | ✅ Active |
+| 17 | [17-install-script-version-probe.md](./17-install-script-version-probe.md) | Generic prologue: install.* probes `<base>-v(N+1..N+20)` in parallel and hands off to the highest responder | ✅ Active |
 
 ---
 
