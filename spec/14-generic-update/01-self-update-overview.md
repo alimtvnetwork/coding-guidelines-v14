@@ -129,6 +129,33 @@ After resolving a path, validate it contains the expected project:
 
 ---
 
+## Skip-if-Current (Mandatory Fast-Path)
+
+Before rebuilding, the worker MUST inspect `git pull` output and
+short-circuit when there are no incoming commits. This avoids a
+2–10s wasted rebuild on every `update` invocation.
+
+```
+1. Capture the deployed binary's current version.
+2. Run `git pull` and capture combined stdout+stderr.
+3. If the output matches /Already up to date/i:
+     - Print: "Already on latest version: <version>"
+     - Exit 0 (no rebuild, no deploy, no cleanup needed).
+4. Otherwise, sleep 1.0–1.5 seconds (see 05-handoff §Delayed Rebuild).
+5. Run the build pipeline with -NoPull (pull already done).
+6. Compare versions (next section).
+```
+
+### Why mandatory
+
+| Without skip-if-current | With skip-if-current |
+|--|--|
+| Every `update` rebuilds from scratch | Rebuilds only when there are real changes |
+| 2–10s wasted per call | <500ms when up-to-date |
+| Pollutes `.old` backups on every call | `.old` only when something actually changed |
+
+---
+
 ## Version Comparison
 
 After deploying the new binary, compare versions:
@@ -139,12 +166,13 @@ new_version=$(<binary> version)
 
 if [[ "$new_version" == "$old_version" ]]; then
     echo "  !! Warning: version unchanged after update ($old_version)"
-    echo "     The source may already be up to date."
+    echo "     The version constant in the source may not have been bumped."
 fi
 ```
 
 Always normalize versions before comparing (strip `v` prefix, trim
-whitespace).
+whitespace). For the full three-branch decision (active vs deployed
+binary), see [09-version-verification.md](09-version-verification.md).
 
 ---
 

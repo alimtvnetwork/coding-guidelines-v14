@@ -20,6 +20,19 @@ the running binary, which may still be alive when deploy happens.
 
 ---
 
+## Two-Phase Summary (Quick Reference)
+
+| Phase | Actor | Action |
+|-------|-------|--------|
+| **Phase 1 — Handoff** | Active `<binary>.exe` | Copy self → temp `.exe`, launch worker with `cmd.Run()` (blocking), wait |
+| **Phase 2 — Update** | Worker (temp `.exe`) | Skip-if-current check → delayed rebuild → `run.ps1 -Update` → rename-first PATH sync → version verify → cleanup |
+
+The parent stays attached so the user sees all output. The worker
+runs from a *different file*, so the parent's file lock is irrelevant
+to deploy.
+
+---
+
 ## Solution: Copy-and-Handoff
 
 The running binary creates a **temporary copy of itself**, launches
