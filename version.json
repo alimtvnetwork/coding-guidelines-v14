@@ -1,0 +1,6 @@
+{
+  "version": "1.21.0",
+  "updated": "2026-04-18",
+  "name": "coding-guidelines",
+  "description": "Cross-language coding standards, error handling, CI/CD, and self-update specifications. Synced from package.json by scripts/sync-version.mjs."
+}
