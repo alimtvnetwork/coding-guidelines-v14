@@ -1,7 +1,7 @@
 {
   "name": "vite_react_shadcn_ts",
   "private": true,
-  "version": "1.21.1",
+  "version": "1.22.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,6 +9,7 @@
     "sync:version": "node scripts/sync-version.mjs",
     "sync:specs": "node scripts/sync-spec-tree.mjs",
     "prebuild": "node scripts/sync-version.mjs && node scripts/sync-spec-tree.mjs",
+    "prepare": "husky",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
@@ -56,6 +57,7 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.6.0",
     "highlight.js": "^11.11.1",
+    "husky": "^9.1.7",
     "input-otp": "^1.4.2",
     "jszip": "^3.10.1",
     "lucide-react": "^0.462.0",
