@@ -1,7 +1,7 @@
 # Generic Update — Overview
 
-**Version:** 1.0.0  
-**Updated:** 2026-04-16  
+**Version:** 1.1.0  
+**Updated:** 2026-04-17  
 **Status:** Active  
 **AI Confidence:** Production-Ready  
 **Ambiguity:** None
@@ -46,15 +46,19 @@ The defining property: **the running binary is renamed, never deleted, before th
 
 | # | File | Description | Status |
 |---|------|-------------|--------|
-| 01 | [01-self-update-overview.md](./01-self-update-overview.md) | Top-level self-update contract: triggers, version comparison, latest.json schema | ✅ Active |
+| 01 | [01-self-update-overview.md](./01-self-update-overview.md) | Top-level self-update contract: triggers, version comparison, **skip-if-current fast-path**, latest.json schema | ✅ Active |
 | 02 | [02-deploy-path-resolution.md](./02-deploy-path-resolution.md) | Canonical deploy path resolution per OS, env-var overrides, PATH registration | ✅ Active |
 | 03 | [03-rename-first-deploy.md](./03-rename-first-deploy.md) | Rename-first algorithm, atomicity guarantees, Windows file-lock handling | ✅ Active |
 | 04 | [04-build-scripts.md](./04-build-scripts.md) | Build/release scripts that produce update-compatible artifacts (LDFLAGS, asset naming) | ✅ Active |
-| 05 | [05-handoff-mechanism.md](./05-handoff-mechanism.md) | Old → new binary handoff: exec, env passthrough, exit codes, signal forwarding | ✅ Active |
-| 06 | [06-cleanup.md](./06-cleanup.md) | Post-handoff cleanup: removing renamed old binary, retry on Windows lock | ✅ Active |
+| 05 | [05-handoff-mechanism.md](./05-handoff-mechanism.md) | Old → new binary handoff: **two-phase summary**, exec, env passthrough, exit codes | ✅ Active |
+| 06 | [06-cleanup.md](./06-cleanup.md) | Post-handoff cleanup: **mandatory auto-cleanup**, removing renamed old binary, retry on Windows lock | ✅ Active |
 | 07 | [07-console-safe-handoff.md](./07-console-safe-handoff.md) | Windows console safety: detached vs attached, stdout/stderr inheritance | ✅ Active |
 | 08 | [08-repo-path-sync.md](./08-repo-path-sync.md) | Cross-repo path sync: keeping deploy paths consistent across CLI tools | ✅ Active |
-| 09 | [`../15-self-update-app-update/17-install-script-version-probe.md`](../15-self-update-app-update/17-install-script-version-probe.md) | Install-script latest-version probe + hand-off (lives in 15/, referenced here) | 🔗 Linked |
+| 09 | [09-version-verification.md](./09-version-verification.md) | **NEW** — Three-branch active-vs-deployed verification, required TRACE/HINT diagnostics | ✅ Active |
+| 10 | [10-last-release-detection.md](./10-last-release-detection.md) | **NEW** — Standalone `Get-LastRelease.ps1` / `get-last-release.sh` with tiered fallback | ✅ Active |
+| 11 | [11-windows-icon-embedding.md](./11-windows-icon-embedding.md) | **NEW** — `go-winres` + `winres.json` + committed `.syso` strategy | ✅ Active |
+| 12 | [12-code-signing.md](./12-code-signing.md) | **NEW** — Authenticode (Windows), `codesign` + notarization (macOS), detached GPG signatures | ✅ Active |
+| 🔗 | [`../15-self-update-app-update/17-install-script-version-probe.md`](../15-self-update-app-update/17-install-script-version-probe.md) | Install-script latest-version probe + hand-off (lives in 15/, referenced here) | 🔗 Linked |
 
 ---
 
