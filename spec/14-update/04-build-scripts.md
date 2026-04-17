@@ -15,14 +15,21 @@ See [`images/build-scripts-flow.mmd`](images/build-scripts-flow.mmd)
 
 ## Script Responsibilities
 
-Both scripts implement the same 4-step pipeline:
+Both scripts implement the same 4-step pipeline (with a Windows-only
+sub-step before build):
 
 ```
-[1/4] Pull latest changes     (git pull, branch check)
-[2/4] Resolve dependencies    (go mod tidy)
-[3/4] Build binary             (go build with ldflags)
-[4/4] Deploy                   (rename-first to resolved target)
+[1/4]   Pull latest changes      (git pull, branch check)
+[2/4]   Resolve dependencies     (go mod tidy)
+[2.5/4] Generate Windows         (go-winres make — Windows only;
+        resources                 see 11-windows-icon-embedding.md)
+[3/4]   Build binary             (go build with ldflags)
+[4/4]   Deploy                   (rename-first to resolved target)
 ```
+
+Step 2.5 is mandatory on Windows because `.syso` files are not
+committed (per [11-windows-icon-embedding.md](11-windows-icon-embedding.md)).
+On Linux/macOS this step is skipped entirely.
 
 ---
 
@@ -77,6 +84,20 @@ function Build-Binary {
 
     Push-Location $ToolDir
     try {
+        # [2.5/4] Windows-only: regenerate .syso resources
+        # See 11-windows-icon-embedding.md — .syso files are NOT
+        # committed and MUST be regenerated before every Windows build
+        if ($IsWindows) {
+            Write-Step "2.5/4" "Generating Windows resources (.syso)"
+            if (-not (Get-Command go-winres -ErrorAction SilentlyContinue)) {
+                throw "go-winres not installed. Run: go install github.com/tc-hib/go-winres@latest"
+            }
+            go-winres make
+            if ($LASTEXITCODE -ne 0) {
+                throw "go-winres make failed (exit $LASTEXITCODE)"
+            }
+        }
+
         $absRepoRoot = (Resolve-Path $RepoRoot).Path
         $ldflags = "-X '<module>/constants.RepoPath=$absRepoRoot'"
         go build -ldflags $ldflags -o $outPath .
@@ -158,6 +179,22 @@ build_binary() {
     mkdir -p "$bin_dir"
 
     cd "$TOOL_DIR"
+
+    # [2.5/4] Windows-only: regenerate .syso resources
+    # See 11-windows-icon-embedding.md — .syso files are NOT
+    # committed and MUST be regenerated before every Windows build.
+    # Detect Git Bash / MSYS / Cygwin via uname.
+    case "$(uname -s)" in
+        MINGW*|MSYS*|CYGWIN*)
+            write_step "2.5/4" "Generating Windows resources (.syso)"
+            if ! command -v go-winres &>/dev/null; then
+                write_fail "go-winres not installed. Run: go install github.com/tc-hib/go-winres@latest"
+                exit 1
+            fi
+            go-winres make || { write_fail "go-winres make failed"; exit 1; }
+            ;;
+    esac
+
     local abs_repo_root
     abs_repo_root=$(cd "$REPO_ROOT" && pwd)
     local ldflags="-X '<module>/constants.RepoPath=$abs_repo_root'"
@@ -287,6 +324,13 @@ Pull fails due to local changes?
 - All paths resolved to absolute before use.
 - `go mod tidy` runs before every build for dependency consistency.
 - Version is displayed immediately after build: `<binary> version`.
+- **On Windows**, `go-winres make` MUST run before `go build` to
+  regenerate `rsrc_windows_*.syso` resource files. The build script
+  MUST fail loudly if `go-winres` is not installed — never silently
+  skip resource generation, or the resulting `.exe` will lack its
+  icon and version metadata. Install with:
+  `go install github.com/tc-hib/go-winres@latest`.
+  See [11-windows-icon-embedding.md](11-windows-icon-embedding.md).
 
 ## Application-Specific References
 
