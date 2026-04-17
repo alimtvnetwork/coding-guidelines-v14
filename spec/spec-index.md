@@ -560,17 +560,17 @@
 
 | File | Title | Version |
 |------|-------|---------|
-| `spec/15-self-update-app-update/00-overview.md` | Self-Update & App Update | 1.0.0 |
-| `spec/15-self-update-app-update/01-self-update-overview.md` | Self-Update Overview | 1.0.0 |
-| `spec/15-self-update-app-update/02-deploy-path-resolution.md` | Deploy Path Resolution | 1.0.0 |
-| `spec/15-self-update-app-update/03-rename-first-deploy.md` | Rename-First Deploy Strategy | 1.0.0 |
-| `spec/15-self-update-app-update/04-build-scripts.md` | Build Scripts | 1.0.0 |
-| `spec/15-self-update-app-update/05-handoff-mechanism.md` | Handoff Mechanism (Windows) | 1.0.0 |
-| `spec/15-self-update-app-update/06-cleanup.md` | Cleanup | 1.0.0 |
-| `spec/15-self-update-app-update/07-release-assets.md` | Release Assets | 1.0.0 |
-| `spec/15-self-update-app-update/08-checksums-verification.md` | Checksums & Verification | 1.0.0 |
-| `spec/15-self-update-app-update/09-release-versioning.md` | Release Versioning | 1.0.0 |
-| `spec/15-self-update-app-update/99-consistency-report.md` | Consistency Report — Self-Update & App Update | 1.0.0 |
+| `spec/14-update/00-overview.md` | Self-Update & App Update | 1.0.0 |
+| `spec/14-update/01-self-update-overview.md` | Self-Update Overview | 1.0.0 |
+| `spec/14-update/02-deploy-path-resolution.md` | Deploy Path Resolution | 1.0.0 |
+| `spec/14-update/03-rename-first-deploy.md` | Rename-First Deploy Strategy | 1.0.0 |
+| `spec/14-update/04-build-scripts.md` | Build Scripts | 1.0.0 |
+| `spec/14-update/05-handoff-mechanism.md` | Handoff Mechanism (Windows) | 1.0.0 |
+| `spec/14-update/06-cleanup.md` | Cleanup | 1.0.0 |
+| `spec/14-update/13-release-assets.md` | Release Assets | 1.0.0 |
+| `spec/14-update/14-checksums-verification.md` | Checksums & Verification | 1.0.0 |
+| `spec/14-update/15-release-versioning.md` | Release Versioning | 1.0.0 |
+| `spec/14-update/99-consistency-report.md` | Consistency Report — Self-Update & App Update | 1.0.0 |
 
 ## 📱 App
 

@@ -26,7 +26,7 @@
 ## Cross-Reference Health
 
 - All in-folder file references resolve.
-- External references to `../12-cicd-pipeline-workflows/`, `../13-generic-cli/`, `../15-self-update-app-update/`, `../16-generic-release/`, `../17-consolidated-guidelines/` verified present.
+- External references to `../12-cicd-pipeline-workflows/`, `../13-generic-cli/`, `../14-update/`, `../16-generic-release/`, `../17-consolidated-guidelines/` verified present.
 
 ---
 

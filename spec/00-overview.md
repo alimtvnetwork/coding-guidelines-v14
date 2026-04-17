@@ -32,7 +32,7 @@ Root index for the entire specification tree. Each top-level folder contains a d
 | 11 | [Research](./10-research/00-overview.md) | Comparative studies, technology evaluations, exploratory notes |
 | 12 | [Consolidated Guidelines](./17-consolidated-guidelines/00-overview.md) | AI-readable summaries of every major spec module |
 | 13 | [CI/CD Pipeline Workflows](./12-cicd-pipeline-workflows/00-overview.md) | CI/CD pipeline specs, deployment workflows, automation |
-| 14 | [Self-Update & App Update](./15-self-update-app-update/00-overview.md) | Rename-first deployment, release pipeline, cross-compilation |
+| 14 | [Self-Update & App Update](./14-update/00-overview.md) | Rename-first deployment, release pipeline, cross-compilation |
 
 ### App-Specific (21+)
 

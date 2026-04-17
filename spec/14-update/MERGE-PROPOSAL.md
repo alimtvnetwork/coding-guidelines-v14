@@ -9,7 +9,7 @@
 
 ## TL;DR
 
-Folders `14-generic-update/` and `15-self-update-app-update/` carry
+Folders `14-update/` and `14-update/` carry
 **byte-identical content** for their 6 overlapping files (~1,575
 lines duplicated). Folder 15 owns 11 additional release/install
 files. The duplication is now provably unintentional: `diff` returns
@@ -27,7 +27,7 @@ recommendation is **Option A (Hard Merge)**.
 ## Current State (after Task 3 backfill)
 
 ```
-spec/14-generic-update/                 (13 files, 2,919 lines)
+spec/14-update/                 (13 files, 2,919 lines)
 ├── 00-overview.md                      ← inventory
 ├── 01-self-update-overview.md          ← duplicate of 15/01 (+ skip-if-current)
 ├── 02-deploy-path-resolution.md        ← duplicate of 15/02
@@ -43,7 +43,7 @@ spec/14-generic-update/                 (13 files, 2,919 lines)
 ├── 12-code-signing.md                  ← NEW (Task 3)
 └── 99-consistency-report.md
 
-spec/15-self-update-app-update/         (20 files, ~4,800 lines)
+spec/14-update/         (20 files, ~4,800 lines)
 ├── 00-overview.md
 ├── 01-self-update-overview.md          ← byte-identical to 14/01 body
 ├── 02-deploy-path-resolution.md        ← byte-identical to 14/02 body
@@ -70,8 +70,8 @@ spec/15-self-update-app-update/         (20 files, ~4,800 lines)
 
 | Target | Inbound refs |
 |--------|--------------|
-| `15-self-update-app-update/` | **24 files** across `00-overview`, `01-spec-authoring-guide`, `12-cicd-pipeline-workflows`, `14-generic-update`, `17-consolidated-guidelines`, `dashboard-data.json`, `spec-index.md` |
-| `14-generic-update/` | **4 files** (mostly own newly-added cross-refs) |
+| `14-update/` | **24 files** across `00-overview`, `01-spec-authoring-guide`, `12-cicd-pipeline-workflows`, `14-update`, `17-consolidated-guidelines`, `dashboard-data.json`, `spec-index.md` |
+| `14-update/` | **4 files** (mostly own newly-added cross-refs) |
 
 ---
 
@@ -136,7 +136,7 @@ spec/14-update/                         (24 files, ~5,300 lines)
 **Cons:**
 - ❌ 24 inbound cross-references must be rewritten (mostly mechanical).
 - ❌ Git history of folder 15 files is "lost" without a `git mv` chain (acceptable — content is preserved).
-- ❌ Rename invalidates any external bookmarks/issues referencing `15-self-update-app-update/`.
+- ❌ Rename invalidates any external bookmarks/issues referencing `14-update/`.
 - ❌ Touches `dashboard-data.json` and `spec-index.md` — needs regeneration.
 
 **Effort:** ~30 minutes (mostly automated find/replace).
@@ -147,11 +147,11 @@ spec/14-update/                         (24 files, ~5,300 lines)
 
 ### Option B — Soft Merge with Stub Folder
 
-**Action:** Same as Option A, but keep `15-self-update-app-update/`
+**Action:** Same as Option A, but keep `14-update/`
 as a stub folder containing only forwarding stubs:
 
 ```
-spec/15-self-update-app-update/
+spec/14-update/
 └── README.md  ← "This folder has moved. See spec/14-update/."
 ```
 
@@ -175,7 +175,7 @@ spec/15-self-update-app-update/
 ### Option C — Status Quo + Deduplication-by-Reference
 
 **Action:** Keep both folders. Replace the body of folder 15's
-6 duplicate files with a single line: "See `../14-generic-update/<file>`".
+6 duplicate files with a single line: "See `../14-update/<file>`".
 
 **Pros:**
 - ✅ Zero cross-reference rewrites.
@@ -221,15 +221,15 @@ The merge runs as **Task 5** with these sub-steps:
 2. **Move `diagrams/`** from folder 15 → folder 14.
 3. **Merge `00-overview.md`** — single inventory of all 24 files.
 4. **Merge `99-consistency-report.md`** — combined audit.
-5. **Rename folder** `14-generic-update/` → `14-update/`.
-6. **Delete folder** `15-self-update-app-update/`.
+5. **Rename folder** `14-update/` → `14-update/`.
+6. **Delete folder** `14-update/`.
 7. **Rewrite cross-references** in 24 files. Single `sed`-style pass:
-   - `15-self-update-app-update/01-…` → `14-update/01-…`
-   - `15-self-update-app-update/02-…` → `14-update/02-…`
+   - `14-update/01-…` → `14-update/01-…`
+   - `14-update/02-…` → `14-update/02-…`
    - … (full mapping table generated from step 1)
-   - `14-generic-update/` → `14-update/`
+   - `14-update/` → `14-update/`
 8. **Regenerate** `spec/dashboard-data.json` and `spec/spec-index.md`.
-9. **Verify** with `grep -rln '14-generic-update\|15-self-update-app-update' spec/` — must return 0 hits.
+9. **Verify** with `grep -rln '14-update\|14-update' spec/` — must return 0 hits.
 10. **Bump** `package.json` to a minor version (currently 1.19.0 → 1.20.0).
 
 ---

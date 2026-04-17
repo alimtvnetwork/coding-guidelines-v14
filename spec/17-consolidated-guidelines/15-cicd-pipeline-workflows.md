@@ -380,7 +380,7 @@ The `env` command manages persistent PATH and environment:
 3. Shared patterns (version resolution, checksums, releases) are in root-level files
 4. Archetype-specific patterns are in their respective subfolders
 5. New pipeline types get their own subfolder with `00-overview.md`
-6. Client-side update logic lives in `spec/15-self-update-app-update/`
+6. Client-side update logic lives in `spec/14-update/`
 7. Never use `@latest` — pin all versions
 8. Never cancel release pipeline jobs
 9. Build once — never rebuild after the build stage
@@ -414,7 +414,7 @@ The `env` command manages persistent PATH and environment:
 | Reference | Location |
 |-----------|----------|
 | Full Source | `../12-cicd-pipeline-workflows/00-overview.md` |
-| Self-Update & App Update | `../15-self-update-app-update/00-overview.md` |
+| Self-Update & App Update | `../14-update/00-overview.md` |
 | Folder Structure Rules | `../01-spec-authoring-guide/01-folder-structure.md` |
 
 ---

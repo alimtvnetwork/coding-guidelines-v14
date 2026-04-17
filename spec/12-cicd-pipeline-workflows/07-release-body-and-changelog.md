@@ -348,7 +348,7 @@ curl -fsSL https://raw.githubusercontent.com/<repo>/main/scripts/install.sh | ba
 - [Shared Conventions](./01-shared-conventions.md) — Version resolution
 - [Install Script Generation](./04-install-script-generation.md) — Scripts referenced in the install section
 - [Go Binary Release Pipeline](./02-go-binary-deploy/02-release-pipeline.md) — Full release workflow
-- [Release Versioning](../15-self-update-app-update/09-release-versioning.md) — How versions are resolved and tags created
+- [Release Versioning](../14-update/15-release-versioning.md) — How versions are resolved and tags created
 
 ---
 

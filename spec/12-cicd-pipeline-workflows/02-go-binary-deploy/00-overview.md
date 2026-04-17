@@ -58,7 +58,7 @@ The CI pipeline uses a **SHA-based passthrough gate** to skip redundant validati
 | Code Signing | `../05-code-signing.md` |
 | Self-Update Mechanism | `../06-self-update-mechanism.md` |
 | Release Body & Changelog | `../07-release-body-and-changelog.md` |
-| Self-Update Full Specs | `../../15-self-update-app-update/00-overview.md` |
+| Self-Update Full Specs | `../../14-update/00-overview.md` |
 
 ---
 

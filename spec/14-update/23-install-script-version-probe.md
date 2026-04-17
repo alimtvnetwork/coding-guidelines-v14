@@ -393,7 +393,7 @@ invoke_latest_version_probe
 - [05 — Handoff Mechanism](./05-handoff-mechanism.md) — Related but distinct: in-process binary self-replacement, not installer-to-installer.
 - [14 — Network Requirements](./14-network-requirements.md) — Timeout, retry, and TLS conventions referenced above.
 - [16 — Update Command Workflow](./16-update-command-workflow.md) — `<binary> update` uses similar probe semantics for binary-based updates.
-- Generic mirror: [`spec/14-generic-update/`](../14-generic-update/00-overview.md) — overlaps on client-side mechanics; this file lives in 15/ per maintainer decision.
+- Generic mirror: [`spec/14-update/`](../14-update/00-overview.md) — overlaps on client-side mechanics; this file lives in 15/ per maintainer decision.
 
 ---
 

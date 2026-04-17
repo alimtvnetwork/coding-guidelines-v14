@@ -33,7 +33,7 @@
 | Folder | Broken Links |
 |--------|--------------|
 | `13-generic-cli/` | 7 |
-| `14-generic-update/` | 17 |
+| `14-update/` | 17 |
 | `16-generic-release/` | 9 |
 
 ### Broken Links by Source File
@@ -47,23 +47,23 @@
 | `13-generic-cli/21-post-install-shell-activation.md` | 287 | `../02-app-issues/22-installer-path-not-active-after-install.md` |
 | `13-generic-cli/21-post-install-shell-activation.md` | 288 | `../02-app-issues/24-cd-command-does-not-change-shell-directory.md` |
 | `13-generic-cli/21-post-install-shell-activation.md` | 289 | `../02-app-issues/25-powershell-cd-wrapper-not-loaded.md` |
-| `14-generic-update/01-self-update-overview.md` | 180 | `../03-general/02-powershell-build-deploy.md` |
-| `14-generic-update/01-self-update-overview.md` | 181 | `../03-general/03-self-update-mechanism.md` |
-| `14-generic-update/01-self-update-overview.md` | 182 | `../01-app/09-build-deploy.md` |
-| `14-generic-update/02-deploy-path-resolution.md` | 379 | `../03-general/02-powershell-build-deploy.md` |
-| `14-generic-update/02-deploy-path-resolution.md` | 380 | `../01-app/09-build-deploy.md` |
-| `14-generic-update/03-rename-first-deploy.md` | 236 | `../03-general/02-powershell-build-deploy.md` |
-| `14-generic-update/03-rename-first-deploy.md` | 237 | `../03-general/03-self-update-mechanism.md` |
-| `14-generic-update/03-rename-first-deploy.md` | 238 | `../01-app/09-build-deploy.md` |
-| `14-generic-update/04-build-scripts.md` | 295 | `../03-general/02-powershell-build-deploy.md` |
-| `14-generic-update/04-build-scripts.md` | 296 | `../01-app/09-build-deploy.md` |
-| `14-generic-update/05-handoff-mechanism.md` | 253 | `../03-general/02-powershell-build-deploy.md` |
-| `14-generic-update/05-handoff-mechanism.md` | 254 | `../03-general/03-self-update-mechanism.md` |
-| `14-generic-update/06-cleanup.md` | 181 | `../03-general/02-powershell-build-deploy.md` |
-| `14-generic-update/06-cleanup.md` | 182 | `../03-general/03-self-update-mechanism.md` |
-| `14-generic-update/07-console-safe-handoff.md` | 261 | `../03-general/02f-self-update-orchestration.md` |
-| `14-generic-update/07-console-safe-handoff.md` | 262 | `../03-general/03-self-update-mechanism.md` |
-| `14-generic-update/07-console-safe-handoff.md` | 263 | `../02-app-issues/03-update-sync-lock-loop.md` |
+| `14-update/01-self-update-overview.md` | 180 | `../03-general/02-powershell-build-deploy.md` |
+| `14-update/01-self-update-overview.md` | 181 | `../03-general/03-self-update-mechanism.md` |
+| `14-update/01-self-update-overview.md` | 182 | `../01-app/09-build-deploy.md` |
+| `14-update/02-deploy-path-resolution.md` | 379 | `../03-general/02-powershell-build-deploy.md` |
+| `14-update/02-deploy-path-resolution.md` | 380 | `../01-app/09-build-deploy.md` |
+| `14-update/03-rename-first-deploy.md` | 236 | `../03-general/02-powershell-build-deploy.md` |
+| `14-update/03-rename-first-deploy.md` | 237 | `../03-general/03-self-update-mechanism.md` |
+| `14-update/03-rename-first-deploy.md` | 238 | `../01-app/09-build-deploy.md` |
+| `14-update/04-build-scripts.md` | 295 | `../03-general/02-powershell-build-deploy.md` |
+| `14-update/04-build-scripts.md` | 296 | `../01-app/09-build-deploy.md` |
+| `14-update/05-handoff-mechanism.md` | 253 | `../03-general/02-powershell-build-deploy.md` |
+| `14-update/05-handoff-mechanism.md` | 254 | `../03-general/03-self-update-mechanism.md` |
+| `14-update/06-cleanup.md` | 181 | `../03-general/02-powershell-build-deploy.md` |
+| `14-update/06-cleanup.md` | 182 | `../03-general/03-self-update-mechanism.md` |
+| `14-update/07-console-safe-handoff.md` | 261 | `../03-general/02f-self-update-orchestration.md` |
+| `14-update/07-console-safe-handoff.md` | 262 | `../03-general/03-self-update-mechanism.md` |
+| `14-update/07-console-safe-handoff.md` | 263 | `../02-app-issues/03-update-sync-lock-loop.md` |
 | `16-generic-release/02-release-pipeline.md` | 218 | `../03-general/02-powershell-build-deploy.md` |
 | `16-generic-release/02-release-pipeline.md` | 219 | `../03-general/05-code-signing.md` |
 | `16-generic-release/02-release-pipeline.md` | 220 | `../01-app/12-release-command.md` |
@@ -71,7 +71,7 @@
 | `16-generic-release/06-release-metadata.md` | 174 | `../03-general/02-powershell-build-deploy.md` |
 | `16-generic-release/06-release-metadata.md` | 175 | `../01-app/13-release-data-model.md` |
 | `16-generic-release/07-known-issues-and-fixes.md` | 341 | `../02-app-issues/13-release-pipeline-dist-directory.md` |
-| `16-generic-release/07-known-issues-and-fixes.md` | 342 | `../14-generic-update/09-winres-icon-constraint.md` |
+| `16-generic-release/07-known-issues-and-fixes.md` | 342 | `../14-update/09-winres-icon-constraint.md` |
 | `16-generic-release/07-known-issues-and-fixes.md` | 343 | `../17-consolidated-guidelines/16-cicd.md` |
 
 ---
@@ -82,7 +82,7 @@
 
 | Folder | File Count |
 |--------|------------|
-| `14-generic-update/` | 9 |
+| `14-update/` | 9 |
 | `18-wp-plugin-how-to/` | 24 |
 
 ### Missing `99-consistency-report.md`
@@ -90,7 +90,7 @@
 | Folder | File Count |
 |--------|------------|
 | `13-generic-cli/` | 21 |
-| `14-generic-update/` | 9 |
+| `14-update/` | 9 |
 | `16-generic-release/` | 8 |
 | `18-wp-plugin-how-to/02-enums-and-coding-style/` | 5 |
 

@@ -167,7 +167,7 @@ CI workflow MUST:
   timestamp digests.
 - The `update` command MUST verify the signature on a downloaded
   new binary before deploying it (binary-based update path). See
-  [`../15-self-update-app-update/08-checksums-verification.md`](../15-self-update-app-update/08-checksums-verification.md).
+  [`../14-update/14-checksums-verification.md`](../14-update/14-checksums-verification.md).
 - Never commit signing keys, certs, or passphrases — even in
   encrypted form. Use CI secret storage exclusively.
 - Public verification keys MUST be published at a stable HTTPS URL
@@ -179,8 +179,8 @@ CI workflow MUST:
 
 - [04-build-scripts.md](04-build-scripts.md) §Build Step — sign as last step before deploy
 - [11-windows-icon-embedding.md](11-windows-icon-embedding.md) — sign AFTER `.syso` is linked, never before
-- [`../15-self-update-app-update/08-checksums-verification.md`](../15-self-update-app-update/08-checksums-verification.md) — checksum + signature flow for binary-based update
-- [`../15-self-update-app-update/11-release-pipeline.md`](../15-self-update-app-update/11-release-pipeline.md) — CI pipeline that orchestrates signing
+- [`../14-update/14-checksums-verification.md`](../14-update/14-checksums-verification.md) — checksum + signature flow for binary-based update
+- [`../14-update/17-release-pipeline.md`](../14-update/17-release-pipeline.md) — CI pipeline that orchestrates signing
 
 ---
 
