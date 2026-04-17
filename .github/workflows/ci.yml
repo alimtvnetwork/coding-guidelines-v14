@@ -68,3 +68,41 @@ jobs:
 
       - name: Check spec folder references (stale-link guard)
         run: python3 linter-scripts/check-spec-folder-refs.py
+
+  sync-drift:
+    name: Sync Drift Check (version.json + specTree.json)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies (no scripts)
+        # --ignore-scripts skips lifecycle hooks like postinstall — we only
+        # need the workspace populated so the sync scripts can run. The
+        # sync scripts themselves use only Node built-ins, so we don't
+        # actually need any npm packages installed; this is here in case
+        # future sync scripts depend on a package.
+        run: npm ci --ignore-scripts --no-audit --no-fund
+        continue-on-error: true
+
+      - name: Run sync scripts
+        run: npm run sync
+
+      - name: Fail if sync produced diffs
+        run: |
+          if ! git diff --exit-code --stat -- version.json src/data/specTree.json; then
+            echo ""
+            echo "::error::Drift detected — version.json or src/data/specTree.json is out of sync with source files."
+            echo "::error::Fix: run 'npm run sync' locally and commit the resulting changes."
+            echo ""
+            echo "--- Full diff ---"
+            git diff -- version.json src/data/specTree.json
+            exit 1
+          fi
+          echo " OK No drift — version.json and specTree.json are in sync with source files."
