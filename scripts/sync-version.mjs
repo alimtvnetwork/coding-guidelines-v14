@@ -232,15 +232,38 @@ function buildFolderEntries() {
 
 // ---------- aggregate stats ----------
 
-function sumStats(folders) {
-  const totalFiles = folders.reduce((a, f) => a + f.fileCount, 0);
-  const totalLines = folders.reduce((a, f) => a + f.lineCount, 0);
-  const totalBytes = folders.reduce((a, f) => a + f.byteCount, 0);
+function rootFileStats() {
+  // Top-level .md files in spec/ that don't belong to any NN-* folder
+  // (e.g. spec/00-overview.md, spec/spec-index.md, spec/health-dashboard.md).
+  let entries;
+  try { entries = readdirSync(SPEC_ROOT); } catch { return { fileCount: 0, lineCount: 0, byteCount: 0 }; }
+
+  let files = 0, lines = 0, bytes = 0;
+  for (const name of entries) {
+    if (!isVisible(name)) continue;
+    if (!name.endsWith(".md")) continue;
+    const abs = join(SPEC_ROOT, name);
+    let st;
+    try { st = statSync(abs); } catch { continue; }
+    if (!st.isFile()) continue;
+
+    files += 1;
+    bytes += st.size;
+    try { lines += readText(abs).split("\n").length; } catch { /* skip */ }
+  }
+  return { fileCount: files, lineCount: lines, byteCount: bytes };
+}
+
+function sumStats(folders, rootStats) {
+  const folderFiles = folders.reduce((a, f) => a + f.fileCount, 0);
+  const folderLines = folders.reduce((a, f) => a + f.lineCount, 0);
+  const folderBytes = folders.reduce((a, f) => a + f.byteCount, 0);
   return {
-    totalFiles,
-    totalLines,
+    totalFiles:   folderFiles + rootStats.fileCount,
+    totalLines:   folderLines + rootStats.lineCount,
     totalFolders: folders.length,
-    totalBytes,
+    totalBytes:   folderBytes + rootStats.byteCount,
+    rootFiles:    rootStats.fileCount,
   };
 }
 
@@ -259,6 +282,7 @@ function buildManifest() {
   const pkg = readJson(PKG_PATH);
   const existing = loadExistingMeta();
   const folders = buildFolderEntries();
+  const rootStats = rootFileStats();
 
   return {
     version:     pkg.version,
@@ -268,7 +292,7 @@ function buildManifest() {
       existing.description ||
       "Cross-language coding standards, error handling, CI/CD, and self-update specifications.",
     git:         readGitInfo(),
-    stats:       sumStats(folders),
+    stats:       sumStats(folders, rootStats),
     folders:     folders,
   };
 }
