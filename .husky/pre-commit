@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+# Husky pre-commit hook — auto-sync version.json + specTree.json
+# so contributors never push a drift that the CI sync-drift job
+# would reject. See spec/14-update/18-install-scripts.md and
+# .github/workflows/ci.yml (sync-drift job) for context.
+
+set -e
+
+# Skip in CI — the CI job itself runs `npm run sync` and uses
+# `git diff --exit-code` to enforce the contract. Running it again
+# inside CI would either be a no-op or hide the very drift we want
+# to catch.
+if [ -n "${CI:-}" ]; then
+  exit 0
+fi
+
+# Allow opt-out for emergencies (e.g. WIP commits where the spec is
+# intentionally inconsistent). Use: SKIP_SYNC=1 git commit ...
+if [ "${SKIP_SYNC:-0}" = "1" ]; then
+  echo "  !! SKIP_SYNC=1 — skipping pre-commit sync"
+  exit 0
+fi
+
+# Only run if package.json, scripts/, or any spec file is staged.
+# Avoids running on commits that touch only src/, tests, etc.
+STAGED=$(git diff --cached --name-only --diff-filter=ACMR)
+NEED_SYNC=0
+echo "$STAGED" | grep -qE '^(package\.json|scripts/|spec/)' && NEED_SYNC=1 || true
+
+if [ "$NEED_SYNC" = "0" ]; then
+  exit 0
+fi
+
+echo "  -> Running npm run sync (staged: package.json, scripts/, or spec/)"
+npm run --silent sync
+
+# Auto-stage the regenerated files so the commit includes the fresh
+# version.json + specTree.json. This is the whole point of the hook.
+git add version.json src/data/specTree.json
+
+echo "  OK pre-commit sync complete — version.json + specTree.json restaged"
