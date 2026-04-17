@@ -324,6 +324,13 @@ Pull fails due to local changes?
 - All paths resolved to absolute before use.
 - `go mod tidy` runs before every build for dependency consistency.
 - Version is displayed immediately after build: `<binary> version`.
+- **On Windows**, `go-winres make` MUST run before `go build` to
+  regenerate `rsrc_windows_*.syso` resource files. The build script
+  MUST fail loudly if `go-winres` is not installed — never silently
+  skip resource generation, or the resulting `.exe` will lack its
+  icon and version metadata. Install with:
+  `go install github.com/tc-hib/go-winres@latest`.
+  See [11-windows-icon-embedding.md](11-windows-icon-embedding.md).
 
 ## Application-Specific References
 
