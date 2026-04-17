@@ -68,16 +68,24 @@ func cleanGlob(dir, pattern string) {
 
 ---
 
-## Automatic Cleanup
+## Automatic Cleanup (MANDATORY)
 
-The update process should attempt automatic cleanup after a successful
-update. However, some files may be locked (e.g., the handoff copy is
-still running). In that case:
+The update process **MUST** invoke `update-cleanup` automatically at
+the end of every successful update. Cleanup is not optional and not
+deferred to the user — it runs as the final step of the update cycle.
 
-1. **Try to clean up immediately** after the update completes.
-2. **If any files are locked**, skip them silently — they will be
-   cleaned up on the next `update-cleanup` or next update.
-3. **Never fail the update** because cleanup failed.
+| Rule | Rationale |
+|------|-----------|
+| **MUST** auto-invoke `update-cleanup` after version verify passes | User never has to remember to clean up |
+| **MUST** use the *new* (deployed) binary to run the cleanup | Old binary may be missing the cleanup subcommand |
+| **MUST** ignore locked-file errors silently | Worker copy may still be alive — next run cleans it |
+| **MUST NOT** fail the update because cleanup failed | Cleanup is best-effort, never blocking |
+
+```
+# At the very end of the update worker, after version verify:
+if newBinaryExists and versionVerifyPassed:
+    run(newBinaryPath, "update-cleanup")  # best-effort, ignore exit code
+```
 
 ```go
 func attemptAutoCleanup() {
