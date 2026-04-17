@@ -179,6 +179,22 @@ build_binary() {
     mkdir -p "$bin_dir"
 
     cd "$TOOL_DIR"
+
+    # [2.5/4] Windows-only: regenerate .syso resources
+    # See 11-windows-icon-embedding.md — .syso files are NOT
+    # committed and MUST be regenerated before every Windows build.
+    # Detect Git Bash / MSYS / Cygwin via uname.
+    case "$(uname -s)" in
+        MINGW*|MSYS*|CYGWIN*)
+            write_step "2.5/4" "Generating Windows resources (.syso)"
+            if ! command -v go-winres &>/dev/null; then
+                write_fail "go-winres not installed. Run: go install github.com/tc-hib/go-winres@latest"
+                exit 1
+            fi
+            go-winres make || { write_fail "go-winres make failed"; exit 1; }
+            ;;
+    esac
+
     local abs_repo_root
     abs_repo_root=$(cd "$REPO_ROOT" && pwd)
     local ldflags="-X '<module>/constants.RepoPath=$abs_repo_root'"
