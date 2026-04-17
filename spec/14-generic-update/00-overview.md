@@ -54,6 +54,7 @@ The defining property: **the running binary is renamed, never deleted, before th
 | 06 | [06-cleanup.md](./06-cleanup.md) | Post-handoff cleanup: removing renamed old binary, retry on Windows lock | ✅ Active |
 | 07 | [07-console-safe-handoff.md](./07-console-safe-handoff.md) | Windows console safety: detached vs attached, stdout/stderr inheritance | ✅ Active |
 | 08 | [08-repo-path-sync.md](./08-repo-path-sync.md) | Cross-repo path sync: keeping deploy paths consistent across CLI tools | ✅ Active |
+| 09 | [`../15-self-update-app-update/17-install-script-version-probe.md`](../15-self-update-app-update/17-install-script-version-probe.md) | Install-script latest-version probe + hand-off (lives in 15/, referenced here) | 🔗 Linked |
 
 ---
 
