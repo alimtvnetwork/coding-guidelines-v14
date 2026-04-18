@@ -57,8 +57,10 @@ function InstallCard({ item }: { item: InstallCommand }) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center gap-2 rounded-md border border-border bg-secondary/60 px-3 py-2.5 font-mono text-xs text-foreground/90 sm:text-sm">
-          <code className="flex-1 overflow-x-auto whitespace-nowrap">{item.command}</code>
+        <div className="flex items-center gap-2 rounded-md border border-border bg-secondary/60 px-3 py-2.5 font-mono text-foreground/90">
+          <code className="flex-1 break-all text-[11px] leading-relaxed sm:text-xs md:text-sm md:break-normal md:whitespace-nowrap">
+            {item.command}
+          </code>
           <CopyButton command={item.command} />
         </div>
       </CardContent>
@@ -69,14 +71,14 @@ function InstallCard({ item }: { item: InstallCommand }) {
 export function InstallSection() {
   return (
     <section className="border-y border-border bg-secondary/20 py-20">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="mb-10 text-center">
           <h2 className="mb-3 text-3xl font-bold text-foreground">Install in One Line</h2>
           <p className="text-muted-foreground">
             Version-pinned install scripts with SHA-256 verification
           </p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="flex flex-col gap-4">
           {installCommands.map((item) => (
             <InstallCard key={item.platform} item={item} />
           ))}
