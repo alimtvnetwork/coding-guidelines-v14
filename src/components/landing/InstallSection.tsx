@@ -44,6 +44,45 @@ function CopyButton({ command }: { command: string }) {
   );
 }
 
+type TokenKind = "command" | "flag" | "url" | "pipe" | "text";
+
+const KNOWN_COMMANDS = new Set(["irm", "iex", "curl", "bash", "sh", "wget", "powershell", "pwsh"]);
+
+function classifyToken(token: string, index: number): TokenKind {
+  if (token === "|" || token === "&&" || token === "||" || token === ";") return "pipe";
+  if (/^https?:\/\//i.test(token)) return "url";
+  if (/^-/.test(token)) return "flag";
+  if (index === 0 || KNOWN_COMMANDS.has(token.toLowerCase())) return "command";
+  return "text";
+}
+
+const TOKEN_CLASS: Record<TokenKind, string> = {
+  command: "text-primary font-medium",
+  flag: "text-accent-foreground/80",
+  url: "text-muted-foreground/90 underline decoration-dotted decoration-muted-foreground/40 underline-offset-2",
+  pipe: "text-destructive/80 font-semibold",
+  text: "text-foreground/85",
+};
+
+function HighlightedCommand({ command }: { command: string }) {
+  const tokens = command.split(/(\s+)/);
+  let nonSpaceIndex = -1;
+  return (
+    <>
+      {tokens.map((token, i) => {
+        if (/^\s+$/.test(token)) return <span key={i}>{token}</span>;
+        nonSpaceIndex += 1;
+        const kind = classifyToken(token, nonSpaceIndex);
+        return (
+          <span key={i} className={TOKEN_CLASS[kind]}>
+            {token}
+          </span>
+        );
+      })}
+    </>
+  );
+}
+
 function InstallCard({ item }: { item: InstallCommand }) {
   return (
     <Card className="overflow-hidden border-border/60 bg-card/50 transition-colors hover:border-primary/40">
@@ -58,8 +97,9 @@ function InstallCard({ item }: { item: InstallCommand }) {
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-2 rounded-md border border-border bg-secondary/60 px-3 py-2.5 font-mono text-foreground/90">
+          <span className="mr-1 select-none text-muted-foreground/60">$</span>
           <code className="flex-1 break-all text-[11px] leading-relaxed sm:text-xs md:text-sm md:break-normal md:whitespace-nowrap">
-            {item.command}
+            <HighlightedCommand command={item.command} />
           </code>
           <CopyButton command={item.command} />
         </div>
