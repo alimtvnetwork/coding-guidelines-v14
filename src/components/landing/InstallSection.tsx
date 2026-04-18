@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Check, Copy, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import versionData from "@/../version.json";
 
 type InstallCommand = {
   platform: string;
@@ -113,8 +115,13 @@ export function InstallSection() {
     <section className="border-y border-border bg-secondary/20 py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-10 text-center">
-          <h2 className="mb-3 text-3xl font-bold text-foreground">Install in One Line</h2>
-          <p className="text-muted-foreground">
+          <div className="flex items-center justify-center gap-3">
+            <h2 className="text-3xl font-bold text-foreground">Install in One Line</h2>
+            <Badge variant="secondary" className="text-xs">
+              Latest: v{versionData.version}
+            </Badge>
+          </div>
+          <p className="mt-3 text-muted-foreground">
             Version-pinned install scripts with SHA-256 verification
           </p>
         </div>
