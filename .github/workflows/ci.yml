@@ -95,14 +95,51 @@ jobs:
         run: npm run sync
 
       - name: Fail if sync produced diffs
+        # We strip the `git` block and `updated` date from version.json before
+        # diffing, because those fields legitimately change between local and
+        # CI checkouts (different SHA, different branch, different day) and
+        # would otherwise cause false-positive drift failures. The structural
+        # content (version, stats, folders[]) must still match exactly.
         run: |
-          if ! git diff --exit-code --stat -- version.json src/data/specTree.json; then
+          node -e "
+            const fs = require('fs');
+            const v = JSON.parse(fs.readFileSync('version.json', 'utf8'));
+            delete v.git;
+            delete v.updated;
+            fs.writeFileSync('version.json', JSON.stringify(v, null, 2) + '\n');
+          "
+          git checkout -- version.json.bak 2>/dev/null || true
+          git stash push -u -m drift-check version.json src/data/specTree.json >/dev/null 2>&1 || true
+          git stash pop >/dev/null 2>&1 || true
+          # Re-run sync, then strip volatile fields from BOTH the working copy
+          # and the committed copy before comparing.
+          npm run sync >/dev/null
+          node -e "
+            const fs = require('fs');
+            for (const ref of ['HEAD', 'WORK']) {
+              const src = ref === 'HEAD'
+                ? require('child_process').execSync('git show HEAD:version.json').toString()
+                : fs.readFileSync('version.json', 'utf8');
+              const v = JSON.parse(src);
+              delete v.git;
+              delete v.updated;
+              fs.writeFileSync(ref === 'HEAD' ? '/tmp/version.head.json' : '/tmp/version.work.json',
+                JSON.stringify(v, null, 2) + '\n');
+            }
+          "
+          if ! diff -u /tmp/version.head.json /tmp/version.work.json; then
             echo ""
-            echo "::error::Drift detected — version.json or src/data/specTree.json is out of sync with source files."
+            echo "::error::Drift detected in version.json (excluding git/updated fields)."
+            echo "::error::Fix: run 'npm run sync' locally and commit the resulting changes."
+            exit 1
+          fi
+          if ! git diff --exit-code --stat -- src/data/specTree.json; then
+            echo ""
+            echo "::error::Drift detected — src/data/specTree.json is out of sync with spec/ source files."
             echo "::error::Fix: run 'npm run sync' locally and commit the resulting changes."
             echo ""
             echo "--- Full diff ---"
-            git diff -- version.json src/data/specTree.json
+            git diff -- src/data/specTree.json
             exit 1
           fi
-          echo " OK No drift — version.json and specTree.json are in sync with source files."
+          echo " OK No drift — structural content of version.json and specTree.json is in sync."
