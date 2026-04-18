@@ -3,6 +3,7 @@ import { Book, CheckCircle, Code, FileText, Shield, Zap, ArrowRight, Layers, Ban
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import versionInfo from "../../version.json";
+import { InstallSection } from "@/components/landing/InstallSection";
 
 const codeRedRules = [
   { rule: "No nested if statements", desc: "Flatten all conditionals — zero nesting allowed", icon: Ban, docPath: "spec/02-coding-guidelines/03-coding-guidelines-spec/01-cross-language/04-code-style/01-braces-and-nesting.md" },
@@ -236,6 +237,7 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <HeroSection />
+      <InstallSection />
       <CodeRedSection />
       <QuickReferenceSection />
       <SpecSectionsGrid />
