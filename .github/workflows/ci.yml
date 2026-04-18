@@ -52,10 +52,11 @@ jobs:
 
       - name: Verify linter scripts present
         run: |
-          test -f linter-scripts/validate-guidelines.go     || { echo "::error::validate-guidelines.go missing"; exit 1; }
-          test -f linter-scripts/validate-guidelines.py     || { echo "::error::validate-guidelines.py missing"; exit 1; }
-          test -f linter-scripts/check-axios-version.sh     || { echo "::error::check-axios-version.sh missing"; exit 1; }
-          test -f linter-scripts/check-spec-folder-refs.py  || { echo "::error::check-spec-folder-refs.py missing"; exit 1; }
+          test -f linter-scripts/validate-guidelines.go         || { echo "::error::validate-guidelines.go missing"; exit 1; }
+          test -f linter-scripts/validate-guidelines.py         || { echo "::error::validate-guidelines.py missing"; exit 1; }
+          test -f linter-scripts/check-axios-version.sh         || { echo "::error::check-axios-version.sh missing"; exit 1; }
+          test -f linter-scripts/check-spec-folder-refs.py      || { echo "::error::check-spec-folder-refs.py missing"; exit 1; }
+          test -f linter-scripts/check-forbidden-spec-paths.sh  || { echo "::error::check-forbidden-spec-paths.sh missing"; exit 1; }
 
       - name: Run Go validator (spec)
         run: go run linter-scripts/validate-guidelines.go --path spec --max-lines 15
@@ -68,6 +69,9 @@ jobs:
 
       - name: Check spec folder references (stale-link guard)
         run: python3 linter-scripts/check-spec-folder-refs.py
+
+      - name: Check forbidden spec paths (re-split + merge-proposal guard)
+        run: bash linter-scripts/check-forbidden-spec-paths.sh
 
   sync-drift:
     name: Sync Drift Check (version.json + specTree.json)
