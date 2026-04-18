@@ -1,6 +1,6 @@
 # Specification: React Execution Logger
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Created:** 2026-03-09  
 **Status:** Implemented
 

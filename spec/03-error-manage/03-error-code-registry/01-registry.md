@@ -1,7 +1,7 @@
 # Error Code Registry - Master List
 
 > **Last Updated:** 2026-03-09  
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 > **Maintainer:** AI/Human collaboration  
 > **Wave 1 Remediation:** Error collisions resolved, paths corrected, missing ranges registered
 

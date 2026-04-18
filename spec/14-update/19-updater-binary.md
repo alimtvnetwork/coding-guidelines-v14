@@ -1,6 +1,6 @@
 # Updater Binary
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -221,4 +221,4 @@ The updater embeds fewer constants than the main binary:
 
 ---
 
-*Updater binary — v3.1.0 — 2026-04-13*
+*Updater binary — v3.2.0 — 2026-04-13*

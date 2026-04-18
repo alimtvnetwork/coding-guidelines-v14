@@ -1,7 +1,7 @@
 # Universal Response Envelope Specification
 
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Last Updated:** 2026-04-16  
 
 > **All systems (Go backend, PHP WordPress plugin, React frontend) MUST conform to this structure.**

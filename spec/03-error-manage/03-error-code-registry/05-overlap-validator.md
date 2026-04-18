@@ -1,7 +1,7 @@
 # 02 — Error Code Registry Overlap Validator
 
 > **Created:** 2026-02-28  
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 > **Status:** Spec Ready  
 > **Owner:** SM CLI tooling  
 > **Cross-Reference:** `spec/03-error-manage/03-error-code-registry/01-registry.md`

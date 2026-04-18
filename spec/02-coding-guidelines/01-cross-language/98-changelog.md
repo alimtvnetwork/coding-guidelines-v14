@@ -1,14 +1,14 @@
 # Coding Guidelines — Changelog
 
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Last Updated:** 2026-04-16  
 
 All notable changes to the Coding Guidelines specification are documented here.
 
 ---
 
-## v3.1.0 — 2026-03-31
+## v3.2.0 — 2026-03-31
 
 ### Structural Improvements
 

@@ -1,6 +1,6 @@
 # PHP Spacing and Import Rules
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16  
 **Applies to:** All PHP files in the `RiseupAsia` namespace  
 **Source:** Consolidated from `04-coding-guidelines-wpon/07-php-standards/php-spacing-and-imports.md`

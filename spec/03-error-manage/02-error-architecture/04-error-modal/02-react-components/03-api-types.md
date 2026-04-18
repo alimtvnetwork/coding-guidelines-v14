@@ -87,7 +87,7 @@ class ErrorApiService {
 export const errorApi = new ErrorApiService(request);
 ```
 
-### Violations Fixed (v3.1.0 → v4.0.0)
+### Violations Fixed (v3.2.0 → v4.0.0)
 
 | Previous | Violation | Fix |
 |----------|-----------|-----|

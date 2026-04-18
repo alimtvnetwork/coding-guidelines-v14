@@ -69,7 +69,7 @@ export function useSessionDiagnostics(sessionId?: string): SessionDiagnosticsRes
 }
 ```
 
-### Violations Fixed (v3.1.0 → v4.0.0)
+### Violations Fixed (v3.2.0 → v4.0.0)
 
 | Previous | Violation | Fix |
 |----------|-----------|-----|

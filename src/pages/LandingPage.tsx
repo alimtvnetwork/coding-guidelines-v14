@@ -32,7 +32,7 @@ function HeroBadge() {
   return (
     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm text-muted-foreground">
       <CheckCircle className="h-4 w-4 text-primary" />
-      v3.1.0 — Production-Ready
+      v3.2.0 — Production-Ready
     </div>
   );
 }

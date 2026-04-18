@@ -1,7 +1,7 @@
 # ADR: Universal Response Envelope — Architecture Decision Record
 
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 
 > **Status:** Accepted  
 > **Date:** 2026-01-20  

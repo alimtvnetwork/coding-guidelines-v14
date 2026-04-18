@@ -1,6 +1,6 @@
 # Code Signing
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -174,4 +174,4 @@ If signing is disabled, steps 2–3 are skipped and unsigned binaries proceed di
 
 ---
 
-*Code signing — v3.1.0 — 2026-04-10*
+*Code signing — v3.2.0 — 2026-04-10*

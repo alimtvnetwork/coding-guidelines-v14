@@ -1,6 +1,6 @@
 # `.lovable/` Folder Structure Guide
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -188,4 +188,4 @@ suggestions.md (summary) → suggestions/ (details) → suggestions/completed/
 
 ---
 
-*`.lovable/` folder structure guide — v3.1.0 — 2026-04-16*
+*`.lovable/` folder structure guide — v3.2.0 — 2026-04-16*

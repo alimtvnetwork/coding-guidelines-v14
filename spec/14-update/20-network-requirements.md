@@ -1,6 +1,6 @@
 # Network Requirements
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -237,4 +237,4 @@ The HTTP client must follow redirects (up to 10). Go's default `http.Client` fol
 
 ---
 
-*Network requirements — v3.1.0 — 2026-04-13*
+*Network requirements — v3.2.0 — 2026-04-13*

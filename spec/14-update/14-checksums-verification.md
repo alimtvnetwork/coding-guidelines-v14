@@ -1,6 +1,6 @@
 # Checksums & Verification
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -147,4 +147,4 @@ Include a formatted checksum table in the release description:
 
 ---
 
-*Checksums & verification — v3.1.0 — 2026-04-10*
+*Checksums & verification — v3.2.0 — 2026-04-10*

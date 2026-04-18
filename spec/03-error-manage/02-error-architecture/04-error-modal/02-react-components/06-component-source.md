@@ -91,7 +91,7 @@ function LogLine({ line }: { line: string }): JSX.Element {
 > success: "hsl(var(--success))",
 > ```
 
-### Violations Fixed (v3.1.0 → v4.0.0)
+### Violations Fixed (v3.2.0 → v4.0.0)
 
 | Previous | Violation | Fix |
 |----------|-----------|-----|
@@ -197,7 +197,7 @@ function mapErrorContext(context: ErrorLog['context']): ErrorContext | undefined
 }
 ```
 
-### Violations Fixed (v3.1.0 → v4.0.0)
+### Violations Fixed (v3.2.0 → v4.0.0)
 
 | Previous | Violation | Fix |
 |----------|-----------|-----|

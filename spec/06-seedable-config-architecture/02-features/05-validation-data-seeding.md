@@ -1,6 +1,6 @@
 # Validation Data Seeding Pattern
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Created:** 2026-03-09  
 **Status:** Active  
 **Purpose:** Define pattern for loading validation arrays and lookup data from CW Config → Root DB

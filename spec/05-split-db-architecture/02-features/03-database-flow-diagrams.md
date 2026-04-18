@@ -1,6 +1,6 @@
 # Split DB Architecture: Complete Database Flow Diagram
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Status:** Active  
 **Updated:** 2026-04-16  
 **Parent:** [00-overview.md](../00-overview.md)
