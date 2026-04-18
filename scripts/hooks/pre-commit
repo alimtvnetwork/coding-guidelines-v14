@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+# ============================================================
+# pre-commit hook — runs all linter-scripts/check-*.sh and
+# check-*.py guards before allowing a commit.
+#
+# Install (one-time, per clone):
+#   bash scripts/hooks/install-hooks.sh
+#
+# Bypass (NOT recommended):
+#   git commit --no-verify
+# ============================================================
+
+set -uo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+FAILED=0
+RAN=0
+
+run_guard() {
+  local script="$1"
+  local runner="$2"
+  RAN=$((RAN + 1))
+  echo ""
+  echo "── $script ──"
+  if $runner "$script"; then
+    echo "✅ pass"
+  else
+    echo "❌ fail: $script"
+    FAILED=$((FAILED + 1))
+  fi
+}
+
+echo "🪝 pre-commit: running linter-scripts guards..."
+
+shopt -s nullglob
+for script in linter-scripts/check-*.sh; do
+  run_guard "$script" "bash"
+done
+for script in linter-scripts/check-*.py; do
+  run_guard "$script" "python3"
+done
+shopt -u nullglob
+
+echo ""
+echo "════════════════════════════════════════════════════════════"
+if [[ "$RAN" -eq 0 ]]; then
+  echo "ℹ️  No guards found under linter-scripts/check-*. Allowing commit."
+  exit 0
+fi
+
+if [[ "$FAILED" -gt 0 ]]; then
+  echo "❌ $FAILED of $RAN guard(s) failed. Commit blocked."
+  echo "   Fix the issues above, or bypass with: git commit --no-verify"
+  exit 1
+fi
+
+echo "✅ All $RAN guard(s) passed. Proceeding with commit."
+exit 0
