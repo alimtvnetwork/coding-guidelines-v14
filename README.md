@@ -42,7 +42,62 @@ chmod +x install.sh
 .\install.ps1
 ```
 
-### Override source repo or branch
+### Power-user flags
+
+Both `install.sh` and `install.ps1` support the same set of flags:
+
+| Bash flag | PowerShell flag | What it does |
+|-----------|-----------------|--------------|
+| `--repo owner/repo` | `-Repo owner/repo` | Override source repository |
+| `--branch main` | `-Branch main` | Override branch (ignored when version is set) |
+| `--version vX.Y.Z` | `-Version vX.Y.Z` | Install a specific release tag (also disables version probe) |
+| `--folders a,b,c` | `-Folders a,b,c` | Comma/array list of folders. Subpaths OK (`spec/14-update`) |
+| `--dest /path` | `-Dest C:\path` | Install destination (default: current directory) |
+| `--config file.json` | `-ConfigFile file.json` | Use a custom config file |
+| `--prompt` | `-Prompt` | Ask before each overwrite: `[y]es / [n]o / [a]ll / [s]kip-all` |
+| `--force` | `-Force` | Overwrite all existing files without prompting |
+| `--dry-run` | `-DryRun` | Print what would change; write nothing |
+| `--list-versions` | `-ListVersions` | List available release tags and exit |
+| `--list-folders` | `-ListFolders` | List top-level folders for the chosen ref and exit |
+| `--no-probe` | `-NoProbe` | Skip the latest-version auto-probe |
+
+`--prompt` and `--force` are mutually exclusive.
+
+#### Examples
+
+Install only the spec folder from a pinned release, with confirmation prompts:
+
+```bash
+./install.sh --version v1.22.0 --folders spec --prompt
+```
+
+```powershell
+.\install.ps1 -Version v1.22.0 -Folders spec -Prompt
+```
+
+Preview a partial install without writing anything:
+
+```bash
+./install.sh --folders spec/14-update,linter-scripts --dry-run
+```
+
+```powershell
+.\install.ps1 -Folders spec/14-update,linter-scripts -DryRun
+```
+
+Discover what's available:
+
+```bash
+./install.sh --list-versions
+./install.sh --list-folders --version v1.22.0
+```
+
+```powershell
+.\install.ps1 -ListVersions
+.\install.ps1 -ListFolders -Version v1.22.0
+```
+
+Override repo/branch (legacy form, still supported):
 
 ```bash
 ./install.sh --repo alimtvnetwork/coding-guidelines-v14 --branch develop
