@@ -15,9 +15,9 @@ all Go CLI tools in the Riseup Asia stack. Covers the full lifecycle:
 release production → install → version probing → self-update →
 rename-first deploy → handoff → verification → cleanup.
 
-This folder is the result of the 2026-04-17 merge of the former
-`14-generic-update/` and `15-self-update-app-update/` folders. See
-[MERGE-PROPOSAL.md](./MERGE-PROPOSAL.md) for the rationale.
+This folder consolidates all update-related specs (formerly split across
+`14-generic-update/` and `15-self-update-app-update/`) into a single source
+of truth. Do not re-split.
 
 Any CLI that ships an `install` or `update` (or `self-update`)
 subcommand MUST follow the contracts in this folder.
