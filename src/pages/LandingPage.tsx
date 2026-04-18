@@ -110,13 +110,20 @@ function CodeRedCard({ item }: { item: typeof codeRedRules[number] }) {
 
 function CodeRedSection() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
-      <div className="mb-12 text-center">
-        <h2 className="mb-3 text-3xl font-bold text-foreground">Code-Red Rules</h2>
-        <p className="text-muted-foreground">Auto PR reject — these are non-negotiable</p>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {codeRedRules.map((item) => <CodeRedCard key={item.rule} item={item} />)}
+    <section className="relative overflow-hidden border-y border-destructive/20">
+      {/* Subtle red gradient — radial bloom + diagonal wash, low alpha so cards stay legible */}
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--destructive)/0.18),transparent_60%),linear-gradient(135deg,hsl(var(--destructive)/0.08),transparent_55%,hsl(var(--destructive)/0.06))]"
+      />
+      <div className="relative mx-auto max-w-6xl px-6 py-20">
+        <div className="mb-12 text-center">
+          <h2 className="mb-3 text-3xl font-bold text-foreground">Code-Red Rules</h2>
+          <p className="text-muted-foreground">Auto PR reject — these are non-negotiable</p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {codeRedRules.map((item) => <CodeRedCard key={item.rule} item={item} />)}
+        </div>
       </div>
     </section>
   );
