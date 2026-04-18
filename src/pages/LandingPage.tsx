@@ -84,8 +84,8 @@ function HeroSection() {
 function CodeRedCardHeader({ icon: IconComponent, rule }: { icon: typeof codeRedRules[number]["icon"]; rule: string }) {
   return (
     <CardHeader className="pb-2">
-      <CardTitle className="flex items-center gap-2 text-base text-foreground">
-        <IconComponent className="h-5 w-5 text-destructive transition-transform duration-300 group-hover:scale-125" />
+      <CardTitle className="flex items-center gap-2 text-base font-semibold text-foreground">
+        <IconComponent className="h-5 w-5 text-destructive-foreground drop-shadow-[0_0_6px_hsl(var(--destructive)/0.6)] transition-transform duration-300 group-hover:scale-125" />
         {rule}
       </CardTitle>
     </CardHeader>
@@ -97,12 +97,12 @@ function CodeRedCard({ item }: { item: typeof codeRedRules[number] }) {
 
   return (
     <Card
-      className="group cursor-pointer border-destructive/20 bg-destructive/5 transition-all duration-300 hover:scale-[1.03] hover:border-destructive/50 hover:bg-destructive/10 hover:shadow-lg hover:shadow-destructive/10"
+      className="group cursor-pointer border-2 border-destructive/40 bg-destructive/10 transition-all duration-300 hover:scale-[1.03] hover:border-destructive/70 hover:bg-destructive/15 hover:shadow-lg hover:shadow-destructive/20"
       onClick={() => navigate(`/docs?file=${encodeURIComponent(item.docPath)}`)}
     >
       <CodeRedCardHeader icon={item.icon} rule={item.rule} />
       <CardContent>
-        <p className="text-sm text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80">{item.desc}</p>
+        <p className="text-sm font-medium text-foreground/90 transition-colors duration-300 group-hover:text-foreground">{item.desc}</p>
       </CardContent>
     </Card>
   );
