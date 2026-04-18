@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Book, CheckCircle, Code, FileText, Shield, Zap, ArrowRight, Layers, Ban, ToggleLeft, Hash, Ruler, ShieldAlert, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import versionInfo from "../../version.json";
 
 const codeRedRules = [
   { rule: "No nested if statements", desc: "Flatten all conditionals — zero nesting allowed", icon: Ban, docPath: "spec/02-coding-guidelines/03-coding-guidelines-spec/01-cross-language/04-code-style/01-braces-and-nesting.md" },
@@ -32,7 +33,7 @@ function HeroBadge() {
   return (
     <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm text-muted-foreground">
       <CheckCircle className="h-4 w-4 text-primary" />
-      v3.2.0 — Production-Ready
+      v{versionInfo.version} — Production-Ready
     </div>
   );
 }
