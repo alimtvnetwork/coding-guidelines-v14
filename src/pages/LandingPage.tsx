@@ -124,7 +124,7 @@ function CodeRedSection() {
 
 function ReferenceItem({ item }: { item: string }) {
   return (
-    <li className="flex items-start gap-2 text-sm text-muted-foreground">
+    <li className="flex items-start gap-2 text-sm font-medium text-foreground/90">
       <CheckCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
       <span>{item}</span>
     </li>
@@ -182,7 +182,7 @@ function SpecSectionCard({ section }: { section: typeof specSections[number] }) 
             <section.icon className="h-5 w-5 text-primary" />
           </div>
           <CardTitle className="text-lg">{section.title}</CardTitle>
-          <CardDescription>{section.desc}</CardDescription>
+          <CardDescription className="text-foreground/80">{section.desc}</CardDescription>
         </CardHeader>
       </Card>
     </Link>
@@ -217,7 +217,7 @@ function StatsSection() {
         {STATS.map((stat) => (
           <div key={stat.label}>
             <div className="text-3xl font-bold text-primary">{stat.value}</div>
-            <div className="mt-1 text-sm text-muted-foreground">{stat.label}</div>
+            <div className="mt-1 text-sm font-medium text-foreground/80">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -240,7 +240,7 @@ const LandingPage = () => {
           {" "}— Chief Software Engineer,{" "}
           <a href="https://riseup-asia.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Riseup Asia LLC</a>
         </p>
-        <p className="text-xs">Coding Guidelines v3.2.0 — Last updated 2026-04-16</p>
+        <p className="text-xs">Coding Guidelines v{versionInfo.version} — Last updated {versionInfo.updated}</p>
       </footer>
     </div>
   );
