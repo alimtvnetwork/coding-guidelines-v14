@@ -1,6 +1,6 @@
 # Release Versioning
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -697,4 +697,4 @@ git tag -d v1.2.0
 
 ---
 
-*Release versioning — v3.1.0 — 2026-04-10*
+*Release versioning — v3.2.0 — 2026-04-10*

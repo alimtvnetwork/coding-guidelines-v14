@@ -1,6 +1,6 @@
 # Diagrams — Self-Update & App Update
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -42,4 +42,4 @@ These `.mmd` files use Mermaid flowchart syntax. To render:
 
 ---
 
-*Diagrams Overview — v3.1.0 — 2026-04-15*
+*Diagrams Overview — v3.2.0 — 2026-04-15*

@@ -158,7 +158,7 @@ export interface CapturedError {
 }
 ```
 
-### Violations Fixed (v3.1.0 → v4.0.0)
+### Violations Fixed (v3.2.0 → v4.0.0)
 
 | Previous | Violation | Fix |
 |----------|-----------|-----|
@@ -218,7 +218,7 @@ export interface SessionDiagnostics {
 }
 ```
 
-### Violations Fixed (v3.1.0 → v4.0.0)
+### Violations Fixed (v3.2.0 → v4.0.0)
 
 | Previous | Violation | Fix |
 |----------|-----------|-----|

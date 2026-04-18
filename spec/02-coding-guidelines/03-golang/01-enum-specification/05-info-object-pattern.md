@@ -1,6 +1,6 @@
 # Info-Object Pattern for Go Enums
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Status:** Complete  
 **Updated:** 2026-04-16
 
@@ -343,4 +343,4 @@ func (v Variant) IsTerminal() bool    { return v.Info().IsTerminal }
 
 ---
 
-*Info-object pattern for Go enums — v3.1.0 — 2026-04-16*
+*Info-object pattern for Go enums — v3.2.0 — 2026-04-16*

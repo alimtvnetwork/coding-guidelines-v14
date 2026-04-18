@@ -268,9 +268,9 @@ The `.lovable/` directory holds all AI-readable project knowledge.
 
 | Change Type | Version Bump | Example |
 |-------------|-------------|---------|
-| Fix typo, clarify wording | Patch (X.Y.+1) | 3.1.0 → 3.1.1 |
-| Add new section, expand content | Minor (X.+1.0) | 3.1.0 → 3.2.0 |
-| Restructure, rename, breaking change | Major (+1.0.0) | 3.1.0 → 4.0.0 |
+| Fix typo, clarify wording | Patch (X.Y.+1) | 3.2.0 → 3.1.1 |
+| Add new section, expand content | Minor (X.+1.0) | 3.2.0 → 3.2.0 |
+| Restructure, rename, breaking change | Major (+1.0.0) | 3.2.0 → 4.0.0 |
 
 ---
 

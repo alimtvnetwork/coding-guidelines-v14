@@ -1,6 +1,6 @@
 # AI Quick Reference Checklist
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16  
 **Purpose:** Condensed, machine-parsable checklist for AI to validate generated code in <30 seconds
 

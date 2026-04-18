@@ -1,6 +1,6 @@
 # Go Binary — Complete Workflow Reference
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -420,4 +420,4 @@ Key rules:
 
 ---
 
-*Complete workflow reference — v3.1.0 — 2026-04-13*
+*Complete workflow reference — v3.2.0 — 2026-04-13*

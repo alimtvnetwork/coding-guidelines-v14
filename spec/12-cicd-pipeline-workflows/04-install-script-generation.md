@@ -1,6 +1,6 @@
 # Install Script Generation
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -206,4 +206,4 @@ The release pipeline generates **version-pinned** scripts. Generic installers (t
 
 ---
 
-*Install script generation — v3.1.0 — 2026-04-10*
+*Install script generation — v3.2.0 — 2026-04-10*

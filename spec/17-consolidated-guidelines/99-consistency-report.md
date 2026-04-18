@@ -95,7 +95,7 @@
 | 2026-04-14 | 4.0.0 | All files rewritten as standalone self-contained references |
 | 2026-04-15 | 5.0.0 | Added 18-database-conventions.md; fixed plural PK naming |
 | 2026-04-15 | 5.1.0 | Enforced singular table names across all consolidated and source specs |
-| 2026-04-16 | 3.1.0 | Cross-reference validation after error-manage restructuring, coding-guidelines flattening, global version bump to 3.1.0. Dashboard: 0 broken links. |
+| 2026-04-16 | 3.2.0 | Cross-reference validation after error-manage restructuring, coding-guidelines flattening, global version bump to 3.1.0. Dashboard: 0 broken links. |
 | 2026-04-16 | 3.3.0 | Reflected recent expansions: `01-spec-authoring.md` 90%→95% (330+ lines), `16-app-design-system-and-ui.md` 88%→93% (530+ lines), `22-app-database.md` added (310+ lines, 90%), placeholders 11/12/13 expanded to 88%. Added implementability summary table. Total: 23 files, 17 at 90%+. |
 
 ---

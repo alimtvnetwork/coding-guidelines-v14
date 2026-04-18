@@ -1,7 +1,7 @@
 # Error Modal — Copy & Export Formats (Index)
 
 > **Parent:** [Error Modal Spec](../00-overview.md)  
-> **Version:** 3.1.0  
+> **Version:** 3.2.0  
 > **Updated:** 2026-03-31  
 > **Status:** Active  
 > **AI Confidence:** 95%  

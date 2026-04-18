@@ -1,6 +1,6 @@
 # CLI Module Template
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -69,7 +69,7 @@ This is the **first file** to create. It must include:
 ````markdown
 # {CLI Name}
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Status:** Draft  
 **Updated:** YYYY-MM-DD  
 **Language:** {Go | Rust | TypeScript}

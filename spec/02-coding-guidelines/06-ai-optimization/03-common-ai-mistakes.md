@@ -1,6 +1,6 @@
 # Common AI Mistakes
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16  
 **Purpose:** Real examples of mistakes AI commonly makes when generating code for this project
 

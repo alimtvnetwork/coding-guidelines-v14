@@ -57,7 +57,7 @@ All placeholder files (11, 12, 13) have been expanded with real content. `10-res
 
 ---
 
-## Cumulative Fix Summary (v3.1.0 → v10.0.0)
+## Cumulative Fix Summary (v3.2.0 → v10.0.0)
 
 | Action | Count |
 |--------|-------|

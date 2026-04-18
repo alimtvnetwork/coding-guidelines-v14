@@ -1,6 +1,6 @@
 # Cross-Compilation
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -160,4 +160,4 @@ For the host-architecture binary, run a quick smoke test:
 
 ---
 
-*Cross-compilation — v3.1.0 — 2026-04-11*
+*Cross-compilation — v3.2.0 — 2026-04-11*

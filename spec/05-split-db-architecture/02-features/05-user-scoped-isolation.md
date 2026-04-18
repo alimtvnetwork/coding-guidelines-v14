@@ -1,6 +1,6 @@
 # Split DB Architecture: User-Scoped Isolation
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Created:** 2026-03-09  
 **Status:** Active  
 **Parent:** [00-overview.md](../00-overview.md)

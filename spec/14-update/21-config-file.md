@@ -1,6 +1,6 @@
 # Configuration File
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -203,4 +203,4 @@ The **user-level** `config.json` described here is different from the **project-
 
 ---
 
-*Configuration file — v3.1.0 — 2026-04-13*
+*Configuration file — v3.2.0 — 2026-04-13*

@@ -1,6 +1,6 @@
 # Consistency Report: PHP Standards
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Generated:** 2026-03-31  
 **Health Score:** 100/100 (A+)
 
@@ -55,6 +55,6 @@
 
 | Date | Version | Action |
 |------|---------|--------|
-| 2026-03-31 | 3.1.0 | Reclassified numbering gaps from warning to observation — intentional gaps don't reduce health score |
+| 2026-03-31 | 3.2.0 | Reclassified numbering gaps from warning to observation — intentional gaps don't reduce health score |
 | 2026-03-31 | 3.0.0 | Updated — removed deleted files, added 08-10, documented numbering gaps |
 | 2026-03-22 | 2.0.0 | Regenerated — inventory synchronized with disk contents |

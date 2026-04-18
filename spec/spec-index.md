@@ -95,7 +95,7 @@
 | `spec/02-coding-guidelines/01-cross-language/27-types-folder-convention.md` | Types Folder Convention & Common Type Aliases | 1.0.0 |
 | `spec/02-coding-guidelines/01-cross-language/28-slug-conventions.md` | Slug Conventions | 1.0.0 |
 | `spec/02-coding-guidelines/01-cross-language/97-acceptance-criteria.md` | Coding Guidelines — Acceptance Criteria | 1.0.0 |
-| `spec/02-coding-guidelines/01-cross-language/98-changelog.md` | Coding Guidelines — Changelog | 3.1.0 |
+| `spec/02-coding-guidelines/01-cross-language/98-changelog.md` | Coding Guidelines — Changelog | 3.2.0 |
 | `spec/02-coding-guidelines/01-cross-language/99-consistency-report.md` | Consistency Report: Cross-Language Guidelines | 5.0.0 |
 | `spec/02-coding-guidelines/01-cross-language/02-boolean-principles/00-overview.md` | Boolean Principles | 2.6.0 |
 | `spec/02-coding-guidelines/01-cross-language/02-boolean-principles/01-naming-prefixes.md` | Boolean Principles — P1: is/has prefixes, P2: no negative words | 2.6.0 |
@@ -161,7 +161,7 @@
 | `spec/02-coding-guidelines/03-golang/08-pathutil-fileutil-spec.md` | Go Utility Packages: `pathutil` and `fileutil` | 1.0.0 |
 | `spec/02-coding-guidelines/03-golang/97-acceptance-criteria.md` | Golang Standards — Acceptance Criteria | 1.0.0 |
 | `spec/02-coding-guidelines/03-golang/98-changelog.md` | Golang Standards — Changelog | 2.1.0 |
-| `spec/02-coding-guidelines/03-golang/99-consistency-report.md` | Consistency Report: Golang Standards | 3.1.0 |
+| `spec/02-coding-guidelines/03-golang/99-consistency-report.md` | Consistency Report: Golang Standards | 3.2.0 |
 | `spec/02-coding-guidelines/03-golang/01-enum-specification/00-overview.md` | Enum Specification | 4.1.0 |
 | `spec/02-coding-guidelines/03-golang/01-enum-specification/01-enum-pattern.md` | Enum Pattern | 4.0.0 |
 | `spec/02-coding-guidelines/03-golang/01-enum-specification/02-required-methods.md` | Required Methods | 5.0.0 |
@@ -291,26 +291,26 @@
 | `spec/03-error-manage/02-error-architecture/04-error-modal/05-error-history-persistence.md` | Error Modal — Error History Persistence | 1.1.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/06-suppress-global-error.md` | Error Modal — suppressGlobalError Meta Pattern | 1.2.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/99-consistency-report.md` | Consistency Report: Error Modal | 4.0.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/00-overview.md` | Error Modal — Copy & Export Formats (Index) | 3.1.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/01-compact-report.md` | Compact Report (Markdown) — DEFAULT Copy Format | 3.1.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/02-full-report.md` | Full Report (Markdown) | 3.1.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/03-full-report-with-backend-logs.md` | Full Report with Backend Logs | 3.1.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/04-error-log-txt.md` | error.log.txt (Backend Error Log) | 3.1.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/05-full-log-txt.md` | log.txt (Backend Full Log) | 3.1.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/06-error-log-with-delegated-info.md` | Backend error.log.txt with Delegated Server Info | 3.1.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/07-envelope-error-response.md` | Envelope Error Response (JSON) | 3.1.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/08-session-diagnostics.md` | Session Diagnostics (JSON) | 3.1.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/09-generator-code-reference.md` | Generator Code Reference | 3.1.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/00-overview.md` | Error Modal — Copy & Export Formats (Index) | 3.2.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/01-compact-report.md` | Compact Report (Markdown) — DEFAULT Copy Format | 3.2.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/02-full-report.md` | Full Report (Markdown) | 3.2.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/03-full-report-with-backend-logs.md` | Full Report with Backend Logs | 3.2.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/04-error-log-txt.md` | error.log.txt (Backend Error Log) | 3.2.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/05-full-log-txt.md` | log.txt (Backend Full Log) | 3.2.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/06-error-log-with-delegated-info.md` | Backend error.log.txt with Delegated Server Info | 3.2.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/07-envelope-error-response.md` | Envelope Error Response (JSON) | 3.2.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/08-session-diagnostics.md` | Session Diagnostics (JSON) | 3.2.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/09-generator-code-reference.md` | Generator Code Reference | 3.2.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/01-copy-formats/99-consistency-report.md` | Consistency Report: Copy Formats | 1.0.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/00-overview.md` | Error Modal — Reusable React Components (Index) | 4.0.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/01-typescript-interfaces.md` | TypeScript Interfaces | 4.0.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/02-error-store.md` | Error Store (Zustand) | 4.0.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/03-api-types.md` | API Types & Methods | 4.0.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/04-hooks.md` | Hooks | 4.0.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/05-component-hierarchy.md` | Component Hierarchy | 3.1.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/05-component-hierarchy.md` | Component Hierarchy | 3.2.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/06-component-source.md` | Component Source Code | 4.0.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/07-report-generator.md` | Error Report Generator | 4.0.0 |
-| `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/08-integration-guide.md` | Integration Guide | 3.1.0 |
+| `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/08-integration-guide.md` | Integration Guide | 3.2.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/02-react-components/99-consistency-report.md` | Consistency Report: React Components | 1.0.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/03-error-modal-reference/00-overview.md` | Error Modal — Frontend Specification (Index) | 2.2.0 |
 | `spec/03-error-manage/02-error-architecture/04-error-modal/03-error-modal-reference/01-data-model.md` | Data Model: CapturedError | 2.2.0 |

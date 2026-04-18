@@ -1,6 +1,6 @@
 # Consistency Report: Golang Standards
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Generated:** 2026-03-31  
 **Health Score:** 100/100 (A+)
 
@@ -61,6 +61,6 @@
 
 | Date | Version | Action |
 |------|---------|--------|
-| 2026-03-31 | 3.1.0 | Added missing `08-pathutil-fileutil-spec.md`, updated subfolder file count, total 9→10 |
+| 2026-03-31 | 3.2.0 | Added missing `08-pathutil-fileutil-spec.md`, updated subfolder file count, total 9→10 |
 | 2026-03-31 | 3.0.0 | Updated — added files 05-07 from Phase 4 content merge |
 | 2026-03-22 | 2.0.0 | Regenerated — inventory synchronized with disk contents |

@@ -1,6 +1,6 @@
 # Consistency Report: Cross-Language Guidelines
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Generated:** 2026-04-01
 **Health Score:** 100/100 (A+)
 
@@ -80,7 +80,7 @@
 | 2026-03-31 | 4.0.0 | Split `04-code-style.md` (1,458 lines) into `04-code-style/` subfolder with 8 focused files under 300 lines each |
 | 2026-03-31 | 3.3.0 | Verified after 04-code-style.md enum refactor — package-scoped constants, enum spec cross-refs added; all 10 cross-ref targets valid |
 | 2026-03-31 | 3.2.0 | Added 23-solid-principles.md, total 25→26 |
-| 2026-03-31 | 3.1.0 | Added 22-variable-naming-conventions.md |
+| 2026-03-31 | 3.2.0 | Added 22-variable-naming-conventions.md |
 | 2026-03-31 | 3.0.0 | Updated — added files 16-21 from Phase 4 content merge |
 | 2026-03-22 | 2.0.0 | Regenerated — inventory synchronized with disk contents |
 | 2026-03-14 | 1.0.0 | Initial consistency report created |

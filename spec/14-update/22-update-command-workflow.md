@@ -1,6 +1,6 @@
 # Update Command — Step-by-Step Workflow
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16  
 **Source:** [`gitmap-v2/gitmap/cmd/update.go`](https://github.com/alimtvnetwork/gitmap-v2/blob/main/gitmap/cmd/update.go), [`updatecleanup.go`](https://github.com/alimtvnetwork/gitmap-v2/blob/main/gitmap/cmd/updatecleanup.go)
 
@@ -370,4 +370,4 @@ The `--verbose` flag is forwarded from the parent to the worker so that detailed
 
 ---
 
-*Update command workflow — v3.1.0 — 2026-04-13*
+*Update command workflow — v3.2.0 — 2026-04-13*

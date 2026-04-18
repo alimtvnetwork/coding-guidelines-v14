@@ -1,6 +1,6 @@
 # Self-Update Mechanism
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -361,4 +361,4 @@ fi
 
 ---
 
-*Self-update mechanism — v3.1.0 — 2026-04-10*
+*Self-update mechanism — v3.2.0 — 2026-04-10*

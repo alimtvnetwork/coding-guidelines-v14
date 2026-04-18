@@ -1,6 +1,6 @@
 # Release Body and Changelog
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -352,4 +352,4 @@ curl -fsSL https://raw.githubusercontent.com/<repo>/main/scripts/install.sh | ba
 
 ---
 
-*Release body and changelog — v3.1.0 — 2026-04-10*
+*Release body and changelog — v3.2.0 — 2026-04-10*

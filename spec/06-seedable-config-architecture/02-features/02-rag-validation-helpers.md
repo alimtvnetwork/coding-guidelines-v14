@@ -1,6 +1,6 @@
 # RAG Configuration Validation Helpers
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Created:** 2026-02-02  
 **Updated:** 2026-04-16  
 **Status:** Active  

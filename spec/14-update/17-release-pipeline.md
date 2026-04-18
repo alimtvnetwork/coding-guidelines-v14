@@ -1,6 +1,6 @@
 # Release Pipeline
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -222,4 +222,4 @@ permissions:
 
 ---
 
-*Release pipeline — v3.1.0 — 2026-04-13*
+*Release pipeline — v3.2.0 — 2026-04-13*

@@ -1,6 +1,6 @@
 # Rust Naming Conventions
 
-**Version:** 3.1.0  
+**Version:** 3.2.0  
 **Updated:** 2026-04-16
 
 ---
@@ -408,4 +408,4 @@ Use this table to instantly decide which casing to apply:
 
 ---
 
-*Rust naming conventions — v3.1.0 — 2026-04-11*
+*Rust naming conventions — v3.2.0 — 2026-04-11*
