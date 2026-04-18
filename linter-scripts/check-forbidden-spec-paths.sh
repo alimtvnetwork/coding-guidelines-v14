@@ -2,39 +2,39 @@
 # ============================================================
 # Forbidden Spec Paths Guard
 # ============================================================
-# Fails CI if either of the deprecated, pre-consolidation update
-# folders re-appears under spec/, or if any MERGE-PROPOSAL.md
-# (any case variant) shows up anywhere under spec/.
+# Fails CI on any of these violations:
 #
-# Background:
-#   spec/14-update/ is the single consolidated home for all
-#   self-update, app-update, generic-update, install-script,
-#   and release-pipeline specs. The two old folders below were
-#   merged into it on 2026-04-17 and must never re-appear.
-#   merge-proposal.md was a transient planning doc and must not
-#   be re-introduced under spec/.
+#   1. Re-appearance of the deprecated, pre-consolidation update
+#      folders under spec/:
+#        - spec/14-generic-update/
+#        - spec/15-self-update-app-update/
+#      (Both were merged into spec/14-update/ on 2026-04-17.)
+#
+#   2. Any MERGE-PROPOSAL.md (any case variant) under spec/.
+#      It was a transient planning doc and must not be committed.
+#
+#   3. Any uppercase-letter .md filename anywhere under spec/
+#      or release-artifacts/. The lowercase-markdown standard
+#      requires every Markdown filename to be lowercase
+#      (e.g. readme.md, not README.md or ReadMe.md).
 #
 # Usage:
 #   bash linter-scripts/check-forbidden-spec-paths.sh
 #
 # Exit codes:
 #   0  no violations
-#   1  one or more forbidden paths present
+#   1  one or more violations present
 # ============================================================
 
-set -euo pipefail
+set -uo pipefail
 
 SPEC_ROOT="spec"
+RELEASE_ROOT="release-artifacts"
 EXIT_CODE=0
 
-if [[ ! -d "$SPEC_ROOT" ]]; then
-  echo "ℹ️  No spec/ directory found — nothing to check."
-  exit 0
-fi
+echo "🔍 Checking for forbidden spec paths and uppercase .md filenames..."
 
-echo "🔍 Checking for forbidden spec paths under $SPEC_ROOT/ ..."
-
-# ── Forbidden folders (re-split guards) ─────────────────────
+# ── 1. Forbidden folders (re-split guards) ──────────────────
 FORBIDDEN_DIRS=(
   "$SPEC_ROOT/14-generic-update"
   "$SPEC_ROOT/15-self-update-app-update"
@@ -42,29 +42,54 @@ FORBIDDEN_DIRS=(
 
 for DIR in "${FORBIDDEN_DIRS[@]}"; do
   if [[ -e "$DIR" ]]; then
-    echo "::error::Forbidden folder present: $DIR"
-    echo "         This folder was merged into spec/14-update/ and must not re-appear."
+    echo "::error file=$DIR::Forbidden folder present: $DIR (merged into spec/14-update/, must not re-appear)"
     EXIT_CODE=1
   fi
 done
 
-# ── Forbidden files (any-case MERGE-PROPOSAL.md) ────────────
-MERGE_PROPOSAL_HITS=$(find "$SPEC_ROOT" -type f -iname 'merge-proposal.md' 2>/dev/null || true)
-
-if [[ -n "$MERGE_PROPOSAL_HITS" ]]; then
-  while IFS= read -r HIT; do
-    echo "::error::Forbidden file present: $HIT"
-    echo "         MERGE-PROPOSAL.md is a transient planning doc and must not be committed under spec/."
-  done <<< "$MERGE_PROPOSAL_HITS"
-  EXIT_CODE=1
+# ── 2. Forbidden files (any-case MERGE-PROPOSAL.md) ─────────
+if [[ -d "$SPEC_ROOT" ]]; then
+  MERGE_PROPOSAL_HITS=$(find "$SPEC_ROOT" -type f -iname 'merge-proposal.md' 2>/dev/null || true)
+  if [[ -n "$MERGE_PROPOSAL_HITS" ]]; then
+    while IFS= read -r HIT; do
+      echo "::error file=$HIT::Forbidden file: MERGE-PROPOSAL.md must not be committed under spec/"
+    done <<< "$MERGE_PROPOSAL_HITS"
+    EXIT_CODE=1
+  fi
 fi
 
+# ── 3. Uppercase .md filenames under spec/ + release-artifacts/ ──
+check_uppercase_md() {
+  local root="$1"
+  [[ -d "$root" ]] || return 0
+
+  # Match any .md whose basename contains at least one uppercase letter.
+  local hits
+  hits=$(find "$root" -type f -name '*.md' 2>/dev/null \
+    | awk -F/ '{ if ($NF ~ /[A-Z]/) print }' || true)
+
+  if [[ -z "$hits" ]]; then
+    return 0
+  fi
+
+  while IFS= read -r HIT; do
+    [[ -z "$HIT" ]] && continue
+    echo "::error file=$HIT::Uppercase letters in .md filename — rename to lowercase: $(basename "$HIT")"
+    EXIT_CODE=1
+  done <<< "$hits"
+}
+
+check_uppercase_md "$SPEC_ROOT"
+check_uppercase_md "$RELEASE_ROOT"
+
+# ── Summary ─────────────────────────────────────────────────
+echo ""
 if [[ "$EXIT_CODE" -eq 0 ]]; then
-  echo "✅ No forbidden spec paths detected."
+  echo "✅ No forbidden paths or uppercase .md filenames detected."
 else
-  echo ""
-  echo "❌ Forbidden spec paths detected. See errors above."
-  echo "   Consolidated home: spec/14-update/"
+  echo "❌ Violations detected. See errors above."
+  echo "   - Consolidated update home: spec/14-update/"
+  echo "   - Markdown filenames must be all lowercase (e.g. readme.md)."
 fi
 
 exit "$EXIT_CODE"
