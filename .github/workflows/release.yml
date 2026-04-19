@@ -39,6 +39,28 @@ jobs:
           test -d release-artifacts || { echo "::error::release-artifacts directory missing"; exit 1; }
           test -f release-artifacts/checksums.txt || { echo "::error::checksums.txt missing"; exit 1; }
 
+      # ── Slides app build (separate Vite app under slides-app/) ──────
+      - name: Setup Bun (for slides-app)
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Build slides-app
+        working-directory: slides-app
+        run: |
+          bun install --frozen-lockfile || bun install
+          bun run build
+          bun run package
+
+      - name: Verify slides-app artifact
+        run: |
+          test -f slides-app/dist.zip || { echo "::error::slides-app/dist.zip missing"; exit 1; }
+          ls -lh slides-app/dist.zip
+
+      - name: Rename slides-app zip with version
+        run: |
+          cp slides-app/dist.zip "slides-app/coding-guidelines-slides-${{ steps.version.outputs.version }}.zip"
+
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -49,18 +71,25 @@ jobs:
             install.sh
             install.ps1
             install-config.json
+            slides-app/coding-guidelines-slides-*.zip
           body: |
             ## Installation
+
+            **Windows (PowerShell)**
+            ```powershell
+            irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex
+            ```
 
             **Linux / macOS**
             ```bash
             curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash
             ```
 
-            **Windows (PowerShell)**
-            ```powershell
-            irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex
-            ```
+            ## Slide Deck
+
+            Download `coding-guidelines-slides-${{ steps.version.outputs.version }}.zip`,
+            unzip it anywhere, and double-click `index.html` to launch the
+            Code-Red Review Guide training deck (offline, no install).
 
             ## Checksums
             See `checksums.txt` for SHA-256 verification hashes.
