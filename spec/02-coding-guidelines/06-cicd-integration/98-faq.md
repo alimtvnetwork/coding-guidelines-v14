@@ -50,7 +50,12 @@ function isnt_admin($user) { ... }
   `suppressions[]` block so reviewers can see why.
 
 Suppressions without a reason are themselves reported as a STYLE
-finding (`STYLE-099 SuppressionWithoutReason`).
+finding (`STYLE-099 SuppressionWithoutReason`, severity `warning`).
+The original finding still fires — invalid suppressions never silently
+hide a violation. STYLE-099 is **synthetic**: it has no per-language
+script, it is injected by `scripts/post-process.py` after the merge
+step, and it scans every source file under `--path` regardless of
+whether other rules produced findings in that file.
 
 ---
 
