@@ -47,6 +47,7 @@ The pack must:
 | `07-performance.md` | Middle-out probe order, parallel jobs, timeout budgets |
 | `97-acceptance-criteria.md` | Testable AC for every public artifact |
 | `98-faq.md` | Suppression, baselining, single-rule runs, version pinning |
+| `99-troubleshooting.md` | python3 missing, tree-sitter wheel issues, SARIF >10 MB, false-positive triage, TOML parse errors |
 
 ---
 
