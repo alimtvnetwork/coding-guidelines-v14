@@ -280,5 +280,12 @@ try {
     Write-Host "════════════════════════════════════════════════════════" -ForegroundColor White
 }
 finally {
-    if (Test-Path $tmpDir) { Remove-Item -Path $tmpDir -Recurse -Force -ErrorAction SilentlyContinue }
+    if (Test-Path $tmpDir) {
+        Remove-Item -Path $tmpDir -Recurse -Force -ErrorAction SilentlyContinue
+    }
+    if (-not (Test-Path $tmpDir)) {
+        Write-OK "Temp cleaned: $tmpDir"
+    } else {
+        Write-Warn "Temp NOT fully removed: $tmpDir (manual cleanup recommended)"
+    }
 }

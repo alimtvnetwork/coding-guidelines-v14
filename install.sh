@@ -242,9 +242,17 @@ $FORCE       && echo "  Mode:    Force overwrite"
 echo "════════════════════════════════════════════════════════"
 echo ""
 
-# ── Cleanup trap ──────────────────────────────────────────────────
+# ── Cleanup trap (with verification) ──────────────────────────────
 TMP_DIR=""
-cleanup() { [[ -n "${TMP_DIR:-}" ]] && rm -rf "$TMP_DIR"; }
+cleanup() {
+  [[ -z "${TMP_DIR:-}" ]] && return 0
+  rm -rf "$TMP_DIR" 2>/dev/null || true
+  if [[ ! -e "$TMP_DIR" ]]; then
+    ok "Temp cleaned: $TMP_DIR"
+  else
+    warn "Temp NOT fully removed: $TMP_DIR (manual cleanup recommended)"
+  fi
+}
 trap cleanup EXIT
 
 # ── Fetch archive at REF (tarball, smaller) ───────────────────────
