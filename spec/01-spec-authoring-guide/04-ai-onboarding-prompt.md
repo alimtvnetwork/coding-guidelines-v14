@@ -159,7 +159,7 @@ This project has its own conventions (e.g., PascalCase DB columns). Do not blend
 
 ### 6. Namespace Awareness
 
-The project namespace is `github.com/mahin/movie-cli-v2`. Any `v1` reference is a bug. All specs are at v3.2.0.
+The project namespace is `<owner>/<repo>`. Any `v1` reference is a bug. All specs are at v3.2.0.
 
 ### 7. No Filler
 

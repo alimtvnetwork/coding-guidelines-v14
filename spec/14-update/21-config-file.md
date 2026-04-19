@@ -101,7 +101,7 @@ func ConfigPath() string {
 ```json
 {
   "deployPath": "E:\\bin-run",
-  "repoPath": "D:\\projects\\gitmap-v2",
+  "repoPath": "<repo-root>",
   "updateChannel": "stable",
   "checkUpdatesOnStart": false,
   "lastUpdateCheck": "2026-04-13T10:30:00Z"

@@ -24,7 +24,7 @@ A running binary **cannot overwrite itself** on Windows. The update architecture
 | `<binary>` | CLI binary name | `gitmap` |
 | `<binary>.exe` | Windows binary with extension | `gitmap.exe` |
 | `<deploy-dir>` | Directory where the binary is installed | `$env:LOCALAPPDATA\gitmap` |
-| `<repo-root>` | Root of the source repository | `D:\projects\gitmap-v2` |
+| `<repo-root>` | Root of the source repository | `<repo-root>` |
 | `<repo>` | GitHub repository path | `github.com/org/repo` |
 | `<module>` | Go module path | `github.com/org/repo` |
 

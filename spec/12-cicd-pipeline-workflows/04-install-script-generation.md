@@ -18,7 +18,7 @@ Install scripts are written inline in the workflow YAML using placeholder tokens
 | Placeholder | Replaced With | Example Value |
 |-------------|--------------|---------------|
 | `VERSION_PLACEHOLDER` | Resolved version from Git ref | `v1.2.0` |
-| `REPO_PLACEHOLDER` | Repository path (owner/repo) | `alimtvnetwork/gitmap-v2` |
+| `REPO_PLACEHOLDER` | Repository path (owner/repo) | `<owner>/<repo>` |
 
 ```bash
 sed -i "s|VERSION_PLACEHOLDER|$VERSION|g" dist/install.ps1
