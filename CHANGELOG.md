@@ -5,6 +5,40 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [3.9.0] — 2026-04-19
+
+### Added
+- **`linters-cicd/` CI/CD linter pack** — portable, language-agnostic CODE RED
+  enforcement that any pipeline can integrate with one line.
+  - 7 checks (Phase 1, Go + TypeScript): nested-if, boolean-naming,
+    magic-strings, function-length, file-length (universal), positive-conditions,
+    no-else-after-return.
+  - **SARIF 2.1.0** output by default — surfaces inline on GitHub PRs (Code
+    Scanning), GitLab MRs, and Azure DevOps.
+  - `run-all.sh` orchestrator with text + SARIF formats and proper exit codes
+    (0 clean / 1 findings / 2 tool error).
+  - **GitHub composite Action** at `linters-cicd/action.yml`:
+    `uses: alimtvnetwork/coding-guidelines-v14/linters-cicd@v3.9.0`.
+  - **`install.sh` one-liner** with SHA-256 verification and `-d`/`-v`/`-n` flags.
+  - Ready-to-paste CI templates for GitHub Actions, GitLab CI, Azure DevOps,
+    Bitbucket Pipelines, Jenkins, plus a pre-commit hook.
+- **`spec/02-coding-guidelines/06-cicd-integration/`** — full spec for the
+  linter pack: SARIF contract, plugin model, language roadmap (Phase 2 = PHP,
+  Phase 3 = Python + Rust, Phase 4+ on request), CI templates inventory,
+  distribution model, rules mapping, and acceptance criteria.
+
+### Release pipeline
+- `.github/workflows/release.yml` now also packages
+  `coding-guidelines-linters-vX.Y.Z.zip` on every `v*` tag, computes its
+  SHA-256, appends to `checksums.txt`, and attaches both the ZIP and
+  `linters-install.sh` to the GitHub Release.
+
+### Smoke test
+- Orchestrator self-tested against this repo's `src/`: all 7 checks ran,
+  SARIF validated against the 2.1.0 schema, exit codes correct.
+
+---
+
 ## [3.8.0] — 2026-04-19
 
 ### Added

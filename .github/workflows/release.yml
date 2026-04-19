@@ -61,6 +61,23 @@ jobs:
         run: |
           cp slides-app/dist.zip "slides-app/coding-guidelines-slides-${{ steps.version.outputs.version }}.zip"
 
+      # ── Linters CI/CD pack (linters-cicd/) ──────────────────────────
+      - name: Package linters-cicd
+        run: |
+          ZIP_NAME="coding-guidelines-linters-${{ steps.version.outputs.version }}.zip"
+          zip -rq "$ZIP_NAME" linters-cicd \
+            -x "linters-cicd/**/__pycache__/*" \
+            -x "linters-cicd/**/*.pyc"
+          ls -lh "$ZIP_NAME"
+          sha256sum "$ZIP_NAME" >> release-artifacts/checksums.txt
+          mv "$ZIP_NAME" release-artifacts/
+          cp linters-cicd/install.sh release-artifacts/linters-install.sh
+
+      - name: Verify linters-cicd artifact
+        run: |
+          test -f "release-artifacts/coding-guidelines-linters-${{ steps.version.outputs.version }}.zip" \
+            || { echo "::error::linters-cicd zip missing"; exit 1; }
+
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -72,6 +89,7 @@ jobs:
             install.ps1
             install-config.json
             slides-app/coding-guidelines-slides-*.zip
+            release-artifacts/linters-install.sh
           body: |
             ## Installation
 
@@ -88,8 +106,20 @@ jobs:
             ## Slide Deck
 
             Download `coding-guidelines-slides-${{ steps.version.outputs.version }}.zip`,
-            unzip it anywhere, and double-click `index.html` to launch the
-            Code-Red Review Guide training deck (offline, no install).
+            unzip it, and double-click `index.html` to launch the offline training deck.
+
+            ## CI/CD Linter Pack (NEW)
+
+            GitHub composite Action one-liner:
+            ```yaml
+            - uses: alimtvnetwork/coding-guidelines-v14/linters-cicd@${{ steps.version.outputs.version }}
+              with: { path: . }
+            ```
+            Any other CI:
+            ```bash
+            curl -fsSL https://github.com/alimtvnetwork/coding-guidelines-v14/releases/download/${{ steps.version.outputs.version }}/linters-install.sh | bash
+            bash ./linters-cicd/run-all.sh --path .
+            ```
 
             ## Checksums
             See `checksums.txt` for SHA-256 verification hashes.

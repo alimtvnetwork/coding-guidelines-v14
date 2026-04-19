@@ -1,0 +1,64 @@
+{
+  "CODE-RED-001": {
+    "name": "NoNestedIf",
+    "level": "error",
+    "spec": "01-cross-language/04-code-style/00-overview.md",
+    "languages": {
+      "go": "checks/nested-if/go.py",
+      "typescript": "checks/nested-if/typescript.py"
+    }
+  },
+  "CODE-RED-002": {
+    "name": "BooleanNaming",
+    "level": "error",
+    "spec": "01-cross-language/02-boolean-principles/00-overview.md",
+    "languages": {
+      "go": "checks/boolean-naming/go.py",
+      "typescript": "checks/boolean-naming/typescript.py"
+    }
+  },
+  "CODE-RED-003": {
+    "name": "MagicStrings",
+    "level": "error",
+    "spec": "01-cross-language/04-code-style/00-overview.md",
+    "languages": {
+      "go": "checks/magic-strings/go.py",
+      "typescript": "checks/magic-strings/typescript.py"
+    }
+  },
+  "CODE-RED-004": {
+    "name": "FunctionLength",
+    "level": "error",
+    "spec": "01-cross-language/04-code-style/00-overview.md",
+    "languages": {
+      "go": "checks/function-length/go.py",
+      "typescript": "checks/function-length/typescript.py"
+    }
+  },
+  "CODE-RED-006": {
+    "name": "FileLength",
+    "level": "error",
+    "spec": "01-cross-language/04-code-style/00-overview.md",
+    "languages": {
+      "universal": "checks/file-length/universal.py"
+    }
+  },
+  "CODE-RED-008": {
+    "name": "PositiveConditions",
+    "level": "error",
+    "spec": "01-cross-language/12-no-negatives.md",
+    "languages": {
+      "go": "checks/positive-conditions/go.py",
+      "typescript": "checks/positive-conditions/typescript.py"
+    }
+  },
+  "STYLE-002": {
+    "name": "NoElseAfterReturn",
+    "level": "warning",
+    "spec": "01-cross-language/04-code-style/00-overview.md",
+    "languages": {
+      "go": "checks/no-else-after-return/go.py",
+      "typescript": "checks/no-else-after-return/typescript.py"
+    }
+  }
+}
