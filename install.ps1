@@ -148,7 +148,7 @@ function Show-ReleaseVersions {
     try {
         $rels = Invoke-RestMethod -Uri "https://api.github.com/repos/$Repo/releases?per_page=50" -UseBasicParsing
         Write-Host ""
-        $rels | Select-Object -First 50 | ForEach-Object { Write-Host "  • $($_.tag_name)" }
+        $rels | Select-Object -First 50 | ForEach-Object { Write-Plain "  • $($_.tag_name)" }
         Write-Host ""
     } catch {
         Write-Err "Could not fetch releases: $($_.Exception.Message)"
@@ -162,7 +162,7 @@ function Show-TopFolders {
     try {
         $items = Invoke-RestMethod -Uri "https://api.github.com/repos/$Repo/contents?ref=$ref" -UseBasicParsing
         Write-Host ""
-        $items | Where-Object { $_.type -eq "dir" } | Sort-Object name | ForEach-Object { Write-Host "  • $($_.name)" }
+        $items | Where-Object { $_.type -eq "dir" } | Sort-Object name | ForEach-Object { Write-Plain "  • $($_.name)" }
         Write-Host ""
     } catch {
         Write-Err "Could not list folders: $($_.Exception.Message)"
