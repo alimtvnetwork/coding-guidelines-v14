@@ -21,8 +21,12 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+# Require a real comment leader before the directive so docstrings
+# and string literals don't accidentally match.
+COMMENT_LEADER = r"(?://|#|/\*|\*|--|<!--)"
 DISABLE_RE = re.compile(
-    r"codeguidelines:(disable(?:-next-line)?)=([A-Z0-9\-,]+)\s*(?:[—-]{1,2}\s*(.+))?"
+    COMMENT_LEADER
+    + r".*?codeguidelines:(disable(?:-next-line)?)=([A-Z0-9\-,]+)\s*(?:[—-]{1,2}\s*(.+?))?\s*(?:\*/|-->)?$"
 )
 
 
