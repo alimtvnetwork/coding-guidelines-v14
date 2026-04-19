@@ -1,0 +1,58 @@
+/* Design tokens — see spec-slides/03-design-tokens.md */
+:root {
+  --font-sans: "Ubuntu", system-ui, sans-serif;
+  --font-mono: "Ubuntu Mono", ui-monospace, monospace;
+
+  /* surface */
+  --bg: 222 47% 6%;
+  --bg-raised: 222 40% 10%;
+  --fg: 210 40% 96%;
+  --muted-fg: 215 20% 65%;
+  --border: 217 33% 17%;
+
+  /* brand */
+  --primary: 217 91% 60%;
+  --primary-fg: 222 47% 6%;
+  --accent: 160 84% 39%;
+  --destructive: 0 84% 60%;
+
+  /* code highlight */
+  --code-bg: 222 47% 9%;
+  --code-line-add: 160 84% 39% / 0.18;
+  --code-line-remove: 0 84% 60% / 0.18;
+  --code-line-highlight: 217 91% 60% / 0.22;
+
+  /* spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --space-5: 64px;
+  --space-6: 96px;
+}
+
+[data-theme="light"] {
+  --bg: 210 40% 98%;
+  --bg-raised: 0 0% 100%;
+  --fg: 222 47% 11%;
+  --muted-fg: 215 16% 47%;
+  --border: 214 32% 91%;
+  --code-bg: 210 40% 96%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: hsl(var(--bg));
+  color: hsl(var(--fg));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
