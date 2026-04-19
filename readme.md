@@ -17,21 +17,44 @@ A production-grade, AI-optimized specification system for enforcing coding stand
 
 ## Install Scripts
 
-Use the raw install scripts from this repository **after the repo is synced to GitHub and `install.sh` / `install.ps1` exist on the `main` branch**:
+There are **two independent ways** to install. You do **not** need to run one before the other — pick whichever fits your workflow.
 
-### Bash (Linux / macOS)
+### Option 1 — Remote one-liner (run from anywhere)
+
+No clone, no download, no local files required. Open a terminal **in the directory where you want the folders to land**, then run:
+
+#### Bash (Linux / macOS)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash
 ```
 
-### PowerShell (Windows)
+#### PowerShell (Windows)
 
 ```powershell
 irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex
 ```
 
-### Local usage
+What happens:
+
+1. The script streams from GitHub and runs in memory — nothing is written to your machine yet.
+2. It downloads the repo archive into a private OS temp directory (e.g. `/tmp/tmp.XXXX` or `%TEMP%\install-XXXXXXXX`).
+3. It extracts **only** `spec/`, `linters/`, and `linter-scripts/` into your **current working directory**.
+4. **The temp directory is deleted automatically on exit** (via `trap cleanup EXIT` in bash, `finally { Remove-Item }` in PowerShell) — even if the install fails. Nothing is left behind except the three target folders you asked for.
+
+To pass flags through the pipe, use the explicit `bash -s` / scriptblock forms:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash -s -- --folders spec --dry-run
+```
+
+```powershell
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1))) -Folders spec -DryRun
+```
+
+### Option 2 — Local script (after cloning the repo)
+
+Use this when you've already cloned the repo and want to re-run the installer with your own `install-config.json` overrides:
 
 ```bash
 chmod +x install.sh
