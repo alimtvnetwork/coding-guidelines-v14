@@ -79,9 +79,43 @@ expected success codes = 200, 301, 302
 ### Decision
 
 1. Wait up to **`timeout × 2 = 4 s`** total for results to settle.
-2. From the set of responding versions, pick the **highest** `N`.
+2. From the set of responding versions, pick the **highest** `N` (sort descending).
 3. If that `N > currentVersion`, **hand off** (next section).
 4. If no responses, log and continue to local install.
+
+### Probe ordering optimization (middle-out + descending result scan)
+
+When all 20 requests are dispatched in parallel, ordering is functionally
+equivalent — every probe is in flight simultaneously and the timeout is per
+request. So why bother ordering at all? Two reasons:
+
+1. **Result iteration order matters for short-circuit logic.** When you walk
+   the completed task set, do it **highest → lowest** so the first hit you
+   accept is already the winner. No second pass, no `Sort-Object` on every
+   iteration.
+2. **Middle-out dispatch helps degraded environments.** On networks that
+   serialise outbound HTTPS connections (corporate proxies, low-fd shells,
+   throttled CI runners), 20 "parallel" requests effectively become a queue.
+   Most active forks land in the middle of the +1..+20 window — start there
+   and expand outward so the queue hits the likely winner sooner.
+
+```
+candidates = [mid, mid+1, mid-1, mid+2, mid-2, …]   # middle-out
+result_scan_order = candidates sorted descending     # winner first
+```
+
+Reference implementations:
+
+- **PowerShell:** `install.ps1` builds the middle-out array, dispatches all
+  `HttpClient.SendAsync` calls, then iterates `$candidates | Sort-Object -Descending`
+  and accepts the first `IsSuccessStatusCode`.
+- **Bash:** `install.sh` builds the same `order=()` array, forks one
+  `curl --max-time 2 -I` per candidate, then `ls "$tmp" | sort -n | tail -1`
+  picks the highest hit.
+
+This is a **portable trick any installer can adopt** — it costs ~10 lines and
+makes the probe robust against degraded parallelism without changing the
+public contract.
 
 ### Short-circuit / cancellation
 

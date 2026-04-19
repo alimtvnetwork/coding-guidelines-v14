@@ -35,6 +35,7 @@ param(
     [switch]$DryRun,
     [switch]$ListVersions,
     [switch]$ListFolders,
+    [Alias('n','NoLatest')]
     [switch]$NoProbe
 )
 
@@ -80,8 +81,21 @@ function Invoke-LatestVersionProbe {
     [int]$depth = 0
     if ($env:INSTALL_PROBE_HANDOFF_DEPTH) { [int]::TryParse($env:INSTALL_PROBE_HANDOFF_DEPTH, [ref]$depth) | Out-Null }
     if ($depth -ge 3) { Write-Err "Probe loop guard (depth=$depth)"; exit 1 }
-    Write-Step "Probing 20 candidate versions in parallel (timeout 2s)..."
-    $candidates = ($current + 1)..($current + 20)
+    Write-Step "Probing 20 candidate versions in parallel (timeout 2s, middle-out)..."
+    # Middle-out ordering: probe the middle of the range first, then expand
+    # outward. With true parallelism this doesn't change correctness, but it
+    # makes early-abort heuristics terminate faster when the latest version
+    # tends to sit in the middle of the +1..+20 window.
+    $low  = $current + 1
+    $high = $current + 20
+    $mid  = [int][Math]::Floor(($low + $high) / 2)
+    $candidates = @($mid)
+    for ($offset = 1; $offset -le ($high - $low); $offset++) {
+        $upper = $mid + $offset
+        $lower = $mid - $offset
+        if ($upper -le $high) { $candidates += $upper }
+        if ($lower -ge $low)  { $candidates += $lower }
+    }
     Add-Type -AssemblyName System.Net.Http -ErrorAction SilentlyContinue
     $handler = [System.Net.Http.HttpClientHandler]::new()
     $client  = [System.Net.Http.HttpClient]::new($handler)
@@ -93,7 +107,8 @@ function Invoke-LatestVersionProbe {
         $tasks[$n] = $client.SendAsync($req)
     }
     $hits = @()
-    foreach ($n in $candidates) {
+    # Iterate highest → lowest so the first hit we keep is already the winner.
+    foreach ($n in ($candidates | Sort-Object -Descending)) {
         try {
             $r = $tasks[$n].GetAwaiter().GetResult()
             if ($r.IsSuccessStatusCode) { $hits += $n }

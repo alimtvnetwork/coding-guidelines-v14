@@ -7,6 +7,7 @@
 #   curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash
 #
 # Power-user flags:
+# Power-user flags:
 #   --repo owner/repo            Override source repo
 #   --branch main                Override branch (ignored if --version given)
 #   --version vX.Y.Z             Install a specific release tag
@@ -18,6 +19,8 @@
 #   --dry-run                    Show what would change; write nothing
 #   --list-versions              List available release tags and exit
 #   --list-folders               List available top-level folders for the chosen ref and exit
+#   -n | --no-latest             Skip the latest-version probe (use this installer as-is)
+#                                (alias: --no-probe)
 #   -h | --help                  Show this help
 # ──────────────────────────────────────────────────────────────────────
 
@@ -80,10 +83,24 @@ invoke_latest_version_probe() {
     local depth=${INSTALL_PROBE_HANDOFF_DEPTH:-0}
     if [[ $depth -ge 3 ]]; then err "Probe loop guard (depth=$depth)"; exit 1; fi
     if ! command -v curl &>/dev/null; then warn "curl not found — skipping probe."; return 0; fi
-    step "Probing 20 candidate versions in parallel (timeout 2s)..."
+    step "Probing 20 candidate versions in parallel (timeout 2s, middle-out)..."
     local tmp; tmp=$(mktemp -d)
+    # Middle-out ordering: probe the middle of the range first, then expand
+    # outward. With true parallelism this is correctness-equivalent, but it
+    # plays better with any future early-abort logic (most active forks tend
+    # to land mid-window of +1..+20).
+    local low=$((current + 1))
+    local high=$((current + 20))
+    local mid=$(( (low + high) / 2 ))
+    local order=("$mid")
+    local offset upper lower
+    for offset in $(seq 1 $((high - low))); do
+        upper=$((mid + offset)); lower=$((mid - offset))
+        [[ $upper -le $high ]] && order+=("$upper")
+        [[ $lower -ge $low  ]] && order+=("$lower")
+    done
     local n
-    for n in $(seq $((current+1)) $((current+20))); do
+    for n in "${order[@]}"; do
         (
             local url="https://raw.githubusercontent.com/$owner/$base-v$n/main/install.sh"
             local code; code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 2 -I "$url" 2>/dev/null || echo 000)
@@ -94,6 +111,7 @@ invoke_latest_version_probe() {
     while [[ $waited -lt 4 ]]; do sleep 1; waited=$((waited + 1)); [[ -z "$(jobs -rp)" ]] && break; done
     wait 2>/dev/null || true
     local latest=$current
+    # Always pick the highest hit (sort -n | tail -1 → descending winner).
     if compgen -G "$tmp/*" >/dev/null 2>&1; then latest=$(basename "$(ls "$tmp" | sort -n | tail -1)"); fi
     rm -rf "$tmp"
     if [[ $latest -le $current ]]; then ok "Already on latest (v$current)."; return 0; fi
@@ -108,7 +126,7 @@ invoke_latest_version_probe() {
 should_skip_probe() {
   for arg in "$@"; do
     case "$arg" in
-      --version|--list-versions|--list-folders|--no-probe) return 0 ;;
+      --version|--list-versions|--list-folders|--no-probe|--no-latest|-n) return 0 ;;
     esac
   done
   [[ -n "${INSTALL_NO_PROBE:-}" ]] && return 0
@@ -133,7 +151,7 @@ while [[ $# -gt 0 ]]; do
     --dry-run)        DRY_RUN=true;     shift ;;
     --list-versions)  LIST_VERSIONS=true; shift ;;
     --list-folders)   LIST_FOLDERS=true; shift ;;
-    --no-probe)       shift ;;
+    --no-probe|--no-latest|-n) shift ;;
     -h|--help)        usage ;;
     *) err "Unknown option: $1"; exit 1 ;;
   esac
