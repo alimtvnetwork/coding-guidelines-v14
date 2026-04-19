@@ -9,8 +9,10 @@ Recognized syntax (in any single-line comment):
 Rules:
 - 'disable=' suppresses the line the comment sits on.
 - 'disable-next-line=' suppresses the next non-blank line.
-- A reason after an em dash (—) or '--' is REQUIRED. Suppressions
-  without a reason are invalid and DO NOT suppress the finding.
+- A reason after an em dash (—) or '--' is REQUIRED. Reasonless
+  suppressions are returned as InvalidSuppression so callers can
+  emit STYLE-099 SuppressionWithoutReason findings instead of
+  silently ignoring them.
 """
 
 from __future__ import annotations
@@ -31,20 +33,37 @@ class Suppression:
     reason: str
 
 
+@dataclass(frozen=True)
+class InvalidSuppression:
+    rule_ids: frozenset[str]
+    comment_line: int
+    raw: str
+
+
+@dataclass(frozen=True)
+class ParseResult:
+    valid: list[Suppression]
+    invalid: list[InvalidSuppression]
+
+
 def parse_file(path: Path) -> list[Suppression]:
-    """Return all valid suppressions found in path."""
-    out: list[Suppression] = []
+    """Backwards-compatible: return only valid suppressions."""
+    return parse_file_full(path).valid
+
+
+def parse_file_full(path: Path) -> ParseResult:
+    """Return both valid and invalid suppressions found in path."""
+    valid: list[Suppression] = []
+    invalid: list[InvalidSuppression] = []
     lines = _read_lines(path)
     if not lines:
-        return out
+        return ParseResult(valid=valid, invalid=invalid)
     for idx, raw in enumerate(lines, start=1):
         match = DISABLE_RE.search(raw)
         if not match:
             continue
-        suppression = _build_suppression(match, idx, lines)
-        if suppression:
-            out.append(suppression)
-    return out
+        _classify(match, idx, raw, lines, valid, invalid)
+    return ParseResult(valid=valid, invalid=invalid)
 
 
 def _read_lines(path: Path) -> list[str]:
@@ -54,15 +73,23 @@ def _read_lines(path: Path) -> list[str]:
         return []
 
 
-def _build_suppression(match: re.Match, line_idx: int, lines: list[str]) -> Suppression | None:
+def _classify(
+    match: re.Match,
+    line_idx: int,
+    raw: str,
+    lines: list[str],
+    valid: list[Suppression],
+    invalid: list[InvalidSuppression],
+) -> None:
     kind, ids_csv, reason = match.group(1), match.group(2), match.group(3)
-    if not _has_reason(reason):
-        return None
     rule_ids = frozenset(r.strip() for r in ids_csv.split(",") if r.strip())
+    if not _has_reason(reason):
+        invalid.append(InvalidSuppression(rule_ids=rule_ids, comment_line=line_idx, raw=raw.strip()))
+        return
     target = _resolve_target(kind, line_idx, lines)
     if target == 0:
-        return None
-    return Suppression(rule_ids=rule_ids, target_line=target, reason=reason.strip())
+        return
+    valid.append(Suppression(rule_ids=rule_ids, target_line=target, reason=reason.strip()))
 
 
 def _has_reason(reason: str | None) -> bool:
