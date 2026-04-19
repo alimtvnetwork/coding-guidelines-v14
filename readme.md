@@ -249,6 +249,23 @@ This specification system is the **single source of truth** for all coding stand
 
 ---
 
+## Core Development Principles
+
+- **With great power comes great responsibility** — *Uncle Ben (Spider-Man). Every developer wields the power of creation; use it wisely and own your impact.*
+- **Make more projects at once** — *Scale through parallel workstreams, not serial bottlenecks.*
+- **Steer the AI toward proper coding** — *AI is a tool, not a replacement for judgment. Guide it with clear specs and rigorous review.*
+- **A function is an atomic bomb** — *By Alim Karim. One poorly designed function can destroy an entire codebase. Respect the blast radius.*
+- **Specific types over `Any`, `Unknown`, or generics** — *In the worst case, use generic `T` — never surrender to type ambiguity.*
+- **Managing error is more important than coding** — *A feature that crashes is worse than a feature that doesn't exist. Error handling is not optional.*
+- **Spec first, then code** — *Writing the spec is thinking; coding is execution. Don't code until you know what you're building.*
+- **Don't trust AI — use the best** — *Skepticism is healthy. Leverage Lovable, Claude Code, Emergent, or Bolt, but verify every output.*
+- **Automate with GitHub workflows** — *Shell scripts and PowerShell in CI/CD eliminate human error and enforce consistency.*
+
+
+[↑ Back to Table of Contents](#table-of-contents)
+
+---
+
 ## Folder Structure
 
 ```
