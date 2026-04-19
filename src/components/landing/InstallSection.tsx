@@ -15,12 +15,12 @@ const installCommands: InstallCommand[] = [
   {
     platform: "Windows",
     shell: "PowerShell",
-    command: "irm https://raw.githubusercontent.com/mahin/movie-cli-v2/main/scripts/install.ps1 | iex",
+    command: "irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex",
   },
   {
     platform: "macOS / Linux",
     shell: "Bash",
-    command: "curl -fsSL https://raw.githubusercontent.com/mahin/movie-cli-v2/main/scripts/install.sh | bash",
+    command: "curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash",
   },
 ];
 
