@@ -9,32 +9,33 @@ plus registry entries.
 
 ---
 
-## Phase 1 — Go + TypeScript (✅ shipping in v3.9.0)
+## Phase 1 — Go + TypeScript + PHP (✅ shipping in v3.9.0)
 
-| Check | Go | TypeScript |
-|-------|----|------------|
-| nested-if (CODE-RED-001) | ✅ regex+AST hybrid | ✅ regex+AST hybrid |
-| function-length (CODE-RED-004) | ✅ | ✅ |
-| file-length (CODE-RED-006) | ✅ | ✅ |
-| magic-strings (CODE-RED-003) | ✅ | ✅ |
-| boolean-naming (CODE-RED-002) | ✅ | ✅ |
-| positive-conditions (CODE-RED-008) | ✅ | ✅ |
-| no-else-after-return (STYLE-002) | ✅ | ✅ |
+All three currently-specced languages ship together so consumers with
+mixed Go/TS/PHP repos (the common Riseup Asia stack) get full coverage
+on day one — no waiting for a follow-up release.
 
-**Why Go + TS first:** they are the languages used in this repo, so the
-checks can be self-tested against the spec's own corpus.
+| Check | Go | TypeScript | PHP |
+|-------|----|------------|-----|
+| nested-if (CODE-RED-001) | ✅ regex+AST hybrid | ✅ regex+AST hybrid | ✅ regex+`phply` hybrid |
+| function-length (CODE-RED-004) | ✅ | ✅ | ✅ |
+| file-length (CODE-RED-006) | ✅ | ✅ | ✅ |
+| magic-strings (CODE-RED-003) | ✅ | ✅ | ✅ (WordPress-aware allowlist) |
+| boolean-naming (CODE-RED-002) | ✅ | ✅ | ✅ |
+| positive-conditions (CODE-RED-008) | ✅ | ✅ | ✅ |
+| no-else-after-return (STYLE-002) | ✅ | ✅ | ✅ |
+
+**Why these three first:**
+- **Go + TS** are the languages used in this repo, so the checks self-test
+  against the spec's own corpus.
+- **PHP** rules already exist in `spec/02-coding-guidelines/04-php/` and
+  the WordPress/Laravel projects under Riseup Asia LLC need parity with
+  the Go/TS enforcement on day one. PHP plugins use `phply` for AST and
+  regex fallbacks for legacy WordPress code that fails to parse.
 
 ---
 
-## Phase 2 — PHP (planned)
-
-Triggered by next user request. PHP rules already exist in
-`spec/02-coding-guidelines/04-php/` — only the AST walkers need writing,
-likely using the `phply` package or regex fallbacks for WordPress code.
-
----
-
-## Phase 3 — Python + Rust (planned)
+## Phase 2 — Python + Rust (planned)
 
 Python uses the standard library `ast` module — trivial. Rust uses
 `tree-sitter-rust` Python bindings.
