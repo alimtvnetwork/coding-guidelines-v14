@@ -35,6 +35,7 @@ param(
     [switch]$DryRun,
     [switch]$ListVersions,
     [switch]$ListFolders,
+    [Alias('n','NoLatest')]
     [switch]$NoProbe
 )
 
