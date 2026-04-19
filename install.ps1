@@ -41,11 +41,13 @@ param(
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
-function Write-Step  { param([string]$Msg) Write-Host "▸ $Msg" -ForegroundColor Cyan }
-function Write-OK    { param([string]$Msg) Write-Host "✅ $Msg" -ForegroundColor Green }
-function Write-Warn  { param([string]$Msg) Write-Host "⚠️  $Msg" -ForegroundColor Yellow }
-function Write-Err   { param([string]$Msg) Write-Host "❌ $Msg" -ForegroundColor Red }
-function Write-Dim   { param([string]$Msg) Write-Host $Msg -ForegroundColor DarkGray }
+$script:Indent = "    "
+function Write-Step  { param([string]$Msg) Write-Host "$script:Indent▸ $Msg" -ForegroundColor Cyan }
+function Write-OK    { param([string]$Msg) Write-Host "$script:Indent✅ $Msg" -ForegroundColor Green }
+function Write-Warn  { param([string]$Msg) Write-Host "$script:Indent⚠️  $Msg" -ForegroundColor Yellow }
+function Write-Err   { param([string]$Msg) Write-Host "$script:Indent❌ $Msg" -ForegroundColor Red }
+function Write-Dim   { param([string]$Msg) Write-Host "$script:Indent$Msg" -ForegroundColor DarkGray }
+function Write-Plain { param([string]$Msg) Write-Host "$script:Indent$Msg" -ForegroundColor White }
 
 if ($Prompt -and $Force) {
     Write-Err "-Prompt and -Force are mutually exclusive"
@@ -80,20 +82,25 @@ function Invoke-LatestVersionProbe {
     if ($depth -ge 3) { Write-Err "Probe loop guard (depth=$depth)"; exit 1 }
     Write-Step "Probing 20 candidate versions in parallel (timeout 2s)..."
     $candidates = ($current + 1)..($current + 20)
-    $jobs = foreach ($n in $candidates) {
-        Start-Job -ScriptBlock {
-            param($url, $n)
-            try {
-                $r = Invoke-WebRequest -Uri $url -Method Head -TimeoutSec 2 -UseBasicParsing -ErrorAction Stop
-                if ($r.StatusCode -ge 200 -and $r.StatusCode -lt 400) { return $n }
-            } catch { }
-            return $null
-        } -ArgumentList "https://raw.githubusercontent.com/$owner/$base-v$n/main/install.ps1", $n
+    Add-Type -AssemblyName System.Net.Http -ErrorAction SilentlyContinue
+    $handler = [System.Net.Http.HttpClientHandler]::new()
+    $client  = [System.Net.Http.HttpClient]::new($handler)
+    $client.Timeout = [TimeSpan]::FromSeconds(2)
+    $tasks = @{}
+    foreach ($n in $candidates) {
+        $url = "https://raw.githubusercontent.com/$owner/$base-v$n/main/install.ps1"
+        $req = [System.Net.Http.HttpRequestMessage]::new([System.Net.Http.HttpMethod]::Head, $url)
+        $tasks[$n] = $client.SendAsync($req)
     }
-    $finished = Wait-Job -Job $jobs -Timeout 4
-    $results  = @($finished | Receive-Job)
-    $jobs | Remove-Job -Force -ErrorAction SilentlyContinue
-    $hits   = @($results | Where-Object { $_ -is [int] } | Sort-Object -Descending)
+    $hits = @()
+    foreach ($n in $candidates) {
+        try {
+            $r = $tasks[$n].GetAwaiter().GetResult()
+            if ($r.IsSuccessStatusCode) { $hits += $n }
+        } catch { }
+    }
+    $client.Dispose()
+    $hits   = @($hits | Sort-Object -Descending)
     $latest = if ($hits.Count -gt 0) { $hits[0] } else { $current }
     if ($latest -le $current) { Write-OK "Already on latest (v$current)."; return }
     $newerUrl = "https://raw.githubusercontent.com/$owner/$base-v$latest/main/install.ps1"
@@ -141,7 +148,7 @@ function Show-ReleaseVersions {
     try {
         $rels = Invoke-RestMethod -Uri "https://api.github.com/repos/$Repo/releases?per_page=50" -UseBasicParsing
         Write-Host ""
-        $rels | Select-Object -First 50 | ForEach-Object { Write-Host "  • $($_.tag_name)" }
+        $rels | Select-Object -First 50 | ForEach-Object { Write-Plain "  • $($_.tag_name)" }
         Write-Host ""
     } catch {
         Write-Err "Could not fetch releases: $($_.Exception.Message)"
@@ -155,7 +162,7 @@ function Show-TopFolders {
     try {
         $items = Invoke-RestMethod -Uri "https://api.github.com/repos/$Repo/contents?ref=$ref" -UseBasicParsing
         Write-Host ""
-        $items | Where-Object { $_.type -eq "dir" } | Sort-Object name | ForEach-Object { Write-Host "  • $($_.name)" }
+        $items | Where-Object { $_.type -eq "dir" } | Sort-Object name | ForEach-Object { Write-Plain "  • $($_.name)" }
         Write-Host ""
     } catch {
         Write-Err "Could not list folders: $($_.Exception.Message)"
@@ -169,15 +176,15 @@ if ($ListFolders)  { Show-TopFolders }
 
 # ── Banner ────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "════════════════════════════════════════════════════════" -ForegroundColor White
-Write-Host "  Spec & Scripts Installer" -ForegroundColor White
-Write-Host "  Source:  $Repo @ $ref" -ForegroundColor White
-Write-Host "  Folders: $($Folders -join ', ')" -ForegroundColor White
-Write-Host "  Dest:    $Dest" -ForegroundColor White
-if ($DryRun) { Write-Host "  Mode:    DRY-RUN (no writes)" -ForegroundColor White }
-if ($Prompt) { Write-Host "  Mode:    Interactive prompts (y/n/a/s)" -ForegroundColor White }
-if ($Force)  { Write-Host "  Mode:    Force overwrite" -ForegroundColor White }
-Write-Host "════════════════════════════════════════════════════════" -ForegroundColor White
+Write-Plain "════════════════════════════════════════════════════════"
+Write-Plain "  Spec & Scripts Installer"
+Write-Plain "  Source:  $Repo @ $ref"
+Write-Plain "  Folders: $($Folders -join ', ')"
+Write-Plain "  Dest:    $Dest"
+if ($DryRun) { Write-Plain "  Mode:    DRY-RUN (no writes)" }
+if ($Prompt) { Write-Plain "  Mode:    Interactive prompts (y/n/a/s)" }
+if ($Force)  { Write-Plain "  Mode:    Force overwrite" }
+Write-Plain "════════════════════════════════════════════════════════"
 Write-Host ""
 
 # ── Download archive at ref ───────────────────────────────────────
@@ -265,7 +272,7 @@ try {
 
     # ── Summary ───────────────────────────────────────────────────
     Write-Host ""
-    Write-Host "════════════════════════════════════════════════════════" -ForegroundColor White
+    Write-Plain "════════════════════════════════════════════════════════"
     if ($copied -gt 0)         { Write-OK "$copied folder(s) processed" }
     if ($wroteNew -gt 0)       { Write-OK "$wroteNew new file(s)" }
     if ($overwrote -gt 0)      { Write-OK "$overwrote file(s) overwritten" }
@@ -273,11 +280,11 @@ try {
     if ($skippedFolders -gt 0) { Write-Warn "$skippedFolders folder(s) missing in source" }
     if ($DryRun)               { Write-Warn "DRY-RUN — no changes written" }
     Write-Host ""
-    Write-Host "  Source:      $Repo @ $ref" -ForegroundColor White
-    Write-Host "  Destination: $Dest" -ForegroundColor White
-    Write-Host "  Folders:     $($Folders -join ', ')" -ForegroundColor White
+    Write-Plain "  Source:      $Repo @ $ref"
+    Write-Plain "  Destination: $Dest"
+    Write-Plain "  Folders:     $($Folders -join ', ')"
     Write-Host ""
-    Write-Host "════════════════════════════════════════════════════════" -ForegroundColor White
+    Write-Plain "════════════════════════════════════════════════════════"
 }
 finally {
     if (Test-Path $tmpDir) {
