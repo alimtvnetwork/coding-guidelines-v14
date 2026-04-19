@@ -41,11 +41,13 @@ param(
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
-function Write-Step  { param([string]$Msg) Write-Host "▸ $Msg" -ForegroundColor Cyan }
-function Write-OK    { param([string]$Msg) Write-Host "✅ $Msg" -ForegroundColor Green }
-function Write-Warn  { param([string]$Msg) Write-Host "⚠️  $Msg" -ForegroundColor Yellow }
-function Write-Err   { param([string]$Msg) Write-Host "❌ $Msg" -ForegroundColor Red }
-function Write-Dim   { param([string]$Msg) Write-Host $Msg -ForegroundColor DarkGray }
+$script:Indent = "    "
+function Write-Step  { param([string]$Msg) Write-Host "$script:Indent▸ $Msg" -ForegroundColor Cyan }
+function Write-OK    { param([string]$Msg) Write-Host "$script:Indent✅ $Msg" -ForegroundColor Green }
+function Write-Warn  { param([string]$Msg) Write-Host "$script:Indent⚠️  $Msg" -ForegroundColor Yellow }
+function Write-Err   { param([string]$Msg) Write-Host "$script:Indent❌ $Msg" -ForegroundColor Red }
+function Write-Dim   { param([string]$Msg) Write-Host "$script:Indent$Msg" -ForegroundColor DarkGray }
+function Write-Plain { param([string]$Msg) Write-Host "$script:Indent$Msg" -ForegroundColor White }
 
 if ($Prompt -and $Force) {
     Write-Err "-Prompt and -Force are mutually exclusive"
