@@ -38,9 +38,11 @@ export default function SpecFirstWorkflowSlide() {
         }}
       >
         {STEPS.map((step, i) => (
-          <>
+          <div
+            key={step.label}
+            style={{ display: "flex", alignItems: "stretch", gap: "var(--space-3)" }}
+          >
             <motion.div
-              key={step.label}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{
@@ -95,7 +97,7 @@ export default function SpecFirstWorkflowSlide() {
                 <ArrowRight size={48} />
               </motion.div>
             )}
-          </>
+          </div>
         ))}
       </div>
     </SlideLayout>
