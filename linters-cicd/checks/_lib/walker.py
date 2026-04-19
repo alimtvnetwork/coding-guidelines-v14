@@ -27,6 +27,43 @@ def walk_files(root: str, extensions: Iterable[str]) -> list[Path]:
     return out
 
 
+def walk_files_middle_out(root: str, extensions: Iterable[str]) -> list[Path]:
+    """Walk files and reorder them median-first, alternating outward.
+
+    Spec: spec/02-coding-guidelines/06-cicd-integration/07-performance.md §1
+    Sorted by byte size, then probed from the median outward — heavier
+    next, then lighter, alternating — to surface dense-code findings
+    early and warm parser caches on the largest files first.
+    """
+    files = walk_files(root, extensions)
+    files.sort(key=_safe_size)
+    return _middle_out(files)
+
+
+def _safe_size(path: Path) -> int:
+    try:
+        return path.stat().st_size
+    except OSError:
+        return 0
+
+
+def _middle_out(items: list[Path]) -> list[Path]:
+    """Reorder a sorted list median-first: D, E, C, F, B, G, A for [A..G]."""
+    if not items:
+        return []
+    median = len(items) // 2
+    out: list[Path] = [items[median]]
+    right, left = median + 1, median - 1
+    while right < len(items) or left >= 0:
+        if right < len(items):
+            out.append(items[right])
+            right += 1
+        if left >= 0:
+            out.append(items[left])
+            left -= 1
+    return out
+
+
 def relpath(p: Path, root: str) -> str:
     """Return p relative to root, posix-style for SARIF."""
     return str(p.resolve().relative_to(Path(root).resolve())).replace(os.sep, "/")

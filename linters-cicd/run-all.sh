@@ -4,7 +4,8 @@
 #
 # Orchestrator — runs every check listed in checks/registry.json
 # and merges results into a single SARIF 2.1.0 file. Supports
-# inline suppressions, baseline diff, and rule/language filters.
+# inline suppressions, baseline diff, rule/language filters,
+# parallel execution, and per-check timeouts.
 #
 # Usage:
 #   ./run-all.sh [--path DIR] [--languages go,typescript]
@@ -13,12 +14,14 @@
 #                [--baseline .codeguidelines-baseline.sarif]
 #                [--refresh-baseline .codeguidelines-baseline.sarif]
 #                [--config .codeguidelines.toml]
+#                [--jobs N|auto]            (default: 1, sequential)
+#                [--check-timeout SECONDS]  (default: 20)
 #                [--output coding-guidelines.sarif] [--format sarif|text]
 #
 # Exit codes:
 #   0  no findings (or refresh-baseline mode)
 #   1  one or more checks emitted findings
-#   2  tool error
+#   2  tool error (including check timeouts)
 # ============================================================
 
 set -uo pipefail
@@ -33,6 +36,8 @@ REFRESH_BASELINE=""
 CONFIG_FILE=".codeguidelines.toml"
 OUTPUT="coding-guidelines.sarif"
 FORMAT="sarif"
+JOBS="${LINTERS_JOBS:-1}"
+CHECK_TIMEOUT="20"
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -43,10 +48,12 @@ while [ $# -gt 0 ]; do
         --baseline)          BASELINE="$2"; shift 2 ;;
         --refresh-baseline)  REFRESH_BASELINE="$2"; shift 2 ;;
         --config)            CONFIG_FILE="$2"; shift 2 ;;
+        --jobs)              JOBS="$2"; shift 2 ;;
+        --check-timeout)     CHECK_TIMEOUT="$2"; shift 2 ;;
         --output)            OUTPUT="$2"; shift 2 ;;
         --format)            FORMAT="$2"; shift 2 ;;
         -h|--help)
-            sed -n '2,22p' "$0"; exit 0 ;;
+            sed -n '2,26p' "$0"; exit 0 ;;
         *)
             echo "Unknown arg: $1" >&2; exit 2 ;;
     esac
@@ -63,6 +70,28 @@ if [ ! -f "$REGISTRY" ]; then
     exit 2
 fi
 
+# ---- Resolve --jobs auto → max(1, nproc - 1) ----
+if [ "$JOBS" = "auto" ]; then
+    if command -v nproc >/dev/null 2>&1; then
+        N=$(nproc)
+        JOBS=$(( N > 1 ? N - 1 : 1 ))
+    else
+        JOBS=1
+    fi
+fi
+case "$JOBS" in
+    ''|*[!0-9]*) echo "::error::--jobs must be an integer or 'auto', got '$JOBS'" >&2; exit 2 ;;
+esac
+[ "$JOBS" -lt 1 ] && JOBS=1
+
+# ---- Detect timeout binary (BSD/macOS may lack it) ----
+TIMEOUT_BIN=""
+if command -v timeout >/dev/null 2>&1; then
+    TIMEOUT_BIN="timeout"
+elif command -v gtimeout >/dev/null 2>&1; then
+    TIMEOUT_BIN="gtimeout"
+fi
+
 # ---- Merge .codeguidelines.toml defaults with CLI flags ----
 CONFIG_PATH="$PATH_ARG/$CONFIG_FILE"
 CONFIG_OUT=$(python3 "$SCRIPT_DIR/scripts/load-config.py" \
@@ -73,6 +102,8 @@ CONFIG_OUT=$(python3 "$SCRIPT_DIR/scripts/load-config.py" \
 eval "$CONFIG_OUT"
 
 TMP_DIR="$(mktemp -d)"
+STATUS_DIR="$TMP_DIR/_status"
+mkdir -p "$STATUS_DIR"
 trap 'rm -rf "$TMP_DIR"' EXIT
 
 EXIT=0
@@ -86,8 +117,11 @@ echo "       format:         $FORMAT"
 echo "       languages:      ${LANGUAGES:-auto}"
 echo "       rules:          ${RULES:-all}"
 echo "       exclude-rules:  ${EXCLUDE_RULES:-none}"
+echo "       jobs:           $JOBS"
+echo "       check-timeout:  ${CHECK_TIMEOUT}s"
 [ -n "$BASELINE" ]         && echo "       baseline:       $BASELINE"
 [ -n "$REFRESH_BASELINE" ] && echo "       refresh:        $REFRESH_BASELINE"
+[ -z "$TIMEOUT_BIN" ]      && echo "       ⚠️  no 'timeout' binary — running without per-check timeout"
 echo ""
 
 # Iterate registry via python (no jq dependency)
@@ -108,29 +142,92 @@ for rule_id, meta in reg.items():
 PY
 )
 
+# ---- Single check runner: writes SARIF to OUT, status code to STATUS_DIR ----
+run_check() {
+    local rule_id="$1" lang="$2" script_path="$3" out_path="$4" status_path="$5"
+    local rc
+    if [ -n "$TIMEOUT_BIN" ]; then
+        "$TIMEOUT_BIN" -k 2 "$CHECK_TIMEOUT" \
+            python3 "$script_path" --path "$PATH_ARG" --format sarif --output "$out_path"
+        rc=$?
+    else
+        python3 "$script_path" --path "$PATH_ARG" --format sarif --output "$out_path"
+        rc=$?
+    fi
+    # 124 = GNU timeout overrun, 137 = SIGKILL grace, 143 = SIGTERM grace
+    if [ "$rc" -eq 124 ] || [ "$rc" -eq 137 ] || [ "$rc" -eq 143 ]; then
+        python3 "$SCRIPT_DIR/scripts/emit-timeout.py" \
+            "$rule_id" "$lang" "$CHECK_TIMEOUT" "$out_path" "$VERSION"
+        rc=124
+    fi
+    echo "$rc" > "$status_path"
+}
+export -f run_check
+export PATH_ARG SCRIPT_DIR CHECK_TIMEOUT TIMEOUT_BIN VERSION
+
+# ---- Build the work list ----
+WORK_LIST="$TMP_DIR/_worklist.txt"
+> "$WORK_LIST"
 while IFS='|' read -r RULE_ID LANG SCRIPT; do
     [ -z "$RULE_ID" ] && continue
-    OUT="$TMP_DIR/$RULE_ID-$LANG.sarif"
     SCRIPT_PATH="$SCRIPT_DIR/$SCRIPT"
     if [ ! -f "$SCRIPT_PATH" ]; then
         echo "    ⚠️  skipped $RULE_ID/$LANG — script missing"
         continue
     fi
-    RAN=$((RAN + 1))
-    printf "    ▸ %-30s %-12s ... " "$RULE_ID" "$LANG"
-    if python3 "$SCRIPT_PATH" --path "$PATH_ARG" --format sarif --output "$OUT"; then
-        echo "✅ clean"
-    else
-        rc=$?
-        if [ "$rc" -eq 1 ]; then
-            COUNT=$(python3 -c "import json; print(len(json.load(open('$OUT'))['runs'][0]['results']))")
-            echo "❌ $COUNT raw finding(s)"
-        else
-            echo "‼️  tool error (rc=$rc)"
-            EXIT=2
-        fi
-    fi
+    echo "$RULE_ID|$LANG|$SCRIPT_PATH" >> "$WORK_LIST"
 done <<< "$SCRIPTS"
+
+TOTAL=$(wc -l < "$WORK_LIST" | tr -d ' ')
+
+# ---- Sequential vs parallel dispatch ----
+if [ "$JOBS" -eq 1 ]; then
+    while IFS='|' read -r RULE_ID LANG SCRIPT_PATH; do
+        [ -z "$RULE_ID" ] && continue
+        OUT="$TMP_DIR/$RULE_ID-$LANG.sarif"
+        STATUS="$STATUS_DIR/$RULE_ID-$LANG.rc"
+        RAN=$((RAN + 1))
+        printf "    ▸ %-30s %-12s ... " "$RULE_ID" "$LANG"
+        run_check "$RULE_ID" "$LANG" "$SCRIPT_PATH" "$OUT" "$STATUS" >/dev/null 2>&1
+        rc=$(cat "$STATUS")
+        case "$rc" in
+            0)   echo "✅ clean" ;;
+            1)   COUNT=$(python3 -c "import json; print(len(json.load(open('$OUT'))['runs'][0]['results']))")
+                 echo "❌ $COUNT raw finding(s)" ;;
+            124) echo "⏱  timeout (>${CHECK_TIMEOUT}s)"; EXIT=2 ;;
+            *)   echo "‼️  tool error (rc=$rc)"; EXIT=2 ;;
+        esac
+    done < "$WORK_LIST"
+else
+    echo "    ▸ dispatching $TOTAL check(s) across $JOBS worker(s)..."
+    # xargs -P for parallel dispatch; each line is one job
+    # -P parallel workers, one bash invocation per line, line passed as $0
+    xargs -P "$JOBS" -I {} bash -c '
+            line="$1"
+            rule_id=$(echo "$line" | cut -d"|" -f1)
+            lang=$(echo "$line" | cut -d"|" -f2)
+            script_path=$(echo "$line" | cut -d"|" -f3)
+            out="'"$TMP_DIR"'/${rule_id}-${lang}.sarif"
+            status="'"$STATUS_DIR"'/${rule_id}-${lang}.rc"
+            run_check "$rule_id" "$lang" "$script_path" "$out" "$status" >/dev/null 2>&1
+        ' _ {} < "$WORK_LIST"
+    # Render results in registry order for stable logs
+    while IFS='|' read -r RULE_ID LANG SCRIPT_PATH; do
+        [ -z "$RULE_ID" ] && continue
+        OUT="$TMP_DIR/$RULE_ID-$LANG.sarif"
+        STATUS="$STATUS_DIR/$RULE_ID-$LANG.rc"
+        RAN=$((RAN + 1))
+        printf "    ▸ %-30s %-12s ... " "$RULE_ID" "$LANG"
+        rc=$(cat "$STATUS" 2>/dev/null || echo "?")
+        case "$rc" in
+            0)   echo "✅ clean" ;;
+            1)   COUNT=$(python3 -c "import json; print(len(json.load(open('$OUT'))['runs'][0]['results']))" 2>/dev/null || echo "?")
+                 echo "❌ $COUNT raw finding(s)" ;;
+            124) echo "⏱  timeout (>${CHECK_TIMEOUT}s)"; EXIT=2 ;;
+            *)   echo "‼️  tool error (rc=$rc)"; EXIT=2 ;;
+        esac
+    done < "$WORK_LIST"
+fi
 
 echo ""
 echo "    ────────────────────────────────────────────────"
