@@ -272,7 +272,7 @@ try {
 
     # ── Summary ───────────────────────────────────────────────────
     Write-Host ""
-    Write-Host "════════════════════════════════════════════════════════" -ForegroundColor White
+    Write-Plain "════════════════════════════════════════════════════════"
     if ($copied -gt 0)         { Write-OK "$copied folder(s) processed" }
     if ($wroteNew -gt 0)       { Write-OK "$wroteNew new file(s)" }
     if ($overwrote -gt 0)      { Write-OK "$overwrote file(s) overwritten" }
@@ -280,11 +280,11 @@ try {
     if ($skippedFolders -gt 0) { Write-Warn "$skippedFolders folder(s) missing in source" }
     if ($DryRun)               { Write-Warn "DRY-RUN — no changes written" }
     Write-Host ""
-    Write-Host "  Source:      $Repo @ $ref" -ForegroundColor White
-    Write-Host "  Destination: $Dest" -ForegroundColor White
-    Write-Host "  Folders:     $($Folders -join ', ')" -ForegroundColor White
+    Write-Plain "  Source:      $Repo @ $ref"
+    Write-Plain "  Destination: $Dest"
+    Write-Plain "  Folders:     $($Folders -join ', ')"
     Write-Host ""
-    Write-Host "════════════════════════════════════════════════════════" -ForegroundColor White
+    Write-Plain "════════════════════════════════════════════════════════"
 }
 finally {
     if (Test-Path $tmpDir) {
