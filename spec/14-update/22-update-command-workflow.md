@@ -2,13 +2,13 @@
 
 **Version:** 3.2.0  
 **Updated:** 2026-04-16  
-**Source:** [`gitmap-v2/gitmap/cmd/update.go`](https://github.com/alimtvnetwork/gitmap-v2/blob/main/gitmap/cmd/update.go), [`updatecleanup.go`](https://github.com/alimtvnetwork/gitmap-v2/blob/main/gitmap/cmd/updatecleanup.go)
+**Source:** sibling reference implementation `cmd/update.go` and `cmd/updatecleanup.go`
 
 ---
 
 ## Purpose
 
-Provide a complete, step-by-step walkthrough of the `<binary> update` and `<binary> update-cleanup` commands — derived directly from the gitmap-v2 reference implementation. Any AI or engineer reading this document should be able to implement both commands without ambiguity.
+Provide a complete, step-by-step walkthrough of the `<binary> update` and `<binary> update-cleanup` commands — derived directly from the sibling reference implementation. Any AI or engineer reading this document should be able to implement both commands without ambiguity.
 
 ---
 
@@ -239,7 +239,7 @@ Remove `.old` backup files created by rename-first deploy:
 
 1. Read the deploy path from `powershell.json` config:
    ```
-   <repo-root>/.gitmap/powershell.json → "DeployPath" field
+   <repo-root>/.<binary>/powershell.json → "DeployPath" field
    ```
 2. Build glob pattern: `<deploy-path>/<binary>/*.old`
 3. Delete all matches.

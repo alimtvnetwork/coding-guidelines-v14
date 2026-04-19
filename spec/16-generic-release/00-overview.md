@@ -1,6 +1,6 @@
 # Generic Release Pipeline Specification
 
-> **Imported from:** [`gitmap-v3/spec/16-generic-release`](https://github.com/alimtvnetwork/gitmap-v3/tree/main/spec/16-generic-release)
+> **Imported from:** sibling reference implementation `spec/16-generic-release`
 >
 > **Related local specs:**
 > - [`../12-cicd-pipeline-workflows/02-release-pipeline.md`](../12-cicd-pipeline-workflows/02-release-pipeline.md) — this repo's concrete release workflow (consumes the generic contract below)

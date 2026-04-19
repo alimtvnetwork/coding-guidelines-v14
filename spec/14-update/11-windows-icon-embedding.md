@@ -2,7 +2,7 @@
 
 **Version:** 2.0.0  
 **Updated:** 2026-04-17  
-**Reference implementation:** [gitmap-v3/gitmap/winres/winres.json](https://github.com/alimtvnetwork/gitmap-v3/blob/main/gitmap/winres/winres.json)
+**Reference implementation:** sibling reference implementation `winres/winres.json`
 
 ---
 
@@ -31,7 +31,7 @@ automatically links.
 
 ---
 
-## Directory Layout (reference: gitmap-v3)
+## Directory Layout (reference: sibling implementation)
 
 ```
 <binary>/                            ← package directory containing main.go
@@ -50,7 +50,7 @@ automatically links.
 
 ### Important: do NOT commit `.syso` files
 
-The reference implementation (`gitmap-v3`) puts `*.syso` in
+The sibling reference implementation puts `*.syso` in
 `.gitignore`. The build script regenerates them on every Windows
 build. This avoids:
 
@@ -63,7 +63,7 @@ The build script must therefore invoke `go-winres make` BEFORE
 
 ---
 
-## Real Manifest — `winres.json` (verbatim from gitmap-v3)
+## Real Manifest — `winres.json` (verbatim from sibling reference implementation)
 
 ```json
 {
@@ -116,16 +116,16 @@ The build script must therefore invoke `go-winres make` BEFORE
 
 ### Field reference
 
-| Field | Purpose | gitmap-v3 value |
+| Field | Purpose | Reference value |
 |-------|---------|-----------------|
 | `RT_GROUP_ICON` | References icon files | `../assets/icon-256.png` |
 | `RT_MANIFEST` | Windows app manifest | keyed under `#1` / `0409` (locale ID) |
-| `identity.name` | Manifest identity | `gitmap` |
+| `identity.name` | Manifest identity | `<binary>` |
 | `identity.version` | Manifest version | `0.0.0.0` (placeholder, real version via `-ldflags`) |
 | `description` | Tooltip in File Explorer | `Git repository manager and ...` |
 | `minimum-os` | Minimum Windows version | `win7` |
 | `execution-level` | UAC level | `asInvoker` (NEVER `requireAdministrator` for CLI) |
-| `dpi-awareness` | HiDPI rendering | `system` (gitmap's choice) |
+| `dpi-awareness` | HiDPI rendering | `system` (reference choice) |
 | `ui-access` | UI Automation access | `false` |
 | `RT_VERSION.fixed` | Binary version metadata | `0.0.0.0` placeholders |
 | `RT_VERSION.info.0409` | English (US) locale info | empty strings — populated at build via `-ldflags` |
@@ -250,9 +250,9 @@ because the `<binary> version` command is the canonical version source.
 
 - [04-build-scripts.md](04-build-scripts.md) §Build Step — must invoke `go-winres make` on Windows
 - [12-code-signing.md](12-code-signing.md) — sign AFTER `.syso` is linked, never before
-- Reference implementation: [gitmap-v3/gitmap/winres/](https://github.com/alimtvnetwork/gitmap-v3/tree/main/gitmap/winres)
+- Reference implementation: sibling reference implementation `winres/` directory
 - Upstream tool: <https://github.com/tc-hib/go-winres>
 
 ---
 
-*Windows icon embedding — v2.0.0 — 2026-04-17 (reference: gitmap-v3)*
+*Windows icon embedding — v2.0.0 — 2026-04-17 (reference: sibling implementation)*
