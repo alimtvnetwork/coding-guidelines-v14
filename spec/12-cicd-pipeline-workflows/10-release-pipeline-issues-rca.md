@@ -5,7 +5,7 @@
 **Updated:** 2026-04-16  
 **Status:** Active reference  
 **Audience:** Any AI model or engineer maintaining the CI/CD pipeline  
-**Goal:** Document every release/CI failure encountered (this repo + sibling `gitmap-v3` lessons), with root cause and durable fix, so the same mistakes never recur.
+**Goal:** Document every release/CI failure encountered (this repo + sibling reference implementation lessons), with root cause and durable fix, so the same mistakes never recur.
 
 ---
 
@@ -16,15 +16,15 @@
 | 1 | `npm ci` lockfile drift | release | 🔴 Blocker | This repo |
 | 2 | `setup-python` pip cache requires manifest | CI | 🟠 High | This repo |
 | 3 | `release.sh` depended on Node at runtime | release | 🟠 High | This repo |
-| 4 | `go-winres` icon > 256×256 px | release: resource embed | 🔴 Blocker | gitmap-v3 |
-| 5 | `cd: dist: No such file or directory` | release: compress | 🔴 Blocker | gitmap-v3 |
-| 6 | Job-level `if` blocks required status checks | CI: SHA dedup | 🟠 High | gitmap-v3 |
-| 7 | `cancel-in-progress` cancels marker job | CI: cache write | 🟠 High | gitmap-v3 |
-| 8 | `@latest` tool/action installs non-reproducible | CI: setup | 🟡 Medium | gitmap-v3 |
-| 9 | Release branch run cancelled by follow-up commit | release: concurrency | 🔴 Blocker | gitmap-v3 |
-| 10 | Install-script placeholder unreplaced | release: script gen | 🟠 High | gitmap-v3 |
-| 11 | Missing `GITHUB_TOKEN` silently skips upload | release: asset upload | 🟡 Medium | gitmap-v3 |
-| 12 | Asset name mismatch between checksum and upload | release: packaging | 🟠 High | gitmap-v3 |
+| 4 | `go-winres` icon > 256×256 px | release: resource embed | 🔴 Blocker | sibling-ref |
+| 5 | `cd: dist: No such file or directory` | release: compress | 🔴 Blocker | sibling-ref |
+| 6 | Job-level `if` blocks required status checks | CI: SHA dedup | 🟠 High | sibling-ref |
+| 7 | `cancel-in-progress` cancels marker job | CI: cache write | 🟠 High | sibling-ref |
+| 8 | `@latest` tool/action installs non-reproducible | CI: setup | 🟡 Medium | sibling-ref |
+| 9 | Release branch run cancelled by follow-up commit | release: concurrency | 🔴 Blocker | sibling-ref |
+| 10 | Install-script placeholder unreplaced | release: script gen | 🟠 High | sibling-ref |
+| 11 | Missing `GITHUB_TOKEN` silently skips upload | release: asset upload | 🟡 Medium | sibling-ref |
+| 12 | Asset name mismatch between checksum and upload | release: packaging | 🟠 High | sibling-ref |
 
 ---
 
@@ -147,9 +147,9 @@ resolve_version() {
 
 ---
 
-## Issues Imported from `gitmap-v3` (Reference Implementation)
+## Issues Imported from Sibling Reference Implementation
 
-The following lessons were captured during the development of the sibling `gitmap-v3` project (`spec/12-cicd-pipeline-workflows/10-known-issues-and-fixes.md` and `spec/16-generic-release/07-known-issues-and-fixes.md`). They describe failure modes that **will eventually occur in this repo too** if/when we add: a Go binary release, Windows resource embedding, SHA-deduplication, install-script generation, or multi-asset uploads. They are documented preemptively so the same diagnosis cycle does not repeat.
+The following lessons were captured during the development of the a sibling reference implementation (its `spec/12-cicd-pipeline-workflows/10-known-issues-and-fixes.md` and `spec/16-generic-release/07-known-issues-and-fixes.md`). They describe failure modes that **will eventually occur in this repo too** if/when we add: a Go binary release, Windows resource embedding, SHA-deduplication, install-script generation, or multi-asset uploads. They are documented preemptively so the same diagnosis cycle does not repeat.
 
 > ⚠️ Issues #4–#12 below describe pipeline patterns this repo does not yet ship but is **likely to adopt**. Treat them as canonical guardrails for any future workflow extension.
 
@@ -167,7 +167,7 @@ Error: Process completed with exit code 1.
 
 **Root cause:** The Windows `.ico` resource format hard-limits each frame to 256×256 px. `go-winres` refuses any larger source image. Local `go build` succeeds without resource embedding, so the constraint is invisible until CI runs.
 
-**Fix applied (in gitmap-v3):**
+**Fix applied (in sibling reference implementation):**
 - Created a 256×256 copy `assets/icon-256.png`.
 - Updated `winres/winres.json` to reference the smaller file.
 - Kept the original 512×512 `icon.png` for web/docs.
@@ -192,13 +192,13 @@ Error: Process completed with exit code 1.
 
 **Root cause:** Every `run:` step in GitHub Actions starts at the repository root unless `working-directory:` is set explicitly. CWD does **not** carry over between steps. In a monorepo with multiple modules, this causes silent path drift.
 
-**Fix applied (in gitmap-v3):**
+**Fix applied (in sibling reference implementation):**
 ```yaml
 - name: Compress and checksum
-  working-directory: gitmap/dist
+  working-directory: <module>/dist
   run: |
     test -d . || { echo "::error::dist missing"; exit 1; }
-    for f in gitmap-*; do ...; done
+    for f in <binary>-*; do ...; done
 ```
 
 **Prevention rule:**  
@@ -212,7 +212,7 @@ Error: Process completed with exit code 1.
 
 **Root cause:** GitHub Actions distinguishes `success`, `failure`, and `skipped` conclusions. Required status checks only accept `success`. A job-level `if` that evaluates false produces `skipped`, which never resolves the gate.
 
-**Fix applied (in gitmap-v3):** **Passthrough gate pattern** — jobs always run; step-level `if:` skips the actual work; an unconditional first step echoes "✅ Already validated (SHA cached)" so the job always concludes `success`.
+**Fix applied (in sibling reference implementation):** **Passthrough gate pattern** — jobs always run; step-level `if:` skips the actual work; an unconditional first step echoes "✅ Already validated (SHA cached)" so the job always concludes `success`.
 
 **Prevention rule:**  
 🟠 **Never use job-level `if` for cache/dedup gating** when the job is a required status check. Use **step-level** conditionals and always include at least one unconditional step.
@@ -225,7 +225,7 @@ Error: Process completed with exit code 1.
 
 **Root cause:** When all validation jobs finish and `mark-success` is queued, a new push to the same ref cancels the entire workflow run — including the still-pending marker job.
 
-**Fix applied (in gitmap-v3):** Inline the cache write as the **final step of the last validation job** (`test-summary`). Guard with `if: success()`.
+**Fix applied (in sibling reference implementation):** Inline the cache write as the **final step of the last validation job** (`test-summary`). Guard with `if: success()`.
 
 **Prevention rule:**  
 🟠 **Side-effects that must persist after success (cache writes, telemetry, deployment markers) belong in the LAST validation job, not in a separate trailing job** when `cancel-in-progress: true` is set.
@@ -238,7 +238,7 @@ Error: Process completed with exit code 1.
 
 **Root cause:** `@latest`, `@main`, and floating major tags resolve to whatever is current at install time. A new upstream release between two CI runs introduces a new lint rule, removed flag, or behavior change.
 
-**Fix applied (in gitmap-v3):** Pin every tool and action to an exact tag.
+**Fix applied (in sibling reference implementation):** Pin every tool and action to an exact tag.
 
 | Tool / Action | Pinned Version |
 |---|---|
@@ -260,7 +260,7 @@ Error: Process completed with exit code 1.
 
 **Root cause:** `concurrency.cancel-in-progress: true` is appropriate for PRs but catastrophic for release branches where every commit must produce complete artifacts.
 
-**Fix applied (in gitmap-v3):**
+**Fix applied (in sibling reference implementation):**
 ```yaml
 # release.yml
 concurrency:
@@ -283,7 +283,7 @@ cancel-in-progress: ${{ !startsWith(github.ref, 'refs/heads/release/') }}
 
 **Root cause:** The release workflow generated install scripts with `sed` substitution. When `VERSION` was unset (e.g., the version-resolution step failed silently) or `sed` ran on the wrong file, placeholders survived into the published asset.
 
-**Fix applied (in gitmap-v3):**
+**Fix applied (in sibling reference implementation):**
 ```bash
 : "${VERSION:?VERSION must be set before generating install scripts}"
 sed -i "s|VERSION_PLACEHOLDER|${VERSION}|g; s|REPO_PLACEHOLDER|${GITHUB_REPOSITORY}|g" install.sh install.ps1
@@ -302,7 +302,7 @@ sed -i "s|VERSION_PLACEHOLDER|${VERSION}|g; s|REPO_PLACEHOLDER|${GITHUB_REPOSITO
 
 **Root cause:** Upload code checked for `GITHUB_TOKEN` and **returned early without erroring** when absent. Intentional for local dev, but the silence misled both users and CI debuggers.
 
-**Fix applied (in gitmap-v3):** Print an explicit warning to stderr when assets exist but the token is missing. In CI, treat a missing `GITHUB_TOKEN` as a **hard failure**, not a skip.
+**Fix applied (in sibling reference implementation):** Print an explicit warning to stderr when assets exist but the token is missing. In CI, treat a missing `GITHUB_TOKEN` as a **hard failure**, not a skip.
 
 **Prevention rule:**  
 🟡 **Silent skips are a bug.** Always log to stderr when skipping an expected operation. In CI, missing required secrets MUST fail the job, not warn.
@@ -315,7 +315,7 @@ sed -i "s|VERSION_PLACEHOLDER|${VERSION}|g; s|REPO_PLACEHOLDER|${GITHUB_REPOSITO
 
 **Root cause:** The compress step produced `app-v1.2.0-windows-amd64.zip`, but the checksum step (running in a different working directory) generated `checksums.txt` listing `app-windows-amd64.zip` (no version). Install scripts looked up the versioned name in a non-versioned manifest → mismatch.
 
-**Fix applied (in gitmap-v3):**
+**Fix applied (in sibling reference implementation):**
 1. Centralize asset naming as a shell function:
    ```bash
    asset_name() { echo "app-${VERSION}-${OS}-${ARCH}.${EXT}"; }
