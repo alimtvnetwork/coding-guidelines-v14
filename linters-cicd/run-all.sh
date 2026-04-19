@@ -147,15 +147,15 @@ run_check() {
     local rule_id="$1" lang="$2" script_path="$3" out_path="$4" status_path="$5"
     local rc
     if [ -n "$TIMEOUT_BIN" ]; then
-        "$TIMEOUT_BIN" --preserve-status "$CHECK_TIMEOUT" \
+        "$TIMEOUT_BIN" -k 2 "$CHECK_TIMEOUT" \
             python3 "$script_path" --path "$PATH_ARG" --format sarif --output "$out_path"
         rc=$?
     else
         python3 "$script_path" --path "$PATH_ARG" --format sarif --output "$out_path"
         rc=$?
     fi
-    # 124 = GNU timeout overrun, 137 = SIGKILL after grace
-    if [ "$rc" -eq 124 ] || [ "$rc" -eq 137 ]; then
+    # 124 = GNU timeout overrun, 137 = SIGKILL grace, 143 = SIGTERM grace
+    if [ "$rc" -eq 124 ] || [ "$rc" -eq 137 ] || [ "$rc" -eq 143 ]; then
         python3 "$SCRIPT_DIR/scripts/emit-timeout.py" \
             "$rule_id" "$lang" "$CHECK_TIMEOUT" "$out_path" "$VERSION"
         rc=124
