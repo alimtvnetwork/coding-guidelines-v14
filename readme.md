@@ -23,17 +23,31 @@ There are **two independent ways** to install. You do **not** need to run one be
 
 No clone, no download, no local files required. Open a terminal **in the directory where you want the folders to land**, then run:
 
+#### PowerShell (Windows)
+
+```powershell
+irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex
+```
+
+Skip the latest-version probe (install whatever this URL points to, no questions asked):
+
+```powershell
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1))) -n
+```
+
 #### Bash (Linux / macOS)
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash
 ```
 
-#### PowerShell (Windows)
+Skip the latest-version probe:
 
-```powershell
-irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex
+```bash
+curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash -s -- -n
 ```
+
+> **What does `-n` / `--no-latest` do?** By default the installer probes 20 candidate "next" repository versions in parallel (e.g. `coding-guidelines-v15` … `coding-guidelines-v34`) and hands off to the newest one it finds. Pass `-n` (PowerShell) or `-n` / `--no-latest` (bash) to skip that probe entirely and run **this exact installer** without the network round-trip. Aliases for the same switch: PowerShell `-NoProbe`, `-NoLatest`; bash `--no-probe`, `--no-latest`.
 
 What happens:
 
@@ -42,14 +56,14 @@ What happens:
 3. It extracts **only** `spec/`, `linters/`, and `linter-scripts/` into your **current working directory**.
 4. **The temp directory is deleted automatically on exit** (via `trap cleanup EXIT` in bash, `finally { Remove-Item }` in PowerShell) — even if the install fails. Nothing is left behind except the three target folders you asked for.
 
-To pass flags through the pipe, use the explicit `bash -s` / scriptblock forms:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash -s -- --folders spec --dry-run
-```
+To pass other flags through the pipe, use the explicit `bash -s` / scriptblock forms:
 
 ```powershell
 & ([scriptblock]::Create((irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1))) -Folders spec -DryRun
+```
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash -s -- --folders spec --dry-run
 ```
 
 ### Option 2 — Local script (after cloning the repo)
@@ -82,7 +96,7 @@ Both `install.sh` and `install.ps1` support the same set of flags:
 | `--dry-run` | `-DryRun` | Print what would change; write nothing |
 | `--list-versions` | `-ListVersions` | List available release tags and exit |
 | `--list-folders` | `-ListFolders` | List top-level folders for the chosen ref and exit |
-| `--no-probe` | `-NoProbe` | Skip the latest-version auto-probe |
+| `--no-probe`, `--no-latest`, `-n` | `-NoProbe`, `-NoLatest`, `-n` | Skip the latest-version auto-probe (use the current installer as-is) |
 
 `--prompt` and `--force` are mutually exclusive.
 

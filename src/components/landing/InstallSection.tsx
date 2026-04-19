@@ -18,9 +18,19 @@ const installCommands: InstallCommand[] = [
     command: "irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1 | iex",
   },
   {
+    platform: "Windows (skip latest probe)",
+    shell: "PowerShell",
+    command: "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.ps1))) -n",
+  },
+  {
     platform: "macOS / Linux",
     shell: "Bash",
     command: "curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash",
+  },
+  {
+    platform: "macOS / Linux (skip latest probe)",
+    shell: "Bash",
+    command: "curl -fsSL https://raw.githubusercontent.com/alimtvnetwork/coding-guidelines-v14/main/install.sh | bash -s -- -n",
   },
 ];
 
