@@ -176,15 +176,15 @@ if ($ListFolders)  { Show-TopFolders }
 
 # ── Banner ────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "════════════════════════════════════════════════════════" -ForegroundColor White
-Write-Host "  Spec & Scripts Installer" -ForegroundColor White
-Write-Host "  Source:  $Repo @ $ref" -ForegroundColor White
-Write-Host "  Folders: $($Folders -join ', ')" -ForegroundColor White
-Write-Host "  Dest:    $Dest" -ForegroundColor White
-if ($DryRun) { Write-Host "  Mode:    DRY-RUN (no writes)" -ForegroundColor White }
-if ($Prompt) { Write-Host "  Mode:    Interactive prompts (y/n/a/s)" -ForegroundColor White }
-if ($Force)  { Write-Host "  Mode:    Force overwrite" -ForegroundColor White }
-Write-Host "════════════════════════════════════════════════════════" -ForegroundColor White
+Write-Plain "════════════════════════════════════════════════════════"
+Write-Plain "  Spec & Scripts Installer"
+Write-Plain "  Source:  $Repo @ $ref"
+Write-Plain "  Folders: $($Folders -join ', ')"
+Write-Plain "  Dest:    $Dest"
+if ($DryRun) { Write-Plain "  Mode:    DRY-RUN (no writes)" }
+if ($Prompt) { Write-Plain "  Mode:    Interactive prompts (y/n/a/s)" }
+if ($Force)  { Write-Plain "  Mode:    Force overwrite" }
+Write-Plain "════════════════════════════════════════════════════════"
 Write-Host ""
 
 # ── Download archive at ref ───────────────────────────────────────
