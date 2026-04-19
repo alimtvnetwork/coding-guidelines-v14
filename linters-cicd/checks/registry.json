@@ -60,5 +60,12 @@
       "go": "checks/no-else-after-return/go.py",
       "typescript": "checks/no-else-after-return/typescript.py"
     }
+  },
+  "STYLE-099": {
+    "name": "SuppressionWithoutReason",
+    "level": "warning",
+    "spec": "02-coding-guidelines/06-cicd-integration/98-faq.md",
+    "synthetic": true,
+    "languages": {}
   }
 }
