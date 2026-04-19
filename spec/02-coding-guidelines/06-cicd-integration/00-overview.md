@@ -44,6 +44,7 @@ The pack must:
 | `04-ci-templates.md` | Inventory of CI platform templates |
 | `05-distribution.md` | ZIP, composite Action, install.sh contract |
 | `06-rules-mapping.md` | Each rule → spec source → check script → severity |
+| `07-performance.md` | Middle-out probe order, parallel jobs, timeout budgets |
 | `97-acceptance-criteria.md` | Testable AC for every public artifact |
 
 ---
