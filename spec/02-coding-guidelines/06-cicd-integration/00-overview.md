@@ -46,6 +46,7 @@ The pack must:
 | `06-rules-mapping.md` | Each rule → spec source → check script → severity |
 | `07-performance.md` | Middle-out probe order, parallel jobs, timeout budgets |
 | `97-acceptance-criteria.md` | Testable AC for every public artifact |
+| `98-faq.md` | Suppression, baselining, single-rule runs, version pinning |
 
 ---
 
