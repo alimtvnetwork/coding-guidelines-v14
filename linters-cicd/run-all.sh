@@ -201,16 +201,16 @@ if [ "$JOBS" -eq 1 ]; then
 else
     echo "    ▸ dispatching $TOTAL check(s) across $JOBS worker(s)..."
     # xargs -P for parallel dispatch; each line is one job
-    cat "$WORK_LIST" | tr '|' '\t' | \
-        xargs -L 1 -P "$JOBS" -I {} bash -c '
-            line="{}"
-            rule_id=$(echo "$line" | cut -f1)
-            lang=$(echo "$line" | cut -f2)
-            script_path=$(echo "$line" | cut -f3)
+    # -P parallel workers, one bash invocation per line, line passed as $0
+    xargs -P "$JOBS" -I {} bash -c '
+            line="$1"
+            rule_id=$(echo "$line" | cut -d"|" -f1)
+            lang=$(echo "$line" | cut -d"|" -f2)
+            script_path=$(echo "$line" | cut -d"|" -f3)
             out="'"$TMP_DIR"'/${rule_id}-${lang}.sarif"
             status="'"$STATUS_DIR"'/${rule_id}-${lang}.rc"
             run_check "$rule_id" "$lang" "$script_path" "$out" "$status" >/dev/null 2>&1
-        '
+        ' _ {} < "$WORK_LIST"
     # Render results in registry order for stable logs
     while IFS='|' read -r RULE_ID LANG SCRIPT_PATH; do
         [ -z "$RULE_ID" ] && continue
